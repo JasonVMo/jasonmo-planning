@@ -1,0 +1,23 @@
+{
+  "name": "@jasonmo/topic-welcome",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.tsx",
+  "scripts": {
+    "build": "tsc",
+    "lint": "oxlint src",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@fluentui/react-components": "9.74.6",
+    "@jasonmo/common": "workspace:*",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "typescript": "7.0.2"
+  }
+}
