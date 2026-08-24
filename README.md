@@ -15,7 +15,9 @@ yarn test
 yarn bundle
 ```
 
-Run `yarn dev` for a local development server. The production bundle is written to `site/dist`.
+Run `yarn dev` for a local development server. The production bundle is written to `docs`, which
+is the directory GitHub Pages publishes from the `main` branch. Commit changes in `docs` after
+running `yarn bundle` to publish them.
 
 Topic packages are named `packages/topic-<name>`. Each exports a `TopicDefinition` containing its
 header, root page, and optional nested pages. The site's `prebuild` task discovers these packages and

@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, writeFile } from "node:fs/promises";
+import { cp, mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import mdx from "@mdx-js/esbuild";
 import { build, context } from "esbuild";
@@ -23,7 +23,11 @@ export async function generateTopicIndex(rootDirectory: string): Promise<void> {
 
 export async function bundleSite(rootDirectory: string, serve = false): Promise<void> {
   const siteDirectory = path.join(rootDirectory, "site");
-  const outputDirectory = path.join(siteDirectory, "dist");
+  // GitHub Pages is configured to publish this repository's /docs directory.
+  // Keep assets relative in site/public/index.html so the result also works when
+  // Pages serves it below the repository name rather than at the domain root.
+  const outputDirectory = path.join(rootDirectory, "docs");
+  await rm(outputDirectory, { recursive: true, force: true });
   await mkdir(outputDirectory, { recursive: true });
   await cp(path.join(siteDirectory, "public"), outputDirectory, { recursive: true });
 
