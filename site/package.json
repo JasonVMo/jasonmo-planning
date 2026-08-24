@@ -1,0 +1,27 @@
+{
+  "name": "site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prebuild": "scripts generate-topic-index",
+    "build": "tsc",
+    "bundle": "scripts bundle",
+    "dev": "scripts dev",
+    "lint": "oxlint src",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@fluentui/react-components": "9.74.6",
+    "@jasonmo/scripts": "workspace:*",
+    "@jasonmo/shell": "workspace:*",
+    "@jasonmo/topic-welcome": "workspace:*",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "typescript": "7.0.2"
+  }
+}

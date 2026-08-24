@@ -1,0 +1,16 @@
+{
+  "name": "@jasonmo/common",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "oxlint src",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "typescript": "7.0.2"
+  }
+}

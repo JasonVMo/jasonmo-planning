@@ -1,0 +1,21 @@
+{
+  "name": "@jasonmo/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "bin": "./src/cli.ts",
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "oxlint src",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@mdx-js/esbuild": "3.1.1",
+    "esbuild": "0.28.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "typescript": "7.0.2"
+  }
+}
