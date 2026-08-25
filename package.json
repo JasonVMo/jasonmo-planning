@@ -8,7 +8,7 @@
   ],
   "type": "module",
   "scripts": {
-    "add-topic": "scripts add-topic && yarn install",
+    "add-topic": "node scripts/src/cli.ts add-topic",
     "build": "nx run-many -t build",
     "bundle": "nx run site:bundle",
     "dev": "nx run site:dev",

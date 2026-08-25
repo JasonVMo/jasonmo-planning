@@ -15,6 +15,7 @@
     "@fluentui/react-components": "9.74.6",
     "@jasonmo/scripts": "workspace:*",
     "@jasonmo/shell": "workspace:*",
+    "@jasonmo/topic-acadia": "workspace:*",
     "@jasonmo/topic-welcome": "workspace:*",
     "react": "19.2.8",
     "react-dom": "19.2.8"
