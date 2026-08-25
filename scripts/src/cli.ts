@@ -2,12 +2,22 @@
 
 import path from "node:path";
 import process from "node:process";
-import { bundleSite, generateTopicIndex } from "./index.ts";
+import { addTopic, bundleSite, generateTopicIndex } from "./index.ts";
 
 const rootDirectory = path.resolve(import.meta.dirname, "../..");
 const command = process.argv[2];
 
 switch (command) {
+  case "add-topic": {
+    const topicName = process.argv[3];
+    if (!topicName) {
+      console.error("Usage: scripts add-topic <topic-name>");
+      process.exitCode = 1;
+      break;
+    }
+    await addTopic(rootDirectory, topicName);
+    break;
+  }
   case "bundle":
     await bundleSite(rootDirectory);
     break;
@@ -19,6 +29,6 @@ switch (command) {
     await generateTopicIndex(rootDirectory);
     break;
   default:
-    console.error("Usage: scripts <bundle|dev|generate-topic-index>");
+    console.error("Usage: scripts <add-topic|bundle|dev|generate-topic-index>");
     process.exitCode = 1;
 }

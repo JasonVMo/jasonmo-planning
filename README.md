@@ -22,3 +22,12 @@ running `yarn bundle` to publish them.
 Topic packages are named `packages/topic-<name>`. Each exports a `TopicDefinition` containing its
 header, root page, and optional nested pages. The site's `prebuild` task discovers these packages and
 generates its topic registry.
+
+Create and register a new topic package with a lowercase, hyphenated name:
+
+```sh
+yarn add-topic <topic-name>
+```
+
+The command creates the package with an overview page, adds its workspace dependency to the site,
+regenerates the topic registry, and updates the Yarn install state.
