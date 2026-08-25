@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@mdx-js/esbuild": "3.1.1",
-    "esbuild": "0.28.2"
+    "esbuild": "0.28.2",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@types/node": "22.20.1",

@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import mdx from "@mdx-js/esbuild";
 import { build, context } from "esbuild";
+import remarkGfm from "remark-gfm";
 
 const topicNamePattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -145,7 +146,7 @@ export async function bundleSite(rootDirectory: string, serve = false): Promise<
       ".svg": "file" as const,
     },
     outdir: outputDirectory,
-    plugins: [mdx({ mdExtensions: [".md"] })],
+    plugins: [mdx({ mdExtensions: [".md"], remarkPlugins: [remarkGfm] })],
     sourcemap: true,
     minify: production,
   };
