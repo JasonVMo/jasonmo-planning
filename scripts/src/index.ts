@@ -23,6 +23,8 @@ export async function generateTopicIndex(rootDirectory: string): Promise<void> {
 
 export async function bundleSite(rootDirectory: string, serve = false): Promise<void> {
   const siteDirectory = path.join(rootDirectory, "site");
+  const production = !serve;
+  console.log(`Bundling site in ${production ? "production" : "development"} mode...`);
   // GitHub Pages is configured to publish this repository's /docs directory.
   // Keep assets relative in site/public/index.html so the result also works when
   // Pages serves it below the repository name rather than at the domain root.
@@ -43,6 +45,7 @@ export async function bundleSite(rootDirectory: string, serve = false): Promise<
     outdir: outputDirectory,
     plugins: [mdx({ mdExtensions: [".md"] })],
     sourcemap: true,
+    minify: production
   };
 
   if (serve) {
