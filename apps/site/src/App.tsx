@@ -1,5 +1,10 @@
-import type { SiteManifest, TopicView } from "@tracker/entity-model";
-import { EntityRenderer, TrackerProvider, type TrackerThemeMode } from "@tracker/entity-ui";
+import { isCalendarDate, type SiteManifest, type TopicView } from "@tracker/entity-model";
+import {
+  EntityRenderer,
+  formatCalendarDate,
+  TrackerProvider,
+  type TrackerThemeMode,
+} from "@tracker/entity-ui";
 import {
   Badge,
   Button,
@@ -30,6 +35,7 @@ import {
   useSearchParams,
 } from "react-router";
 import { Freshness } from "./freshness.tsx";
+import { CalendarPage } from "./CalendarPage.tsx";
 import { createSearch, searchDocuments } from "./search.ts";
 import "./styles/site.css";
 
@@ -40,6 +46,13 @@ interface AppProps {
 function routeTitle(pathname: string, manifest: SiteManifest): string {
   if (pathname === "/") return "Research dashboard";
   if (pathname === "/search") return "Search";
+  if (pathname === "/calendar" || pathname.startsWith("/calendar/")) {
+    const match = /^\/calendar\/(month|day)\/([^/]+)$/.exec(pathname);
+    if (match && isCalendarDate(match[2])) {
+      return `${formatCalendarDate(match[2], match[1] === "month" ? { month: "long", year: "numeric" } : undefined)} · Calendar`;
+    }
+    return "Calendar";
+  }
   const entityMatch = /^\/entities\/([^/]+)$/.exec(pathname);
   if (entityMatch?.[1]) {
     return (
@@ -63,6 +76,9 @@ function NavItems({ manifest, onNavigate }: { manifest: SiteManifest; onNavigate
       </Link>
       <Link className="nav-link" to="/search" onClick={onNavigate}>
         <span aria-hidden="true">⌕</span> Search
+      </Link>
+      <Link className="nav-link" to="/calendar" onClick={onNavigate}>
+        Calendar
       </Link>
       <p className="nav-heading">Topics</p>
       {manifest.taxonomy.map((topic) => (
@@ -119,6 +135,9 @@ function Shell({
     const title = routeTitle(location.pathname, manifest);
     document.title = `${title} · Tracker`;
     if (announcer.current) announcer.current.textContent = `${title} loaded`;
+  }, [location.pathname, location.search, manifest]);
+
+  useEffect(() => {
     main.current?.focus();
   }, [location.pathname, manifest]);
 
@@ -544,6 +563,11 @@ function RoutedApp({ manifest }: AppProps) {
           <Route path="/topics/:topicId" element={<TopicPage manifest={manifest} />} />
           <Route path="/entities/:entityId" element={<EntityPage manifest={manifest} />} />
           <Route path="/search" element={<SearchPage manifest={manifest} />} />
+          <Route path="/calendar" element={<CalendarPage manifest={manifest} />} />
+          <Route
+            path="/calendar/:calendarMode/:calendarDate"
+            element={<CalendarPage manifest={manifest} />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Shell>

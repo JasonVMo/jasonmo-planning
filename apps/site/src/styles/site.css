@@ -465,6 +465,98 @@ input {
   white-space: nowrap;
 }
 
+.calendar-page {
+  max-width: 84rem;
+  min-width: 0;
+}
+
+.calendar-page__intro {
+  margin-bottom: 2rem;
+}
+
+.calendar-page__intro h1 {
+  margin: 0.4rem 0;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  letter-spacing: -0.04em;
+}
+
+.calendar-page__intro > p:last-child,
+.calendar-page__empty p {
+  color: var(--colorNeutralForeground2);
+  line-height: 1.6;
+}
+
+.calendar-toolbar,
+.calendar-period,
+.calendar-view-switch,
+.calendar-date-form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.calendar-toolbar {
+  align-items: end;
+  margin-bottom: 1.5rem;
+  gap: 1rem 1.5rem;
+}
+
+.calendar-toolbar label {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  font-size: 0.8rem;
+}
+
+.calendar-toolbar input,
+.calendar-toolbar select,
+.calendar-toolbar button,
+.calendar-toolbar a {
+  min-height: 2.5rem;
+  border: 1px solid var(--colorNeutralStroke1);
+  border-radius: var(--borderRadiusMedium);
+  background: var(--colorNeutralBackground1);
+  color: var(--colorNeutralForeground1);
+  padding: 0.5rem 0.65rem;
+  font: inherit;
+}
+
+.calendar-toolbar select {
+  max-width: min(100%, 18rem);
+}
+
+.calendar-toolbar a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.calendar-toolbar a:hover,
+.calendar-toolbar button:hover {
+  background: var(--colorNeutralBackground1Hover);
+}
+
+.calendar-toolbar a[aria-current="page"] {
+  background: var(--colorBrandBackground);
+  color: var(--colorNeutralForegroundOnBrand);
+  border-color: var(--colorBrandStroke1);
+}
+
+.calendar-date-form {
+  align-items: end;
+}
+
+.calendar-page__view {
+  margin-top: 2rem;
+}
+
+.calendar-page__empty {
+  margin-top: 1.5rem;
+  border-inline-start: 3px solid var(--colorBrandStroke1);
+  padding-inline-start: 1rem;
+}
+
 .bootstrap-provider {
   display: grid;
   min-height: 100vh;

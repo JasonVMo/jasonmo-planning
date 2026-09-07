@@ -24,6 +24,40 @@ export function EntityRenderer({ entity, viewType, context }: EntityRendererProp
     viewType ?? (context === undefined ? entity.view.defaultType : entity.view.byContext[context]);
 
   switch (selectedType) {
+    case "event": {
+      const model = entity.viewModels.event;
+      return model ? (
+        <viewRegistry.event {...model} compact={context !== undefined && context !== "detail"} />
+      ) : (
+        <MissingViewModel entity={entity} viewType={selectedType} />
+      );
+    }
+    case "calendar-month": {
+      const model = entity.viewModels["calendar-month"];
+      const Renderer = viewRegistry["calendar-month"];
+      return model ? (
+        <Renderer {...model} />
+      ) : (
+        <MissingViewModel entity={entity} viewType={selectedType} />
+      );
+    }
+    case "calendar-day": {
+      const model = entity.viewModels["calendar-day"];
+      const Renderer = viewRegistry["calendar-day"];
+      return model ? (
+        <Renderer {...model} />
+      ) : (
+        <MissingViewModel entity={entity} viewType={selectedType} />
+      );
+    }
+    case "timeline": {
+      const model = entity.viewModels.timeline;
+      return model ? (
+        <viewRegistry.timeline {...model} />
+      ) : (
+        <MissingViewModel entity={entity} viewType={selectedType} />
+      );
+    }
     case "label": {
       const model = entity.viewModels.label;
       return model ? (

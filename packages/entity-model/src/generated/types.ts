@@ -10,7 +10,15 @@ export type Audience = "local" | "private-owner" | "private-group" | "public";
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "ViewType".
  */
-export type ViewType = "label" | "tile" | "card" | "full";
+export type ViewType =
+  | "label"
+  | "tile"
+  | "card"
+  | "full"
+  | "event"
+  | "calendar-month"
+  | "calendar-day"
+  | "timeline";
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "RenderContext".
@@ -26,6 +34,52 @@ export type StableId = string;
  * via the `definition` "Timestamp".
  */
 export type Timestamp = string;
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "CalendarDate".
+ */
+export type CalendarDate = string;
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "CalendarTimestamp".
+ */
+export type CalendarTimestamp = string;
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TimeZone".
+ */
+export type TimeZone = string;
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "EventKind".
+ */
+export type EventKind = "event" | "appointment" | "deadline" | "reminder";
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "EventStatus".
+ */
+export type EventStatus = "confirmed" | "tentative" | "cancelled";
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "EventLocation".
+ */
+export type EventLocation = string;
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "EventSchedule".
+ */
+export type EventSchedule =
+  | {
+      allDay: true;
+      startDate: CalendarDate;
+      endDate: CalendarDate;
+    }
+  | {
+      allDay: false;
+      startAt: CalendarTimestamp;
+      endAt: CalendarTimestamp;
+      timeZone: TimeZone;
+    };
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "Digest".
@@ -109,6 +163,63 @@ export interface FullViewModel {
 }
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "CalendarEvent".
+ */
+export interface CalendarEvent {
+  title: string;
+  summary: string;
+  href: string;
+  kind: EventKind;
+  status: EventStatus;
+  schedule: EventSchedule;
+  location?: EventLocation;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "EventViewModel".
+ */
+export interface EventViewModel {
+  title: string;
+  summary: string;
+  href: string;
+  kind: EventKind;
+  status: EventStatus;
+  schedule: EventSchedule;
+  location?: EventLocation;
+  body: string;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "CalendarMonthViewModel".
+ */
+export interface CalendarMonthViewModel {
+  title: string;
+  date: CalendarDate;
+  timeZone: TimeZone;
+  events: CalendarEvent[];
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "CalendarDayViewModel".
+ */
+export interface CalendarDayViewModel {
+  title: string;
+  date: CalendarDate;
+  timeZone: TimeZone;
+  events: CalendarEvent[];
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TimelineViewModel".
+ */
+export interface TimelineViewModel {
+  title: string;
+  date: CalendarDate;
+  timeZone: TimeZone;
+  events: CalendarEvent[];
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "ViewModels".
  */
 export interface ViewModels {
@@ -116,6 +227,10 @@ export interface ViewModels {
   tile?: TileViewModel;
   card?: CardViewModel;
   full?: FullViewModel;
+  event?: EventViewModel;
+  "calendar-month"?: CalendarMonthViewModel;
+  "calendar-day"?: CalendarDayViewModel;
+  timeline?: TimelineViewModel;
 }
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
@@ -231,6 +346,17 @@ export interface MarkdownData {
 }
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "EventData".
+ */
+export interface EventData {
+  bodyPath: RelativePath;
+  kind: EventKind;
+  status: EventStatus;
+  schedule: EventSchedule;
+  location?: EventLocation;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "Claim".
  */
 export interface Claim {
@@ -242,14 +368,10 @@ export interface Claim {
    */
   sourceIds: [StableId, ...StableId[]];
 }
-/**
- * This interface was referenced by `TrackerContracts`'s JSON-Schema
- * via the `definition` "Entity".
- */
 export interface Entity {
   schemaVersion: 1;
   id: StableId;
-  dataType: "markdown";
+  dataType: "markdown" | "event";
   dataVersion: 1;
   title: string;
   summary: string;
@@ -278,7 +400,7 @@ export interface Entity {
     permittedTypes: [ViewType, ...ViewType[]];
     contextOverrides?: ContextOverrides;
   };
-  data: MarkdownData;
+  data: MarkdownData | EventData;
   provenance: {
     /**
      * @maxItems 200

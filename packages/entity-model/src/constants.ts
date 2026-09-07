@@ -6,7 +6,16 @@ export const AUDIENCES = [
   "private-group",
   "public",
 ] as const satisfies readonly Audience[];
-export const VIEW_TYPES = ["label", "tile", "card", "full"] as const satisfies readonly ViewType[];
+export const VIEW_TYPES = [
+  "label",
+  "tile",
+  "card",
+  "full",
+  "event",
+  "calendar-month",
+  "calendar-day",
+  "timeline",
+] as const satisfies readonly ViewType[];
 export const RENDER_CONTEXTS = [
   "navigation",
   "collection",

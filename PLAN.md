@@ -24,6 +24,7 @@ the sections below retain the architecture and delivery contract.
 | Workspace and toolchain | Five Yarn/Nx projects; pinned package versions and Node 24.18.0 baseline in `references/toolchain.md` |
 | Canonical data and views | Independent data schemas, view schemas, adapters, and view-only renderers |
 | Site and Storybook | Local esbuild site, bidirectional relationship navigation, local search, and synthetic React/Vite Storybook |
+| Calendar extension | Opt-in event data, event/month/day/timeline view contracts, time-zone-aware navigation and day agendas; existing content unchanged |
 | Research operations | Local validation, due/review reporting, and supervised proposal reconciliation; real-source pilot cycles remain a separate operating gate |
 | CI and deployment | Not configured; approved runner, host, audience, and authorization remain required |
 
@@ -33,6 +34,13 @@ local build or fixture test does not close a hosting, publication, or real-sourc
 automation gate.
 
 Initial implementation boundaries:
+
+- The owner-requested calendar extension adds structured event schedules as a
+  separate version-1 data contract and four reusable view contracts. It does
+  not infer calendar events from research timestamps or migrate seed content.
+  Month/day routes aggregate only audience-safe, permitted event views.
+  Recurrence, imports, reminders delivery, and calendar editing remain out of
+  scope; local-only publication and research ownership are unchanged.
 
 - Storybook owns its synthetic stories under `apps/storybook/fixtures`, keeping
   Storybook dependencies out of the reusable `entity-ui` package.

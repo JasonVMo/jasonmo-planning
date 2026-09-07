@@ -26,6 +26,11 @@ must be registered, permitted, context-compatible, and adapted. Explicit
 invalid choices fail; only site defaults can fall through to the registered
 data-type fallback.
 
+Registered data types may supply implicit context defaults before the generic
+site defaults. Event data uses this for collection/detail; explicit selection
+precedence and compatibility requirements are unchanged. The Calendar route
+adds a reachable event presentation only for event entities that permit it.
+
 An explicit `defaultType` is independently checked for registration, entity
 permission, and an available adapter even if every context overrides it. A
 fully overridden default cannot bypass validation or expose a forbidden body.
@@ -38,3 +43,9 @@ unknown collection payloads fail rather than being executed.
 Adding a production data type requires schema, data version, SPEC, migration
 decision, projection semantics, registered adapter, and fixtures. It does not
 require a new renderer.
+
+The opt-in `event` data contract retains schema/data version 1 alongside
+unchanged `markdown` entities. Both types require a confined Markdown
+`data.bodyPath`; their other payload fields cannot be mixed. See the
+[event contract](../event/SPEC.md) for date-only and timed interval validation,
+private/local defaults, and the deliberate no-conversion migration decision.

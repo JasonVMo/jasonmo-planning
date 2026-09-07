@@ -4,6 +4,8 @@ A private, local-first research repository and static React website. Canonical
 YAML/JSON and Markdown are validated and projected into audience-safe browser
 data. Persisted **data types** and reusable **view types** are independent:
 compiler adapters connect data to `label`, `tile`, `card`, and `full` views.
+Date-based entities also support `event`, `calendar-month`, `calendar-day`,
+and compact `timeline` views.
 
 ## Start locally
 
@@ -49,6 +51,34 @@ with both the target entity and render context; invalid overrides are errors.
 Agents start from [AGENTS.md](AGENTS.md) and the repository skills under
 `.github/skills/`. Research is supervised and proposal-based. Compilation never
 accesses external sources or invokes a model.
+
+## Calendar and event views
+
+Open **Calendar** in the site navigation for a month-at-a-glance grid, a
+full-page day agenda, and a compact, keyboard-navigable timeline. Select a day
+or event to drill in; previous/next, Today, date entry, and time-zone controls
+keep the selection in the URL.
+
+Author date-based content with the opt-in
+[event data contract](references/entity-data-types/event/SPEC.md). It supports
+events, appointments, deadlines, and reminders; confirmed, tentative, and
+cancelled status; locations; all-day date ranges; and timed intervals with an
+explicit IANA time zone. End dates/times are exclusive. A one-day all-day
+event uses the following day as its end.
+
+Include `event` in the entity's `view.permittedTypes` to appear in the site's
+calendar. Existing Markdown entities are unchanged and are not automatically
+converted from their research timestamps. New content remains private/local,
+with no publication or research-ownership changes.
+
+The reusable [month](references/entity-view-types/calendar-month/SPEC.md),
+[day](references/entity-view-types/calendar-day/SPEC.md),
+[timeline](references/entity-view-types/timeline/SPEC.md), and
+[event](references/entity-view-types/event/SPEC.md) renderers consume typed
+browser presentations, independently of persisted data types. Storybook
+includes synthetic appointments, all-day/multi-day items, overlaps, empty
+days, cancellation, and narrow/dark layouts. Recurrence, calendar import/sync,
+notifications, and browser editing are not included.
 
 ## Build and quality commands
 

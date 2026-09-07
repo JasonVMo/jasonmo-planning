@@ -6,7 +6,19 @@
   "additionalProperties": false,
   "definitions": {
     "Audience": { "type": "string", "enum": ["local", "private-owner", "private-group", "public"] },
-    "ViewType": { "type": "string", "enum": ["label", "tile", "card", "full"] },
+    "ViewType": {
+      "type": "string",
+      "enum": [
+        "label",
+        "tile",
+        "card",
+        "full",
+        "event",
+        "calendar-month",
+        "calendar-day",
+        "timeline"
+      ]
+    },
     "RenderContext": {
       "type": "string",
       "enum": ["navigation", "collection", "relationship", "search", "detail"]
@@ -20,6 +32,51 @@
       "type": "string",
       "format": "date-time",
       "pattern": "T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "CalendarDate": {
+      "type": "string",
+      "format": "calendar-date",
+      "pattern": "^(?!00\\d{2}|9999)\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "CalendarTimestamp": {
+      "type": "string",
+      "format": "calendar-timestamp",
+      "pattern": "^(?!00\\d{2}|9999)\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "TimeZone": { "type": "string", "format": "iana-time-zone", "maxLength": 100 },
+    "EventKind": { "type": "string", "enum": ["event", "appointment", "deadline", "reminder"] },
+    "EventStatus": { "type": "string", "enum": ["confirmed", "tentative", "cancelled"] },
+    "EventLocation": {
+      "type": "string",
+      "maxLength": 500,
+      "pattern": "^[^<>\\u0000-\\u0008\\u000b\\u000c\\u000e-\\u001f]*$"
+    },
+    "EventSchedule": {
+      "type": "object",
+      "eventRange": true,
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["allDay", "startDate", "endDate"],
+          "properties": {
+            "allDay": { "const": true },
+            "startDate": { "$ref": "#/definitions/CalendarDate" },
+            "endDate": { "$ref": "#/definitions/CalendarDate" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["allDay", "startAt", "endAt", "timeZone"],
+          "properties": {
+            "allDay": { "const": false },
+            "startAt": { "$ref": "#/definitions/CalendarTimestamp" },
+            "endAt": { "$ref": "#/definitions/CalendarTimestamp" },
+            "timeZone": { "$ref": "#/definitions/TimeZone" }
+          }
+        }
+      ]
     },
     "Digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
     "RelativePath": {
@@ -73,6 +130,68 @@
         "body": { "type": "string", "maxLength": 262144 }
       }
     },
+    "CalendarEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "summary", "href", "kind", "status", "schedule"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "href": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" },
+        "kind": { "$ref": "#/definitions/EventKind" },
+        "status": { "$ref": "#/definitions/EventStatus" },
+        "schedule": { "$ref": "#/definitions/EventSchedule" },
+        "location": { "$ref": "#/definitions/EventLocation" }
+      }
+    },
+    "EventViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "summary", "href", "kind", "status", "schedule", "body"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "href": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" },
+        "kind": { "$ref": "#/definitions/EventKind" },
+        "status": { "$ref": "#/definitions/EventStatus" },
+        "schedule": { "$ref": "#/definitions/EventSchedule" },
+        "location": { "$ref": "#/definitions/EventLocation" },
+        "body": { "type": "string", "maxLength": 262144 }
+      }
+    },
+    "CalendarMonthViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "date", "timeZone", "events"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "date": { "$ref": "#/definitions/CalendarDate" },
+        "timeZone": { "$ref": "#/definitions/TimeZone" },
+        "events": { "type": "array", "items": { "$ref": "#/definitions/CalendarEvent" } }
+      }
+    },
+    "CalendarDayViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "date", "timeZone", "events"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "date": { "$ref": "#/definitions/CalendarDate" },
+        "timeZone": { "$ref": "#/definitions/TimeZone" },
+        "events": { "type": "array", "items": { "$ref": "#/definitions/CalendarEvent" } }
+      }
+    },
+    "TimelineViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "date", "timeZone", "events"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "date": { "$ref": "#/definitions/CalendarDate" },
+        "timeZone": { "$ref": "#/definitions/TimeZone" },
+        "events": { "type": "array", "items": { "$ref": "#/definitions/CalendarEvent" } }
+      }
+    },
     "ViewModels": {
       "type": "object",
       "additionalProperties": false,
@@ -80,7 +199,11 @@
         "label": { "$ref": "#/definitions/LabelViewModel" },
         "tile": { "$ref": "#/definitions/TileViewModel" },
         "card": { "$ref": "#/definitions/CardViewModel" },
-        "full": { "$ref": "#/definitions/FullViewModel" }
+        "full": { "$ref": "#/definitions/FullViewModel" },
+        "event": { "$ref": "#/definitions/EventViewModel" },
+        "calendar-month": { "$ref": "#/definitions/CalendarMonthViewModel" },
+        "calendar-day": { "$ref": "#/definitions/CalendarDayViewModel" },
+        "timeline": { "$ref": "#/definitions/TimelineViewModel" }
       }
     },
     "ContextOverrides": {
@@ -249,6 +372,18 @@
       "required": ["bodyPath"],
       "properties": { "bodyPath": { "$ref": "#/definitions/RelativePath" } }
     },
+    "EventData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bodyPath", "kind", "status", "schedule"],
+      "properties": {
+        "bodyPath": { "$ref": "#/definitions/RelativePath" },
+        "kind": { "$ref": "#/definitions/EventKind" },
+        "status": { "$ref": "#/definitions/EventStatus" },
+        "schedule": { "$ref": "#/definitions/EventSchedule" },
+        "location": { "$ref": "#/definitions/EventLocation" }
+      }
+    },
     "Source": {
       "type": "object",
       "additionalProperties": false,
@@ -298,6 +433,16 @@
     "Entity": {
       "type": "object",
       "additionalProperties": false,
+      "allOf": [
+        {
+          "if": { "properties": { "dataType": { "const": "markdown" } } },
+          "then": { "properties": { "data": { "$ref": "#/definitions/MarkdownData" } } }
+        },
+        {
+          "if": { "properties": { "dataType": { "const": "event" } } },
+          "then": { "properties": { "data": { "$ref": "#/definitions/EventData" } } }
+        }
+      ],
       "required": [
         "schemaVersion",
         "id",
@@ -322,7 +467,7 @@
       "properties": {
         "schemaVersion": { "const": 1 },
         "id": { "$ref": "#/definitions/StableId" },
-        "dataType": { "const": "markdown" },
+        "dataType": { "type": "string", "enum": ["markdown", "event"] },
         "dataVersion": { "const": 1 },
         "title": { "type": "string", "minLength": 1, "maxLength": 240 },
         "summary": { "type": "string", "minLength": 1, "maxLength": 2000 },
@@ -375,7 +520,9 @@
             "contextOverrides": { "$ref": "#/definitions/ContextOverrides" }
           }
         },
-        "data": { "$ref": "#/definitions/MarkdownData" },
+        "data": {
+          "oneOf": [{ "$ref": "#/definitions/MarkdownData" }, { "$ref": "#/definitions/EventData" }]
+        },
         "provenance": {
           "type": "object",
           "additionalProperties": false,

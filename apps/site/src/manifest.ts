@@ -2,6 +2,12 @@ import {
   AUDIENCES,
   RENDER_CONTEXTS,
   VIEW_TYPES,
+  isCalendarDate,
+  isTimeZone,
+  isEventSchedule,
+  type CalendarEvent,
+  type EventViewModel,
+  type CalendarMonthViewModel,
   type CardViewModel,
   type FullViewModel,
   type LabelViewModel,
@@ -96,13 +102,66 @@ function isFullModel(value: unknown): value is FullViewModel {
 function isViewModels(value: unknown): value is ViewModels {
   if (
     !isObject(value) ||
-    !onlyKeys(value, ["label", "tile", "card", "full"]) ||
+    !onlyKeys(value, VIEW_TYPES) ||
     (value.label !== undefined && !isLabelModel(value.label)) ||
     (value.tile !== undefined && !isTileModel(value.tile)) ||
     (value.card !== undefined && !isCardModel(value.card)) ||
-    (value.full !== undefined && !isFullModel(value.full))
+    (value.full !== undefined && !isFullModel(value.full)) ||
+    (value.event !== undefined && !isEventModel(value.event)) ||
+    (value["calendar-month"] !== undefined && !isCalendarModel(value["calendar-month"])) ||
+    (value["calendar-day"] !== undefined && !isCalendarModel(value["calendar-day"])) ||
+    (value.timeline !== undefined && !isCalendarModel(value.timeline))
   ) {
     return false;
+  }
+
+  function isCalendarEvent(value: unknown, withBody = false): value is CalendarEvent {
+    return (
+      isObject(value) &&
+      onlyKeys(value, [
+        "title",
+        "summary",
+        "href",
+        "kind",
+        "status",
+        "schedule",
+        "location",
+        ...(withBody ? ["body"] : []),
+      ]) &&
+      typeof value.title === "string" &&
+      value.title.length <= 240 &&
+      typeof value.summary === "string" &&
+      value.summary.length <= 2000 &&
+      typeof value.href === "string" &&
+      /^#\/entities\/[a-z0-9-]+$/.test(value.href) &&
+      isStringUnion(value.kind, ["event", "appointment", "deadline", "reminder"]) &&
+      isStringUnion(value.status, ["confirmed", "tentative", "cancelled"]) &&
+      isEventSchedule(value.schedule) &&
+      (value.location === undefined ||
+        (typeof value.location === "string" && value.location.length <= 500))
+    );
+  }
+
+  function isEventModel(value: unknown): value is EventViewModel {
+    return (
+      isObject(value) &&
+      isCalendarEvent(value, true) &&
+      typeof value.body === "string" &&
+      value.body.length <= 262144
+    );
+  }
+
+  function isCalendarModel(value: unknown): value is CalendarMonthViewModel {
+    return (
+      isObject(value) &&
+      onlyKeys(value, ["title", "date", "timeZone", "events"]) &&
+      typeof value.title === "string" &&
+      value.title.length <= 240 &&
+      isCalendarDate(value.date) &&
+      isTimeZone(value.timeZone) &&
+      Array.isArray(value.events) &&
+      value.events.every((event) => isCalendarEvent(event))
+    );
   }
   return true;
 }

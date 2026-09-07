@@ -13,16 +13,38 @@ describe("browser-safe generated model surface", () => {
     expect(RENDER_CONTEXTS).toEqual(contracts.definitions.RenderContext.enum);
   });
   it("owns independent strict data/view contracts and safe Markdown string body", () => {
-    expect(contracts.definitions.Entity.properties.dataType.const).toBe("markdown");
+    expect(contracts.definitions.Entity.properties.dataType.enum).toEqual(["markdown", "event"]);
+    expect(contracts.definitions.Entity.properties.schemaVersion.const).toBe(1);
+    expect(contracts.definitions.Entity.properties.dataVersion.const).toBe(1);
     expect(contracts.definitions.FullViewModel.properties.body.type).toBe("string");
+    expect(contracts.definitions.EventViewModel.properties.body.type).toBe("string");
     for (const name of [
       "LabelViewModel",
       "TileViewModel",
       "CardViewModel",
       "FullViewModel",
+      "CalendarEvent",
+      "EventViewModel",
+      "CalendarMonthViewModel",
+      "CalendarDayViewModel",
+      "TimelineViewModel",
+      "EventData",
       "SiteManifest",
     ] as const)
       expect(contracts.definitions[name].additionalProperties).toBe(false);
+  });
+  it("keeps calendar collection models distinct and their event items body-free", () => {
+    for (const name of [
+      "CalendarMonthViewModel",
+      "CalendarDayViewModel",
+      "TimelineViewModel",
+    ] as const) {
+      expect(contracts.definitions[name].required).toEqual(["title", "date", "timeZone", "events"]);
+      expect(contracts.definitions[name].properties.events.items.$ref).toBe(
+        "#/definitions/CalendarEvent",
+      );
+    }
+    expect(contracts.definitions.CalendarEvent.properties).not.toHaveProperty("body");
   });
   it("allows only in-package references in every schema entry point", async () => {
     const directory = fileURLToPath(new URL("../schemas/", import.meta.url));

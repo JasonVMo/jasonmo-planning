@@ -58,7 +58,11 @@ export function resolveView(
       );
     return selected;
   }
-  for (const fallback of [CONTEXT_DEFAULTS[context], registration.fallbackView])
-    if (compatible(fallback)) return fallback;
+  for (const fallback of [
+    registration.contextDefaults?.[context],
+    CONTEXT_DEFAULTS[context],
+    registration.fallbackView,
+  ])
+    if (fallback && compatible(fallback)) return fallback;
   fail(entity.id, `/view/${context}`, "no compatible site default or data-type fallback");
 }

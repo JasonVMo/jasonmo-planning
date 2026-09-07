@@ -16,7 +16,7 @@ import { projectMarkdown, safeUrl } from "./markdown.ts";
 import { assertSchema } from "./schema.ts";
 import { searchDocuments } from "./search-documents.ts";
 import { loadCorpus, type Corpus } from "./validate.ts";
-import { adaptView } from "./view-adapters.ts";
+import { adaptView, type Presentation } from "./view-adapters.ts";
 import { resolveView } from "./view-selection.ts";
 
 export function normalizeBasePath(path: string): string {
@@ -159,6 +159,9 @@ export function projectCorpus(
     reachable.set(item.entity.id, new Set(Object.values(resolved)));
     if (item.entity.view.defaultType)
       reachable.get(item.entity.id)!.add(item.entity.view.defaultType);
+    // Calendar is an additional presentation, not permission to expose an unselected body.
+    if (item.entity.dataType === "event" && item.entity.view.permittedTypes.includes("event"))
+      reachable.get(item.entity.id)!.add("event");
   }
   for (const item of selected)
     for (const edge of item.entity.relationships) {
@@ -177,13 +180,21 @@ export function projectCorpus(
       });
       text.set(entity.id, safe.text);
       const viewModels: ViewModels = {};
-      const presentation = {
+      const presentation: Presentation = {
         title: entity.title,
         summary: entity.summary,
         href: route,
         body: safe.markdown,
         badges: [...entity.taxonomy.tags].sort(),
       };
+      if (entity.dataType === "event" && "schedule" in entity.data) {
+        presentation.event = {
+          kind: entity.data.kind,
+          status: entity.data.status,
+          schedule: entity.data.schedule,
+        };
+        if (entity.data.location !== undefined) presentation.event.location = entity.data.location;
+      }
       for (const view of VIEW_TYPES.filter((type) => reachable.get(entity.id)!.has(type))) {
         // Keep the key/model correspondence concrete for TypeScript and schema validation.
         switch (view) {
@@ -198,6 +209,22 @@ export function projectCorpus(
             break;
           case "full":
             viewModels.full = adaptView(entity.dataType, "full", presentation);
+            break;
+          case "event":
+            viewModels.event = adaptView(entity.dataType, "event", presentation);
+            break;
+          case "calendar-month":
+            viewModels["calendar-month"] = adaptView(
+              entity.dataType,
+              "calendar-month",
+              presentation,
+            );
+            break;
+          case "calendar-day":
+            viewModels["calendar-day"] = adaptView(entity.dataType, "calendar-day", presentation);
+            break;
+          case "timeline":
+            viewModels.timeline = adaptView(entity.dataType, "timeline", presentation);
             break;
         }
       }
