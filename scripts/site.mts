@@ -69,6 +69,7 @@ export async function buildSite(
       platform: "browser",
       target: ["es2022"],
       jsx: "automatic",
+      loader: { ".md": "text" },
       minify: true,
       sourcemap: false,
       metafile: true,

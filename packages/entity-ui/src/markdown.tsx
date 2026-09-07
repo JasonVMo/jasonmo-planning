@@ -1,21 +1,12 @@
 import { Link, Text } from "@fluentui/react-components";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
-const allowedProtocols = new Set(["http:", "https:", "mailto:"]);
+import { isSafeMarkdownUrl } from "@tracker/entity-model";
 
 export function safeMarkdownUrl(url: string): string {
-  const value = url.trim();
-  if (!/^[A-Za-z][A-Za-z\d+.-]*:/.test(value)) {
-    return defaultUrlTransform(value);
-  }
-  try {
-    const parsed = new URL(value);
-    return allowedProtocols.has(parsed.protocol) ? parsed.href : "";
-  } catch {
-    return "";
-  }
+  if (!isSafeMarkdownUrl(url)) return "";
+  return url.startsWith("#") ? url : new URL(url).href;
 }
 
 function MarkdownLink({
@@ -36,6 +27,15 @@ function MarkdownLink({
   );
 }
 
+function MarkdownScrollRegion({ children, label }: { children: ReactNode; label: string }) {
+  return (
+    // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- Read-only overflow needs a tab stop for keyboard scrolling.
+    <section className="tracker-markdown__scroll" tabIndex={0} aria-label={label}>
+      {children}
+    </section>
+  );
+}
+
 export function SafeMarkdown({ children }: { children: string }) {
   return (
     <div className="tracker-markdown">
@@ -51,10 +51,28 @@ export function SafeMarkdown({ children }: { children: string }) {
           h4: ({ children: heading }) => <h4>{heading}</h4>,
           h5: ({ children: heading }) => <h5>{heading}</h5>,
           h6: ({ children: heading }) => <h6>{heading}</h6>,
+          pre: ({ children: code }) => (
+            <MarkdownScrollRegion label="Code block">
+              <pre>{code}</pre>
+            </MarkdownScrollRegion>
+          ),
+          table: ({ children: rows }) => (
+            <MarkdownScrollRegion label="Markdown table">
+              <table>{rows}</table>
+            </MarkdownScrollRegion>
+          ),
           img: ({ alt }) => (
             <Text as="span" italic className="tracker-markdown__image-note">
               {alt ? `[Image omitted: ${alt}]` : "[Image omitted]"}
             </Text>
+          ),
+          input: ({ checked }) => (
+            <input
+              type="checkbox"
+              checked={Boolean(checked)}
+              disabled
+              aria-label={checked ? "Completed task" : "Incomplete task"}
+            />
           ),
         }}
       >

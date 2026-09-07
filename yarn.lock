@@ -3168,6 +3168,7 @@ __metadata:
     "@types/node": "npm:24.3.0"
     ajv: "npm:8.20.0"
     ajv-formats: "npm:3.0.1"
+    remark-gfm: "npm:4.0.1"
     remark-parse: "npm:11.0.0"
     remark-stringify: "npm:11.0.0"
     unified: "npm:11.0.5"

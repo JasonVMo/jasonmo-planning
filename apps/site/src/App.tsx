@@ -36,6 +36,7 @@ import {
 } from "react-router";
 import { Freshness } from "./freshness.tsx";
 import { CalendarPage } from "./CalendarPage.tsx";
+import { MarkdownGuidePage } from "./MarkdownGuidePage.tsx";
 import { createSearch, searchDocuments } from "./search.ts";
 import "./styles/site.css";
 
@@ -46,6 +47,7 @@ interface AppProps {
 function routeTitle(pathname: string, manifest: SiteManifest): string {
   if (pathname === "/") return "Research dashboard";
   if (pathname === "/search") return "Search";
+  if (pathname === "/help/markdown") return "Markdown guide";
   if (pathname === "/calendar" || pathname.startsWith("/calendar/")) {
     const match = /^\/calendar\/(month|day)\/([^/]+)$/.exec(pathname);
     if (match && isCalendarDate(match[2])) {
@@ -79,6 +81,9 @@ function NavItems({ manifest, onNavigate }: { manifest: SiteManifest; onNavigate
       </Link>
       <Link className="nav-link" to="/calendar" onClick={onNavigate}>
         Calendar
+      </Link>
+      <Link className="nav-link" to="/help/markdown" onClick={onNavigate}>
+        Markdown guide
       </Link>
       <p className="nav-heading">Topics</p>
       {manifest.taxonomy.map((topic) => (
@@ -563,6 +568,7 @@ function RoutedApp({ manifest }: AppProps) {
           <Route path="/topics/:topicId" element={<TopicPage manifest={manifest} />} />
           <Route path="/entities/:entityId" element={<EntityPage manifest={manifest} />} />
           <Route path="/search" element={<SearchPage manifest={manifest} />} />
+          <Route path="/help/markdown" element={<MarkdownGuidePage />} />
           <Route path="/calendar" element={<CalendarPage manifest={manifest} />} />
           <Route
             path="/calendar/:calendarMode/:calendarDate"

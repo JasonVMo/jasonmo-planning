@@ -92,8 +92,9 @@
 }
 
 .tracker-markdown pre {
-  max-width: 100%;
-  overflow-x: auto;
+  width: max-content;
+  min-width: 100%;
+  box-sizing: border-box;
   border: 1px solid var(--colorNeutralStroke2);
   border-radius: var(--borderRadiusMedium);
   background: var(--colorNeutralBackground3);
@@ -105,10 +106,17 @@
 }
 
 .tracker-markdown table {
-  display: block;
+  border-collapse: collapse;
+}
+
+.tracker-markdown__scroll {
   max-width: 100%;
   overflow-x: auto;
-  border-collapse: collapse;
+}
+
+.tracker-markdown__scroll:focus-visible {
+  outline: 2px solid var(--colorBrandStroke1);
+  outline-offset: 2px;
 }
 
 .tracker-markdown th,

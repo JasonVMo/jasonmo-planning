@@ -52,6 +52,41 @@ Agents start from [AGENTS.md](AGENTS.md) and the repository skills under
 `.github/skills/`. Research is supervised and proposal-based. Compilation never
 accesses external sources or invokes a model.
 
+## Embed Markdown
+
+Markdown is supported both as canonical entity files and as application
+embeds. Use the shared `SafeMarkdown` renderer for Markdown strings:
+
+```tsx
+import { SafeMarkdown } from "@tracker/entity-ui";
+import guide from "./guide.md?raw";
+
+export function Help() {
+  return (
+    <>
+      <SafeMarkdown>{guide}</SafeMarkdown>
+      <SafeMarkdown>{"## From a string\n\nSome **formatted** text."}</SafeMarkdown>
+    </>
+  );
+}
+```
+
+Use `?raw` for portable file imports across the esbuild site and Vite
+Storybook. Markdown text is embedded in the JavaScript bundle, not fetched
+from a source file at runtime. Local development rebuilds when a Markdown
+file changes; built previews contain the same content. Open **Markdown guide**
+in site navigation for live file/string examples.
+
+Tables, task lists, strikethrough, lists, quotes, links, and code blocks are
+supported consistently by the compiler and browser renderer. HTML and
+MDX/JSX execution, images, unsafe URLs, and relative file links remain disabled.
+
+**Keep private content in the content pipeline.** Application `.md` imports
+and string literals are shipped in every audience's bundle. Do not import
+canonical `content/`, `research/`, `references/`, or `proposals/` files into
+browser code. Entity `bodyPath` files continue through validation, ownership
+checks, and audience filtering, becoming Markdown strings in the built manifest.
+
 ## Calendar and event views
 
 Open **Calendar** in the site navigation for a month-at-a-glance grid, a

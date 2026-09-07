@@ -13,6 +13,7 @@
     "@tracker/entity-model": "workspace:*",
     "ajv": "8.20.0",
     "ajv-formats": "3.0.1",
+    "remark-gfm": "4.0.1",
     "remark-parse": "11.0.0",
     "remark-stringify": "11.0.0",
     "unified": "11.0.5",

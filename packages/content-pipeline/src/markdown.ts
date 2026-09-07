@@ -1,6 +1,8 @@
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
+import remarkGfm from "remark-gfm";
+import { isSafeMarkdownUrl as safeUrl } from "@tracker/entity-model";
 import type { Root, RootContent } from "mdast";
 import { fail } from "./diagnostics.ts";
 
@@ -9,28 +11,10 @@ export interface MarkdownAudience {
   topicIds: ReadonlySet<string>;
   allowExternal: (url: string) => boolean;
 }
-const parser = unified().use(remarkParse);
-const writer = unified().use(remarkStringify, { bullet: "-", fences: true });
+const parser = unified().use(remarkParse).use(remarkGfm);
+const writer = unified().use(remarkGfm).use(remarkStringify, { bullet: "-", fences: true });
 
-export function safeUrl(url: string): boolean {
-  if (
-    url.includes("\\") ||
-    [...url].some((char) => char.charCodeAt(0) <= 32 || char.charCodeAt(0) === 127)
-  )
-    return false;
-  if (/^#\/(?:entities|topics)\/[a-z][a-z0-9-]*$/.test(url) || url === "#/") return true;
-  if (/^#[a-zA-Z][a-zA-Z0-9-]*$/.test(url)) return true;
-  try {
-    const parsed = new URL(url);
-    return (
-      ["https:", "http:", "mailto:"].includes(parsed.protocol) &&
-      !parsed.username &&
-      !parsed.password
-    );
-  } catch {
-    return false;
-  }
-}
+export { safeUrl };
 
 function allowedLink(url: string, audience?: MarkdownAudience): boolean {
   if (!safeUrl(url)) return false;
@@ -51,13 +35,18 @@ export function projectMarkdown(
     fail(file, "/body", "Markdown frontmatter is not supported");
   const tree: Root = parser.parse(body);
   const definitions = new Map<string, string>();
-  for (const node of tree.children)
-    if (node.type === "definition") {
-      const id = node.identifier.toLowerCase();
-      if (definitions.has(id))
-        fail(file, "/body", "duplicate Markdown link definitions are forbidden");
-      definitions.set(id, node.url);
+  function collectDefinitions(nodes: RootContent[]): void {
+    for (const node of nodes) {
+      if (node.type === "definition") {
+        const id = node.identifier.toLowerCase();
+        if (definitions.has(id))
+          fail(file, "/body", "duplicate Markdown link definitions are forbidden");
+        definitions.set(id, node.url);
+      }
+      if ("children" in node) collectDefinitions(node.children as RootContent[]);
     }
+  }
+  collectDefinitions(tree.children);
   const text: string[] = [];
   function walk(nodes: RootContent[]): RootContent[] {
     const result: RootContent[] = [];
