@@ -1,0 +1,12 @@
+schemaVersion: 1
+entityId: tracker-overview
+objective: Review the tracker operating model against owner-approved primary sources.
+status: paused
+completedSubtopics: []
+remainingSubtopics:
+  [Approve source scope, Run first supervised review, Record evidence and next action]
+sourceCursors: []
+openQuestions: [Which source and publication audiences will the owner authorize?]
+contradictions: []
+nextAction: Ask the owner to bound a manual source review; prepare an isolated dry-run proposal.
+nextHumanReviewAt: "2026-09-14T10:30:00-07:00"

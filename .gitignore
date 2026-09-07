@@ -1,0 +1,16 @@
+node_modules/
+.yarn/
+.nx/
+dist/
+.generated/
+.local/
+.staging/
+storybook-static/
+test-results/
+playwright-report/
+coverage/
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+!.env.example

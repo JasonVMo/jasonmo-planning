@@ -1,0 +1,793 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tracker.invalid/schemas/contracts.schema.json",
+  "title": "TrackerContracts",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "Audience": { "type": "string", "enum": ["local", "private-owner", "private-group", "public"] },
+    "ViewType": { "type": "string", "enum": ["label", "tile", "card", "full"] },
+    "RenderContext": {
+      "type": "string",
+      "enum": ["navigation", "collection", "relationship", "search", "detail"]
+    },
+    "StableId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+      "maxLength": 100
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "Digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "RelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\\\u0000-\\u001f]).+$"
+    },
+    "LabelViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "href"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "href": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" }
+      }
+    },
+    "TileViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "summary", "href"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "href": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" }
+      }
+    },
+    "CardViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "summary", "href", "badges"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "href": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" },
+        "badges": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 100 },
+          "maxItems": 32
+        }
+      }
+    },
+    "FullViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "summary", "href", "body"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "href": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" },
+        "body": { "type": "string", "maxLength": 262144 }
+      }
+    },
+    "ViewModels": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": { "$ref": "#/definitions/LabelViewModel" },
+        "tile": { "$ref": "#/definitions/TileViewModel" },
+        "card": { "$ref": "#/definitions/CardViewModel" },
+        "full": { "$ref": "#/definitions/FullViewModel" }
+      }
+    },
+    "ContextOverrides": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "navigation": { "$ref": "#/definitions/ViewType" },
+        "collection": { "$ref": "#/definitions/ViewType" },
+        "relationship": { "$ref": "#/definitions/ViewType" },
+        "search": { "$ref": "#/definitions/ViewType" },
+        "detail": { "$ref": "#/definitions/ViewType" }
+      }
+    },
+    "ResolvedContexts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["navigation", "collection", "relationship", "search", "detail"],
+      "properties": {
+        "navigation": { "$ref": "#/definitions/ViewType" },
+        "collection": { "$ref": "#/definitions/ViewType" },
+        "relationship": { "$ref": "#/definitions/ViewType" },
+        "search": { "$ref": "#/definitions/ViewType" },
+        "detail": { "$ref": "#/definitions/ViewType" }
+      }
+    },
+    "RelationshipKind": { "type": "string", "enum": ["related-to", "depends-on", "supersedes"] },
+    "SiteEntity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "dataType",
+        "dataVersion",
+        "title",
+        "summary",
+        "route",
+        "primaryTopicId",
+        "tags",
+        "relationships",
+        "citations",
+        "view",
+        "viewModels"
+      ],
+      "properties": {
+        "id": { "$ref": "#/definitions/StableId" },
+        "dataType": { "type": "string" },
+        "dataVersion": { "type": "integer", "minimum": 1 },
+        "title": { "type": "string", "maxLength": 240 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "route": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" },
+        "primaryTopicId": { "$ref": "#/definitions/StableId" },
+        "tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "targetId", "viewType"],
+            "properties": {
+              "kind": { "$ref": "#/definitions/RelationshipKind" },
+              "targetId": { "$ref": "#/definitions/StableId" },
+              "viewType": { "$ref": "#/definitions/ViewType" }
+            }
+          }
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "url"],
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": "string", "format": "uri", "pattern": "^https?://" }
+            }
+          }
+        },
+        "lastVerifiedAt": { "$ref": "#/definitions/Timestamp" },
+        "view": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["defaultType", "byContext"],
+          "properties": {
+            "defaultType": { "$ref": "#/definitions/ViewType" },
+            "byContext": { "$ref": "#/definitions/ResolvedContexts" }
+          }
+        },
+        "viewModels": { "$ref": "#/definitions/ViewModels" }
+      }
+    },
+    "TopicView": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "description", "order"],
+      "properties": {
+        "id": { "$ref": "#/definitions/StableId" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "order": { "type": "number" },
+        "parentId": { "$ref": "#/definitions/StableId" }
+      }
+    },
+    "SearchDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "summary", "body", "tags", "primaryTopicId", "route"],
+      "properties": {
+        "id": { "$ref": "#/definitions/StableId" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "body": { "type": "string", "maxLength": 20000 },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "primaryTopicId": { "$ref": "#/definitions/StableId" },
+        "route": { "type": "string" }
+      }
+    },
+    "SiteManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "audience",
+        "basePath",
+        "contentDigest",
+        "deployable",
+        "taxonomy",
+        "entities",
+        "searchDocuments"
+      ],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "audience": { "$ref": "#/definitions/Audience" },
+        "basePath": { "type": "string", "pattern": "^/(?:[a-zA-Z0-9_-]+/)*$" },
+        "contentDigest": { "$ref": "#/definitions/Digest" },
+        "deployable": { "type": "boolean" },
+        "taxonomy": { "type": "array", "items": { "$ref": "#/definitions/TopicView" } },
+        "entities": { "type": "array", "items": { "$ref": "#/definitions/SiteEntity" } },
+        "searchDocuments": { "type": "array", "items": { "$ref": "#/definitions/SearchDocument" } }
+      }
+    },
+    "Sensitivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classification", "containsPersonalData"],
+      "properties": {
+        "classification": { "type": "string", "enum": ["public", "private", "restricted"] },
+        "containsPersonalData": { "type": "boolean" }
+      }
+    },
+    "Publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eligibility", "requestedTargets"],
+      "properties": {
+        "eligibility": { "$ref": "#/definitions/Audience" },
+        "requestedTargets": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Audience" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "MarkdownData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bodyPath"],
+      "properties": { "bodyPath": { "$ref": "#/definitions/RelativePath" } }
+    },
+    "Source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "publisher", "sourceType", "access", "retrievedAt"],
+      "properties": {
+        "id": { "$ref": "#/definitions/StableId" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 400 },
+        "publisher": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "sourceType": {
+          "type": "string",
+          "enum": [
+            "primary-documentation",
+            "source-code",
+            "release-notes",
+            "package-metadata",
+            "owner-material"
+          ]
+        },
+        "url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+        "locator": { "$ref": "#/definitions/RelativePath" },
+        "access": { "type": "string", "enum": ["public", "private", "restricted"] },
+        "retrievedAt": { "$ref": "#/definitions/Timestamp" },
+        "revision": { "type": "string", "maxLength": 200 },
+        "fingerprint": { "$ref": "#/definitions/Digest" }
+      },
+      "oneOf": [
+        { "required": ["url"], "not": { "required": ["locator"] } },
+        { "required": ["locator"], "not": { "required": ["url"] } }
+      ]
+    },
+    "Claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "basis", "statement", "sourceIds"],
+      "properties": {
+        "id": { "$ref": "#/definitions/StableId" },
+        "basis": { "type": "string", "enum": ["observed", "inferred", "recommended", "confirmed"] },
+        "statement": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "sourceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/StableId" }
+        }
+      }
+    },
+    "Entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "id",
+        "dataType",
+        "dataVersion",
+        "title",
+        "summary",
+        "lifecycle",
+        "taxonomy",
+        "relationships",
+        "view",
+        "data",
+        "provenance",
+        "sensitivity",
+        "capturePolicy",
+        "publication",
+        "ownershipPolicyId",
+        "refresh",
+        "timestamps",
+        "review"
+      ],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "id": { "$ref": "#/definitions/StableId" },
+        "dataType": { "const": "markdown" },
+        "dataVersion": { "const": 1 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "lifecycle": { "type": "string", "enum": ["draft", "active", "archived"] },
+        "taxonomy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["primaryTopicId", "relatedTopicIds", "tags"],
+          "properties": {
+            "primaryTopicId": { "$ref": "#/definitions/StableId" },
+            "relatedTopicIds": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "#/definitions/StableId" }
+            },
+            "tags": {
+              "type": "array",
+              "uniqueItems": true,
+              "maxItems": 32,
+              "items": { "$ref": "#/definitions/StableId" }
+            }
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "targetId"],
+            "properties": {
+              "kind": { "$ref": "#/definitions/RelationshipKind" },
+              "targetId": { "$ref": "#/definitions/StableId" },
+              "viewType": { "$ref": "#/definitions/ViewType" }
+            }
+          }
+        },
+        "view": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["permittedTypes"],
+          "properties": {
+            "defaultType": { "$ref": "#/definitions/ViewType" },
+            "permittedTypes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/definitions/ViewType" }
+            },
+            "contextOverrides": { "$ref": "#/definitions/ContextOverrides" }
+          }
+        },
+        "data": { "$ref": "#/definitions/MarkdownData" },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sources", "claims"],
+          "properties": {
+            "sources": {
+              "type": "array",
+              "maxItems": 200,
+              "items": { "$ref": "#/definitions/Source" }
+            },
+            "claims": {
+              "type": "array",
+              "maxItems": 500,
+              "items": { "$ref": "#/definitions/Claim" }
+            }
+          }
+        },
+        "sensitivity": { "$ref": "#/definitions/Sensitivity" },
+        "capturePolicy": {
+          "type": "string",
+          "enum": ["link-only", "summary-allowed", "quotation-allowed"]
+        },
+        "publication": { "$ref": "#/definitions/Publication" },
+        "ownershipPolicyId": { "$ref": "#/definitions/StableId" },
+        "refresh": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["workflow", "cadence", "stateId"],
+          "properties": {
+            "workflow": { "type": "string", "enum": ["manual", "research-topic"] },
+            "cadence": { "type": "string", "pattern": "^P[1-9][0-9]{0,3}D$" },
+            "stateId": { "$ref": "#/definitions/StableId" }
+          }
+        },
+        "timestamps": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["createdAt", "updatedAt"],
+          "properties": {
+            "createdAt": { "$ref": "#/definitions/Timestamp" },
+            "updatedAt": { "$ref": "#/definitions/Timestamp" }
+          }
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nextReviewAt"],
+          "properties": {
+            "lastReviewedAt": { "$ref": "#/definitions/Timestamp" },
+            "nextReviewAt": { "$ref": "#/definitions/Timestamp" }
+          }
+        }
+      }
+    },
+    "TaxonomyNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "slug", "description", "order", "sensitivity", "publication"],
+      "properties": {
+        "id": { "$ref": "#/definitions/StableId" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "slug": { "$ref": "#/definitions/StableId" },
+        "description": { "type": "string", "maxLength": 2000 },
+        "order": { "type": "number" },
+        "parentId": { "$ref": "#/definitions/StableId" },
+        "sensitivity": { "$ref": "#/definitions/Sensitivity" },
+        "publication": { "$ref": "#/definitions/Publication" },
+        "retiredIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/StableId" }
+        },
+        "retiredSlugs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/StableId" }
+        }
+      }
+    },
+    "Taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "nodes"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "nodes": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": { "$ref": "#/definitions/TaxonomyNode" }
+        }
+      }
+    },
+    "ResearchState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "entityId",
+        "objective",
+        "status",
+        "completedSubtopics",
+        "remainingSubtopics",
+        "sourceCursors",
+        "openQuestions",
+        "contradictions",
+        "nextAction",
+        "nextHumanReviewAt"
+      ],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "entityId": { "$ref": "#/definitions/StableId" },
+        "objective": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "status": { "type": "string", "enum": ["active", "paused", "blocked"] },
+        "completedSubtopics": {
+          "type": "array",
+          "maxItems": 100,
+          "items": { "type": "string", "maxLength": 400 }
+        },
+        "remainingSubtopics": {
+          "type": "array",
+          "maxItems": 100,
+          "items": { "type": "string", "maxLength": 400 }
+        },
+        "sourceCursors": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sourceId", "fingerprint"],
+            "properties": {
+              "sourceId": { "$ref": "#/definitions/StableId" },
+              "fingerprint": { "$ref": "#/definitions/Digest" }
+            }
+          }
+        },
+        "lastAttemptAt": { "$ref": "#/definitions/Timestamp" },
+        "lastAttemptOutcome": {
+          "type": "string",
+          "enum": ["succeeded", "no-change", "partial", "blocked", "failed"]
+        },
+        "lastSuccessfulRetrievalAt": { "$ref": "#/definitions/Timestamp" },
+        "lastVerifiedAt": { "$ref": "#/definitions/Timestamp" },
+        "lastReviewedAt": { "$ref": "#/definitions/Timestamp" },
+        "openQuestions": {
+          "type": "array",
+          "maxItems": 100,
+          "items": { "type": "string", "maxLength": 1000 }
+        },
+        "contradictions": {
+          "type": "array",
+          "maxItems": 100,
+          "items": { "type": "string", "maxLength": 1000 }
+        },
+        "retryAfter": { "$ref": "#/definitions/Timestamp" },
+        "nextAction": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "nextHumanReviewAt": { "$ref": "#/definitions/Timestamp" }
+      },
+      "dependencies": {
+        "lastAttemptAt": ["lastAttemptOutcome"],
+        "lastAttemptOutcome": ["lastAttemptAt"],
+        "lastVerifiedAt": ["lastSuccessfulRetrievalAt", "lastAttemptAt"]
+      }
+    },
+    "SourcesManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "entityId", "sources"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "entityId": { "$ref": "#/definitions/StableId" },
+        "sources": { "type": "array", "items": { "$ref": "#/definitions/Source" } }
+      }
+    },
+    "RunOutcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "runId",
+        "workflow",
+        "baseRevision",
+        "requestKey",
+        "scopeIds",
+        "sourceEvidence",
+        "changedEntityIds",
+        "validation",
+        "startedAt",
+        "endedAt",
+        "outcome",
+        "reviewItems",
+        "continuation"
+      ],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "runId": { "$ref": "#/definitions/StableId" },
+        "workflow": {
+          "type": "string",
+          "enum": ["research-topic", "refine-website", "organize-site", "reconcile-content"]
+        },
+        "baseRevision": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "requestKey": { "$ref": "#/definitions/Digest" },
+        "scopeIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/StableId" }
+        },
+        "sourceEvidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sourceId", "retrievedAt", "fingerprint"],
+            "properties": {
+              "sourceId": { "$ref": "#/definitions/StableId" },
+              "retrievedAt": { "$ref": "#/definitions/Timestamp" },
+              "fingerprint": { "$ref": "#/definitions/Digest" }
+            }
+          }
+        },
+        "changedEntityIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/StableId" }
+        },
+        "validation": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "startedAt": { "$ref": "#/definitions/Timestamp" },
+        "endedAt": { "$ref": "#/definitions/Timestamp" },
+        "outcome": {
+          "type": "string",
+          "enum": ["succeeded", "no-change", "partial", "blocked", "failed"]
+        },
+        "reviewItems": { "type": "array", "items": { "type": "string", "maxLength": 1000 } },
+        "continuation": { "type": "string", "minLength": 1, "maxLength": 1000 }
+      }
+    },
+    "OwnershipPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "policies"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "policies": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "entityPointers", "managedRegions", "researchFiles"],
+            "properties": {
+              "id": { "$ref": "#/definitions/StableId" },
+              "entityPointers": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "/summary",
+                    "/provenance",
+                    "/relationships",
+                    "/timestamps/updatedAt",
+                    "/review"
+                  ]
+                }
+              },
+              "managedRegions": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "$ref": "#/definitions/StableId" }
+              },
+              "researchFiles": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": ["state.yaml", "sources.yaml", "evidence.md", "runs"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "PublicationPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "policyVersion",
+        "networkPublicationEnabled",
+        "reviewers",
+        "destinations",
+        "publicSourceHosts"
+      ],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "policyVersion": { "type": "integer", "minimum": 1 },
+        "networkPublicationEnabled": { "const": false },
+        "reviewers": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 100 }
+        },
+        "destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "audience"],
+            "properties": {
+              "id": { "$ref": "#/definitions/StableId" },
+              "audience": { "type": "string", "enum": ["private-group", "public"] }
+            }
+          }
+        },
+        "publicSourceHosts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]+[a-z0-9]$" }
+        }
+      }
+    },
+    "PublicationApproval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "target",
+        "deploymentId",
+        "basePath",
+        "entityIds",
+        "contentDigest",
+        "taxonomyDigest",
+        "citationsDigest",
+        "assetsDigest",
+        "closureDigest",
+        "policyVersion",
+        "reviewer",
+        "approvedAt"
+      ],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "target": { "type": "string", "enum": ["private-group", "public"] },
+        "deploymentId": { "$ref": "#/definitions/StableId" },
+        "basePath": { "type": "string", "pattern": "^/(?:[a-zA-Z0-9_-]+/)*(?![\\s\\S])" },
+        "entityIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/StableId" }
+        },
+        "contentDigest": { "$ref": "#/definitions/Digest" },
+        "taxonomyDigest": { "$ref": "#/definitions/Digest" },
+        "citationsDigest": { "$ref": "#/definitions/Digest" },
+        "assetsDigest": { "$ref": "#/definitions/Digest" },
+        "closureDigest": { "$ref": "#/definitions/Digest" },
+        "policyVersion": { "type": "integer", "minimum": 1 },
+        "reviewer": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "approvedAt": { "$ref": "#/definitions/Timestamp" },
+        "expiresAt": { "$ref": "#/definitions/Timestamp" }
+      }
+    },
+    "Proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "runId",
+        "workflow",
+        "baseRevision",
+        "requestKey",
+        "scopeIds",
+        "asOf",
+        "policyVersion",
+        "outcome",
+        "changes"
+      ],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "runId": { "$ref": "#/definitions/StableId" },
+        "workflow": {
+          "type": "string",
+          "enum": ["research-topic", "refine-website", "organize-site", "reconcile-content"]
+        },
+        "baseRevision": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "requestKey": { "$ref": "#/definitions/Digest" },
+        "scopeIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/StableId" }
+        },
+        "asOf": { "$ref": "#/definitions/Timestamp" },
+        "policyVersion": { "type": "integer", "minimum": 1 },
+        "outcome": {
+          "type": "string",
+          "enum": ["succeeded", "no-change", "partial", "blocked", "failed"]
+        },
+        "changes": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "expectedHash", "proposedPath"],
+            "properties": {
+              "path": { "$ref": "#/definitions/RelativePath" },
+              "expectedHash": { "anyOf": [{ "$ref": "#/definitions/Digest" }, { "type": "null" }] },
+              "proposedPath": { "$ref": "#/definitions/RelativePath" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

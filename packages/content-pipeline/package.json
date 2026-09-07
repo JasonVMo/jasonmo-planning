@@ -1,0 +1,26 @@
+{
+  "name": "@tracker/content-pipeline",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "yarn run -T vitest run --config ../../vitest.config.ts packages/content-pipeline",
+    "typecheck": "yarn run -T tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@tracker/entity-model": "workspace:*",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "remark-parse": "11.0.0",
+    "remark-stringify": "11.0.0",
+    "unified": "11.0.5",
+    "unist-util-visit": "5.1.0",
+    "yaml": "2.9.0"
+  },
+  "devDependencies": {
+    "@types/mdast": "4.0.4",
+    "@types/node": "24.3.0"
+  }
+}

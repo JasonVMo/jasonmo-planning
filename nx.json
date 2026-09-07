@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "analytics": false,
+  "neverConnectToCloud": true,
+  "targetDefaults": {
+    "test": {
+      "cache": false
+    },
+    "build": {
+      "cache": false
+    }
+  }
+}

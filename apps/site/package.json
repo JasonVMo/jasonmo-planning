@@ -1,0 +1,22 @@
+{
+  "name": "@tracker/site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "yarn run -T tsx ../../scripts/site.mts build",
+    "dev": "yarn run -T tsx ../../scripts/site.mts dev"
+  },
+  "dependencies": {
+    "@fluentui/react-components": "9.74.7",
+    "@tracker/entity-model": "workspace:*",
+    "@tracker/entity-ui": "workspace:*",
+    "minisearch": "7.2.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-router": "8.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7"
+  }
+}

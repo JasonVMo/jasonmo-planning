@@ -1,0 +1,3 @@
+{
+  "ignorePatterns": ["yarn.lock", "**/src/generated/**", "PLAN.md"]
+}

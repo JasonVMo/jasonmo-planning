@@ -1,0 +1,15 @@
+{
+  "name": "@tracker/entity-model",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "yarn run -T vitest run --config ../../vitest.config.ts packages/entity-model",
+    "typecheck": "yarn run -T tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.0"
+  }
+}

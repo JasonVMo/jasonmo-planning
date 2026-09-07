@@ -2,6 +2,7 @@
 
 **Plan status:** Decision-ready repository bootstrap plan
 **Research date:** 2026-09-04, America/Los_Angeles
+**Last refined:** 2026-09-07, America/Los_Angeles
 **Target repository:** `jasonmo_microsoft/tracker`
 **Default posture:** Private, local-first, deterministic, and agent-maintainable
 
@@ -12,6 +13,40 @@ This plan uses the following evidence labels:
 - **Inferred:** A conclusion drawn from observations.
 - **Recommended:** A design or implementation decision established by this
   plan.
+
+## Implementation status
+
+The local stand-up was implemented on 2026-09-07. `README.md` is the executable command entry point;
+the sections below retain the architecture and delivery contract.
+
+| Area | Delivery boundary |
+| --- | --- |
+| Workspace and toolchain | Five Yarn/Nx projects; pinned package versions and Node 24.18.0 baseline in `references/toolchain.md` |
+| Canonical data and views | Independent data schemas, view schemas, adapters, and view-only renderers |
+| Site and Storybook | Local esbuild site, bidirectional relationship navigation, local search, and synthetic React/Vite Storybook |
+| Research operations | Local validation, due/review reporting, and supervised proposal reconciliation; real-source pilot cycles remain a separate operating gate |
+| CI and deployment | Not configured; approved runner, host, audience, and authorization remain required |
+
+The installed Node 24.18.0 baseline deliberately replaces the earlier candidate
+24.20.0 without modifying the shared machine's global runtime. A successful
+local build or fixture test does not close a hosting, publication, or real-source
+automation gate.
+
+Initial implementation boundaries:
+
+- Storybook owns its synthetic stories under `apps/storybook/fixtures`, keeping
+  Storybook dependencies out of the reusable `entity-ui` package.
+- The compiler parses and sanitizes Markdown structurally, then emits a safe
+  Markdown string for `full.body`; the browser reparses it with raw HTML and
+  images disabled. JSON Schemas and generated declarations define the actual
+  version-1 DTO.
+- Asset copying and image rendering remain disabled until an approved asset
+  projection contract is added. Unsupported asset input fails closed.
+- Every audience artifact remains non-deployable. Time-limited approval records
+  fail closed until an explicit trusted evaluation-time contract is available;
+  the compiler does not consult an ambient clock.
+- Phase 4 provides local supervised tooling, not completed real-source pilots.
+  Phase 5 expansion and infrastructure provisioning remain evidence/owner gates.
 
 ## 1. Objective
 
@@ -25,8 +60,8 @@ The durable outcome is not merely a website. It is a repository with:
 2. A deterministic compiler from canonical content to browser-safe data.
 3. Reusable React renderers backed by Fluent UI React v9.
 4. A responsive, searchable static site.
-5. A Storybook application that defines the visual contract for each entity
-   kind and presentation variant.
+5. A Storybook application that defines independent visual contracts for
+   reusable entity view types.
 6. Agent workflows that can resume research, propose changes, preserve manual
    ownership, and fail safely.
 7. Publication controls that prevent private research from entering a broader
@@ -36,8 +71,11 @@ The durable outcome is not merely a website. It is a repository with:
 
 The initial repository will support:
 
-- One canonical `markdown` entity kind.
-- Four code-owned presentation variants: `label`, `tile`, `card`, and `full`.
+- One canonical `markdown` entity data type.
+- Four reusable, code-owned entity view types: `label`, `tile`, `card`, and
+  `full`.
+- Independent data-type and view-type registries connected by validated
+  data-to-view adapters.
 - Stable taxonomy and entity identities.
 - Typed entity relationships.
 - Provenance and claim-to-source linkage.
@@ -52,7 +90,7 @@ The initial repository will support:
 - Browser-based content editing.
 - A backend, database, CMS, or runtime content API.
 - Server-side rendering or per-route static HTML generation.
-- MDX, JSX, executable Markdown, or data-selected React components.
+- MDX, JSX, executable Markdown, or arbitrary data-named React components.
 - Semantic search, embeddings, a vector database, or an external search
   service.
 - Scheduled unattended agent writes.
@@ -60,7 +98,7 @@ The initial repository will support:
 - Public Storybook hosting.
 - Broad source ingestion or copying content merely because this repository is
   private.
-- A generic plugin system or one package per entity kind.
+- A generic plugin system or one package per entity data or view type.
 
 ### 1.3 Success criteria
 
@@ -74,7 +112,8 @@ The initial system is successful when:
 - Two linked Markdown entities can be authored without editing React code and
   then appear in navigation, topic collections, direct routes, relationships,
   and search.
-- Every registered entity variant has a synthetic Storybook story.
+- Every registered view type has a synthetic Storybook story, and every
+  supported data-type/view-type pair has a validated adapter fixture.
 - Invalid content fails with file-, entity-, and field-specific diagnostics.
 - Repeated compilation of identical inputs produces byte-identical manifests.
 - A synthetic private canary is absent from every broader-audience manifest,
@@ -239,19 +278,26 @@ is not sufficient.
    Oxfmt. Cross-file graph and policy rules remain explicit code.
 9. **Stable IDs do not encode paths or taxonomy.** Moving an entity in
    navigation does not change its identity or storage directory.
-10. **Data cannot select executable code.** Entity kind and presentation
-    variant are closed enums mapped through a code-owned renderer registry.
-11. **Markdown is non-executable.** No MDX, JSX, raw HTML, arbitrary plugins,
+10. **Entity data types and entity view types are independent.** A data type
+    defines persisted payload semantics. A view type defines a reusable visual
+    contract. Code-owned adapters project compatible data types into typed view
+    models, so several data types can share one view without sharing schemas.
+11. **Data may select only registered views, never executable code.** Entity
+    descriptors and relationship or collection occurrences may select or
+    override a closed `viewType` enum. They cannot name components, modules,
+    import paths, JSX, or arbitrary React props.
+12. **Markdown is non-executable.** No MDX, JSX, raw HTML, arbitrary plugins,
     or scriptable URL schemes.
-12. **Audience filtering occurs before browser output.** A React component that
+13. **Audience filtering occurs before browser output.** A React component that
     hides data is not a publication boundary.
-13. **One reconciliation writer promotes canonical changes.** Parallel agents
+14. **One reconciliation writer promotes canonical changes.** Parallel agents
     may prepare isolated proposals; optimistic hashes and whole-graph
     validation protect promotion.
-14. **Agents cannot self-authorize.** Ownership policy and publication
+15. **Agents cannot self-authorize.** Ownership policy and publication
     approvals live outside entity-authored data.
-15. **The thin vertical slice precedes breadth.** Start with Markdown. Add an
-    entity kind only after recurring content proves its value.
+16. **The thin vertical slice precedes breadth.** Start with Markdown using
+    common view types. Add a data type or view type independently only after
+    recurring content or presentation needs prove its value.
 
 ## 5. Proposed repository structure
 
@@ -330,8 +376,13 @@ tracker/
 │   │   │   ├── ownership-policy.schema.json
 │   │   │   ├── publication-approval.schema.json
 │   │   │   ├── site-manifest.schema.json
-│   │   │   └── kinds/
-│   │   │       └── markdown.schema.json
+│   │   │   ├── data-types/
+│   │   │   │   └── markdown.schema.json
+│   │   │   └── view-types/
+│   │   │       ├── label.schema.json
+│   │   │       ├── tile.schema.json
+│   │   │       ├── card.schema.json
+│   │   │       └── full.schema.json
 │   │   ├── src/
 │   │   │   ├── generated/types.ts
 │   │   │   ├── constants.ts
@@ -347,6 +398,8 @@ tracker/
 │   │   │   ├── graph.ts
 │   │   │   ├── ownership.ts
 │   │   │   ├── project.ts
+│   │   │   ├── view-adapters.ts
+│   │   │   ├── view-selection.ts
 │   │   │   ├── search-documents.ts
 │   │   │   ├── reconcile.ts
 │   │   │   └── diagnostics.ts
@@ -355,13 +408,14 @@ tracker/
 │       ├── package.json
 │       ├── tsconfig.json
 │       └── src/
-│           ├── registry.tsx
+│           ├── view-registry.tsx
 │           ├── EntityRenderer.tsx
 │           ├── TrackerProvider.tsx
-│           ├── generic/
-│           ├── markdown/
-│           │   ├── MarkdownEntity.tsx
-│           │   └── MarkdownEntity.stories.tsx
+│           ├── views/
+│           │   ├── label/
+│           │   ├── tile/
+│           │   ├── card/
+│           │   └── full/
 │           ├── relationships/
 │           └── index.ts
 │
@@ -370,16 +424,21 @@ tracker/
 │   └── entities/
 │       └── <stable-entity-id>/
 │           ├── entity.yaml                # or entity.json, never both
-│           ├── body.md                    # kind-specific
+│           ├── body.md                    # data-type-specific
 │           └── assets/                    # small approved assets only
 │
 ├── references/
 │   ├── toolchain.md
 │   ├── taxonomy.yaml
 │   ├── taxonomy-rules.md
-│   ├── entity-types/
+│   ├── entity-data-types/
 │   │   ├── base/SPEC.md
 │   │   └── markdown/SPEC.md
+│   ├── entity-view-types/
+│   │   ├── label/SPEC.md
+│   │   ├── tile/SPEC.md
+│   │   ├── card/SPEC.md
+│   │   └── full/SPEC.md
 │   ├── agents/
 │   │   ├── operating-contract.md
 │   │   ├── evidence-rules.md
@@ -427,7 +486,7 @@ tracker/
 ### 5.1 Right-sizing rules
 
 - Do not initially create packages for search, taxonomy, themes, agents, or
-  each entity kind.
+  each data or view type.
 - Keep browser search in `apps/site` until another consumer exists.
 - Keep search-document generation in `content-pipeline`.
 - Keep theme/provider code in `entity-ui` while site and Storybook are its only
@@ -469,7 +528,8 @@ consumer needs package artifacts.
 | --- | --- |
 | `content/**` | Canonical entity content under central ownership policy |
 | `references/taxonomy.yaml` | Canonical navigation taxonomy; owner review for global restructuring |
-| `references/entity-types/**` and model schemas | Canonical kind semantics and persisted contracts |
+| `references/entity-data-types/**` and data schemas | Canonical persisted data semantics |
+| `references/entity-view-types/**` and view schemas | Canonical reusable view-model and selection semantics |
 | `references/ownership/**` | Owner-controlled write permissions; agents cannot broaden them |
 | `references/publication/**` | Owner-controlled publication policy and approvals |
 | `research/topics/**` | Durable continuation state, curated evidence, and concise outcomes |
@@ -509,13 +569,13 @@ errors. A writing workflow stops rather than replacing the entire file.
 | --- | --- |
 | `schemaVersion` | Integer version of the common envelope |
 | `id` | Immutable global stable ID |
-| `kind` / `kindVersion` | Registered kind and integer kind contract version |
+| `dataType` / `dataVersion` | Registered persisted data type and integer data contract version |
 | `title` / `summary` | Plain text within documented size limits |
 | `lifecycle` | `draft`, `active`, or `archived`; separate from freshness and publication |
 | `taxonomy` | One primary topic ID plus optional related topic IDs and tags |
 | `relationships` | Typed edges to entity IDs |
-| `presentation` | Default and permitted variants from the closed variant enum |
-| `data` | Kind-specific validated payload |
+| `view` | Default view type, permitted view types, and optional context-specific overrides |
+| `data` | Data-type-specific validated payload; it never contains component names |
 | `provenance` | Sources and material claim-to-source links |
 | `sensitivity` | Content sensitivity, separate from publication eligibility |
 | `capturePolicy` | What may be copied from the source: `link-only`, `summary-allowed`, or `quotation-allowed` |
@@ -532,17 +592,85 @@ Initial relationship kinds are:
 - `supersedes`
 
 General relationships may contain cycles. Composition is not part of the base
-envelope. If repeated content proves a `collection` kind is useful, its typed
-payload will define ordered child entity IDs and variants. Composition must
-then be acyclic, bounded, and complete for the selected audience.
+envelope. If repeated content proves a `collection` data type is useful, its
+typed payload will define ordered child entity IDs and optional registered
+`viewType` overrides. Composition must then be acyclic, bounded, and complete
+for the selected audience.
 
-### 7.3 Representative Markdown entity
+### 7.3 Data types, view types, and selection
+
+Data types and view types use separate registries:
+
+- A **data type** owns the canonical `data` schema, data version, parsing
+  semantics, publication projection, and its fallback view type.
+- A **view type** owns a browser-safe view-model schema, reusable React
+  renderer, optional closed configuration schema, accessibility contract, and
+  Storybook stories.
+- A **data-to-view adapter** is code in `content-pipeline` that converts one
+  registered data type into one registered view model. Adapters run before
+  browser output and may reuse common base projections.
+- The browser renderer dispatches only on `viewType`; it does not dispatch on
+  `dataType`.
+
+For example, `markdown`, `link`, and a future `status` data type may all adapt
+to the common `label`, `tile`, or `card` views. Their persisted payload schemas
+remain unrelated. A `full` view can also be common when each data type adapts
+its content into the `full` view-model contract. A specialized view type may be
+added later without creating a new data type.
+
+Entity data selects views through a closed block:
+
+```yaml
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+```
+
+A relationship or future collection item may provide an occurrence-specific
+override:
+
+```yaml
+relationships:
+  - kind: related-to
+    targetId: tracker-repository-architecture
+    viewType: tile
+```
+
+View resolution is deterministic:
+
+1. An explicit occurrence `viewType` override wins.
+2. The target entity's matching `contextOverrides` entry is next.
+3. The entity's `defaultType` is next.
+4. The site-owned default for the render context is next.
+5. The data type's registered fallback view is last.
+
+Explicit selections and overrides never silently fall back. Validation fails
+unless the view type is registered, permitted by the entity, valid for the
+render context, and backed by a data-to-view adapter. Site-owned defaults may
+advance to the next compatible fallback in the sequence.
+
+The initial render contexts are `navigation`, `collection`, `relationship`,
+`search`, and `detail`. Render context is not a view type: a context provides a
+default, while data may choose a compatible registered override.
+
+View-specific options, if introduced, are closed schemas owned by the view
+type. They cannot be arbitrary component props.
+
+### 7.4 Representative Markdown entity
 
 ```yaml
 schemaVersion: 1
 id: typescript-7-toolchain
-kind: markdown
-kindVersion: 1
+dataType: markdown
+dataVersion: 1
 
 title: TypeScript 7 toolchain compatibility
 summary: Tracks the compatibility boundary between TypeScript 7 and repository tooling.
@@ -559,14 +687,21 @@ taxonomy:
 relationships:
   - kind: related-to
     targetId: tracker-repository-architecture
+    viewType: tile
 
-presentation:
-  defaultVariant: full
-  permittedVariants:
+view:
+  defaultType: full
+  permittedTypes:
     - label
     - tile
     - card
     - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
 
 data:
   bodyPath: body.md
@@ -628,7 +763,7 @@ package.
 <!-- END AGENT-MANAGED: research-summary -->
 ```
 
-### 7.4 Taxonomy contract
+### 7.5 Taxonomy contract
 
 `references/taxonomy.yaml` is canonical. Each node has:
 
@@ -646,7 +781,7 @@ identity. Audience projection filters taxonomy metadata as well as entities;
 pruning empty branches alone is not sufficient to prevent a sensitive label
 leak.
 
-### 7.5 Markdown contract
+### 7.6 Markdown contract
 
 - Use `react-markdown` with raw HTML disabled and `skipHtml`.
 - Permit only a documented CommonMark/GFM subset.
@@ -660,7 +795,7 @@ leak.
 - No MDX, JSX, inline script, iframe, arbitrary rehype plugin, data-provided
   component, or executable code block behavior.
 
-### 7.6 Research state and outcomes
+### 7.7 Research state and outcomes
 
 `research/topics/<id>/state.yaml` stores operational state rather than
 duplicating article prose:
@@ -703,9 +838,10 @@ separate strict schema constructed by allowlisting fields. It contains only:
 - Manifest and policy versions.
 - Audience and content digest.
 - Safe taxonomy nodes.
-- Entity ID, kind/version, title, summary, route, and visible lifecycle.
-- Allowed presentation variants.
-- Audience-safe Markdown/plain-text content.
+- Entity ID, data type/version, title, summary, route, and visible lifecycle.
+- Resolved view selection metadata and available view types.
+- Strict, view-type-keyed browser models generated by registered
+  data-to-view adapters.
 - Audience-safe relationship labels and targets.
 - Audience-safe provenance links and claim labels.
 - Computed visible freshness state where policy allows it.
@@ -723,6 +859,47 @@ It excludes by default:
 
 Projection code creates DTOs through explicit field selection. It must never
 spread a canonical object and delete a list of known-private fields.
+
+A projected record keeps data identity and view models distinct:
+
+```json
+{
+  "id": "typescript-7-toolchain",
+  "dataType": "markdown",
+  "dataVersion": 1,
+  "view": {
+    "defaultType": "full",
+    "contextOverrides": {
+      "navigation": "label",
+      "collection": "card"
+    },
+    "availableTypes": ["label", "tile", "card", "full"]
+  },
+  "viewModels": {
+    "label": {
+      "title": "TypeScript 7 toolchain compatibility"
+    },
+    "tile": {
+      "title": "TypeScript 7 toolchain compatibility",
+      "summary": "Tracks the compatibility boundary between TypeScript 7 and repository tooling."
+    },
+    "card": {
+      "title": "TypeScript 7 toolchain compatibility",
+      "summary": "Tracks the compatibility boundary between TypeScript 7 and repository tooling."
+    },
+    "full": {
+      "title": "TypeScript 7 toolchain compatibility",
+      "bodyFormat": "markdown-ast",
+      "body": []
+    }
+  }
+}
+```
+
+The example is illustrative: the final schemas determine exact model fields.
+Canonical Markdown payload is not copied into every view model, and the build
+emits only view models reachable for the selected audience and configured
+render contexts.
 
 ### 8.2 Audience classes
 
@@ -766,12 +943,15 @@ Whole-corpus validation and audience projection are distinct:
    projection.
 7. Validate audience-specific relationship, citation, asset, and composition
    closure.
-8. Construct strict `SiteManifest` DTOs through field allowlists.
-9. Derive backlinks, navigation, and search documents from those DTOs.
-10. Serialize with stable ordering, line endings, and key ordering.
-11. Write to a target-specific staging directory.
-12. Build and audit the complete target artifact.
-13. Atomically replace the target's last valid generated/output directories.
+8. Resolve the view type for every render occurrence.
+9. Run registered data-to-view adapters and validate each resulting view model
+   against its view-type schema.
+10. Construct strict `SiteManifest` DTOs through field allowlists.
+11. Derive backlinks, navigation, and search documents from those DTOs.
+12. Serialize with stable ordering, line endings, and key ordering.
+13. Write to a target-specific staging directory.
+14. Build and audit the complete target artifact.
+15. Atomically replace the target's last valid generated/output directories.
 
 On failure, remove staging output and leave the previous valid local artifact
 untouched. No failed artifact becomes deployable.
@@ -847,7 +1027,7 @@ Use React Router's hash router with stable ID routes:
 ```text
 #/                              home/resume view
 #/topics/<topic-id>             topic collection
-#/entities/<entity-id>          full entity view
+#/entities/<entity-id>          resolved detail-context entity view
 #/search?q=<query>              search results
 ```
 
@@ -857,15 +1037,37 @@ tombstones and are never recycled.
 ### 9.3 Renderer registry
 
 ```ts
-type EntityKind = "markdown";
-type PresentationVariant = "label" | "tile" | "card" | "full";
-type RendererKey = `${EntityKind}:${PresentationVariant}`;
+type EntityDataType = "markdown";
+type EntityViewType = "label" | "tile" | "card" | "full";
+type RenderContext =
+  | "navigation"
+  | "collection"
+  | "relationship"
+  | "search"
+  | "detail";
+type DataViewAdapterKey = `${EntityDataType}:${EntityViewType}`;
+
+interface ViewModelMap {
+  label: LabelViewModel;
+  tile: TileViewModel;
+  card: CardViewModel;
+  full: FullViewModel;
+}
+
+type ViewRendererRegistry = {
+  [V in EntityViewType]: React.ComponentType<ViewModelMap[V]>;
+};
 ```
 
-A static exhaustive registry maps each key to a typed component. Unknown kinds
-or variants fail validation rather than dynamically importing a component.
-Development-only diagnostics may explain missing registrations, but production
-artifacts cannot silently fall back to unsafe generic rendering.
+The content compiler owns a typed `DataViewAdapterKey` registry. The UI owns a
+separate exhaustive `EntityViewType` renderer registry. An adapter emits a
+validated common view model; the renderer never needs to know which data type
+produced it.
+
+Unknown data types, view types, incompatible pairs, or invalid overrides fail
+validation rather than dynamically importing a component. Development-only
+diagnostics may explain missing registrations, but production artifacts cannot
+silently fall back to unsafe generic rendering.
 
 ### 9.4 Responsive shell
 
@@ -890,12 +1092,13 @@ small, deterministic, audience-filtered document list containing:
 - Title and summary.
 - Approved Markdown plain text.
 - Taxonomy labels and tags.
-- Kind and approved relationship labels.
+- Data type and approved relationship labels.
 
-The browser stores only IDs, titles, routes, safe excerpts, kinds, and primary
-topics. Do not index research state, source cursors, hidden URLs, internal
-errors, or omitted entities. Cap indexed body length and measure behavior with
-a synthetic corpus before introducing partitioning or an external service.
+The browser stores only IDs, titles, routes, safe excerpts, data types, and
+primary topics. Do not index research state, source cursors, hidden URLs,
+internal errors, or omitted entities. Cap indexed body length and measure
+behavior with a synthetic corpus before introducing partitioning or an
+external service.
 
 ### 9.6 Storybook
 
@@ -923,7 +1126,10 @@ production research viewer.
 - Path-specific instructions distinguish content work from website work.
 - Detailed rules live under `references/agents/`.
 - Executable repository skills live under `.github/skills/`.
-- Entity semantics live in `references/entity-types/<kind>/SPEC.md`.
+- Persisted entity semantics live in
+  `references/entity-data-types/<data-type>/SPEC.md`.
+- Reusable visual semantics live in
+  `references/entity-view-types/<view-type>/SPEC.md`.
 - Do not copy the entire personal workflow repository or commit machine-local
   workflow paths. Restate only tracker-specific consequences.
 
@@ -947,15 +1153,16 @@ production research viewer.
 | Workflow | Inputs | Permitted output | Mandatory boundary |
 | --- | --- | --- | --- |
 | `research-topic` | Existing ID or bounded topic, depth, approved source policy, desired `asOf`, prior state, base revision | Evidence-backed entity/state/source proposal and concise run outcome | Preserve manual regions and prior valid content; no self-approval |
-| `refine-website` | Existing content/renderers and a bounded UX or structure problem | UI/renderer proposal and, only when justified, complete schema migration proposal | Dry-run report before cross-entity conversion; preserve meaning |
+| `refine-website` | Existing content, data adapters, view renderers, and a bounded UX or structure problem | Independent data-schema, adapter, or reusable view proposal, with migrations only where required | Dry-run report before cross-entity conversion; preserve meaning and avoid coupling a data type to one view |
 | `organize-site` | Taxonomy, graph, duplicate/orphan reports, explicit scope | Taxonomy/placement/relationship proposal and redirects | Stable IDs; no deletion or sensitivity lowering; owner review for global changes |
 | `reconcile-content` | Proposal, expected hashes, base revision, validation result | One validated atomic canonical update and disposition record | Re-read current state, reject conflicts, rerun whole graph and audience checks |
 
 ### 10.4 Common writing procedure
 
 1. Fetch and begin from current `origin/main`.
-2. Load `AGENTS.md`, the relevant skill, entity kind spec, ownership policy,
-   taxonomy rules, publication policy, and current research state.
+2. Load `AGENTS.md`, the relevant skill, entity data-type spec, selected
+   view-type specs, ownership policy, taxonomy rules, publication policy, and
+   current research state.
 3. Declare exact entity, taxonomy, schema, renderer, or policy write scope.
 4. Use `user/jasonmo/<purpose>` for an internal branch.
 5. Record the base commit and SHA-256 digest of every canonical file to be
@@ -1186,21 +1393,25 @@ failed dependency experiments and their lockfile together.
 **Tasks:**
 
 1. Implement entity, taxonomy, research-state, ownership-policy,
-   publication-approval, `SiteManifest`, and Markdown schemas.
+   publication-approval, `SiteManifest`, Markdown data-type, view-selection,
+   and initial view-model schemas.
 2. Add deterministic declaration generation and drift checks.
-3. Write base and Markdown `SPEC.md` files.
+3. Write base and Markdown data-type specs plus `card` and `full` view-type
+   specs.
 4. Implement strict YAML/JSON parsing, Markdown loading, and actionable
    diagnostics.
 5. Implement ID, path, timestamp, graph, ownership, provenance, and audience
    validation.
 6. Add a small taxonomy and two linked Markdown entities.
 7. Add one synthetic private canary fixture.
-8. Compile target-separated browser DTOs, backlinks, navigation, and MiniSearch
-   documents.
+8. Implement separate data-type, data-to-view adapter, and view-type
+   registries; compile target-separated browser view models, backlinks,
+   navigation, and MiniSearch documents.
 9. Build the Fluent provider, semantic responsive shell, topic page, entity
    page, relationship panel, hash routing, and minimal search.
-10. Implement the minimum useful `card` and `full` rendering path; keep generic
-    label/tile data compatible for Phase 3.
+10. Adapt Markdown data to the common `card` and `full` view models and
+    implement those reusable renderers; keep the model compatible with
+    `label` and `tile` for Phase 3.
 11. Add atomic staging and last-valid-output preservation.
 12. Test root and nested base paths against the actual esbuild output.
 
@@ -1211,6 +1422,8 @@ failed dependency experiments and their lockfile together.
 
 - A content edit reaches the site without React source changes.
 - Both entities are navigable and searchable on desktop and mobile.
+- Markdown data is rendered through view-type dispatch, not a Markdown-specific
+  renderer dispatch.
 - Invalid content cannot produce a deployable artifact.
 - Identical inputs produce identical manifests.
 - The private canary is absent from a synthetic public projection and bundle.
@@ -1218,7 +1431,7 @@ failed dependency experiments and their lockfile together.
 **Reversibility:** Generated output is disposable; canonical content remains
 plain YAML/JSON and Markdown.
 
-### Phase 3 - Establish Storybook and complete renderer variants
+### Phase 3 - Establish Storybook and complete common view types
 
 **Depends on:** Phase 2.
 
@@ -1227,18 +1440,23 @@ plain YAML/JSON and Markdown.
 1. Configure `apps/storybook` with React/Vite, Vitest 4, and matching browser
    tooling.
 2. Apply the shared Fluent provider and theme.
-3. Scan colocated `entity-ui` stories.
-4. Complete `label`, `tile`, `card`, and `full` Markdown variants.
-5. Add synthetic state stories for long content, missing optional data,
+3. Scan synthetic stories under `apps/storybook/fixtures`; keep the reusable
+   `entity-ui` package independent of Storybook development dependencies.
+4. Complete reusable `label`, `tile`, `card`, and `full` view types.
+5. Add and validate the Markdown-to-view adapter matrix independently from the
+   renderer registry.
+6. Add synthetic state stories for long content, missing optional data,
    freshness, failure, relationships, themes, narrow viewports, and forced
    colors.
-6. Add interaction and accessibility checks.
-7. Keep canonical private content and `research/` outside Storybook inputs.
+7. Add interaction and accessibility checks.
+8. Keep canonical private content and `research/` outside Storybook inputs.
 
-**Gate:** Every registered kind/version/variant has schema, renderer, fixture,
-and passing story coverage; static Storybook and the esbuild site both pass.
+**Gate:** Every registered view type has a schema, renderer, fixture, and
+passing story coverage; every declared Markdown/view pair has a passing adapter
+fixture; static Storybook and the esbuild site both pass.
 
-**Exit:** Adding a new kind has a finite documented checklist.
+**Exit:** Adding a data type, view type, or compatibility adapter has a
+separate finite checklist.
 
 **Reversibility:** Storybook is independently removable without changing the
 production renderer package.
@@ -1282,23 +1500,31 @@ human-readable and manually maintainable.
 
 **Tasks:**
 
-1. Measure recurring Markdown structures and navigation/search pain.
-2. Add at most one entity kind per iteration, with schema, SPEC, example,
-   migration, renderer, stories, and tests in one change.
-3. Introduce a typed `collection` kind only if repeated composition is needed.
-4. Add backlinks, freshness display, grouping, and filters based on observed
+1. Measure recurring data structures, view needs, and navigation/search pain.
+2. Add at most one data type or view type per iteration.
+3. A data type requires a schema, SPEC, example, projection rules, migration
+   decision, and at least one compatible view adapter, but it does not require
+   a new renderer when a common view is suitable.
+4. A view type requires a view-model schema, SPEC, renderer, synthetic stories,
+   accessibility tests, and at least one data adapter, but it does not require
+   a new persisted data type.
+5. Introduce a typed `collection` data type only if repeated composition is
+   needed; its items may request registered view-type overrides.
+6. Add backlinks, freshness display, grouping, and filters based on observed
    use.
-5. Use `refine-website` to reduce real duplication.
-6. Use `organize-site` to propose taxonomy changes without changing stable IDs.
-7. Add duplicate, orphan, due, and maintenance reports.
-8. Test representative content volume and MiniSearch performance.
-9. Reevaluate Fluent Nav/Drawer and SSG only against current authoritative
+7. Use `refine-website` to reduce real duplication.
+8. Use `organize-site` to propose taxonomy changes without changing stable IDs.
+9. Add duplicate, orphan, due, and maintenance reports.
+10. Test representative content volume and MiniSearch performance.
+11. Reevaluate Fluent Nav/Drawer and SSG only against current authoritative
    readiness and demonstrated requirements.
 
 **Gate:**
 
-- Every new kind replaces demonstrated repeated structure.
-- No schema exists without a renderer and stories.
+- Every new data type or view type addresses a demonstrated independent need.
+- Every declared data/view compatibility pair has a validated adapter.
+- No data type is forced to add a duplicate renderer when a common view fits.
+- No view type depends directly on canonical data-type payloads.
 - Taxonomy changes retain IDs and redirect/tombstone behavior.
 - Search remains local and audience-safe.
 
@@ -1382,7 +1608,10 @@ operation.
 ### 13.1 Contract tests
 
 - Minimal valid entity and every required-field omission.
-- Unknown fields, unsupported kind/version, and invalid variants.
+- Unknown fields, unsupported data type/version, and invalid view selections.
+- Known data and view types with a missing or invalid adapter.
+- View-context and occurrence override precedence.
+- Explicit incompatible overrides fail rather than silently falling back.
 - YAML/JSON normalization equivalence.
 - Duplicate YAML keys, tags, aliases, merges, and non-JSON values.
 - Offset-free timestamps and invalid state transitions.
@@ -1400,6 +1629,8 @@ operation.
 - Cross-audience relationship/citation/asset closure.
 - Sensitive taxonomy labels and counts.
 - Explicit DTO allowlisting.
+- Data-to-view adapters emit only their registered view-model schema.
+- Audience projection includes only reachable, permitted view models.
 - Approval invalidation after projected-content changes.
 
 ### 13.3 Compiler tests
@@ -1427,7 +1658,10 @@ operation.
 
 ### 13.5 UI and browser tests
 
-- Every registered kind and variant.
+- Every registered view type and supported data-type/view-type adapter pair.
+- One data type rendered through several common views.
+- Several synthetic data types rendered through one common view.
+- Entity context overrides and occurrence-specific view overrides.
 - Shared Fluent provider and themes.
 - Long/empty content and many relationships.
 - Safe Markdown and link handling.
@@ -1465,6 +1699,7 @@ cold/warm state, compression, corpus, percentile/maximum, and exclusions.
 | Yarn pnpm linker exposes hidden or native dependency issues | Require direct dependencies and smoke-test macOS plus the eventual runner OS |
 | The esbuild wrapper grows into an accidental framework | Keep its responsibilities bounded and revisit the decision only after measured maintenance cost |
 | Storybook passes while the site fails | Require actual esbuild-site Playwright tests on every acceptance run |
+| Data types and views become coupled through pair-specific renderers | Keep data-to-view adapters in the compiler and renderers keyed only by view type; validate the compatibility matrix |
 | Private content leaks through search, assets, taxonomy, or source maps | Filter before DTO generation, validate closure, separate audience output, use canaries, and audit complete artifacts |
 | Authenticated hosting permits more users than intended | Define audience explicitly and test direct unauthorized retrieval of every artifact class |
 | Agents overwrite owner content or race | Central ownership policy, isolated proposals, expected hashes, one reconciler |
@@ -1487,7 +1722,8 @@ cold/warm state, compression, corpus, percentile/maximum, and exclusions.
 | Hand-maintained TypeScript types plus separately maintained schemas | Creates competing persisted contracts |
 | Zod as the persisted schema authority | Makes the data contract originate in executable TypeScript and adds conversion semantics; JSON Schema is the more direct agent/editor contract here |
 | Database or CMS at bootstrap | Adds runtime state without an observed need |
-| MDX or data-selected components | Makes agent-authored content executable |
+| MDX or arbitrary data-named components | Makes agent-authored content executable |
+| Renderer registry keyed by data type and view type | Couples persisted schemas to components and duplicates common views; use pair-keyed adapters plus view-only renderers |
 | Taxonomy-mirrored entity folders | Turns navigation changes into file moves and merge conflicts |
 | Browser-side privacy filtering | Private data would already be in browser files |
 | Custom search ranking | Reimplements tokenization and ranking without a demonstrated benefit over MiniSearch |
@@ -1512,7 +1748,8 @@ cold/warm state, compression, corpus, percentile/maximum, and exclusions.
 - Three source-only shared packages.
 - Flat stable-ID entity directories.
 - Taxonomy under `references/taxonomy.yaml`.
-- One initial Markdown kind.
+- One initial Markdown data type and four reusable view types.
+- Independent data-type, data-to-view adapter, and view-type registries.
 - Strict non-executable Markdown.
 - MiniSearch over an audience-filtered document list.
 - Central ownership policy and one reconciliation writer.
@@ -1538,8 +1775,9 @@ cold/warm state, compression, corpus, percentile/maximum, and exclusions.
 
 | Decision | Revisit when |
 | --- | --- |
-| Additional entity kinds | Repeated Markdown structure needs typed rendering or refresh behavior |
-| `collection` composition | At least two real content cases require ordered embedded entities |
+| Additional entity data types | Repeated content needs distinct persisted fields, validation, or refresh behavior |
+| Additional entity view types | Existing common views cannot express a repeated visual or interaction need |
+| `collection` composition | At least two real content cases require ordered embedded entities and view overrides |
 | SSG/prerendering | Public indexing, social metadata, no-JavaScript access, or measured route performance requires it |
 | Fluent Nav/Drawer | Authoritative readiness changes and accessibility/browser spike passes |
 | Type-aware Oxlint | Basic lint/typecheck is stable and a focused trial shows useful non-duplicate diagnostics |
@@ -1572,7 +1810,11 @@ The final plan does not average disagreements:
 - **Package boundaries:** three packages were selected because browser-safe
   contracts, Node-only content processing, and React rendering are distinct
   runtime boundaries.
-- **Entity storage:** flat stable-ID directories were selected so kind and
+- **Data/view separation:** confirmed on 2026-09-07. Persisted entity data types
+  and reusable entity view types are independent. The compiler owns
+  data-to-view adapters, entity data may select validated view overrides, and
+  the UI renderer registry dispatches only by view type.
+- **Entity storage:** flat stable-ID directories were selected so data-type and
   taxonomy changes do not move identities.
 - **Taxonomy:** `references/taxonomy.yaml` was selected to preserve the original
   repository role assigned to `references/`.

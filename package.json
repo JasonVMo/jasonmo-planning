@@ -1,0 +1,59 @@
+{
+  "name": "tracker",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "doctor": "tsx scripts/doctor.mts",
+    "dev": "tsx scripts/site.mts dev",
+    "preview": "tsx scripts/site.mts preview",
+    "storybook": "STORYBOOK_DISABLE_TELEMETRY=1 yarn workspace @tracker/storybook dev",
+    "fmt": "oxfmt .",
+    "fmt:check": "oxfmt --check .",
+    "lint": "oxlint && tsx scripts/check-boundaries.mts",
+    "typecheck": "tsc --noEmit",
+    "test": "NX_DAEMON=false nx run-many -t test -p @tracker/entity-model @tracker/content-pipeline && vitest run scripts",
+    "test:unit": "vitest run --config vitest.config.ts",
+    "test:storybook": "STORYBOOK_DISABLE_TELEMETRY=1 yarn workspace @tracker/storybook test",
+    "test:e2e": "yarn test:e2e:nested && yarn test:e2e:root",
+    "test:e2e:root": "TRACKER_TEST_BASE_PATH=/ playwright test",
+    "test:e2e:nested": "TRACKER_TEST_BASE_PATH=/tracker/ playwright test",
+    "schemas:generate": "tsx scripts/generate-types.mts",
+    "schemas:check": "tsx scripts/generate-types.mts --check",
+    "content:validate": "tsx packages/content-pipeline/src/cli.ts validate",
+    "content:compile": "tsx packages/content-pipeline/src/cli.ts compile",
+    "content:due": "tsx packages/content-pipeline/src/cli.ts due",
+    "content:reconcile": "tsx packages/content-pipeline/src/cli.ts reconcile",
+    "reports": "tsx packages/content-pipeline/src/cli.ts reports",
+    "build:tools": "tsx scripts/build-tools.mts",
+    "build:site": "tsx scripts/site.mts build",
+    "build:storybook": "STORYBOOK_DISABLE_TELEMETRY=1 yarn workspace @tracker/storybook build",
+    "build": "yarn build:tools && yarn build:site && yarn build:storybook",
+    "publication:check": "tsx scripts/audit-artifact.mts",
+    "check": "yarn doctor && yarn fmt:check && yarn schemas:check && yarn content:validate && yarn typecheck && yarn lint && yarn test && yarn build && yarn test:storybook && yarn test:e2e"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.3.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "chokidar": "5.0.0",
+    "esbuild": "0.28.2",
+    "json-schema-to-typescript": "16.0.0",
+    "nx": "23.2.0",
+    "oxfmt": "0.66.0",
+    "oxlint": "1.81.0",
+    "tsx": "4.23.13",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "vitest": "4.1.11",
+    "yaml": "2.9.0"
+  },
+  "engines": {
+    "node": ">=24.18.0 <25"
+  },
+  "packageManager": "yarn@4.18.0"
+}

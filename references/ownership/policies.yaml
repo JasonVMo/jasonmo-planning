@@ -1,0 +1,11 @@
+schemaVersion: 1
+policies:
+  - id: mixed-research-summary-v1
+    entityPointers:
+      - /summary
+      - /provenance
+      - /relationships
+      - /timestamps/updatedAt
+      - /review
+    managedRegions: [research-summary]
+    researchFiles: [state.yaml, sources.yaml, evidence.md, runs]

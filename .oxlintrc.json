@@ -1,0 +1,7 @@
+{
+  "plugins": ["typescript", "react", "jsx-a11y"],
+  "categories": {
+    "correctness": "error"
+  },
+  "ignorePatterns": ["**/src/generated/**", "dist/**", "**/.generated/**", "node_modules/**"]
+}

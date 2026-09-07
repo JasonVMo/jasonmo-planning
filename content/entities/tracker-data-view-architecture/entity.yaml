@@ -1,0 +1,46 @@
+schemaVersion: 1
+id: tracker-data-view-architecture
+dataType: markdown
+dataVersion: 1
+title: Independent data and view architecture
+summary: Persisted data types define meaning; common label, tile, card, and full views define presentation.
+lifecycle: active
+taxonomy:
+  primaryTopicId: content-architecture
+  relatedTopicIds: [tracker-foundations]
+  tags: [schemas, adapters, views]
+relationships:
+  - kind: related-to
+    targetId: tracker-overview
+    viewType: tile
+view:
+  defaultType: full
+  permittedTypes: [label, tile, card, full]
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources: []
+  claims: []
+sensitivity:
+  classification: private
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: private-owner
+  requestedTargets: []
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: manual
+  cadence: P30D
+  stateId: tracker-data-view-architecture
+timestamps:
+  createdAt: "2026-09-07T10:30:00-07:00"
+  updatedAt: "2026-09-07T10:30:00-07:00"
+review:
+  nextReviewAt: "2026-09-14T10:30:00-07:00"

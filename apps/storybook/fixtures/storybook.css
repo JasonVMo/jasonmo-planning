@@ -1,0 +1,35 @@
+.story-provider {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at top right,
+      color-mix(in srgb, var(--colorBrandBackground) 12%, transparent),
+      transparent 24rem
+    ),
+    var(--colorNeutralBackground2);
+}
+
+.story-canvas {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 2rem;
+}
+
+.story-forced-colors {
+  border: 2px solid CanvasText;
+  background: Canvas;
+  color: CanvasText;
+  padding: 1rem;
+  forced-color-adjust: none;
+}
+
+.story-forced-colors a {
+  color: LinkText;
+}
+
+@media (max-width: 420px) {
+  .story-canvas {
+    padding: 0.75rem;
+  }
+}

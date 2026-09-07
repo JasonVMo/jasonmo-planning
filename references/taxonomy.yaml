@@ -1,0 +1,25 @@
+schemaVersion: 1
+nodes:
+  - id: tracker-foundations
+    title: Tracker foundations
+    slug: foundations
+    description: Purpose, operating boundaries, and local research workflow.
+    order: 10
+    sensitivity:
+      classification: private
+      containsPersonalData: false
+    publication:
+      eligibility: private-owner
+      requestedTargets: []
+  - id: content-architecture
+    title: Content architecture
+    slug: architecture
+    description: Canonical schemas, safe projections, independent views, and adapters.
+    parentId: tracker-foundations
+    order: 20
+    sensitivity:
+      classification: private
+      containsPersonalData: false
+    publication:
+      eligibility: private-owner
+      requestedTargets: []

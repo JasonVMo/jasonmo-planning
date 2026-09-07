@@ -1,0 +1,40 @@
+# Publication policy
+
+All builds are local operations and all manifests are **non-deployable** until
+the separate host/identity/authorization gate is implemented and approved.
+`networkPublicationEnabled` is schema-constrained to false. No network
+publication command exists.
+
+Local may view all permitted repository content. Private-owner excludes
+local-only/restricted content. Group/public additionally require explicit
+requested targets, audience-visible taxonomy closure, safe sources, and one
+exact owner-controlled approval. Public eligibility requires public,
+non-personal content. Source URLs for broader audiences require an exact
+owner-approved hostname, and hidden Markdown link labels are removed.
+
+Approvals live under `approvals/` as strict JSON/YAML, with authorized reviewer,
+destination/audience, policy version, sorted entity selection, projection
+digest, and taxonomy/citation/asset/relationship-closure digests. The digest is
+SHA-256 of canonical JSON containing publication policy and the complete
+browser projection (excluding its own digest). Changes to any projected byte,
+base path, audience, or policy invalidate approval. Hidden research fields do
+not enter the digest. Asset digest is the empty-list digest until assets exist.
+
+Every approval must additionally record its exact normalized `basePath`, for
+example `/` or `/tracker/` (leading and trailing slash, safe path segments only).
+Compilation requires both this field and the digest to match. Reconciliation
+checks every stored approval at its recorded base path, including in the
+lease-held pass. Missing, unnormalized, or misdeclared approval paths fail
+closed. No seed approvals exist to migrate; older externally prepared records
+require explicit owner review rather than a silent reader rewrite.
+
+No reviewer/destination is initially authorized and the allowlist is empty.
+Agents cannot edit policies or approvals. Review candidate digests using the
+pure `projectCorpus(corpus, options, false)` internal review API; this does not
+write or authorize an artifact. CLI compilation always enforces approval.
+
+Time-limited approvals fail closed in deterministic compilation: the current
+pure API has no trusted validation clock. Use an owner-reviewed non-expiring
+digest-bound approval for local export, or extend the contract with a trusted
+explicit approval clock before enabling expiration support. Do not use ambient
+build time. Approvals never bypass the disabled network deployment gate.

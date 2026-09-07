@@ -1,0 +1,12 @@
+schemaVersion: 1
+entityId: tracker-data-view-architecture
+objective: Review independent persisted-data and browser-view contracts using approved source evidence.
+status: paused
+completedSubtopics: []
+remainingSubtopics:
+  [Approve source scope, Review contract examples, Conduct supervised verification]
+sourceCursors: []
+openQuestions: [Which recurring content need would justify a second production data type?]
+contradictions: []
+nextAction: Preserve the current design note; obtain owner scope before an evidence-backed refresh.
+nextHumanReviewAt: "2026-09-14T10:30:00-07:00"

@@ -1,0 +1,46 @@
+schemaVersion: 1
+id: tracker-overview
+dataType: markdown
+dataVersion: 1
+title: Tracker — a local research workspace
+summary: A private, local-first tracker that separates durable research, safe browser views, and supervised changes.
+lifecycle: active
+taxonomy:
+  primaryTopicId: tracker-foundations
+  relatedTopicIds: [content-architecture]
+  tags: [local-first, research, tracker]
+relationships:
+  - kind: related-to
+    targetId: tracker-data-view-architecture
+    viewType: tile
+view:
+  defaultType: full
+  permittedTypes: [label, tile, card, full]
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources: []
+  claims: []
+sensitivity:
+  classification: private
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: private-owner
+  requestedTargets: []
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: manual
+  cadence: P30D
+  stateId: tracker-overview
+timestamps:
+  createdAt: "2026-09-07T10:30:00-07:00"
+  updatedAt: "2026-09-07T10:30:00-07:00"
+review:
+  nextReviewAt: "2026-09-14T10:30:00-07:00"

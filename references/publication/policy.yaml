@@ -1,0 +1,6 @@
+schemaVersion: 1
+policyVersion: 1
+networkPublicationEnabled: false
+reviewers: []
+destinations: []
+publicSourceHosts: []
