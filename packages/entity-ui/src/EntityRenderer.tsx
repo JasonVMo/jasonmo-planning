@@ -1,4 +1,4 @@
-import type { RenderContext, SiteEntity, ViewType } from "@tracker/entity-model";
+import type { RenderContext, SiteEntity, ViewType } from "@planning/entity-model";
 import { MessageBar, MessageBarBody, MessageBarTitle } from "@fluentui/react-components";
 import { viewRegistry } from "./view-registry.tsx";
 

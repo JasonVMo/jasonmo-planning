@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { EntityRenderer, EventView } from "@tracker/entity-ui";
+import { EntityRenderer, EventView } from "@planning/entity-ui";
 import { appointment, appointmentEntity } from "./calendar.ts";
 import { StoryWidth } from "./StoryWidth.tsx";
 

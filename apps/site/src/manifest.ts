@@ -17,7 +17,7 @@ import {
   type TileViewModel,
   type TopicView,
   type ViewModels,
-} from "@tracker/entity-model";
+} from "@planning/entity-model";
 
 type JsonObject = Record<string, unknown>;
 

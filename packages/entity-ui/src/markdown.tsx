@@ -2,7 +2,7 @@ import { Link, Text } from "@fluentui/react-components";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { isSafeMarkdownUrl } from "@tracker/entity-model";
+import { isSafeMarkdownUrl } from "@planning/entity-model";
 
 export function safeMarkdownUrl(url: string): string {
   if (!isSafeMarkdownUrl(url)) return "";

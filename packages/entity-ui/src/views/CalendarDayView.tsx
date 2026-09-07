@@ -1,4 +1,4 @@
-import type { CalendarDayViewModel, CalendarEvent } from "@tracker/entity-model";
+import type { CalendarDayViewModel, CalendarEvent } from "@planning/entity-model";
 import { useId } from "react";
 import {
   dateAt,

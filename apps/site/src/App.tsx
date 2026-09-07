@@ -1,10 +1,10 @@
-import { isCalendarDate, type SiteManifest, type TopicView } from "@tracker/entity-model";
+import { isCalendarDate, type SiteManifest, type TopicView } from "@planning/entity-model";
 import {
   EntityRenderer,
   formatCalendarDate,
   TrackerProvider,
   type TrackerThemeMode,
-} from "@tracker/entity-ui";
+} from "@planning/entity-ui";
 import {
   Badge,
   Button,

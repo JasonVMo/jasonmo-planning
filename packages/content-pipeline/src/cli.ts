@@ -1,7 +1,7 @@
 import { mkdir, rename, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { AUDIENCES, type Audience } from "@tracker/entity-model";
+import { AUDIENCES, type Audience } from "@planning/entity-model";
 import { serializeCanonical } from "./canonical.ts";
 import { confinedPath } from "./load.ts";
 import { compileContent, normalizeBasePath } from "./project.ts";

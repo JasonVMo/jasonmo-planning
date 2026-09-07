@@ -2823,6 +2823,87 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@planning/content-pipeline@workspace:packages/content-pipeline":
+  version: 0.0.0-use.local
+  resolution: "@planning/content-pipeline@workspace:packages/content-pipeline"
+  dependencies:
+    "@planning/entity-model": "workspace:*"
+    "@types/mdast": "npm:4.0.4"
+    "@types/node": "npm:24.3.0"
+    ajv: "npm:8.20.0"
+    ajv-formats: "npm:3.0.1"
+    remark-gfm: "npm:4.0.1"
+    remark-parse: "npm:11.0.0"
+    remark-stringify: "npm:11.0.0"
+    unified: "npm:11.0.5"
+    unist-util-visit: "npm:5.1.0"
+    yaml: "npm:2.9.0"
+  languageName: unknown
+  linkType: soft
+
+"@planning/entity-model@workspace:*, @planning/entity-model@workspace:packages/entity-model":
+  version: 0.0.0-use.local
+  resolution: "@planning/entity-model@workspace:packages/entity-model"
+  dependencies:
+    "@types/node": "npm:24.3.0"
+  languageName: unknown
+  linkType: soft
+
+"@planning/entity-ui@workspace:*, @planning/entity-ui@workspace:packages/entity-ui":
+  version: 0.0.0-use.local
+  resolution: "@planning/entity-ui@workspace:packages/entity-ui"
+  dependencies:
+    "@fluentui/react-components": "npm:9.74.7"
+    "@planning/entity-model": "workspace:*"
+    "@types/react": "npm:19.2.18"
+    "@types/react-dom": "npm:19.2.7"
+    react: "npm:19.2.8"
+    react-dom: "npm:19.2.8"
+    react-markdown: "npm:10.1.0"
+    remark-gfm: "npm:4.0.1"
+  languageName: unknown
+  linkType: soft
+
+"@planning/site@workspace:apps/site":
+  version: 0.0.0-use.local
+  resolution: "@planning/site@workspace:apps/site"
+  dependencies:
+    "@fluentui/react-components": "npm:9.74.7"
+    "@planning/entity-model": "workspace:*"
+    "@planning/entity-ui": "workspace:*"
+    "@types/react": "npm:19.2.18"
+    "@types/react-dom": "npm:19.2.7"
+    minisearch: "npm:7.2.0"
+    react: "npm:19.2.8"
+    react-dom: "npm:19.2.8"
+    react-router: "npm:8.3.1"
+  languageName: unknown
+  linkType: soft
+
+"@planning/storybook@workspace:apps/storybook":
+  version: 0.0.0-use.local
+  resolution: "@planning/storybook@workspace:apps/storybook"
+  dependencies:
+    "@fluentui/react-components": "npm:9.74.7"
+    "@planning/entity-model": "workspace:*"
+    "@planning/entity-ui": "workspace:*"
+    "@storybook/addon-a11y": "npm:10.6.0"
+    "@storybook/addon-vitest": "npm:10.6.0"
+    "@storybook/react-vite": "npm:10.6.0"
+    "@types/react": "npm:19.2.18"
+    "@types/react-dom": "npm:19.2.7"
+    "@vitest/browser-playwright": "npm:4.1.11"
+    "@vitest/runner": "npm:4.1.11"
+    playwright: "npm:1.63.0"
+    react: "npm:19.2.8"
+    react-dom: "npm:19.2.8"
+    storybook: "npm:10.6.0"
+    typescript: "npm:@typescript/typescript6@6.0.2"
+    vite: "npm:8.2.2"
+    vitest: "npm:4.1.11"
+  languageName: unknown
+  linkType: soft
+
 "@playwright/test@npm:1.63.0":
   version: 1.63.0
   resolution: "@playwright/test@npm:1.63.0"
@@ -3158,87 +3239,6 @@ __metadata:
   checksum: 10c0/21f5e01bea2699b069947ae06d0b0fbabe0e90d2a2206b8f56a3f46126d09bd85320cba3fd3910c4d18710b1873e6966fb9021668966c615aaa14bf35d7df3ef
   languageName: node
   linkType: hard
-
-"@tracker/content-pipeline@workspace:packages/content-pipeline":
-  version: 0.0.0-use.local
-  resolution: "@tracker/content-pipeline@workspace:packages/content-pipeline"
-  dependencies:
-    "@tracker/entity-model": "workspace:*"
-    "@types/mdast": "npm:4.0.4"
-    "@types/node": "npm:24.3.0"
-    ajv: "npm:8.20.0"
-    ajv-formats: "npm:3.0.1"
-    remark-gfm: "npm:4.0.1"
-    remark-parse: "npm:11.0.0"
-    remark-stringify: "npm:11.0.0"
-    unified: "npm:11.0.5"
-    unist-util-visit: "npm:5.1.0"
-    yaml: "npm:2.9.0"
-  languageName: unknown
-  linkType: soft
-
-"@tracker/entity-model@workspace:*, @tracker/entity-model@workspace:packages/entity-model":
-  version: 0.0.0-use.local
-  resolution: "@tracker/entity-model@workspace:packages/entity-model"
-  dependencies:
-    "@types/node": "npm:24.3.0"
-  languageName: unknown
-  linkType: soft
-
-"@tracker/entity-ui@workspace:*, @tracker/entity-ui@workspace:packages/entity-ui":
-  version: 0.0.0-use.local
-  resolution: "@tracker/entity-ui@workspace:packages/entity-ui"
-  dependencies:
-    "@fluentui/react-components": "npm:9.74.7"
-    "@tracker/entity-model": "workspace:*"
-    "@types/react": "npm:19.2.18"
-    "@types/react-dom": "npm:19.2.7"
-    react: "npm:19.2.8"
-    react-dom: "npm:19.2.8"
-    react-markdown: "npm:10.1.0"
-    remark-gfm: "npm:4.0.1"
-  languageName: unknown
-  linkType: soft
-
-"@tracker/site@workspace:apps/site":
-  version: 0.0.0-use.local
-  resolution: "@tracker/site@workspace:apps/site"
-  dependencies:
-    "@fluentui/react-components": "npm:9.74.7"
-    "@tracker/entity-model": "workspace:*"
-    "@tracker/entity-ui": "workspace:*"
-    "@types/react": "npm:19.2.18"
-    "@types/react-dom": "npm:19.2.7"
-    minisearch: "npm:7.2.0"
-    react: "npm:19.2.8"
-    react-dom: "npm:19.2.8"
-    react-router: "npm:8.3.1"
-  languageName: unknown
-  linkType: soft
-
-"@tracker/storybook@workspace:apps/storybook":
-  version: 0.0.0-use.local
-  resolution: "@tracker/storybook@workspace:apps/storybook"
-  dependencies:
-    "@fluentui/react-components": "npm:9.74.7"
-    "@storybook/addon-a11y": "npm:10.6.0"
-    "@storybook/addon-vitest": "npm:10.6.0"
-    "@storybook/react-vite": "npm:10.6.0"
-    "@tracker/entity-model": "workspace:*"
-    "@tracker/entity-ui": "workspace:*"
-    "@types/react": "npm:19.2.18"
-    "@types/react-dom": "npm:19.2.7"
-    "@vitest/browser-playwright": "npm:4.1.11"
-    "@vitest/runner": "npm:4.1.11"
-    playwright: "npm:1.63.0"
-    react: "npm:19.2.8"
-    react-dom: "npm:19.2.8"
-    storybook: "npm:10.6.0"
-    typescript: "npm:@typescript/typescript6@6.0.2"
-    vite: "npm:8.2.2"
-    vitest: "npm:4.1.11"
-  languageName: unknown
-  linkType: soft
 
 "@tybys/wasm-util@npm:0.9.0, @tybys/wasm-util@npm:^0.9.0":
   version: 0.9.0

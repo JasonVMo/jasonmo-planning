@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, userEvent, within } from "storybook/test";
-import { TimelineView } from "@tracker/entity-ui";
+import { TimelineView } from "@planning/entity-ui";
 import { calendarModel } from "./calendar.ts";
 import { StoryWidth } from "./StoryWidth.tsx";
 

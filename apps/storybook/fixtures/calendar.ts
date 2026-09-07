@@ -4,7 +4,7 @@ import type {
   EventViewModel,
   SiteEntity,
   SiteManifest,
-} from "@tracker/entity-model";
+} from "@planning/entity-model";
 
 export const appointment: EventViewModel = {
   title: "Design review",

@@ -1,4 +1,4 @@
-import type { Entity, OwnershipPolicy } from "@tracker/entity-model";
+import type { Entity, OwnershipPolicy } from "@planning/entity-model";
 import { serializeCanonical } from "./canonical.ts";
 import { fail } from "./diagnostics.ts";
 

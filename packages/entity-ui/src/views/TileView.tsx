@@ -1,4 +1,4 @@
-import type { TileViewModel } from "@tracker/entity-model";
+import type { TileViewModel } from "@planning/entity-model";
 import { Card, CardHeader, Text, Title3 } from "@fluentui/react-components";
 
 export function TileView({ title, summary, href }: TileViewModel) {

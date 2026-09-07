@@ -5,12 +5,12 @@ import {
   MessageBarTitle,
   Spinner,
 } from "@fluentui/react-components";
-import { TrackerProvider } from "@tracker/entity-ui";
+import { TrackerProvider } from "@planning/entity-ui";
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App.tsx";
 import { parseSiteManifest } from "./manifest.ts";
-import type { SiteManifest } from "@tracker/entity-model";
+import type { SiteManifest } from "@planning/entity-model";
 
 type LoadState =
   | { status: "loading" }

@@ -1,4 +1,4 @@
-import type { CalendarEvent, EventViewModel } from "@tracker/entity-model";
+import type { CalendarEvent, EventViewModel } from "@planning/entity-model";
 import { Badge } from "@fluentui/react-components";
 import { SafeMarkdown } from "../markdown.tsx";
 import { calendarHref, eventDateRange, eventStartDate, eventTime } from "../calendar.ts";

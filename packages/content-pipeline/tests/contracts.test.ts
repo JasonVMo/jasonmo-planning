@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { readFile, symlink, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { Entity, ResearchState, RunOutcome, Taxonomy } from "@tracker/entity-model";
+import type { Entity, ResearchState, RunOutcome, Taxonomy } from "@planning/entity-model";
 import { parseStrict } from "../src/load.ts";
 import { hashBytes, serializeCanonical } from "../src/canonical.ts";
 import { validateContent } from "../src/validate.ts";

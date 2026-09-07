@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, within } from "storybook/test";
-import { SafeMarkdown } from "@tracker/entity-ui";
+import { SafeMarkdown } from "@planning/entity-ui";
 import embeddedMarkdown from "./markdown/example.md?raw";
 import { StoryWidth } from "./StoryWidth.tsx";
 

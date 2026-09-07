@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react-vite";
-import { TrackerProvider } from "@tracker/entity-ui";
+import { TrackerProvider } from "@planning/entity-ui";
 import "../fixtures/storybook.css";
 
 const preview: Preview = {

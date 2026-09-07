@@ -29,11 +29,11 @@ assert(Array.isArray(projects));
 assert.deepEqual(
   [...projects].sort(),
   [
-    "@tracker/content-pipeline",
-    "@tracker/entity-model",
-    "@tracker/entity-ui",
-    "@tracker/site",
-    "@tracker/storybook",
+    "@planning/content-pipeline",
+    "@planning/entity-model",
+    "@planning/entity-ui",
+    "@planning/site",
+    "@planning/storybook",
   ].sort(),
 );
 const manager: { packageManager: string } = JSON.parse(

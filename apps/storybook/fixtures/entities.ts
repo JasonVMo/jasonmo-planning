@@ -1,4 +1,4 @@
-import type { SiteEntity } from "@tracker/entity-model";
+import type { SiteEntity } from "@planning/entity-model";
 
 const standardView = {
   defaultType: "full",

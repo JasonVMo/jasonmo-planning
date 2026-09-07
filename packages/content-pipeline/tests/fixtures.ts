@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { stringify } from "yaml";
-import type { Entity, Proposal, ResearchState } from "@tracker/entity-model";
+import type { Entity, Proposal, ResearchState } from "@planning/entity-model";
 import { execFileSync } from "node:child_process";
 import { hashBytes, serializeCanonical } from "../src/canonical.ts";
 import { parseStrict } from "../src/load.ts";

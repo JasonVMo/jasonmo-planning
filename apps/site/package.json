@@ -1,5 +1,5 @@
 {
-  "name": "@tracker/site",
+  "name": "@planning/site",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@fluentui/react-components": "9.74.7",
-    "@tracker/entity-model": "workspace:*",
-    "@tracker/entity-ui": "workspace:*",
+    "@planning/entity-model": "workspace:*",
+    "@planning/entity-ui": "workspace:*",
     "minisearch": "7.2.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",

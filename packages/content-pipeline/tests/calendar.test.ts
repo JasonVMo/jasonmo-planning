@@ -8,8 +8,8 @@ import type {
   EventSchedule,
   PublicationApproval,
   Taxonomy,
-} from "@tracker/entity-model";
-import { isEventSchedule, RENDER_CONTEXTS, VIEW_TYPES } from "@tracker/entity-model";
+} from "@planning/entity-model";
+import { isEventSchedule, RENDER_CONTEXTS, VIEW_TYPES } from "@planning/entity-model";
 import { serializeCanonical } from "../src/canonical.ts";
 import { approvalDigests, compileContent, projectCorpus } from "../src/project.ts";
 import { reconcileContent } from "../src/reconcile.ts";

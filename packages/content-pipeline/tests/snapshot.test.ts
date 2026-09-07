@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { readFile, rename, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { stringify } from "yaml";
-import type { Entity } from "@tracker/entity-model";
+import type { Entity } from "@planning/entity-model";
 import { hashBytes, serializeCanonical } from "../src/canonical.ts";
 import { compileContent } from "../src/project.ts";
 import { RepositoryReader } from "../src/load.ts";

@@ -2,7 +2,7 @@ import {
   compareCalendarTimestamps,
   isCalendarDate,
   type CalendarEvent,
-} from "@tracker/entity-model";
+} from "@planning/entity-model";
 
 export function dateAt(instant: number | string, timeZone: string): string {
   const parts = new Intl.DateTimeFormat("en-US", {

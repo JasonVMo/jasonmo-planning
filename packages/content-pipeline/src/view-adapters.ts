@@ -10,8 +10,8 @@ import type {
   TileViewModel,
   TimelineViewModel,
   ViewType,
-} from "@tracker/entity-model";
-import { calendarStart, VIEW_TYPES } from "@tracker/entity-model";
+} from "@planning/entity-model";
+import { calendarStart, VIEW_TYPES } from "@planning/entity-model";
 import { assertSchema } from "./schema.ts";
 
 export interface ViewModelMap {

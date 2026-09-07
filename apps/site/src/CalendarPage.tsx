@@ -3,7 +3,7 @@ import {
   isTimeZone,
   type CalendarEvent,
   type SiteManifest,
-} from "@tracker/entity-model";
+} from "@planning/entity-model";
 import {
   addCalendarDays,
   addCalendarMonths,
@@ -13,7 +13,7 @@ import {
   dateAt,
   formatCalendarDate,
   TimelineView,
-} from "@tracker/entity-ui";
+} from "@planning/entity-ui";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router";
 

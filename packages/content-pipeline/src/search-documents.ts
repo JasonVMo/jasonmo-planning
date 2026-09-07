@@ -1,4 +1,4 @@
-import type { SearchDocument, SiteEntity, TopicView } from "@tracker/entity-model";
+import type { SearchDocument, SiteEntity, TopicView } from "@planning/entity-model";
 
 export function searchDocuments(
   entities: readonly SiteEntity[],

@@ -7,8 +7,8 @@ import type {
   RunOutcome,
   SourcesManifest,
   Taxonomy,
-} from "@tracker/entity-model";
-import { RENDER_CONTEXTS } from "@tracker/entity-model";
+} from "@planning/entity-model";
+import { RENDER_CONTEXTS } from "@planning/entity-model";
 import { RepositoryReader, safeRelative, type Overlay } from "./load.ts";
 import { assertSchema } from "./schema.ts";
 import { fail } from "./diagnostics.ts";

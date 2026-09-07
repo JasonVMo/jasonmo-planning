@@ -1,4 +1,4 @@
-import type { FullViewModel } from "@tracker/entity-model";
+import type { FullViewModel } from "@planning/entity-model";
 import { Subtitle1, Title1 } from "@fluentui/react-components";
 import { SafeMarkdown } from "../markdown.tsx";
 

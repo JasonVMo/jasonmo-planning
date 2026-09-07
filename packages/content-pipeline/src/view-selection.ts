@@ -1,4 +1,4 @@
-import type { Entity, RenderContext, ViewType } from "@tracker/entity-model";
+import type { Entity, RenderContext, ViewType } from "@planning/entity-model";
 import {
   ADAPTERS,
   DATA_TYPES,

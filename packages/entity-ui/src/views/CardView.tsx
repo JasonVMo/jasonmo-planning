@@ -1,4 +1,4 @@
-import type { CardViewModel } from "@tracker/entity-model";
+import type { CardViewModel } from "@planning/entity-model";
 import { Badge, Card, CardFooter, CardHeader, Text, Title3 } from "@fluentui/react-components";
 
 export function CardView({ title, summary, href, badges }: CardViewModel) {

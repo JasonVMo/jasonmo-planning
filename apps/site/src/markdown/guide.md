@@ -6,7 +6,7 @@ runtime, and the same content works in local development and built previews.
 
 ```tsx
 import guide from "./guide.md?raw";
-import { SafeMarkdown } from "@tracker/entity-ui";
+import { SafeMarkdown } from "@planning/entity-ui";
 
 export function Guide() {
   return <SafeMarkdown>{guide}</SafeMarkdown>;

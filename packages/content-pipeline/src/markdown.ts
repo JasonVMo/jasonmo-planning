@@ -2,7 +2,7 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
-import { isSafeMarkdownUrl as safeUrl } from "@tracker/entity-model";
+import { isSafeMarkdownUrl as safeUrl } from "@planning/entity-model";
 import type { Root, RootContent } from "mdast";
 import { fail } from "./diagnostics.ts";
 

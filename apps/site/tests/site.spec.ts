@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import type { SiteManifest } from "@tracker/entity-model";
+import type { SiteManifest } from "@planning/entity-model";
 import { parseSiteManifest } from "../src/manifest.ts";
 
 async function manifestFrom(page: Page): Promise<SiteManifest> {

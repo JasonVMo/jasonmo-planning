@@ -7,7 +7,7 @@ import type {
   PublicationPolicy,
   ResearchState,
   Taxonomy,
-} from "@tracker/entity-model";
+} from "@planning/entity-model";
 import { stringify } from "yaml";
 import { compileContent } from "../src/index.ts";
 import { serializeCanonical } from "../src/canonical.ts";

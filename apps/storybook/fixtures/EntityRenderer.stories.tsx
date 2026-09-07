@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { EntityRenderer } from "@tracker/entity-ui";
+import { EntityRenderer } from "@planning/entity-ui";
 import { StoryWidth } from "./StoryWidth.tsx";
 import { markdownEntity } from "./entities.ts";
 

@@ -58,7 +58,7 @@ Markdown is supported both as canonical entity files and as application
 embeds. Use the shared `SafeMarkdown` renderer for Markdown strings:
 
 ```tsx
-import { SafeMarkdown } from "@tracker/entity-ui";
+import { SafeMarkdown } from "@planning/entity-ui";
 import guide from "./guide.md?raw";
 
 export function Help() {

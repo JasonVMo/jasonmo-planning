@@ -1,5 +1,5 @@
 {
-  "name": "@tracker/entity-model",
+  "name": "@planning/entity-model",
   "private": true,
   "type": "module",
   "exports": {

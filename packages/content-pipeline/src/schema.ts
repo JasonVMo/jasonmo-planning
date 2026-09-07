@@ -7,7 +7,7 @@ import {
   isCalendarDate,
   isCalendarTimestamp,
   isTimeZone,
-} from "@tracker/entity-model";
+} from "@planning/entity-model";
 
 const ajv = new Ajv({ allErrors: true, strict: true, strictRequired: false, ownProperties: true });
 addFormats(ajv);

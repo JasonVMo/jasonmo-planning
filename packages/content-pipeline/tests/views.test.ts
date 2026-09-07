@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { Entity } from "@tracker/entity-model";
+import type { Entity } from "@planning/entity-model";
 import {
   adaptView,
   ADAPTERS,

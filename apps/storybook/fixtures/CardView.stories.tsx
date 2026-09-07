@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { CardView, EntityRenderer } from "@tracker/entity-ui";
+import { CardView, EntityRenderer } from "@planning/entity-ui";
 import { ForcedColorsFrame, StoryWidth } from "./StoryWidth.tsx";
 import { longEntity, markdownEntity, syntheticStatusEntity } from "./entities.ts";
 

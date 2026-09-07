@@ -8,8 +8,8 @@ import type {
   TopicView,
   ViewModels,
   ViewType,
-} from "@tracker/entity-model";
-import { AUDIENCES, RENDER_CONTEXTS, VIEW_TYPES } from "@tracker/entity-model";
+} from "@planning/entity-model";
+import { AUDIENCES, RENDER_CONTEXTS, VIEW_TYPES } from "@planning/entity-model";
 import { digest } from "./canonical.ts";
 import { fail } from "./diagnostics.ts";
 import { projectMarkdown, safeUrl } from "./markdown.ts";

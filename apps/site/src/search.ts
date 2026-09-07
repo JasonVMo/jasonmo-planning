@@ -1,4 +1,4 @@
-import type { SearchDocument } from "@tracker/entity-model";
+import type { SearchDocument } from "@planning/entity-model";
 import MiniSearch from "minisearch";
 
 export interface SearchHit {

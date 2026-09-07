@@ -1,4 +1,4 @@
-import type { TimelineViewModel } from "@tracker/entity-model";
+import type { TimelineViewModel } from "@planning/entity-model";
 import { useId, type KeyboardEvent } from "react";
 import { addCalendarDays, calendarHref, eventsByDate, formatCalendarDate } from "../calendar.ts";
 

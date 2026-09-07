@@ -2,7 +2,7 @@ import { execFile } from "node:child_process";
 import { link, lstat, mkdir, rename, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { promisify } from "node:util";
-import type { Entity, Proposal, ResearchState } from "@tracker/entity-model";
+import type { Entity, Proposal, ResearchState } from "@planning/entity-model";
 import { digest, hashBytes, serializeCanonical } from "./canonical.ts";
 import { fail } from "./diagnostics.ts";
 import {

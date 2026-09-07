@@ -1,4 +1,4 @@
-import { SafeMarkdown } from "@tracker/entity-ui";
+import { SafeMarkdown } from "@planning/entity-ui";
 import guide from "./markdown/guide.md?raw";
 
 const sourceExample = `## Markdown from a source string

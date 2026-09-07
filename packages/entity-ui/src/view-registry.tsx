@@ -8,7 +8,7 @@ import type {
   CalendarMonthViewModel,
   CalendarDayViewModel,
   TimelineViewModel,
-} from "@tracker/entity-model";
+} from "@planning/entity-model";
 import type { ComponentType } from "react";
 import { CardView } from "./views/CardView.tsx";
 import { FullView } from "./views/FullView.tsx";
