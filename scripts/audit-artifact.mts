@@ -105,6 +105,7 @@ async function main() {
     options: {
       target: { type: "string", default: "local" },
       "base-path": { type: "string", default: "/" },
+      directory: { type: "string" },
     },
   });
   const target = (["local", "private-owner", "private-group", "public"] as const).find(
@@ -116,7 +117,17 @@ async function main() {
     target: target satisfies Audience,
     basePath: values["base-path"],
   });
-  await auditArtifactInventory(path.join(root, "dist", target), manifest);
+  const directory = path.resolve(root, values.directory ?? path.join("dist", target));
+  const relative = path.relative(root, directory);
+  if (
+    !relative ||
+    relative.startsWith(`..${path.sep}`) ||
+    path.isAbsolute(relative) ||
+    (relative !== "docs" && !relative.startsWith(`dist${path.sep}`))
+  ) {
+    throw new Error("Artifact directory must be docs or a child of dist");
+  }
+  await auditArtifactInventory(directory, manifest);
   console.log(`Artifact matches current ${target} projection and inventory`);
 }
 

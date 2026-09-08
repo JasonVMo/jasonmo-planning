@@ -7,11 +7,7 @@ test("renders bundled Markdown-file and source-string embeds without runtime fil
   page.on("request", (request) => {
     if (/\.md(?:[?#]|$)/.test(request.url())) markdownRequests.push(request.url());
   });
-  await page.goto(".");
-  await page
-    .getByRole("navigation", { name: "Primary navigation" })
-    .getByRole("link", { name: "Markdown guide" })
-    .click();
+  await page.goto(".#/help/markdown");
   await expect(page).toHaveURL(/#\/help\/markdown$/);
   await expect(page.getByRole("heading", { name: "Markdown from a file" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Markdown from a source string" })).toBeVisible();

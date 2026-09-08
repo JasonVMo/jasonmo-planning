@@ -1,9 +1,4 @@
-import {
-  isCalendarDate,
-  isTimeZone,
-  type CalendarEvent,
-  type SiteManifest,
-} from "@planning/entity-model";
+import { isCalendarDate, isTimeZone, type SiteManifest } from "@planning/entity-model";
 import {
   addCalendarDays,
   addCalendarMonths,
@@ -16,6 +11,7 @@ import {
 } from "@planning/entity-ui";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router";
+import { calendarEventsForEntity } from "./archive.ts";
 
 export function CalendarPage({ manifest }: { manifest: SiteManifest }) {
   const { calendarMode = "month", calendarDate } = useParams();
@@ -43,21 +39,7 @@ export function CalendarPage({ manifest }: { manifest: SiteManifest }) {
     };
   }, [timeZone]);
   const events = useMemo(
-    () =>
-      manifest.entities.flatMap(({ viewModels }) => {
-        const event = viewModels.event;
-        if (!event) return [];
-        const item: CalendarEvent = {
-          title: event.title,
-          summary: event.summary,
-          href: event.href,
-          kind: event.kind,
-          status: event.status,
-          schedule: event.schedule,
-          ...(event.location === undefined ? {} : { location: event.location }),
-        };
-        return [item];
-      }),
+    () => manifest.entities.flatMap((entity) => calendarEventsForEntity(entity)),
     [manifest.entities],
   );
 

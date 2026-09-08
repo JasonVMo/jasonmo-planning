@@ -1,0 +1,74 @@
+schemaVersion: 1
+id: emerald-city-comic-con-2027
+dataType: event
+dataVersion: 1
+title: Emerald City Comic Con
+summary: The 2027 convention runs March 4-7.
+lifecycle: active
+taxonomy:
+  primaryTopicId: festivals-events
+  relatedTopicIds: []
+  tags:
+    - festival
+    - comics
+    - interested
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: event
+  status: tentative
+  schedule:
+    allDay: true
+    startDate: 2027-03-04
+    endDate: 2027-03-08
+  location: Seattle Convention Center
+provenance:
+  sources:
+    - id: event
+      title: Emerald City Comic Con
+      publisher: ReedPop
+      sourceType: primary-documentation
+      url: https://www.emeraldcitycomiccon.com/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: emerald-city-comic-con-2027-official
+      basis: observed
+      statement: The 2027 convention runs March 4-7.
+      sourceIds:
+        - event
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: emerald-city-comic-con-2027
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

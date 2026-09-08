@@ -23,3 +23,73 @@ nodes:
     publication:
       eligibility: private-owner
       requestedTargets: []
+  - id: trips
+    title: Trips
+    slug: trips
+    description: Upcoming travel, itineraries, reservations, and destination research.
+    order: 100
+    sensitivity:
+      classification: public
+      containsPersonalData: false
+    publication:
+      eligibility: public
+      requestedTargets: [public]
+  - id: events
+    title: Events
+    slug: events
+    description: Upcoming games, concerts, productions, festivals, and other dated interests.
+    order: 200
+    sensitivity:
+      classification: public
+      containsPersonalData: false
+    publication:
+      eligibility: public
+      requestedTargets: [public]
+  - id: seahawks-games
+    title: Seahawks Games
+    slug: seahawks
+    description: Selected Seattle Seahawks games and practical game-day information.
+    parentId: events
+    order: 210
+    sensitivity:
+      classification: public
+      containsPersonalData: false
+    publication:
+      eligibility: public
+      requestedTargets: [public]
+  - id: concerts
+    title: Concerts
+    slug: concerts
+    description: Upcoming concerts of interest, ticket timing, and venue details.
+    parentId: events
+    order: 220
+    sensitivity:
+      classification: public
+      containsPersonalData: false
+    publication:
+      eligibility: public
+      requestedTargets: [public]
+  - id: productions
+    title: Productions
+    slug: productions
+    description: Upcoming plays and musicals at Seattle-area theaters.
+    parentId: events
+    order: 230
+    sensitivity:
+      classification: public
+      containsPersonalData: false
+    publication:
+      eligibility: public
+      requestedTargets: [public]
+  - id: festivals-events
+    title: Festivals & Events
+    slug: festivals-events
+    description: Other notable festivals, community events, and dated activities.
+    parentId: events
+    order: 240
+    sensitivity:
+      classification: public
+      containsPersonalData: false
+    publication:
+      eligibility: public
+      requestedTargets: [public]

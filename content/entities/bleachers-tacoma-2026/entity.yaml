@@ -1,0 +1,75 @@
+schemaVersion: 1
+id: bleachers-tacoma-2026
+dataType: event
+dataVersion: 1
+title: Bleachers with The Linda Lindas
+summary: Alternative-pop show at Dune Peninsula in Tacoma.
+lifecycle: active
+taxonomy:
+  primaryTopicId: concerts
+  relatedTopicIds: []
+  tags:
+    - concert
+    - alternative
+    - interested
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: event
+  status: tentative
+  schedule:
+    allDay: false
+    startAt: 2026-09-19T18:30:00-07:00
+    endAt: 2026-09-19T22:00:00-07:00
+    timeZone: America/Los_Angeles
+  location: Dune Peninsula, Tacoma
+provenance:
+  sources:
+    - id: showbox-event
+      title: Bleachers Forever
+      publisher: Showbox Presents
+      sourceType: primary-documentation
+      url: https://www.showboxpresents.com/events/detail/1367722
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: bleachers-tacoma-2026-official
+      basis: observed
+      statement: Alternative-pop show at Dune Peninsula in Tacoma.
+      sourceIds:
+        - showbox-event
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: bleachers-tacoma-2026
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

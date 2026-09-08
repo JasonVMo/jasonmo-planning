@@ -1,0 +1,17 @@
+schemaVersion: 1
+entityId: acadia-hikes-walks
+sources:
+  - id: acadia-hiking
+    title: Acadia hiking
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/acad/planyourvisit/hiking.htm
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: island-explorer
+    title: Island Explorer
+    publisher: Downeast Transportation
+    sourceType: primary-documentation
+    url: https://www.exploreacadia.com/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

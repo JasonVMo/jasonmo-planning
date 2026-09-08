@@ -1,0 +1,75 @@
+schemaVersion: 1
+id: acadia-restaurants
+dataType: markdown
+dataVersion: 1
+title: Acadia restaurants
+summary: Local and practical dining around Bar Harbor with seasonal-hour caveats.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - acadia
+    - restaurants
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: acadia-hours
+      title: Acadia operating hours and seasons
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/acad/planyourvisit/hours.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: jordan-pond-house
+      title: Jordan Pond House
+      publisher: Jordan Pond House
+      sourceType: primary-documentation
+      url: https://jordanpondhouse.com/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: acadia-restaurants-source-1
+      basis: observed
+      statement: The page uses Acadia operating hours and seasons as evidence for
+        current planning details.
+      sourceIds:
+        - acadia-hours
+    - id: acadia-restaurants-source-2
+      basis: observed
+      statement: The page uses Jordan Pond House as evidence for current planning details.
+      sourceIds:
+        - jordan-pond-house
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: acadia-restaurants
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

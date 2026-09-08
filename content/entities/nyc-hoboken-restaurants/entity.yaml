@@ -1,0 +1,65 @@
+schemaVersion: 1
+id: nyc-hoboken-restaurants
+dataType: markdown
+dataVersion: 1
+title: Hoboken & New York restaurants
+summary: A flexible dining approach centered on walkable Hoboken and varied New
+  York neighborhoods.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - nyc
+    - hoboken
+    - restaurants
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: stevens-visit
+      title: Visiting Stevens and Hoboken
+      publisher: Stevens Institute of Technology
+      sourceType: primary-documentation
+      url: https://www.stevens.edu/admission-aid/visit-stevens
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: nyc-hoboken-restaurants-source-1
+      basis: observed
+      statement: The page uses Visiting Stevens and Hoboken as evidence for current
+        planning details.
+      sourceIds:
+        - stevens-visit
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: nyc-hoboken-restaurants
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

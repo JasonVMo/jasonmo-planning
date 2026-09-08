@@ -1,0 +1,74 @@
+schemaVersion: 1
+id: earshot-jazz-festival-2026
+dataType: event
+dataVersion: 1
+title: Earshot Jazz Festival
+summary: Seattle-area jazz festival running October 7-25.
+lifecycle: active
+taxonomy:
+  primaryTopicId: festivals-events
+  relatedTopicIds: []
+  tags:
+    - festival
+    - music
+    - interested
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: event
+  status: tentative
+  schedule:
+    allDay: true
+    startDate: 2026-10-07
+    endDate: 2026-10-26
+  location: Seattle and King County venues
+provenance:
+  sources:
+    - id: event
+      title: Earshot Jazz Festival
+      publisher: Earshot Jazz
+      sourceType: primary-documentation
+      url: https://www.earshot.org/Festival/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: earshot-jazz-festival-2026-official
+      basis: observed
+      statement: Seattle-area jazz festival running October 7-25.
+      sourceIds:
+        - event
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: earshot-jazz-festival-2026
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

@@ -1,0 +1,24 @@
+schemaVersion: 1
+entityId: acadia-things-to-do
+sources:
+  - id: acadia-alerts
+    title: Acadia alerts
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/acad/park-alerts-acad.json
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: acadia-cadillac
+    title: Cadillac vehicle reservations
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/acad/planyourvisit/vehicle_reservations.htm
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: acadia-schoodic
+    title: Schoodic Peninsula
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/acad/planyourvisit/schoodic.htm
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

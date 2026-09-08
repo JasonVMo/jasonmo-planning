@@ -1,0 +1,74 @@
+schemaVersion: 1
+id: sequoia-restaurants
+dataType: markdown
+dataVersion: 1
+title: Sequoia restaurants
+summary: Flexible dining and supply options around Three Rivers and inside the parks.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - sequoia
+    - restaurants
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: seki-food
+      title: Where to eat
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/wheretoeat.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: seki-fuel
+      title: Gas stations
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/gasstation.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: sequoia-restaurants-source-1
+      basis: observed
+      statement: The page uses Where to eat as evidence for current planning details.
+      sourceIds:
+        - seki-food
+    - id: sequoia-restaurants-source-2
+      basis: observed
+      statement: The page uses Gas stations as evidence for current planning details.
+      sourceIds:
+        - seki-fuel
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: sequoia-restaurants
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

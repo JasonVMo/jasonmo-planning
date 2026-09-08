@@ -1,0 +1,77 @@
+schemaVersion: 1
+id: acadia-rental-car
+dataType: reservation
+dataVersion: 1
+title: Bangor rental car
+summary: Enterprise rental from Bangor airport for the Acadia segment.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - rental-car
+    - confirmed
+    - year-2026
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: rental-car
+  status: confirmed
+  provider: Enterprise
+  schedule:
+    allDay: false
+    startAt: 2026-10-05T17:45:00-04:00
+    endAt: 2026-10-10T12:00:00-04:00
+    timeZone: America/New_York
+  location: Bangor International Airport
+provenance:
+  sources:
+    - id: owner-itinerary
+      title: Owner-confirmed 2026 itinerary
+      publisher: Repository owner
+      sourceType: owner-material
+      locator: research/intake/initial-trips.md
+      access: restricted
+      retrievedAt: 2026-09-08T13:00:00-07:00
+      fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+  claims:
+    - id: acadia-rental-car-status
+      basis: confirmed
+      statement: Enterprise rental from Bangor airport for the Acadia segment.
+      sourceIds:
+        - owner-itinerary
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: acadia-rental-car
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

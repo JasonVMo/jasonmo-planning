@@ -1,0 +1,89 @@
+schemaVersion: 1
+id: sequoia-getting-ready
+dataType: markdown
+dataVersion: 1
+title: Getting ready for Sequoia
+summary: Weather, reservations, road checks, packing, and day-plan decisions.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - sequoia
+    - getting
+    - ready
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: seki-weather
+      title: Weather
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/weather.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: seki-bears
+      title: Bears and food storage
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/bears.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: seki-nws
+      title: Lodgepole point forecast
+      publisher: National Weather Service
+      sourceType: primary-documentation
+      url: https://forecast.weather.gov/MapClick.php?lat=36.6044&lon=-118.7325
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: sequoia-getting-ready-source-1
+      basis: observed
+      statement: The page uses Weather as evidence for current planning details.
+      sourceIds:
+        - seki-weather
+    - id: sequoia-getting-ready-source-2
+      basis: observed
+      statement: The page uses Bears and food storage as evidence for current planning
+        details.
+      sourceIds:
+        - seki-bears
+    - id: sequoia-getting-ready-source-3
+      basis: observed
+      statement: The page uses Lodgepole point forecast as evidence for current
+        planning details.
+      sourceIds:
+        - seki-nws
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: sequoia-getting-ready
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

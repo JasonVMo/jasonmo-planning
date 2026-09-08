@@ -1,0 +1,10 @@
+schemaVersion: 1
+entityId: gorillaz-seattle-2026
+sources:
+  - id: arena-event
+    title: Gorillaz
+    publisher: Climate Pledge Arena
+    sourceType: primary-documentation
+    url: https://www.climatepledgearena.com/event/gorillaz-26/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

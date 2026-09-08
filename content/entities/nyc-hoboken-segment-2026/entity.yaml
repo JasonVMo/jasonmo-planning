@@ -1,0 +1,90 @@
+schemaVersion: 1
+id: nyc-hoboken-segment-2026
+dataType: trip
+dataVersion: 1
+title: New York City & Hoboken
+summary: Three nights based near Stevens in Hoboken, using PATH and transit for
+  New York City.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - new-york-city
+    - hoboken
+    - broadway
+    - year-2026
+relationships: []
+view:
+  defaultType: trip
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+    - trip
+  contextOverrides:
+    navigation: label
+    collection: trip
+    relationship: trip
+    search: label
+    detail: trip
+data:
+  bodyPath: body.md
+  kind: segment
+  status: planned
+  startDate: 2026-10-10
+  endDate: 2026-10-13
+  destination: Hoboken and New York City
+  timeZone: America/New_York
+  children:
+    - targetId: hoboken-lodging
+      role: reservation
+      order: 10
+    - targetId: nyc-hoboken-things-to-do
+      role: things-to-do
+      order: 20
+    - targetId: nyc-hoboken-restaurants
+      role: restaurants
+      order: 30
+    - targetId: nyc-hoboken-getting-ready
+      role: getting-ready
+      order: 40
+provenance:
+  sources:
+    - id: owner-itinerary
+      title: Owner-confirmed 2026 itinerary
+      publisher: Repository owner
+      sourceType: owner-material
+      locator: research/intake/initial-trips.md
+      access: restricted
+      retrievedAt: 2026-09-08T13:00:00-07:00
+      fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+  claims:
+    - id: nyc-segment-dates
+      basis: confirmed
+      statement: The Hoboken and NYC segment runs October 10-13, 2026.
+      sourceIds:
+        - owner-itinerary
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: nyc-hoboken-segment-2026
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

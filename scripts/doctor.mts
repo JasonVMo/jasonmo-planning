@@ -42,5 +42,5 @@ const manager: { packageManager: string } = JSON.parse(
 assert.equal(manager.packageManager, "yarn@4.18.0");
 console.log("Toolchain and five-project workspace ready.");
 console.log(
-  "Platform gates: Pages artifacts are built but deployment and unattended agents are not configured.",
+  "Platform gates: approved public Pages deploys from main; unattended agents are not configured.",
 );

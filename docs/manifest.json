@@ -1,89 +1,134 @@
 {
-  "audience": "private-owner",
+  "audience": "public",
   "basePath": "/tracker/",
-  "contentDigest": "936018a29f68f936f9a7d013e5fdb08447776b13331c418fa05fa6ce6dbf33d6",
-  "deployable": false,
+  "contentDigest": "7ad02399f32dd36b7a0c558339390968e2926ca2ecf3af5798de14fefa9d3e20",
+  "deployable": true,
   "entities": [
     {
       "citations": [],
-      "dataType": "markdown",
+      "dataType": "reservation",
       "dataVersion": 1,
-      "id": "tracker-data-view-architecture",
-      "primaryTopicId": "content-architecture",
-      "relationships": [
-        {
-          "kind": "related-to",
-          "targetId": "tracker-overview",
-          "viewType": "tile"
-        }
-      ],
-      "route": "#/entities/tracker-data-view-architecture",
-      "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
+      "id": "acadia-arrival-lodging",
+      "lastVerifiedAt": "2026-09-08T12:55:00-07:00",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-arrival-lodging",
+      "summary": "Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.",
       "tags": [
-        "adapters",
-        "schemas",
-        "views"
+        "lodging",
+        "needs-booking",
+        "year-2026"
       ],
-      "title": "Independent data and view architecture",
+      "title": "Maine arrival-night lodging",
       "view": {
         "byContext": {
-          "collection": "card",
-          "detail": "full",
+          "collection": "event",
+          "detail": "event",
           "navigation": "label",
-          "relationship": "tile",
+          "relationship": "event",
           "search": "label"
         },
-        "defaultType": "full"
+        "defaultType": "event"
       },
       "viewModels": {
-        "card": {
-          "badges": [
-            "adapters",
-            "schemas",
-            "views"
-          ],
-          "href": "#/entities/tracker-data-view-architecture",
-          "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
-          "title": "Independent data and view architecture"
-        },
-        "full": {
-          "body": "# Independent data and view architecture\n\nThis owner-maintained design note separates persisted semantics from reusable\nvisual contracts. Return to [the tracker overview](#/entities/tracker-overview)\nfor the intended research workflow.\n\n## Three boundaries\n\n1. **Entity model:** strict JSON Schema draft-07 contracts and generated\n   TypeScript types; no React or filesystem dependencies.\n2. **Content pipeline:** Node-only parsing, complete-graph validation,\n   audience projection, view resolution, adapters, and search documents.\n3. **Entity UI:** React renderers selected only by view type. The browser does\n   not parse canonical descriptors or receive operational research state.\n\n## Data is not a component name\n\nThe initial data type is `markdown`: its payload identifies a confined body\nfile. A view type is independently one of `label`, `tile`, `card`, or `full`.\nCode-owned adapters convert safe presentation data into those common view\nmodels. A later data type can reuse a card without creating another card\nrenderer; a new view does not require a new persisted data type.\n\nExplicit occurrence overrides win, then entity context overrides, then an\nentity default. Site context defaults and the data-type fallback apply only\nwhen the entity has not explicitly selected a view. Invalid explicit choices\nare errors, not silent fallbacks.\n\n## Review checklist\n\n- Validate persisted data independently of view-model schemas.\n- Filter hidden entities, taxonomy, links, and citations before adapting.\n- Emit only reachable registered view models and deterministic search data.\n- Keep Markdown inert: no HTML, JSX, remote images, or executable blocks.\n- Prove a synthetic second data type can adapt into an existing common view.\n\nThis architecture note starts unverified. External evidence collection and\nthree real supervised refresh cycles remain pending; fixture tests do not\ncount as research cycles.\n",
-          "href": "#/entities/tracker-data-view-architecture",
-          "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
-          "title": "Independent data and view architecture"
+        "event": {
+          "body": "# Maine arrival-night lodging\n\nChoose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.\n\n## Action needed\n\nSelect and reserve an option. Private confirmation details remain outside the public site.\n",
+          "href": "#/entities/acadia-arrival-lodging",
+          "kind": "appointment",
+          "location": "Bangor, Ellsworth, or Bar Harbor, Maine",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-10-06",
+            "startDate": "2026-10-05"
+          },
+          "status": "tentative",
+          "summary": "Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.",
+          "title": "Maine arrival-night lodging"
         },
         "label": {
-          "href": "#/entities/tracker-data-view-architecture",
-          "title": "Independent data and view architecture"
-        },
-        "tile": {
-          "href": "#/entities/tracker-data-view-architecture",
-          "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
-          "title": "Independent data and view architecture"
+          "href": "#/entities/acadia-arrival-lodging",
+          "title": "Maine arrival-night lodging"
         }
       }
     },
     {
       "citations": [],
-      "dataType": "markdown",
+      "dataType": "reservation",
       "dataVersion": 1,
-      "id": "tracker-overview",
-      "primaryTopicId": "tracker-foundations",
-      "relationships": [
+      "id": "acadia-bar-harbor-lodging",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-bar-harbor-lodging",
+      "summary": "Days Inn Bar Harbor from October 6 through October 10.",
+      "tags": [
+        "confirmed",
+        "lodging",
+        "year-2026"
+      ],
+      "title": "Bar Harbor lodging",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Bar Harbor lodging\n\nDays Inn Bar Harbor from October 6 through October 10.\n\n## Planning note\n\nPrivate confirmation details remain outside the public site.\n",
+          "href": "#/entities/acadia-bar-harbor-lodging",
+          "kind": "appointment",
+          "location": "Bar Harbor, Maine",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-10-10T11:00:00-04:00",
+            "startAt": "2026-10-06T16:00:00-04:00",
+            "timeZone": "America/New_York"
+          },
+          "status": "confirmed",
+          "summary": "Days Inn Bar Harbor from October 6 through October 10.",
+          "title": "Bar Harbor lodging"
+        },
+        "label": {
+          "href": "#/entities/acadia-bar-harbor-lodging",
+          "title": "Bar Harbor lodging"
+        }
+      }
+    },
+    {
+      "citations": [
         {
-          "kind": "related-to",
-          "targetId": "tracker-data-view-architecture",
-          "viewType": "tile"
+          "title": "Bangor airport lodging",
+          "url": "https://flybangor.com/area-information/local-lodging/"
+        },
+        {
+          "title": "Island Explorer 2026 service",
+          "url": "https://www.exploreacadia.com/"
+        },
+        {
+          "title": "Maine foliage timing",
+          "url": "https://www.maine.gov/dacf/mfs/projects/fall_foliage/whenandwhere/index.html"
         }
       ],
-      "route": "#/entities/tracker-overview",
-      "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "acadia-getting-ready",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-getting-ready",
+      "summary": "Lodging choice, Island Explorer schedules, foliage, reservations, rain plans, and safety.",
       "tags": [
-        "local-first",
-        "research",
-        "tracker"
+        "acadia",
+        "getting",
+        "ready"
       ],
-      "title": "Tracker — a local research workspace",
+      "title": "Getting ready for Acadia",
       "view": {
         "byContext": {
           "collection": "card",
@@ -97,28 +142,2484 @@
       "viewModels": {
         "card": {
           "badges": [
-            "local-first",
-            "research",
-            "tracker"
+            "acadia",
+            "getting",
+            "ready"
           ],
-          "href": "#/entities/tracker-overview",
-          "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
-          "title": "Tracker — a local research workspace"
+          "href": "#/entities/acadia-getting-ready",
+          "summary": "Lodging choice, Island Explorer schedules, foliage, reservations, rain plans, and safety.",
+          "title": "Getting ready for Acadia"
         },
         "full": {
-          "body": "# Tracker: a local research workspace\n\nTracker is designed to keep useful research in reviewable, durable files while\nshowing a deliberately selected browser projection. The repository—not the\nwebsite—is the source of truth. This owner-maintained introduction describes\nthe intended operating model; it is not a report of completed source research.\n\n## Start here\n\n- Browse topics to find a bounded area of work.\n- Open an entity to read the current explanation and its relationships.\n- Use local search for titles, summaries, topic labels, tags, and safe body text.\n- Check research state before attempting a refresh. Unverified does not mean\n  failed, and a failed attempt must not replace the last verified conclusion.\n\nSee [the independent data/view architecture](#/entities/tracker-data-view-architecture)\nfor the boundary between persisted meaning and reusable presentation.\n\n## Research status\n\nInitial state: unverified and manually maintained. No external retrieval or\nsupervised research cycle has been completed for this entity. The next step is\nan owner-scoped source review with explicit evidence, expected file hashes,\nand a dry-run proposal.\n\n## Publication posture\n\nLocal output is non-deployable. Group or public export requires exact\nprojection approval, and online deployment remains separately blocked until\nan authorized host, audience, identity, and review process are established.\n",
-          "href": "#/entities/tracker-overview",
-          "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
-          "title": "Tracker — a local research workspace"
+          "body": "# Getting ready for Acadia\n\nLodging choice, Island Explorer schedules, foliage, reservations, rain plans, and safety.\n\n## Open decision\n\nFor October 5, compare the airport-connected Bangor hotel, an Ellsworth split-distance night, and going directly to Bar Harbor. Use refundable all-in prices and avoid an unnecessary late-night drive.\n\n## Transit and reservations\n\nIsland Explorer's operator publishes service through October 12, covering the segment. Use buses for Sand Beach, Sieur de Monts, Jordan Pond, and the Park Loop corridor. Cadillac Summit Road requires a separate reservation.\n\n## Weather and rain\n\nOctober 5-10 is a promising transition window, not guaranteed peak foliage. Recheck the official Maine report and NWS forecast. In rain, avoid iron-rung and wet-granite hikes; use museums, nature centers, Southwest Harbor, and scenic drives.\n",
+          "href": "#/entities/acadia-getting-ready",
+          "summary": "Lodging choice, Island Explorer schedules, foliage, reservations, rain plans, and safety.",
+          "title": "Getting ready for Acadia"
         },
         "label": {
-          "href": "#/entities/tracker-overview",
-          "title": "Tracker — a local research workspace"
+          "href": "#/entities/acadia-getting-ready",
+          "title": "Getting ready for Acadia"
         },
         "tile": {
-          "href": "#/entities/tracker-overview",
-          "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
-          "title": "Tracker — a local research workspace"
+          "href": "#/entities/acadia-getting-ready",
+          "summary": "Lodging choice, Island Explorer schedules, foliage, reservations, rain plans, and safety.",
+          "title": "Getting ready for Acadia"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Island Explorer",
+          "url": "https://www.exploreacadia.com/"
+        },
+        {
+          "title": "Acadia hiking",
+          "url": "https://www.nps.gov/acad/planyourvisit/hiking.htm"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "acadia-hikes-walks",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-hikes-walks",
+      "summary": "Region-grouped official routes with bus, driving, weather, and exposure notes.",
+      "tags": [
+        "acadia",
+        "hikes",
+        "walks"
+      ],
+      "title": "Acadia hikes & walks",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "acadia",
+            "hikes",
+            "walks"
+          ],
+          "href": "#/entities/acadia-hikes-walks",
+          "summary": "Region-grouped official routes with bus, driving, weather, and exposure notes.",
+          "title": "Acadia hikes & walks"
+        },
+        "full": {
+          "body": "# Acadia hikes & walks\n\nRegion-grouped official routes with bus, driving, weather, and exposure notes.\n\n## East side\n\n- **Gorham Mountain Loop:** 3.5 miles, moderate and rocky.\n- **Beehive Loop:** 1.4 miles with iron rungs and exposed cliff travel; only in dry conditions.\n- **Great Head:** 1.7 miles over rocky coastal terrain.\n\n## Central mountains\n\n- **Jordan Pond Path:** 3.3 miles with boulders and narrow boardwalk on the west side.\n- **Pemetic Loop:** 4 miles with scrambling, rungs, and a ladder.\n- **Cadillac South Ridge:** 7.1 miles and a substantial exposed ridge day.\n\n## West side and Schoodic\n\n- **Beech Mountain:** 1.2 miles; drive because there is no direct trailhead transit.\n- **Ship Harbor:** 1.3-mile easier coastal loop.\n- **Schoodic:** choose among 7.5 miles of linked trails.\n\nRoutes 4, 5, and 6 do not stop at the Bubble Rock trailhead. Use Jordan Pond for a bus-based approach or drive with a parking backup.\n",
+          "href": "#/entities/acadia-hikes-walks",
+          "summary": "Region-grouped official routes with bus, driving, weather, and exposure notes.",
+          "title": "Acadia hikes & walks"
+        },
+        "label": {
+          "href": "#/entities/acadia-hikes-walks",
+          "title": "Acadia hikes & walks"
+        },
+        "tile": {
+          "href": "#/entities/acadia-hikes-walks",
+          "summary": "Region-grouped official routes with bus, driving, weather, and exposure notes.",
+          "title": "Acadia hikes & walks"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Acadia current conditions",
+          "url": "https://www.nps.gov/acad/planyourvisit/conditions.htm"
+        }
+      ],
+      "dataType": "trip",
+      "dataVersion": 1,
+      "id": "acadia-new-york-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-new-york-2026",
+      "summary": "An October 2026 trip combining Acadia and Bar Harbor with Hoboken and New York City.",
+      "tags": [
+        "acadia",
+        "bar-harbor",
+        "hoboken",
+        "new-york-city",
+        "year-2026"
+      ],
+      "title": "Acadia & New York City",
+      "view": {
+        "byContext": {
+          "collection": "trip",
+          "detail": "trip",
+          "navigation": "label",
+          "relationship": "trip",
+          "search": "label"
+        },
+        "defaultType": "trip"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Acadia & New York City\n\nA two-segment trip: five nights around Acadia, followed by three nights based in Hoboken.\n\n## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nTwo lodging actions remain open: the arrival night in Maine and the Hoboken stay.\n",
+          "href": "#/entities/acadia-new-york-2026",
+          "kind": "event",
+          "location": "Maine, New York City, and Hoboken",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-10-14",
+            "startDate": "2026-10-05"
+          },
+          "status": "confirmed",
+          "summary": "An October 2026 trip combining Acadia and Bar Harbor with Hoboken and New York City.",
+          "title": "Acadia & New York City"
+        },
+        "label": {
+          "href": "#/entities/acadia-new-york-2026",
+          "title": "Acadia & New York City"
+        },
+        "trip": {
+          "body": "# Acadia & New York City\n\nA two-segment trip: five nights around Acadia, followed by three nights based in Hoboken.\n\n## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nTwo lodging actions remain open: the arrival night in Maine and the Hoboken stay.\n",
+          "children": [
+            {
+              "href": "#/entities/acadia-outbound-flight",
+              "order": 10,
+              "role": "flight",
+              "summary": "American 1872 and 3683 via Chicago on October 5.",
+              "title": "Seattle to Bangor"
+            },
+            {
+              "href": "#/entities/acadia-segment-2026",
+              "order": 20,
+              "role": "segment",
+              "summary": "Five nights for Acadia hikes, coast, carriage roads, and nearby day trips.",
+              "title": "Acadia National Park & Bar Harbor"
+            },
+            {
+              "href": "#/entities/bangor-laguardia-flight",
+              "order": 30,
+              "role": "flight",
+              "summary": "American 4343 from BGR to LGA on October 10.",
+              "title": "Bangor to LaGuardia"
+            },
+            {
+              "href": "#/entities/nyc-hoboken-segment-2026",
+              "order": 40,
+              "role": "segment",
+              "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+              "title": "New York City & Hoboken"
+            },
+            {
+              "href": "#/entities/newark-seattle-flight",
+              "order": 50,
+              "role": "flight",
+              "summary": "Alaska 373 from EWR to SEA on October 13.",
+              "title": "Newark to Seattle"
+            }
+          ],
+          "destination": "Maine, New York City, and Hoboken",
+          "endDate": "2026-10-13",
+          "href": "#/entities/acadia-new-york-2026",
+          "kind": "trip",
+          "startDate": "2026-10-05",
+          "status": "confirmed",
+          "summary": "An October 2026 trip combining Acadia and Bar Harbor with Hoboken and New York City.",
+          "timeZone": "America/New_York",
+          "title": "Acadia & New York City"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "flight",
+      "dataVersion": 1,
+      "id": "acadia-outbound-flight",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-outbound-flight",
+      "summary": "American 1872 and 3683 via Chicago on October 5.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Seattle to Bangor",
+      "view": {
+        "byContext": {
+          "collection": "flight",
+          "detail": "flight",
+          "navigation": "label",
+          "relationship": "flight",
+          "search": "label"
+        },
+        "defaultType": "flight"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Seattle to Bangor\n\nAmerican 1872 and 3683 via Chicago on October 5.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/acadia-outbound-flight",
+          "kind": "event",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-10-05T17:20:00-04:00",
+            "startAt": "2026-10-05T06:12:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "confirmed",
+          "summary": "American 1872 and 3683 via Chicago on October 5.",
+          "title": "Seattle to Bangor"
+        },
+        "flight": {
+          "body": "# Seattle to Bangor\n\nAmerican 1872 and 3683 via Chicago on October 5.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/acadia-outbound-flight",
+          "legs": [
+            {
+              "arrivalTimeZone": "America/Chicago",
+              "arriveAt": "2026-10-05T12:26:00-05:00",
+              "carrier": "American Airlines",
+              "departAt": "2026-10-05T06:12:00-07:00",
+              "departureTimeZone": "America/Los_Angeles",
+              "destination": "ORD",
+              "flightNumber": "1872",
+              "origin": "SEA"
+            },
+            {
+              "arrivalTimeZone": "America/New_York",
+              "arriveAt": "2026-10-05T17:20:00-04:00",
+              "carrier": "American Airlines",
+              "departAt": "2026-10-05T13:36:00-05:00",
+              "departureTimeZone": "America/Chicago",
+              "destination": "BGR",
+              "flightNumber": "3683",
+              "origin": "ORD"
+            }
+          ],
+          "status": "scheduled",
+          "summary": "American 1872 and 3683 via Chicago on October 5.",
+          "title": "Seattle to Bangor"
+        },
+        "label": {
+          "href": "#/entities/acadia-outbound-flight",
+          "title": "Seattle to Bangor"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "reservation",
+      "dataVersion": 1,
+      "id": "acadia-rental-car",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-rental-car",
+      "summary": "Enterprise rental from Bangor airport for the Acadia segment.",
+      "tags": [
+        "confirmed",
+        "rental-car",
+        "year-2026"
+      ],
+      "title": "Bangor rental car",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Bangor rental car\n\nEnterprise rental from Bangor airport for the Acadia segment.\n\n## Planning note\n\nPrivate confirmation details remain outside the public site.\n",
+          "href": "#/entities/acadia-rental-car",
+          "kind": "appointment",
+          "location": "Bangor International Airport",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-10-10T12:00:00-04:00",
+            "startAt": "2026-10-05T17:45:00-04:00",
+            "timeZone": "America/New_York"
+          },
+          "status": "confirmed",
+          "summary": "Enterprise rental from Bangor airport for the Acadia segment.",
+          "title": "Bangor rental car"
+        },
+        "label": {
+          "href": "#/entities/acadia-rental-car",
+          "title": "Bangor rental car"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Jordan Pond House",
+          "url": "https://jordanpondhouse.com/"
+        },
+        {
+          "title": "Acadia operating hours and seasons",
+          "url": "https://www.nps.gov/acad/planyourvisit/hours.htm"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "acadia-restaurants",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-restaurants",
+      "summary": "Local and practical dining around Bar Harbor with seasonal-hour caveats.",
+      "tags": [
+        "acadia",
+        "restaurants"
+      ],
+      "title": "Acadia restaurants",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "acadia",
+            "restaurants"
+          ],
+          "href": "#/entities/acadia-restaurants",
+          "summary": "Local and practical dining around Bar Harbor with seasonal-hour caveats.",
+          "title": "Acadia restaurants"
+        },
+        "full": {
+          "body": "# Acadia restaurants\n\nLocal and practical dining around Bar Harbor with seasonal-hour caveats.\n\n## Options\n\n- Jordan Pond House for a timed park meal; reservations are useful.\n- Atlantic Brewing in Town Hill for local beer and casual food.\n- Thirsty Whale for a flexible downtown meal.\n- Havana for a special dinner.\n- A seasonal lobster pound in Trenton or on the quiet side for local character.\n\nLate-season hours can change. Carry lunch on long hike and Schoodic days rather than depending on one concession.\n",
+          "href": "#/entities/acadia-restaurants",
+          "summary": "Local and practical dining around Bar Harbor with seasonal-hour caveats.",
+          "title": "Acadia restaurants"
+        },
+        "label": {
+          "href": "#/entities/acadia-restaurants",
+          "title": "Acadia restaurants"
+        },
+        "tile": {
+          "href": "#/entities/acadia-restaurants",
+          "summary": "Local and practical dining around Bar Harbor with seasonal-hour caveats.",
+          "title": "Acadia restaurants"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Acadia current conditions",
+          "url": "https://www.nps.gov/acad/planyourvisit/conditions.htm"
+        }
+      ],
+      "dataType": "trip",
+      "dataVersion": 1,
+      "id": "acadia-segment-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-segment-2026",
+      "summary": "Five nights for Acadia hikes, coast, carriage roads, and nearby day trips.",
+      "tags": [
+        "acadia",
+        "bar-harbor",
+        "maine",
+        "year-2026"
+      ],
+      "title": "Acadia National Park & Bar Harbor",
+      "view": {
+        "byContext": {
+          "collection": "trip",
+          "detail": "trip",
+          "navigation": "label",
+          "relationship": "trip",
+          "search": "label"
+        },
+        "defaultType": "trip"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Acadia National Park & Bar Harbor\n\nThe first segment combines bus-friendly east-side hikes with west-side and Schoodic driving days.\n\nUse Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor.\n",
+          "href": "#/entities/acadia-segment-2026",
+          "kind": "event",
+          "location": "Acadia National Park and Bar Harbor, Maine",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-10-11",
+            "startDate": "2026-10-05"
+          },
+          "status": "confirmed",
+          "summary": "Five nights for Acadia hikes, coast, carriage roads, and nearby day trips.",
+          "title": "Acadia National Park & Bar Harbor"
+        },
+        "label": {
+          "href": "#/entities/acadia-segment-2026",
+          "title": "Acadia National Park & Bar Harbor"
+        },
+        "trip": {
+          "body": "# Acadia National Park & Bar Harbor\n\nThe first segment combines bus-friendly east-side hikes with west-side and Schoodic driving days.\n\nUse Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor.\n",
+          "children": [
+            {
+              "href": "#/entities/acadia-arrival-lodging",
+              "order": 10,
+              "role": "reservation",
+              "summary": "Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.",
+              "title": "Maine arrival-night lodging"
+            },
+            {
+              "href": "#/entities/acadia-rental-car",
+              "order": 20,
+              "role": "reservation",
+              "summary": "Enterprise rental from Bangor airport for the Acadia segment.",
+              "title": "Bangor rental car"
+            },
+            {
+              "href": "#/entities/acadia-bar-harbor-lodging",
+              "order": 30,
+              "role": "reservation",
+              "summary": "Days Inn Bar Harbor from October 6 through October 10.",
+              "title": "Bar Harbor lodging"
+            },
+            {
+              "href": "#/entities/acadia-things-to-do",
+              "order": 40,
+              "role": "things-to-do",
+              "summary": "Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.",
+              "title": "Acadia things to do"
+            },
+            {
+              "href": "#/entities/acadia-hikes-walks",
+              "order": 50,
+              "role": "hikes-walks",
+              "summary": "Region-grouped official routes with bus, driving, weather, and exposure notes.",
+              "title": "Acadia hikes & walks"
+            },
+            {
+              "href": "#/entities/acadia-restaurants",
+              "order": 60,
+              "role": "restaurants",
+              "summary": "Local and practical dining around Bar Harbor with seasonal-hour caveats.",
+              "title": "Acadia restaurants"
+            },
+            {
+              "href": "#/entities/acadia-getting-ready",
+              "order": 70,
+              "role": "getting-ready",
+              "summary": "Lodging choice, Island Explorer schedules, foliage, reservations, rain plans, and safety.",
+              "title": "Getting ready for Acadia"
+            }
+          ],
+          "destination": "Acadia National Park and Bar Harbor, Maine",
+          "endDate": "2026-10-10",
+          "href": "#/entities/acadia-segment-2026",
+          "kind": "segment",
+          "startDate": "2026-10-05",
+          "status": "confirmed",
+          "summary": "Five nights for Acadia hikes, coast, carriage roads, and nearby day trips.",
+          "timeZone": "America/New_York",
+          "title": "Acadia National Park & Bar Harbor"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Acadia alerts",
+          "url": "https://www.nps.gov/acad/park-alerts-acad.json"
+        },
+        {
+          "title": "Schoodic Peninsula",
+          "url": "https://www.nps.gov/acad/planyourvisit/schoodic.htm"
+        },
+        {
+          "title": "Cadillac vehicle reservations",
+          "url": "https://www.nps.gov/acad/planyourvisit/vehicle_reservations.htm"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "acadia-things-to-do",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/acadia-things-to-do",
+      "summary": "Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.",
+      "tags": [
+        "acadia",
+        "do",
+        "things",
+        "to"
+      ],
+      "title": "Acadia things to do",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "acadia",
+            "do",
+            "things",
+            "to"
+          ],
+          "href": "#/entities/acadia-things-to-do",
+          "summary": "Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.",
+          "title": "Acadia things to do"
+        },
+        "full": {
+          "body": "# Acadia things to do\n\nCoast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.\n\n## Four-day framework\n\n1. East-side coast: Sand Beach, Great Head or dry-weather Beehive, open Ocean Path sections, and Gorham Mountain.\n2. Jordan Pond and central mountains: Jordan Pond Path, South Bubble from the pond, or dry-weather Pemetic.\n3. West side and carriage roads: Beech Mountain alternatives, Southwest Harbor, Ship Harbor, and Bass Harbor Head Light.\n4. Schoodic Peninsula: shoreline stops and short hikes; use October 7 to avoid the largest cruise day.\n\nCadillac Summit Road requires a separate vehicle reservation through October 25. Current alerts include southern Ocean Path, Schoodic Mountain Road, and eastern Beech Mountain Loop closures.\n",
+          "href": "#/entities/acadia-things-to-do",
+          "summary": "Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.",
+          "title": "Acadia things to do"
+        },
+        "label": {
+          "href": "#/entities/acadia-things-to-do",
+          "title": "Acadia things to do"
+        },
+        "tile": {
+          "href": "#/entities/acadia-things-to-do",
+          "summary": "Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.",
+          "title": "Acadia things to do"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "The B-52s and DEVO",
+          "url": "https://www.climatepledgearena.com/event/the-b-52s-devo-26/"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "b52s-devo-seattle-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "concerts",
+      "relationships": [],
+      "route": "#/entities/b52s-devo-seattle-2026",
+      "summary": "Co-headlining alternative and new-wave arena show.",
+      "tags": [
+        "concert",
+        "interested",
+        "new-wave"
+      ],
+      "title": "The B-52s & DEVO",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# The B-52s & DEVO\n\nCo-headlining alternative and new-wave arena show.\n\n## Current status\n\nDoors are listed for 6:00 PM. Tickets are offered; attendance is not assumed.\n\n[Official information](https://www.climatepledgearena.com/event/the-b-52s-devo-26/)\n",
+          "href": "#/entities/b52s-devo-seattle-2026",
+          "kind": "event",
+          "location": "Climate Pledge Arena, Seattle",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-09-25T22:30:00-07:00",
+            "startAt": "2026-09-25T19:00:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "tentative",
+          "summary": "Co-headlining alternative and new-wave arena show.",
+          "title": "The B-52s & DEVO"
+        },
+        "label": {
+          "href": "#/entities/b52s-devo-seattle-2026",
+          "title": "The B-52s & DEVO"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "flight",
+      "dataVersion": 1,
+      "id": "bangor-laguardia-flight",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/bangor-laguardia-flight",
+      "summary": "American 4343 from BGR to LGA on October 10.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Bangor to LaGuardia",
+      "view": {
+        "byContext": {
+          "collection": "flight",
+          "detail": "flight",
+          "navigation": "label",
+          "relationship": "flight",
+          "search": "label"
+        },
+        "defaultType": "flight"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Bangor to LaGuardia\n\nAmerican 4343 from BGR to LGA on October 10.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/bangor-laguardia-flight",
+          "kind": "event",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-10-10T14:41:00-04:00",
+            "startAt": "2026-10-10T12:57:00-04:00",
+            "timeZone": "America/New_York"
+          },
+          "status": "confirmed",
+          "summary": "American 4343 from BGR to LGA on October 10.",
+          "title": "Bangor to LaGuardia"
+        },
+        "flight": {
+          "body": "# Bangor to LaGuardia\n\nAmerican 4343 from BGR to LGA on October 10.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/bangor-laguardia-flight",
+          "legs": [
+            {
+              "arrivalTimeZone": "America/New_York",
+              "arriveAt": "2026-10-10T14:41:00-04:00",
+              "carrier": "American Airlines",
+              "departAt": "2026-10-10T12:57:00-04:00",
+              "departureTimeZone": "America/New_York",
+              "destination": "LGA",
+              "flightNumber": "4343",
+              "origin": "BGR"
+            }
+          ],
+          "status": "scheduled",
+          "summary": "American 4343 from BGR to LGA on October 10.",
+          "title": "Bangor to LaGuardia"
+        },
+        "label": {
+          "href": "#/entities/bangor-laguardia-flight",
+          "title": "Bangor to LaGuardia"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Bleachers Forever",
+          "url": "https://www.showboxpresents.com/events/detail/1367722"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "bleachers-tacoma-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "concerts",
+      "relationships": [],
+      "route": "#/entities/bleachers-tacoma-2026",
+      "summary": "Alternative-pop show at Dune Peninsula in Tacoma.",
+      "tags": [
+        "alternative",
+        "concert",
+        "interested"
+      ],
+      "title": "Bleachers with The Linda Lindas",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Bleachers with The Linda Lindas\n\nAlternative-pop show at Dune Peninsula in Tacoma.\n\n## Current status\n\nDoors are listed for 5:00 PM. Tickets are offered; attendance is not assumed.\n\n[Official information](https://www.showboxpresents.com/events/detail/1367722)\n",
+          "href": "#/entities/bleachers-tacoma-2026",
+          "kind": "event",
+          "location": "Dune Peninsula, Tacoma",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-09-19T22:00:00-07:00",
+            "startAt": "2026-09-19T18:30:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "tentative",
+          "summary": "Alternative-pop show at Dune Peninsula in Tacoma.",
+          "title": "Bleachers with The Linda Lindas"
+        },
+        "label": {
+          "href": "#/entities/bleachers-tacoma-2026",
+          "title": "Bleachers with The Linda Lindas"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "A Chorus Line",
+          "url": "https://www.5thavenue.org/shows/2026-27/a-chorus-line/"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "chorus-line-seattle-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "productions",
+      "relationships": [],
+      "route": "#/entities/chorus-line-seattle-2026",
+      "summary": "5th Avenue Theatre production running September 15-27.",
+      "tags": [
+        "interested",
+        "musical",
+        "theater"
+      ],
+      "title": "A Chorus Line",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# A Chorus Line\n\n5th Avenue Theatre production running September 15-27.\n\n## Current status\n\nThis range represents the production run, not a selected performance.\n\n[Official information](https://www.5thavenue.org/shows/2026-27/a-chorus-line/)\n",
+          "href": "#/entities/chorus-line-seattle-2026",
+          "kind": "event",
+          "location": "5th Avenue Theatre, Seattle",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-09-28",
+            "startDate": "2026-09-15"
+          },
+          "status": "tentative",
+          "summary": "5th Avenue Theatre production running September 15-27.",
+          "title": "A Chorus Line"
+        },
+        "label": {
+          "href": "#/entities/chorus-line-seattle-2026",
+          "title": "A Chorus Line"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Earshot Jazz Festival",
+          "url": "https://www.earshot.org/Festival/"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "earshot-jazz-festival-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "festivals-events",
+      "relationships": [],
+      "route": "#/entities/earshot-jazz-festival-2026",
+      "summary": "Seattle-area jazz festival running October 7-25.",
+      "tags": [
+        "festival",
+        "interested",
+        "music"
+      ],
+      "title": "Earshot Jazz Festival",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Earshot Jazz Festival\n\nSeattle-area jazz festival running October 7-25.\n\n## Current status\n\nIndividual performances have separate venues and times; consult the official program.\n\n[Official information](https://www.earshot.org/Festival/)\n",
+          "href": "#/entities/earshot-jazz-festival-2026",
+          "kind": "event",
+          "location": "Seattle and King County venues",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-10-26",
+            "startDate": "2026-10-07"
+          },
+          "status": "tentative",
+          "summary": "Seattle-area jazz festival running October 7-25.",
+          "title": "Earshot Jazz Festival"
+        },
+        "label": {
+          "href": "#/entities/earshot-jazz-festival-2026",
+          "title": "Earshot Jazz Festival"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Emerald City Comic Con",
+          "url": "https://www.emeraldcitycomiccon.com/"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "emerald-city-comic-con-2027",
+      "lifecycle": "active",
+      "primaryTopicId": "festivals-events",
+      "relationships": [],
+      "route": "#/entities/emerald-city-comic-con-2027",
+      "summary": "The 2027 convention runs March 4-7.",
+      "tags": [
+        "comics",
+        "festival",
+        "interested"
+      ],
+      "title": "Emerald City Comic Con",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Emerald City Comic Con\n\nThe 2027 convention runs March 4-7.\n\n## Current status\n\nTickets are offered; attendance is not assumed.\n\n[Official information](https://www.emeraldcitycomiccon.com/)\n",
+          "href": "#/entities/emerald-city-comic-con-2027",
+          "kind": "event",
+          "location": "Seattle Convention Center",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2027-03-08",
+            "startDate": "2027-03-04"
+          },
+          "status": "tentative",
+          "summary": "The 2027 convention runs March 4-7.",
+          "title": "Emerald City Comic Con"
+        },
+        "label": {
+          "href": "#/entities/emerald-city-comic-con-2027",
+          "title": "Emerald City Comic Con"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Eureka Day",
+          "url": "https://www.seattlerep.org/plays/202627-season/eureka-day"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "eureka-day-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "productions",
+      "relationships": [],
+      "route": "#/entities/eureka-day-2026",
+      "summary": "Seattle Rep production running September 24-November 15.",
+      "tags": [
+        "interested",
+        "seattle-rep",
+        "theater"
+      ],
+      "title": "Eureka Day",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Eureka Day\n\nSeattle Rep production running September 24-November 15.\n\n## Current status\n\nThis range represents the production run, not a selected performance.\n\n[Official information](https://www.seattlerep.org/plays/202627-season/eureka-day)\n",
+          "href": "#/entities/eureka-day-2026",
+          "kind": "event",
+          "location": "Seattle Rep, Seattle",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-11-16",
+            "startDate": "2026-09-24"
+          },
+          "status": "tentative",
+          "summary": "Seattle Rep production running September 24-November 15.",
+          "title": "Eureka Day"
+        },
+        "label": {
+          "href": "#/entities/eureka-day-2026",
+          "title": "Eureka Day"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Gorillaz",
+          "url": "https://www.climatepledgearena.com/event/gorillaz-26/"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "gorillaz-seattle-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "concerts",
+      "relationships": [],
+      "route": "#/entities/gorillaz-seattle-2026",
+      "summary": "Halloween arena show and strong alternative-music match.",
+      "tags": [
+        "alternative",
+        "concert",
+        "interested"
+      ],
+      "title": "Gorillaz",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Gorillaz\n\nHalloween arena show and strong alternative-music match.\n\n## Current status\n\nDoors are listed for 6:30 PM. Tickets are offered; attendance is not assumed.\n\n[Official information](https://www.climatepledgearena.com/event/gorillaz-26/)\n",
+          "href": "#/entities/gorillaz-seattle-2026",
+          "kind": "event",
+          "location": "Climate Pledge Arena, Seattle",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-10-31T23:00:00-07:00",
+            "startAt": "2026-10-31T19:30:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "tentative",
+          "summary": "Halloween arena show and strong alternative-music match.",
+          "title": "Gorillaz"
+        },
+        "label": {
+          "href": "#/entities/gorillaz-seattle-2026",
+          "title": "Gorillaz"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Hadestown",
+          "url": "https://www.stgpresents.org/events/hadestown/"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "hadestown-seattle-2027",
+      "lifecycle": "active",
+      "primaryTopicId": "productions",
+      "relationships": [],
+      "route": "#/entities/hadestown-seattle-2027",
+      "summary": "Paramount Theatre engagement running January 19-24.",
+      "tags": [
+        "interested",
+        "musical",
+        "theater"
+      ],
+      "title": "Hadestown",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Hadestown\n\nParamount Theatre engagement running January 19-24.\n\n## Current status\n\nThis range represents the production run, not a selected performance.\n\n[Official information](https://www.stgpresents.org/events/hadestown/)\n",
+          "href": "#/entities/hadestown-seattle-2027",
+          "kind": "event",
+          "location": "Paramount Theatre, Seattle",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2027-01-25",
+            "startDate": "2027-01-19"
+          },
+          "status": "tentative",
+          "summary": "Paramount Theatre engagement running January 19-24.",
+          "title": "Hadestown"
+        },
+        "label": {
+          "href": "#/entities/hadestown-seattle-2027",
+          "title": "Hadestown"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "reservation",
+      "dataVersion": 1,
+      "id": "hoboken-lodging",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/hoboken-lodging",
+      "summary": "Choose lodging near Stevens for October 10-13.",
+      "tags": [
+        "lodging",
+        "needs-booking",
+        "year-2026"
+      ],
+      "title": "Hoboken lodging",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Hoboken lodging\n\nChoose lodging near Stevens for October 10-13.\n\n## Action needed\n\nSelect and reserve an option. Private confirmation details remain outside the public site.\n",
+          "href": "#/entities/hoboken-lodging",
+          "kind": "appointment",
+          "location": "Hoboken or Jersey City, New Jersey",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-10-13",
+            "startDate": "2026-10-10"
+          },
+          "status": "tentative",
+          "summary": "Choose lodging near Stevens for October 10-13.",
+          "title": "Hoboken lodging"
+        },
+        "label": {
+          "href": "#/entities/hoboken-lodging",
+          "title": "Hoboken lodging"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "flight",
+      "dataVersion": 1,
+      "id": "newark-seattle-flight",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/newark-seattle-flight",
+      "summary": "Alaska 373 from EWR to SEA on October 13.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Newark to Seattle",
+      "view": {
+        "byContext": {
+          "collection": "flight",
+          "detail": "flight",
+          "navigation": "label",
+          "relationship": "flight",
+          "search": "label"
+        },
+        "defaultType": "flight"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Newark to Seattle\n\nAlaska 373 from EWR to SEA on October 13.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/newark-seattle-flight",
+          "kind": "event",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-10-13T12:35:00-07:00",
+            "startAt": "2026-10-13T09:30:00-04:00",
+            "timeZone": "America/New_York"
+          },
+          "status": "confirmed",
+          "summary": "Alaska 373 from EWR to SEA on October 13.",
+          "title": "Newark to Seattle"
+        },
+        "flight": {
+          "body": "# Newark to Seattle\n\nAlaska 373 from EWR to SEA on October 13.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/newark-seattle-flight",
+          "legs": [
+            {
+              "arrivalTimeZone": "America/Los_Angeles",
+              "arriveAt": "2026-10-13T12:35:00-07:00",
+              "carrier": "Alaska Airlines",
+              "departAt": "2026-10-13T09:30:00-04:00",
+              "departureTimeZone": "America/New_York",
+              "destination": "SEA",
+              "flightNumber": "373",
+              "origin": "EWR"
+            }
+          ],
+          "status": "scheduled",
+          "summary": "Alaska 373 from EWR to SEA on October 13.",
+          "title": "Newark to Seattle"
+        },
+        "label": {
+          "href": "#/entities/newark-seattle-flight",
+          "title": "Newark to Seattle"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "PATH fares",
+          "url": "https://www.panynj.gov/path/en/fares.html"
+        },
+        {
+          "title": "Visiting Stevens",
+          "url": "https://www.stevens.edu/admission-aid/visit-stevens"
+        },
+        {
+          "title": "TKTS discount tickets",
+          "url": "https://www.tdf.org/discount-ticket-programs/tkts-by-tdf/"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "nyc-hoboken-getting-ready",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/nyc-hoboken-getting-ready",
+      "summary": "Lodging comparison, transit payment, show tickets, and holiday-weekend checks.",
+      "tags": [
+        "getting",
+        "hoboken",
+        "nyc",
+        "ready"
+      ],
+      "title": "Getting ready for Hoboken & New York",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "getting",
+            "hoboken",
+            "nyc",
+            "ready"
+          ],
+          "href": "#/entities/nyc-hoboken-getting-ready",
+          "summary": "Lodging comparison, transit payment, show tickets, and holiday-weekend checks.",
+          "title": "Getting ready for Hoboken & New York"
+        },
+        "full": {
+          "body": "# Getting ready for Hoboken & New York\n\nLodging comparison, transit payment, show tickets, and holiday-weekend checks.\n\n## Lodging\n\nCompare W Hoboken for maximum walkability against Courtyard Jersey City Newport and other Newport options for value and PATH access. Use refundable, tax-inclusive totals.\n\n## Before arrival\n\n- Confirm the LGA Q70, subway, and PATH holiday-weekend schedules.\n- PATH uses contactless TAPP payment; older MetroCard and SmartLink acceptance ended in 2026.\n- Buy a must-see Broadway show through its official seller or retain flexibility for TKTS.\n- Recheck New York Comic Con congestion and any confirmed October 12 parade information.\n",
+          "href": "#/entities/nyc-hoboken-getting-ready",
+          "summary": "Lodging comparison, transit payment, show tickets, and holiday-weekend checks.",
+          "title": "Getting ready for Hoboken & New York"
+        },
+        "label": {
+          "href": "#/entities/nyc-hoboken-getting-ready",
+          "title": "Getting ready for Hoboken & New York"
+        },
+        "tile": {
+          "href": "#/entities/nyc-hoboken-getting-ready",
+          "summary": "Lodging comparison, transit payment, show tickets, and holiday-weekend checks.",
+          "title": "Getting ready for Hoboken & New York"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Visiting Stevens and Hoboken",
+          "url": "https://www.stevens.edu/admission-aid/visit-stevens"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "nyc-hoboken-restaurants",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/nyc-hoboken-restaurants",
+      "summary": "A flexible dining approach centered on walkable Hoboken and varied New York neighborhoods.",
+      "tags": [
+        "hoboken",
+        "nyc",
+        "restaurants"
+      ],
+      "title": "Hoboken & New York restaurants",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "hoboken",
+            "nyc",
+            "restaurants"
+          ],
+          "href": "#/entities/nyc-hoboken-restaurants",
+          "summary": "A flexible dining approach centered on walkable Hoboken and varied New York neighborhoods.",
+          "title": "Hoboken & New York restaurants"
+        },
+        "full": {
+          "body": "# Hoboken & New York restaurants\n\nA flexible dining approach centered on walkable Hoboken and varied New York neighborhoods.\n\nKeep dining flexible around the family visit and show schedule. Prioritize walkable Hoboken options, neighborhood institutions, distinctive international food, and good mid-range value. Avoid filling every meal with one cuisine or committing to long cross-city travel for a reservation.\n\nThis page intentionally remains a research queue until dates and neighborhoods for each day are settled.\n",
+          "href": "#/entities/nyc-hoboken-restaurants",
+          "summary": "A flexible dining approach centered on walkable Hoboken and varied New York neighborhoods.",
+          "title": "Hoboken & New York restaurants"
+        },
+        "label": {
+          "href": "#/entities/nyc-hoboken-restaurants",
+          "title": "Hoboken & New York restaurants"
+        },
+        "tile": {
+          "href": "#/entities/nyc-hoboken-restaurants",
+          "summary": "A flexible dining approach centered on walkable Hoboken and varied New York neighborhoods.",
+          "title": "Hoboken & New York restaurants"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "trip",
+      "dataVersion": 1,
+      "id": "nyc-hoboken-segment-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/nyc-hoboken-segment-2026",
+      "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+      "tags": [
+        "broadway",
+        "hoboken",
+        "new-york-city",
+        "year-2026"
+      ],
+      "title": "New York City & Hoboken",
+      "view": {
+        "byContext": {
+          "collection": "trip",
+          "detail": "trip",
+          "navigation": "label",
+          "relationship": "trip",
+          "search": "label"
+        },
+        "defaultType": "trip"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# New York City & Hoboken\n\nThe second segment is based in Hoboken without a car, with flexible Manhattan and Brooklyn options.\n\nUse PATH as the main cross-Hudson connection. The confirmed arrival airport is LGA. Keep one Broadway option flexible until tickets and the visit schedule are coordinated.\n",
+          "href": "#/entities/nyc-hoboken-segment-2026",
+          "kind": "event",
+          "location": "Hoboken and New York City",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-10-14",
+            "startDate": "2026-10-10"
+          },
+          "status": "tentative",
+          "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+          "title": "New York City & Hoboken"
+        },
+        "label": {
+          "href": "#/entities/nyc-hoboken-segment-2026",
+          "title": "New York City & Hoboken"
+        },
+        "trip": {
+          "body": "# New York City & Hoboken\n\nThe second segment is based in Hoboken without a car, with flexible Manhattan and Brooklyn options.\n\nUse PATH as the main cross-Hudson connection. The confirmed arrival airport is LGA. Keep one Broadway option flexible until tickets and the visit schedule are coordinated.\n",
+          "children": [
+            {
+              "href": "#/entities/hoboken-lodging",
+              "order": 10,
+              "role": "reservation",
+              "summary": "Choose lodging near Stevens for October 10-13.",
+              "title": "Hoboken lodging"
+            },
+            {
+              "href": "#/entities/nyc-hoboken-things-to-do",
+              "order": 20,
+              "role": "things-to-do",
+              "summary": "Transit from LaGuardia, Broadway options, and dated events during October 10-13.",
+              "title": "New York City & Hoboken things to do"
+            },
+            {
+              "href": "#/entities/nyc-hoboken-restaurants",
+              "order": 30,
+              "role": "restaurants",
+              "summary": "A flexible dining approach centered on walkable Hoboken and varied New York neighborhoods.",
+              "title": "Hoboken & New York restaurants"
+            },
+            {
+              "href": "#/entities/nyc-hoboken-getting-ready",
+              "order": 40,
+              "role": "getting-ready",
+              "summary": "Lodging comparison, transit payment, show tickets, and holiday-weekend checks.",
+              "title": "Getting ready for Hoboken & New York"
+            }
+          ],
+          "destination": "Hoboken and New York City",
+          "endDate": "2026-10-13",
+          "href": "#/entities/nyc-hoboken-segment-2026",
+          "kind": "segment",
+          "startDate": "2026-10-10",
+          "status": "planned",
+          "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+          "timeZone": "America/New_York",
+          "title": "New York City & Hoboken"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Buying Broadway tickets",
+          "url": "https://www.broadway.org/info/buying-broadway-tickets/"
+        },
+        {
+          "title": "LaGuardia public transportation",
+          "url": "https://www.mta.info/guides/airports/laguardia/lga-to-nyc"
+        },
+        {
+          "title": "New York Comic Con",
+          "url": "https://www.newyorkcomiccon.com/en-us.html"
+        },
+        {
+          "title": "PATH schedules",
+          "url": "https://www.panynj.gov/path/en/schedules-maps.html"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "nyc-hoboken-things-to-do",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/nyc-hoboken-things-to-do",
+      "summary": "Transit from LaGuardia, Broadway options, and dated events during October 10-13.",
+      "tags": [
+        "do",
+        "hoboken",
+        "nyc",
+        "things",
+        "to"
+      ],
+      "title": "New York City & Hoboken things to do",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "do",
+            "hoboken",
+            "nyc",
+            "things",
+            "to"
+          ],
+          "href": "#/entities/nyc-hoboken-things-to-do",
+          "summary": "Transit from LaGuardia, Broadway options, and dated events during October 10-13.",
+          "title": "New York City & Hoboken things to do"
+        },
+        "full": {
+          "body": "# New York City & Hoboken things to do\n\nTransit from LaGuardia, Broadway options, and dated events during October 10-13.\n\n## LGA to Hoboken\n\nThe best-value transit route is the free Q70 to Jackson Heights, the F train to Herald Square, then PATH from 33rd Street to Hoboken. Allow roughly 75-105 minutes and check holiday-weekend alerts. A ride app is simpler with luggage but traffic-sensitive.\n\n## Broadway shortlist\n\n- **Hamilton:** Saturday and Sunday matinee/evening performances are listed.\n- **Chicago:** Saturday, Sunday, and Monday evening options are listed.\n- **SIX:** Saturday, Sunday, and Monday options are listed.\n\nUse official show calendars for must-see tickets. For flexibility, check same-day TKTS inventory.\n\n## Dated events\n\nNew York Comic Con overlaps October 10-11 and may increase Midtown West demand. Don Omar is scheduled at Barclays Center on October 10. The 2026 Columbus Day Parade remained a tentative watch item at research time.\n",
+          "href": "#/entities/nyc-hoboken-things-to-do",
+          "summary": "Transit from LaGuardia, Broadway options, and dated events during October 10-13.",
+          "title": "New York City & Hoboken things to do"
+        },
+        "label": {
+          "href": "#/entities/nyc-hoboken-things-to-do",
+          "title": "New York City & Hoboken things to do"
+        },
+        "tile": {
+          "href": "#/entities/nyc-hoboken-things-to-do",
+          "summary": "Transit from LaGuardia, Broadway options, and dated events during October 10-13.",
+          "title": "New York City & Hoboken things to do"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Peter Pan Goes Wrong",
+          "url": "https://www.seattlerep.org/plays/202627-season/peter-pan-goes-wrong/"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "peter-pan-goes-wrong-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "productions",
+      "relationships": [],
+      "route": "#/entities/peter-pan-goes-wrong-2026",
+      "summary": "Seattle Rep production running November 27-January 3.",
+      "tags": [
+        "interested",
+        "seattle-rep",
+        "theater"
+      ],
+      "title": "Peter Pan Goes Wrong",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Peter Pan Goes Wrong\n\nSeattle Rep production running November 27-January 3.\n\n## Current status\n\nThis range represents the production run, not a selected performance.\n\n[Official information](https://www.seattlerep.org/plays/202627-season/peter-pan-goes-wrong/)\n",
+          "href": "#/entities/peter-pan-goes-wrong-2026",
+          "kind": "event",
+          "location": "Seattle Rep, Seattle",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2027-01-04",
+            "startDate": "2026-11-27"
+          },
+          "status": "tentative",
+          "summary": "Seattle Rep production running November 27-January 3.",
+          "title": "Peter Pan Goes Wrong"
+        },
+        "label": {
+          "href": "#/entities/peter-pan-goes-wrong-2026",
+          "title": "Peter Pan Goes Wrong"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "2026 Seahawks schedule",
+          "url": "https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "seahawks-chargers-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "seahawks-games",
+      "relationships": [],
+      "route": "#/entities/seahawks-chargers-2026",
+      "summary": "Selected Seahawks home game in Week 4.",
+      "tags": [
+        "interested",
+        "nfl",
+        "seahawks"
+      ],
+      "title": "Chargers at Seahawks",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Chargers at Seahawks\n\nSelected Seahawks home game in Week 4.\n\n## Current status\n\nCBS. Hispanic/Latino Heritage Month and Legends Weekend. End time is a planning estimate.\n\n[Official information](https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule)\n",
+          "href": "#/entities/seahawks-chargers-2026",
+          "kind": "event",
+          "location": "Lumen Field, Seattle",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-10-04T17:00:00-07:00",
+            "startAt": "2026-10-04T13:25:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "tentative",
+          "summary": "Selected Seahawks home game in Week 4.",
+          "title": "Chargers at Seahawks"
+        },
+        "label": {
+          "href": "#/entities/seahawks-chargers-2026",
+          "title": "Chargers at Seahawks"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "2026 Seahawks schedule",
+          "url": "https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "seahawks-chiefs-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "seahawks-games",
+      "relationships": [],
+      "route": "#/entities/seahawks-chiefs-2026",
+      "summary": "Sunday Night Football and a Seahawks throwback-uniform game.",
+      "tags": [
+        "interested",
+        "nfl",
+        "seahawks"
+      ],
+      "title": "Chiefs at Seahawks",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Chiefs at Seahawks\n\nSunday Night Football and a Seahawks throwback-uniform game.\n\n## Current status\n\nNBC Sunday Night Football. Royal-blue throwback uniforms are planned. End time is a planning estimate.\n\n[Official information](https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule)\n",
+          "href": "#/entities/seahawks-chiefs-2026",
+          "kind": "event",
+          "location": "Lumen Field, Seattle",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-10-25T21:00:00-07:00",
+            "startAt": "2026-10-25T17:20:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "tentative",
+          "summary": "Sunday Night Football and a Seahawks throwback-uniform game.",
+          "title": "Chiefs at Seahawks"
+        },
+        "label": {
+          "href": "#/entities/seahawks-chiefs-2026",
+          "title": "Chiefs at Seahawks"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "2026 Seahawks schedule",
+          "url": "https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "seahawks-giants-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "seahawks-games",
+      "relationships": [],
+      "route": "#/entities/seahawks-giants-2026",
+      "summary": "Selected December Seahawks home game.",
+      "tags": [
+        "interested",
+        "nfl",
+        "seahawks"
+      ],
+      "title": "Giants at Seahawks",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Giants at Seahawks\n\nSelected December Seahawks home game.\n\n## Current status\n\nFOX. Inspire Change and 12s Appreciation themes are planned. End time is a planning estimate.\n\n[Official information](https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule)\n",
+          "href": "#/entities/seahawks-giants-2026",
+          "kind": "event",
+          "location": "Lumen Field, Seattle",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-12-13T17:00:00-08:00",
+            "startAt": "2026-12-13T13:25:00-08:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "tentative",
+          "summary": "Selected December Seahawks home game.",
+          "title": "Giants at Seahawks"
+        },
+        "label": {
+          "href": "#/entities/seahawks-giants-2026",
+          "title": "Giants at Seahawks"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "2026 Seahawks schedule",
+          "url": "https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "seahawks-patriots-2026",
+      "lastVerifiedAt": "2026-09-08T13:00:00-07:00",
+      "lifecycle": "active",
+      "primaryTopicId": "seahawks-games",
+      "relationships": [],
+      "route": "#/entities/seahawks-patriots-2026",
+      "summary": "Seattle's 2026 season opener and championship-banner game.",
+      "tags": [
+        "interested",
+        "nfl",
+        "seahawks"
+      ],
+      "title": "Patriots at Seahawks",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Patriots at Seahawks\n\nSeattle's 2026 season opener and championship-banner game.\n\n## Current status\n\nNBC. Season opener, Super Bowl LX rematch, and championship-banner unveiling. End time is a planning estimate.\n\n[Official information](https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule)\n",
+          "href": "#/entities/seahawks-patriots-2026",
+          "kind": "event",
+          "location": "Lumen Field, Seattle",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-09-09T21:00:00-07:00",
+            "startAt": "2026-09-09T17:20:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "tentative",
+          "summary": "Seattle's 2026 season opener and championship-banner game.",
+          "title": "Patriots at Seahawks"
+        },
+        "label": {
+          "href": "#/entities/seahawks-patriots-2026",
+          "title": "Patriots at Seahawks"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "SIFF 2027 dates",
+          "url": "https://www.siff.net/media/news/pr-festival-2027-call-for-entries"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "seattle-international-film-festival-2027",
+      "lifecycle": "active",
+      "primaryTopicId": "festivals-events",
+      "relationships": [],
+      "route": "#/entities/seattle-international-film-festival-2027",
+      "summary": "The 2027 festival is scheduled for May 13-23.",
+      "tags": [
+        "festival",
+        "film",
+        "interested"
+      ],
+      "title": "Seattle International Film Festival",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Seattle International Film Festival\n\nThe 2027 festival is scheduled for May 13-23.\n\n## Current status\n\nThe attendee program and ticket schedule were not yet published at research time.\n\n[Official information](https://www.siff.net/media/news/pr-festival-2027-call-for-entries)\n",
+          "href": "#/entities/seattle-international-film-festival-2027",
+          "kind": "event",
+          "location": "Seattle-area venues",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2027-05-24",
+            "startDate": "2027-05-13"
+          },
+          "status": "tentative",
+          "summary": "The 2027 festival is scheduled for May 13-23.",
+          "title": "Seattle International Film Festival"
+        },
+        "label": {
+          "href": "#/entities/seattle-international-film-festival-2027",
+          "title": "Seattle International Film Festival"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Sequoia and Kings Canyon current conditions",
+          "url": "https://www.nps.gov/seki/planyourvisit/conditions.htm"
+        }
+      ],
+      "dataType": "trip",
+      "dataVersion": 1,
+      "id": "sequoia-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/sequoia-2026",
+      "summary": "A September 2026 trip based in Three Rivers with Giant Forest and Kings Canyon days.",
+      "tags": [
+        "kings-canyon",
+        "national-parks",
+        "sequoia",
+        "year-2026"
+      ],
+      "title": "Sequoia & Kings Canyon",
+      "view": {
+        "byContext": {
+          "collection": "trip",
+          "detail": "trip",
+          "navigation": "label",
+          "relationship": "trip",
+          "search": "label"
+        },
+        "defaultType": "trip"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Sequoia & Kings Canyon\n\nA five-night single-base trip designed around high-country hikes, giant sequoia groves, and one full Kings Canyon day.\n\n## Shape of the trip\n\n- **Base:** Three Rivers, outside the Ash Mountain entrance.\n- **Giant Forest day:** General Sherman, Congress Trail, Moro Rock, and Crescent Meadow.\n- **Long hike day:** choose a current-condition-appropriate route from Lodgepole or Wolverton.\n- **Kings Canyon day:** Grant Grove plus either a scenic Cedar Grove day or one substantial hike.\n- **Flex day:** hold for weather, smoke, construction, or Crystal Cave availability.\n\nCheck the [NPS current conditions](https://www.nps.gov/seki/planyourvisit/conditions.htm) before each long driving day.\n",
+          "href": "#/entities/sequoia-2026",
+          "kind": "event",
+          "location": "Sequoia and Kings Canyon National Parks, California",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-09-21",
+            "startDate": "2026-09-15"
+          },
+          "status": "confirmed",
+          "summary": "A September 2026 trip based in Three Rivers with Giant Forest and Kings Canyon days.",
+          "title": "Sequoia & Kings Canyon"
+        },
+        "label": {
+          "href": "#/entities/sequoia-2026",
+          "title": "Sequoia & Kings Canyon"
+        },
+        "trip": {
+          "body": "# Sequoia & Kings Canyon\n\nA five-night single-base trip designed around high-country hikes, giant sequoia groves, and one full Kings Canyon day.\n\n## Shape of the trip\n\n- **Base:** Three Rivers, outside the Ash Mountain entrance.\n- **Giant Forest day:** General Sherman, Congress Trail, Moro Rock, and Crescent Meadow.\n- **Long hike day:** choose a current-condition-appropriate route from Lodgepole or Wolverton.\n- **Kings Canyon day:** Grant Grove plus either a scenic Cedar Grove day or one substantial hike.\n- **Flex day:** hold for weather, smoke, construction, or Crystal Cave availability.\n\nCheck the [NPS current conditions](https://www.nps.gov/seki/planyourvisit/conditions.htm) before each long driving day.\n",
+          "children": [
+            {
+              "href": "#/entities/sequoia-outbound-flight",
+              "order": 10,
+              "role": "flight",
+              "summary": "Alaska 383 from SEA to FAT on September 15.",
+              "title": "Seattle to Fresno"
+            },
+            {
+              "href": "#/entities/sequoia-rental-car",
+              "order": 20,
+              "role": "reservation",
+              "summary": "Budget rental from Fresno airport for the Sequoia trip.",
+              "title": "Fresno rental car"
+            },
+            {
+              "href": "#/entities/sequoia-lodging",
+              "order": 30,
+              "role": "reservation",
+              "summary": "A private vacation rental in Three Rivers for five nights.",
+              "title": "Three Rivers lodging"
+            },
+            {
+              "href": "#/entities/sequoia-things-to-do",
+              "order": 40,
+              "role": "things-to-do",
+              "summary": "Giant sequoia groves, caves, viewpoints, scenic drives, and a practical Kings Canyon day.",
+              "title": "Sequoia things to do"
+            },
+            {
+              "href": "#/entities/sequoia-hikes-walks",
+              "order": 50,
+              "role": "hikes-walks",
+              "summary": "Region-grouped walks and hikes with practical access from Three Rivers.",
+              "title": "Sequoia hikes & walks"
+            },
+            {
+              "href": "#/entities/sequoia-restaurants",
+              "order": 60,
+              "role": "restaurants",
+              "summary": "Flexible dining and supply options around Three Rivers and inside the parks.",
+              "title": "Sequoia restaurants"
+            },
+            {
+              "href": "#/entities/sequoia-getting-ready",
+              "order": 70,
+              "role": "getting-ready",
+              "summary": "Weather, reservations, road checks, packing, and day-plan decisions.",
+              "title": "Getting ready for Sequoia"
+            },
+            {
+              "href": "#/entities/sequoia-return-flight",
+              "order": 80,
+              "role": "flight",
+              "summary": "Alaska 394 from FAT to SEA on September 20.",
+              "title": "Fresno to Seattle"
+            }
+          ],
+          "destination": "Sequoia and Kings Canyon National Parks, California",
+          "endDate": "2026-09-20",
+          "href": "#/entities/sequoia-2026",
+          "kind": "trip",
+          "startDate": "2026-09-15",
+          "status": "confirmed",
+          "summary": "A September 2026 trip based in Three Rivers with Giant Forest and Kings Canyon days.",
+          "timeZone": "America/Los_Angeles",
+          "title": "Sequoia & Kings Canyon"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Lodgepole point forecast",
+          "url": "https://forecast.weather.gov/MapClick.php?lat=36.6044&lon=-118.7325"
+        },
+        {
+          "title": "Bears and food storage",
+          "url": "https://www.nps.gov/seki/planyourvisit/bears.htm"
+        },
+        {
+          "title": "Weather",
+          "url": "https://www.nps.gov/seki/planyourvisit/weather.htm"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "sequoia-getting-ready",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/sequoia-getting-ready",
+      "summary": "Weather, reservations, road checks, packing, and day-plan decisions.",
+      "tags": [
+        "getting",
+        "ready",
+        "sequoia"
+      ],
+      "title": "Getting ready for Sequoia",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "getting",
+            "ready",
+            "sequoia"
+          ],
+          "href": "#/entities/sequoia-getting-ready",
+          "summary": "Weather, reservations, road checks, packing, and day-plan decisions.",
+          "title": "Getting ready for Sequoia"
+        },
+        "full": {
+          "body": "# Getting ready for Sequoia\n\nWeather, reservations, road checks, packing, and day-plan decisions.\n\n## Weather\n\nThe September 8 point forecast did not yet reach the trip dates. Recheck Three Rivers, Foothills, and Lodgepole separately: their elevation difference can produce hot foothills and cold high-country mornings on the same day.\n\n## Book and recheck\n\n- Reserve Crystal Cave promptly if desired.\n- Check NPS alerts, smoke, road conditions, and construction each evening.\n- Confirm weekend access to Moro Rock and Crescent Meadow after shuttle season.\n- Keep one flex day for smoke, heat, or road delays.\n\n## Pack\n\nCarry substantial water, sun protection, a warm layer, rain/wind shell, paper/offline maps, and food storage appropriate for bear country.\n",
+          "href": "#/entities/sequoia-getting-ready",
+          "summary": "Weather, reservations, road checks, packing, and day-plan decisions.",
+          "title": "Getting ready for Sequoia"
+        },
+        "label": {
+          "href": "#/entities/sequoia-getting-ready",
+          "title": "Getting ready for Sequoia"
+        },
+        "tile": {
+          "href": "#/entities/sequoia-getting-ready",
+          "summary": "Weather, reservations, road checks, packing, and day-plan decisions.",
+          "title": "Getting ready for Sequoia"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Day hikes",
+          "url": "https://www.nps.gov/seki/planyourvisit/dayhikes.htm"
+        },
+        {
+          "title": "Trail conditions",
+          "url": "https://www.nps.gov/seki/planyourvisit/trailcond.htm"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "sequoia-hikes-walks",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/sequoia-hikes-walks",
+      "summary": "Region-grouped walks and hikes with practical access from Three Rivers.",
+      "tags": [
+        "hikes",
+        "sequoia",
+        "walks"
+      ],
+      "title": "Sequoia hikes & walks",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "hikes",
+            "sequoia",
+            "walks"
+          ],
+          "href": "#/entities/sequoia-hikes-walks",
+          "summary": "Region-grouped walks and hikes with practical access from Three Rivers.",
+          "title": "Sequoia hikes & walks"
+        },
+        "full": {
+          "body": "# Sequoia hikes & walks\n\nRegion-grouped walks and hikes with practical access from Three Rivers.\n\n## Foothills\n\n- **Paradise Creek:** about 3.4 miles including the current road approach; start early in heat.\n- **Marble Falls:** 7.8 miles round trip; exposed and much harder in high temperatures.\n\n## Giant Forest and Lodgepole\n\n- **General Sherman and Congress Trail:** the essential grove walk; Congress is about two miles.\n- **Tokopah Falls:** 3.4 miles round trip and a useful easier fallback.\n- **Lakes Trail / Heather Lake:** verify current route mileage, gain, and conditions before choosing it as the long day.\n\n## Grant Grove and Cedar Grove\n\n- **Big Baldy:** 4.4 miles with about 600 feet of gain.\n- **Mist Falls:** about 8 miles; allow four to five hours after the long drive.\n- **Zumwalt Meadow and Roaring River Falls:** shorter scenic options.\n\nUse the [NPS day-hike pages](https://www.nps.gov/seki/planyourvisit/dayhikes.htm) and current trail report rather than email-derived mileage.\n",
+          "href": "#/entities/sequoia-hikes-walks",
+          "summary": "Region-grouped walks and hikes with practical access from Three Rivers.",
+          "title": "Sequoia hikes & walks"
+        },
+        "label": {
+          "href": "#/entities/sequoia-hikes-walks",
+          "title": "Sequoia hikes & walks"
+        },
+        "tile": {
+          "href": "#/entities/sequoia-hikes-walks",
+          "summary": "Region-grouped walks and hikes with practical access from Three Rivers.",
+          "title": "Sequoia hikes & walks"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "reservation",
+      "dataVersion": 1,
+      "id": "sequoia-lodging",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/sequoia-lodging",
+      "summary": "A private vacation rental in Three Rivers for five nights.",
+      "tags": [
+        "confirmed",
+        "lodging",
+        "year-2026"
+      ],
+      "title": "Three Rivers lodging",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Three Rivers lodging\n\nA private vacation rental in Three Rivers for five nights.\n\n## Planning note\n\nPrivate confirmation details remain outside the public site.\n",
+          "href": "#/entities/sequoia-lodging",
+          "kind": "appointment",
+          "location": "Three Rivers, California",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-09-20T11:00:00-07:00",
+            "startAt": "2026-09-15T16:00:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "confirmed",
+          "summary": "A private vacation rental in Three Rivers for five nights.",
+          "title": "Three Rivers lodging"
+        },
+        "label": {
+          "href": "#/entities/sequoia-lodging",
+          "title": "Three Rivers lodging"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "flight",
+      "dataVersion": 1,
+      "id": "sequoia-outbound-flight",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/sequoia-outbound-flight",
+      "summary": "Alaska 383 from SEA to FAT on September 15.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Seattle to Fresno",
+      "view": {
+        "byContext": {
+          "collection": "flight",
+          "detail": "flight",
+          "navigation": "label",
+          "relationship": "flight",
+          "search": "label"
+        },
+        "defaultType": "flight"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Seattle to Fresno\n\nAlaska 383 from SEA to FAT on September 15.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/sequoia-outbound-flight",
+          "kind": "event",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-09-15T15:21:00-07:00",
+            "startAt": "2026-09-15T12:59:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "confirmed",
+          "summary": "Alaska 383 from SEA to FAT on September 15.",
+          "title": "Seattle to Fresno"
+        },
+        "flight": {
+          "body": "# Seattle to Fresno\n\nAlaska 383 from SEA to FAT on September 15.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/sequoia-outbound-flight",
+          "legs": [
+            {
+              "arrivalTimeZone": "America/Los_Angeles",
+              "arriveAt": "2026-09-15T15:21:00-07:00",
+              "carrier": "Alaska Airlines",
+              "departAt": "2026-09-15T12:59:00-07:00",
+              "departureTimeZone": "America/Los_Angeles",
+              "destination": "FAT",
+              "flightNumber": "383",
+              "origin": "SEA"
+            }
+          ],
+          "status": "scheduled",
+          "summary": "Alaska 383 from SEA to FAT on September 15.",
+          "title": "Seattle to Fresno"
+        },
+        "label": {
+          "href": "#/entities/sequoia-outbound-flight",
+          "title": "Seattle to Fresno"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "reservation",
+      "dataVersion": 1,
+      "id": "sequoia-rental-car",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/sequoia-rental-car",
+      "summary": "Budget rental from Fresno airport for the Sequoia trip.",
+      "tags": [
+        "confirmed",
+        "rental-car",
+        "year-2026"
+      ],
+      "title": "Fresno rental car",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Fresno rental car\n\nBudget rental from Fresno airport for the Sequoia trip.\n\n## Planning note\n\nPrivate confirmation details remain outside the public site.\n",
+          "href": "#/entities/sequoia-rental-car",
+          "kind": "appointment",
+          "location": "Fresno Yosemite International Airport",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-09-20T15:00:00-07:00",
+            "startAt": "2026-09-15T16:00:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "confirmed",
+          "summary": "Budget rental from Fresno airport for the Sequoia trip.",
+          "title": "Fresno rental car"
+        },
+        "label": {
+          "href": "#/entities/sequoia-rental-car",
+          "title": "Fresno rental car"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Gas stations",
+          "url": "https://www.nps.gov/seki/planyourvisit/gasstation.htm"
+        },
+        {
+          "title": "Where to eat",
+          "url": "https://www.nps.gov/seki/planyourvisit/wheretoeat.htm"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "sequoia-restaurants",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/sequoia-restaurants",
+      "summary": "Flexible dining and supply options around Three Rivers and inside the parks.",
+      "tags": [
+        "restaurants",
+        "sequoia"
+      ],
+      "title": "Sequoia restaurants",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "restaurants",
+            "sequoia"
+          ],
+          "href": "#/entities/sequoia-restaurants",
+          "summary": "Flexible dining and supply options around Three Rivers and inside the parks.",
+          "title": "Sequoia restaurants"
+        },
+        "full": {
+          "body": "# Sequoia restaurants\n\nFlexible dining and supply options around Three Rivers and inside the parks.\n\n## Three Rivers\n\n- Gateway Restaurant is a practical sit-down meal near the entrance.\n- River View Grill is useful after a park day.\n- Reimer's is a local candy and ice-cream stop.\n- Sierra Subs reports a September 11-October 5 closure, so it is unavailable.\n\n## Park days\n\nLodgepole, Wuksachi, Grant Grove, and Cedar Grove concessions are seasonal. Carry lunch and backup food for Kings Canyon rather than depending on late-season service. Fill the fuel tank in Three Rivers; no gasoline is sold inside park boundaries.\n",
+          "href": "#/entities/sequoia-restaurants",
+          "summary": "Flexible dining and supply options around Three Rivers and inside the parks.",
+          "title": "Sequoia restaurants"
+        },
+        "label": {
+          "href": "#/entities/sequoia-restaurants",
+          "title": "Sequoia restaurants"
+        },
+        "tile": {
+          "href": "#/entities/sequoia-restaurants",
+          "summary": "Flexible dining and supply options around Three Rivers and inside the parks.",
+          "title": "Sequoia restaurants"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "flight",
+      "dataVersion": 1,
+      "id": "sequoia-return-flight",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/sequoia-return-flight",
+      "summary": "Alaska 394 from FAT to SEA on September 20.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Fresno to Seattle",
+      "view": {
+        "byContext": {
+          "collection": "flight",
+          "detail": "flight",
+          "navigation": "label",
+          "relationship": "flight",
+          "search": "label"
+        },
+        "defaultType": "flight"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Fresno to Seattle\n\nAlaska 394 from FAT to SEA on September 20.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/sequoia-return-flight",
+          "kind": "event",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-09-20T18:39:00-07:00",
+            "startAt": "2026-09-20T16:21:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "confirmed",
+          "summary": "Alaska 394 from FAT to SEA on September 20.",
+          "title": "Fresno to Seattle"
+        },
+        "flight": {
+          "body": "# Fresno to Seattle\n\nAlaska 394 from FAT to SEA on September 20.\n\nTimes are shown in each airport's local time zone. Recheck the airline schedule before departure.\n",
+          "href": "#/entities/sequoia-return-flight",
+          "legs": [
+            {
+              "arrivalTimeZone": "America/Los_Angeles",
+              "arriveAt": "2026-09-20T18:39:00-07:00",
+              "carrier": "Alaska Airlines",
+              "departAt": "2026-09-20T16:21:00-07:00",
+              "departureTimeZone": "America/Los_Angeles",
+              "destination": "SEA",
+              "flightNumber": "394",
+              "origin": "FAT"
+            }
+          ],
+          "status": "scheduled",
+          "summary": "Alaska 394 from FAT to SEA on September 20.",
+          "title": "Fresno to Seattle"
+        },
+        "label": {
+          "href": "#/entities/sequoia-return-flight",
+          "title": "Fresno to Seattle"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Current conditions",
+          "url": "https://www.nps.gov/seki/planyourvisit/conditions.htm"
+        },
+        {
+          "title": "Crystal Cave",
+          "url": "https://www.nps.gov/seki/planyourvisit/crystal-cave.htm"
+        },
+        {
+          "title": "Road conditions",
+          "url": "https://www.nps.gov/seki/planyourvisit/road-conditions.htm"
+        }
+      ],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "sequoia-things-to-do",
+      "lastVerifiedAt": "2026-09-08T12:50:00-07:00",
+      "lifecycle": "active",
+      "primaryTopicId": "trips",
+      "relationships": [],
+      "route": "#/entities/sequoia-things-to-do",
+      "summary": "Giant sequoia groves, caves, viewpoints, scenic drives, and a practical Kings Canyon day.",
+      "tags": [
+        "do",
+        "sequoia",
+        "things",
+        "to"
+      ],
+      "title": "Sequoia things to do",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "do",
+            "sequoia",
+            "things",
+            "to"
+          ],
+          "href": "#/entities/sequoia-things-to-do",
+          "summary": "Giant sequoia groves, caves, viewpoints, scenic drives, and a practical Kings Canyon day.",
+          "title": "Sequoia things to do"
+        },
+        "full": {
+          "body": "# Sequoia things to do\n\nGiant sequoia groves, caves, viewpoints, scenic drives, and a practical Kings Canyon day.\n\n## High-priority stops\n\n- General Sherman Tree and the two-mile Congress Trail.\n- Moro Rock, Tunnel Log, Crescent Meadow, and Big Trees Trail.\n- Crystal Cave only with an advance guided-tour ticket; tickets are not sold at the cave.\n- Grant Grove and the General Grant Tree on the Kings Canyon day.\n\n## Kings Canyon day\n\nLeave Three Rivers early. Choose either a scenic day with Grant Grove, overlooks, Grizzly Falls, Roaring River Falls, and Zumwalt Meadow, or drive directly to Roads End for Mist Falls. Do not attempt every stop plus the full hike.\n\n## Access notes\n\nThe 2026 summer shuttle ended before this trip. Mineral King construction creates long closure windows, so it is a backup rather than a core day. Recheck [roads](https://www.nps.gov/seki/planyourvisit/road-conditions.htm), [alerts](https://www.nps.gov/seki/planyourvisit/conditions.htm), and [Crystal Cave](https://www.nps.gov/seki/planyourvisit/crystal-cave.htm).\n",
+          "href": "#/entities/sequoia-things-to-do",
+          "summary": "Giant sequoia groves, caves, viewpoints, scenic drives, and a practical Kings Canyon day.",
+          "title": "Sequoia things to do"
+        },
+        "label": {
+          "href": "#/entities/sequoia-things-to-do",
+          "title": "Sequoia things to do"
+        },
+        "tile": {
+          "href": "#/entities/sequoia-things-to-do",
+          "summary": "Giant sequoia groves, caves, viewpoints, scenic drives, and a practical Kings Canyon day.",
+          "title": "Sequoia things to do"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Washington State Fair",
+          "url": "https://www.thefair.com/washington-state-fair/fair-event-details/"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "washington-state-fair-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "festivals-events",
+      "relationships": [],
+      "route": "#/entities/washington-state-fair-2026",
+      "summary": "The 2026 fair in Puyallup runs September 4-27.",
+      "tags": [
+        "fair",
+        "festival",
+        "interested"
+      ],
+      "title": "Washington State Fair",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Washington State Fair\n\nThe 2026 fair in Puyallup runs September 4-27.\n\n## Current status\n\nThe fair is closed on its published dark days; consult the official daily calendar.\n\n[Official information](https://www.thefair.com/washington-state-fair/fair-event-details/)\n",
+          "href": "#/entities/washington-state-fair-2026",
+          "kind": "event",
+          "location": "Washington State Fair Events Center, Puyallup",
+          "schedule": {
+            "allDay": true,
+            "endDate": "2026-09-28",
+            "startDate": "2026-09-04"
+          },
+          "status": "tentative",
+          "summary": "The 2026 fair in Puyallup runs September 4-27.",
+          "title": "Washington State Fair"
+        },
+        "label": {
+          "href": "#/entities/washington-state-fair-2026",
+          "title": "Washington State Fair"
+        }
+      }
+    },
+    {
+      "citations": [
+        {
+          "title": "Weezer: The Gathering",
+          "url": "https://www.climatepledgearena.com/event/weezer-26/"
+        }
+      ],
+      "dataType": "event",
+      "dataVersion": 1,
+      "id": "weezer-shins-seattle-2026",
+      "lifecycle": "active",
+      "primaryTopicId": "concerts",
+      "relationships": [],
+      "route": "#/entities/weezer-shins-seattle-2026",
+      "summary": "A strong direct match for the concert watch list.",
+      "tags": [
+        "concert",
+        "indie",
+        "interested"
+      ],
+      "title": "Weezer with The Shins & Silversun Pickups",
+      "view": {
+        "byContext": {
+          "collection": "event",
+          "detail": "event",
+          "navigation": "label",
+          "relationship": "event",
+          "search": "label"
+        },
+        "defaultType": "event"
+      },
+      "viewModels": {
+        "event": {
+          "body": "# Weezer with The Shins & Silversun Pickups\n\nA strong direct match for the concert watch list.\n\n## Current status\n\nDoors are listed for 6:00 PM and the show for 7:00 PM. Tickets are offered; attendance is not assumed.\n\n[Official information](https://www.climatepledgearena.com/event/weezer-26/)\n",
+          "href": "#/entities/weezer-shins-seattle-2026",
+          "kind": "event",
+          "location": "Climate Pledge Arena, Seattle",
+          "schedule": {
+            "allDay": false,
+            "endAt": "2026-09-13T22:30:00-07:00",
+            "startAt": "2026-09-13T19:00:00-07:00",
+            "timeZone": "America/Los_Angeles"
+          },
+          "status": "tentative",
+          "summary": "A strong direct match for the concert watch list.",
+          "title": "Weezer with The Shins & Silversun Pickups"
+        },
+        "label": {
+          "href": "#/entities/weezer-shins-seattle-2026",
+          "title": "Weezer with The Shins & Silversun Pickups"
         }
       }
     }
@@ -126,45 +2627,595 @@
   "schemaVersion": 1,
   "searchDocuments": [
     {
-      "body": "Independent data and view architecture This owner-maintained design note separates persisted semantics from reusable visual contracts. Return to the tracker overview for the intended research workflow. Three boundaries Entity model: strict JSON Schema draft-07 contracts and generated TypeScript types; no React or filesystem dependencies. Content pipeline: Node-only parsing, complete-graph validation, audience projection, view resolution, adapters, and search documents. Entity UI: React renderers selected only by view type. The browser does not parse canonical descriptors or receive operational research state. Data is not a component name The initial data type is markdown : its payload identifies a confined body file. A view type is independently one of label , tile , card , or full . Code-owned adapters convert safe presentation data into those common view models. A later data type can reuse a card without creating another card renderer; a new view does not require a new persisted data type. Explicit occurrence overrides win, then entity context overrides, then an entity default. Site context defaults and the data-type fallback apply only when the entity has not explicitly selected a view. Invalid explicit choices are errors, not silent fallbacks. Review checklist Validate persisted data independently of view-model schemas. Filter hidden entities, taxonomy, links, and citations before adapting. Emit only reachable registered view models and deterministic search data. Keep Markdown inert: no HTML, JSX, remote images, or executable blocks. Prove a synthetic second data type can adapt into an existing common view. This architecture note starts unverified. External evidence collection and three real supervised refresh cycles remain pending; fixture tests do not count as research cycles. Content architecture markdown Tracker — a local research workspace",
-      "id": "tracker-data-view-architecture",
-      "primaryTopicId": "content-architecture",
-      "route": "#/entities/tracker-data-view-architecture",
-      "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
+      "body": "Maine arrival-night lodging Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor. Action needed Select and reserve an option. Private confirmation details remain outside the public site. Trips reservation",
+      "id": "acadia-arrival-lodging",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-arrival-lodging",
+      "summary": "Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.",
       "tags": [
-        "adapters",
-        "schemas",
-        "views"
+        "lodging",
+        "needs-booking",
+        "year-2026"
       ],
-      "title": "Independent data and view architecture"
+      "title": "Maine arrival-night lodging"
     },
     {
-      "body": "Tracker: a local research workspace Tracker is designed to keep useful research in reviewable, durable files while showing a deliberately selected browser projection. The repository—not the website—is the source of truth. This owner-maintained introduction describes the intended operating model; it is not a report of completed source research. Start here Browse topics to find a bounded area of work. Open an entity to read the current explanation and its relationships. Use local search for titles, summaries, topic labels, tags, and safe body text. Check research state before attempting a refresh. Unverified does not mean failed, and a failed attempt must not replace the last verified conclusion. See the independent data/view architecture for the boundary between persisted meaning and reusable presentation. Research status Initial state: unverified and manually maintained. No external retrieval or supervised research cycle has been completed for this entity. The next step is an owner-scoped source review with explicit evidence, expected file hashes, and a dry-run proposal. Publication posture Local output is non-deployable. Group or public export requires exact projection approval, and online deployment remains separately blocked until an authorized host, audience, identity, and review process are established. Tracker foundations markdown Independent data and view architecture",
-      "id": "tracker-overview",
-      "primaryTopicId": "tracker-foundations",
-      "route": "#/entities/tracker-overview",
-      "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
+      "body": "Bar Harbor lodging Days Inn Bar Harbor from October 6 through October 10. Planning note Private confirmation details remain outside the public site. Trips reservation",
+      "id": "acadia-bar-harbor-lodging",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-bar-harbor-lodging",
+      "summary": "Days Inn Bar Harbor from October 6 through October 10.",
       "tags": [
-        "local-first",
-        "research",
-        "tracker"
+        "confirmed",
+        "lodging",
+        "year-2026"
       ],
-      "title": "Tracker — a local research workspace"
+      "title": "Bar Harbor lodging"
+    },
+    {
+      "body": "Getting ready for Acadia Lodging choice, Island Explorer schedules, foliage, reservations, rain plans, and safety. Open decision For October 5, compare the airport-connected Bangor hotel, an Ellsworth split-distance night, and going directly to Bar Harbor. Use refundable all-in prices and avoid an unnecessary late-night drive. Transit and reservations Island Explorer's operator publishes service through October 12, covering the segment. Use buses for Sand Beach, Sieur de Monts, Jordan Pond, and the Park Loop corridor. Cadillac Summit Road requires a separate reservation. Weather and rain October 5-10 is a promising transition window, not guaranteed peak foliage. Recheck the official Maine report and NWS forecast. In rain, avoid iron-rung and wet-granite hikes; use museums, nature centers, Southwest Harbor, and scenic drives. Trips markdown",
+      "id": "acadia-getting-ready",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-getting-ready",
+      "summary": "Lodging choice, Island Explorer schedules, foliage, reservations, rain plans, and safety.",
+      "tags": [
+        "acadia",
+        "getting",
+        "ready"
+      ],
+      "title": "Getting ready for Acadia"
+    },
+    {
+      "body": "Acadia hikes & walks Region-grouped official routes with bus, driving, weather, and exposure notes. East side Gorham Mountain Loop: 3.5 miles, moderate and rocky. Beehive Loop: 1.4 miles with iron rungs and exposed cliff travel; only in dry conditions. Great Head: 1.7 miles over rocky coastal terrain. Central mountains Jordan Pond Path: 3.3 miles with boulders and narrow boardwalk on the west side. Pemetic Loop: 4 miles with scrambling, rungs, and a ladder. Cadillac South Ridge: 7.1 miles and a substantial exposed ridge day. West side and Schoodic Beech Mountain: 1.2 miles; drive because there is no direct trailhead transit. Ship Harbor: 1.3-mile easier coastal loop. Schoodic: choose among 7.5 miles of linked trails. Routes 4, 5, and 6 do not stop at the Bubble Rock trailhead. Use Jordan Pond for a bus-based approach or drive with a parking backup. Trips markdown",
+      "id": "acadia-hikes-walks",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-hikes-walks",
+      "summary": "Region-grouped official routes with bus, driving, weather, and exposure notes.",
+      "tags": [
+        "acadia",
+        "hikes",
+        "walks"
+      ],
+      "title": "Acadia hikes & walks"
+    },
+    {
+      "body": "Acadia & New York City A two-segment trip: five nights around Acadia, followed by three nights based in Hoboken. Timeline Fly Seattle-Chicago-Bangor and collect the rental car. Explore Acadia and Bar Harbor through October 10. Fly Bangor-LaGuardia and continue to Hoboken without a car. Explore Hoboken and New York City before returning from Newark. Two lodging actions remain open: the arrival night in Maine and the Hoboken stay. Trips trip",
+      "id": "acadia-new-york-2026",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-new-york-2026",
+      "summary": "An October 2026 trip combining Acadia and Bar Harbor with Hoboken and New York City.",
+      "tags": [
+        "acadia",
+        "bar-harbor",
+        "hoboken",
+        "new-york-city",
+        "year-2026"
+      ],
+      "title": "Acadia & New York City"
+    },
+    {
+      "body": "Seattle to Bangor American 1872 and 3683 via Chicago on October 5. Times are shown in each airport's local time zone. Recheck the airline schedule before departure. Trips flight",
+      "id": "acadia-outbound-flight",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-outbound-flight",
+      "summary": "American 1872 and 3683 via Chicago on October 5.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Seattle to Bangor"
+    },
+    {
+      "body": "Bangor rental car Enterprise rental from Bangor airport for the Acadia segment. Planning note Private confirmation details remain outside the public site. Trips reservation",
+      "id": "acadia-rental-car",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-rental-car",
+      "summary": "Enterprise rental from Bangor airport for the Acadia segment.",
+      "tags": [
+        "confirmed",
+        "rental-car",
+        "year-2026"
+      ],
+      "title": "Bangor rental car"
+    },
+    {
+      "body": "Acadia restaurants Local and practical dining around Bar Harbor with seasonal-hour caveats. Options Jordan Pond House for a timed park meal; reservations are useful. Atlantic Brewing in Town Hill for local beer and casual food. Thirsty Whale for a flexible downtown meal. Havana for a special dinner. A seasonal lobster pound in Trenton or on the quiet side for local character. Late-season hours can change. Carry lunch on long hike and Schoodic days rather than depending on one concession. Trips markdown",
+      "id": "acadia-restaurants",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-restaurants",
+      "summary": "Local and practical dining around Bar Harbor with seasonal-hour caveats.",
+      "tags": [
+        "acadia",
+        "restaurants"
+      ],
+      "title": "Acadia restaurants"
+    },
+    {
+      "body": "Acadia National Park & Bar Harbor The first segment combines bus-friendly east-side hikes with west-side and Schoodic driving days. Use Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor. Trips trip",
+      "id": "acadia-segment-2026",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-segment-2026",
+      "summary": "Five nights for Acadia hikes, coast, carriage roads, and nearby day trips.",
+      "tags": [
+        "acadia",
+        "bar-harbor",
+        "maine",
+        "year-2026"
+      ],
+      "title": "Acadia National Park & Bar Harbor"
+    },
+    {
+      "body": "Acadia things to do Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans. Four-day framework East-side coast: Sand Beach, Great Head or dry-weather Beehive, open Ocean Path sections, and Gorham Mountain. Jordan Pond and central mountains: Jordan Pond Path, South Bubble from the pond, or dry-weather Pemetic. West side and carriage roads: Beech Mountain alternatives, Southwest Harbor, Ship Harbor, and Bass Harbor Head Light. Schoodic Peninsula: shoreline stops and short hikes; use October 7 to avoid the largest cruise day. Cadillac Summit Road requires a separate vehicle reservation through October 25. Current alerts include southern Ocean Path, Schoodic Mountain Road, and eastern Beech Mountain Loop closures. Trips markdown",
+      "id": "acadia-things-to-do",
+      "primaryTopicId": "trips",
+      "route": "#/entities/acadia-things-to-do",
+      "summary": "Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.",
+      "tags": [
+        "acadia",
+        "do",
+        "things",
+        "to"
+      ],
+      "title": "Acadia things to do"
+    },
+    {
+      "body": "The B-52s & DEVO Co-headlining alternative and new-wave arena show. Current status Doors are listed for 6:00 PM. Tickets are offered; attendance is not assumed. Official information Concerts event",
+      "id": "b52s-devo-seattle-2026",
+      "primaryTopicId": "concerts",
+      "route": "#/entities/b52s-devo-seattle-2026",
+      "summary": "Co-headlining alternative and new-wave arena show.",
+      "tags": [
+        "concert",
+        "interested",
+        "new-wave"
+      ],
+      "title": "The B-52s & DEVO"
+    },
+    {
+      "body": "Bangor to LaGuardia American 4343 from BGR to LGA on October 10. Times are shown in each airport's local time zone. Recheck the airline schedule before departure. Trips flight",
+      "id": "bangor-laguardia-flight",
+      "primaryTopicId": "trips",
+      "route": "#/entities/bangor-laguardia-flight",
+      "summary": "American 4343 from BGR to LGA on October 10.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Bangor to LaGuardia"
+    },
+    {
+      "body": "Bleachers with The Linda Lindas Alternative-pop show at Dune Peninsula in Tacoma. Current status Doors are listed for 5:00 PM. Tickets are offered; attendance is not assumed. Official information Concerts event",
+      "id": "bleachers-tacoma-2026",
+      "primaryTopicId": "concerts",
+      "route": "#/entities/bleachers-tacoma-2026",
+      "summary": "Alternative-pop show at Dune Peninsula in Tacoma.",
+      "tags": [
+        "alternative",
+        "concert",
+        "interested"
+      ],
+      "title": "Bleachers with The Linda Lindas"
+    },
+    {
+      "body": "A Chorus Line 5th Avenue Theatre production running September 15-27. Current status This range represents the production run, not a selected performance. Official information Productions event",
+      "id": "chorus-line-seattle-2026",
+      "primaryTopicId": "productions",
+      "route": "#/entities/chorus-line-seattle-2026",
+      "summary": "5th Avenue Theatre production running September 15-27.",
+      "tags": [
+        "interested",
+        "musical",
+        "theater"
+      ],
+      "title": "A Chorus Line"
+    },
+    {
+      "body": "Earshot Jazz Festival Seattle-area jazz festival running October 7-25. Current status Individual performances have separate venues and times; consult the official program. Official information Festivals & Events event",
+      "id": "earshot-jazz-festival-2026",
+      "primaryTopicId": "festivals-events",
+      "route": "#/entities/earshot-jazz-festival-2026",
+      "summary": "Seattle-area jazz festival running October 7-25.",
+      "tags": [
+        "festival",
+        "interested",
+        "music"
+      ],
+      "title": "Earshot Jazz Festival"
+    },
+    {
+      "body": "Emerald City Comic Con The 2027 convention runs March 4-7. Current status Tickets are offered; attendance is not assumed. Official information Festivals & Events event",
+      "id": "emerald-city-comic-con-2027",
+      "primaryTopicId": "festivals-events",
+      "route": "#/entities/emerald-city-comic-con-2027",
+      "summary": "The 2027 convention runs March 4-7.",
+      "tags": [
+        "comics",
+        "festival",
+        "interested"
+      ],
+      "title": "Emerald City Comic Con"
+    },
+    {
+      "body": "Eureka Day Seattle Rep production running September 24-November 15. Current status This range represents the production run, not a selected performance. Official information Productions event",
+      "id": "eureka-day-2026",
+      "primaryTopicId": "productions",
+      "route": "#/entities/eureka-day-2026",
+      "summary": "Seattle Rep production running September 24-November 15.",
+      "tags": [
+        "interested",
+        "seattle-rep",
+        "theater"
+      ],
+      "title": "Eureka Day"
+    },
+    {
+      "body": "Gorillaz Halloween arena show and strong alternative-music match. Current status Doors are listed for 6:30 PM. Tickets are offered; attendance is not assumed. Official information Concerts event",
+      "id": "gorillaz-seattle-2026",
+      "primaryTopicId": "concerts",
+      "route": "#/entities/gorillaz-seattle-2026",
+      "summary": "Halloween arena show and strong alternative-music match.",
+      "tags": [
+        "alternative",
+        "concert",
+        "interested"
+      ],
+      "title": "Gorillaz"
+    },
+    {
+      "body": "Hadestown Paramount Theatre engagement running January 19-24. Current status This range represents the production run, not a selected performance. Official information Productions event",
+      "id": "hadestown-seattle-2027",
+      "primaryTopicId": "productions",
+      "route": "#/entities/hadestown-seattle-2027",
+      "summary": "Paramount Theatre engagement running January 19-24.",
+      "tags": [
+        "interested",
+        "musical",
+        "theater"
+      ],
+      "title": "Hadestown"
+    },
+    {
+      "body": "Hoboken lodging Choose lodging near Stevens for October 10-13. Action needed Select and reserve an option. Private confirmation details remain outside the public site. Trips reservation",
+      "id": "hoboken-lodging",
+      "primaryTopicId": "trips",
+      "route": "#/entities/hoboken-lodging",
+      "summary": "Choose lodging near Stevens for October 10-13.",
+      "tags": [
+        "lodging",
+        "needs-booking",
+        "year-2026"
+      ],
+      "title": "Hoboken lodging"
+    },
+    {
+      "body": "Newark to Seattle Alaska 373 from EWR to SEA on October 13. Times are shown in each airport's local time zone. Recheck the airline schedule before departure. Trips flight",
+      "id": "newark-seattle-flight",
+      "primaryTopicId": "trips",
+      "route": "#/entities/newark-seattle-flight",
+      "summary": "Alaska 373 from EWR to SEA on October 13.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Newark to Seattle"
+    },
+    {
+      "body": "Getting ready for Hoboken & New York Lodging comparison, transit payment, show tickets, and holiday-weekend checks. Lodging Compare W Hoboken for maximum walkability against Courtyard Jersey City Newport and other Newport options for value and PATH access. Use refundable, tax-inclusive totals. Before arrival Confirm the LGA Q70, subway, and PATH holiday-weekend schedules. PATH uses contactless TAPP payment; older MetroCard and SmartLink acceptance ended in 2026. Buy a must-see Broadway show through its official seller or retain flexibility for TKTS. Recheck New York Comic Con congestion and any confirmed October 12 parade information. Trips markdown",
+      "id": "nyc-hoboken-getting-ready",
+      "primaryTopicId": "trips",
+      "route": "#/entities/nyc-hoboken-getting-ready",
+      "summary": "Lodging comparison, transit payment, show tickets, and holiday-weekend checks.",
+      "tags": [
+        "getting",
+        "hoboken",
+        "nyc",
+        "ready"
+      ],
+      "title": "Getting ready for Hoboken & New York"
+    },
+    {
+      "body": "Hoboken & New York restaurants A flexible dining approach centered on walkable Hoboken and varied New York neighborhoods. Keep dining flexible around the family visit and show schedule. Prioritize walkable Hoboken options, neighborhood institutions, distinctive international food, and good mid-range value. Avoid filling every meal with one cuisine or committing to long cross-city travel for a reservation. This page intentionally remains a research queue until dates and neighborhoods for each day are settled. Trips markdown",
+      "id": "nyc-hoboken-restaurants",
+      "primaryTopicId": "trips",
+      "route": "#/entities/nyc-hoboken-restaurants",
+      "summary": "A flexible dining approach centered on walkable Hoboken and varied New York neighborhoods.",
+      "tags": [
+        "hoboken",
+        "nyc",
+        "restaurants"
+      ],
+      "title": "Hoboken & New York restaurants"
+    },
+    {
+      "body": "New York City & Hoboken The second segment is based in Hoboken without a car, with flexible Manhattan and Brooklyn options. Use PATH as the main cross-Hudson connection. The confirmed arrival airport is LGA. Keep one Broadway option flexible until tickets and the visit schedule are coordinated. Trips trip",
+      "id": "nyc-hoboken-segment-2026",
+      "primaryTopicId": "trips",
+      "route": "#/entities/nyc-hoboken-segment-2026",
+      "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+      "tags": [
+        "broadway",
+        "hoboken",
+        "new-york-city",
+        "year-2026"
+      ],
+      "title": "New York City & Hoboken"
+    },
+    {
+      "body": "New York City & Hoboken things to do Transit from LaGuardia, Broadway options, and dated events during October 10-13. LGA to Hoboken The best-value transit route is the free Q70 to Jackson Heights, the F train to Herald Square, then PATH from 33rd Street to Hoboken. Allow roughly 75-105 minutes and check holiday-weekend alerts. A ride app is simpler with luggage but traffic-sensitive. Broadway shortlist Hamilton: Saturday and Sunday matinee/evening performances are listed. Chicago: Saturday, Sunday, and Monday evening options are listed. SIX: Saturday, Sunday, and Monday options are listed. Use official show calendars for must-see tickets. For flexibility, check same-day TKTS inventory. Dated events New York Comic Con overlaps October 10-11 and may increase Midtown West demand. Don Omar is scheduled at Barclays Center on October 10. The 2026 Columbus Day Parade remained a tentative watch item at research time. Trips markdown",
+      "id": "nyc-hoboken-things-to-do",
+      "primaryTopicId": "trips",
+      "route": "#/entities/nyc-hoboken-things-to-do",
+      "summary": "Transit from LaGuardia, Broadway options, and dated events during October 10-13.",
+      "tags": [
+        "do",
+        "hoboken",
+        "nyc",
+        "things",
+        "to"
+      ],
+      "title": "New York City & Hoboken things to do"
+    },
+    {
+      "body": "Peter Pan Goes Wrong Seattle Rep production running November 27-January 3. Current status This range represents the production run, not a selected performance. Official information Productions event",
+      "id": "peter-pan-goes-wrong-2026",
+      "primaryTopicId": "productions",
+      "route": "#/entities/peter-pan-goes-wrong-2026",
+      "summary": "Seattle Rep production running November 27-January 3.",
+      "tags": [
+        "interested",
+        "seattle-rep",
+        "theater"
+      ],
+      "title": "Peter Pan Goes Wrong"
+    },
+    {
+      "body": "Chargers at Seahawks Selected Seahawks home game in Week 4. Current status CBS. Hispanic/Latino Heritage Month and Legends Weekend. End time is a planning estimate. Official information Seahawks Games event",
+      "id": "seahawks-chargers-2026",
+      "primaryTopicId": "seahawks-games",
+      "route": "#/entities/seahawks-chargers-2026",
+      "summary": "Selected Seahawks home game in Week 4.",
+      "tags": [
+        "interested",
+        "nfl",
+        "seahawks"
+      ],
+      "title": "Chargers at Seahawks"
+    },
+    {
+      "body": "Chiefs at Seahawks Sunday Night Football and a Seahawks throwback-uniform game. Current status NBC Sunday Night Football. Royal-blue throwback uniforms are planned. End time is a planning estimate. Official information Seahawks Games event",
+      "id": "seahawks-chiefs-2026",
+      "primaryTopicId": "seahawks-games",
+      "route": "#/entities/seahawks-chiefs-2026",
+      "summary": "Sunday Night Football and a Seahawks throwback-uniform game.",
+      "tags": [
+        "interested",
+        "nfl",
+        "seahawks"
+      ],
+      "title": "Chiefs at Seahawks"
+    },
+    {
+      "body": "Giants at Seahawks Selected December Seahawks home game. Current status FOX. Inspire Change and 12s Appreciation themes are planned. End time is a planning estimate. Official information Seahawks Games event",
+      "id": "seahawks-giants-2026",
+      "primaryTopicId": "seahawks-games",
+      "route": "#/entities/seahawks-giants-2026",
+      "summary": "Selected December Seahawks home game.",
+      "tags": [
+        "interested",
+        "nfl",
+        "seahawks"
+      ],
+      "title": "Giants at Seahawks"
+    },
+    {
+      "body": "Patriots at Seahawks Seattle's 2026 season opener and championship-banner game. Current status NBC. Season opener, Super Bowl LX rematch, and championship-banner unveiling. End time is a planning estimate. Official information Seahawks Games event",
+      "id": "seahawks-patriots-2026",
+      "primaryTopicId": "seahawks-games",
+      "route": "#/entities/seahawks-patriots-2026",
+      "summary": "Seattle's 2026 season opener and championship-banner game.",
+      "tags": [
+        "interested",
+        "nfl",
+        "seahawks"
+      ],
+      "title": "Patriots at Seahawks"
+    },
+    {
+      "body": "Seattle International Film Festival The 2027 festival is scheduled for May 13-23. Current status The attendee program and ticket schedule were not yet published at research time. Official information Festivals & Events event",
+      "id": "seattle-international-film-festival-2027",
+      "primaryTopicId": "festivals-events",
+      "route": "#/entities/seattle-international-film-festival-2027",
+      "summary": "The 2027 festival is scheduled for May 13-23.",
+      "tags": [
+        "festival",
+        "film",
+        "interested"
+      ],
+      "title": "Seattle International Film Festival"
+    },
+    {
+      "body": "Sequoia & Kings Canyon A five-night single-base trip designed around high-country hikes, giant sequoia groves, and one full Kings Canyon day. Shape of the trip Base: Three Rivers, outside the Ash Mountain entrance. Giant Forest day: General Sherman, Congress Trail, Moro Rock, and Crescent Meadow. Long hike day: choose a current-condition-appropriate route from Lodgepole or Wolverton. Kings Canyon day: Grant Grove plus either a scenic Cedar Grove day or one substantial hike. Flex day: hold for weather, smoke, construction, or Crystal Cave availability. Check the NPS current conditions before each long driving day. Trips trip",
+      "id": "sequoia-2026",
+      "primaryTopicId": "trips",
+      "route": "#/entities/sequoia-2026",
+      "summary": "A September 2026 trip based in Three Rivers with Giant Forest and Kings Canyon days.",
+      "tags": [
+        "kings-canyon",
+        "national-parks",
+        "sequoia",
+        "year-2026"
+      ],
+      "title": "Sequoia & Kings Canyon"
+    },
+    {
+      "body": "Getting ready for Sequoia Weather, reservations, road checks, packing, and day-plan decisions. Weather The September 8 point forecast did not yet reach the trip dates. Recheck Three Rivers, Foothills, and Lodgepole separately: their elevation difference can produce hot foothills and cold high-country mornings on the same day. Book and recheck Reserve Crystal Cave promptly if desired. Check NPS alerts, smoke, road conditions, and construction each evening. Confirm weekend access to Moro Rock and Crescent Meadow after shuttle season. Keep one flex day for smoke, heat, or road delays. Pack Carry substantial water, sun protection, a warm layer, rain/wind shell, paper/offline maps, and food storage appropriate for bear country. Trips markdown",
+      "id": "sequoia-getting-ready",
+      "primaryTopicId": "trips",
+      "route": "#/entities/sequoia-getting-ready",
+      "summary": "Weather, reservations, road checks, packing, and day-plan decisions.",
+      "tags": [
+        "getting",
+        "ready",
+        "sequoia"
+      ],
+      "title": "Getting ready for Sequoia"
+    },
+    {
+      "body": "Sequoia hikes & walks Region-grouped walks and hikes with practical access from Three Rivers. Foothills Paradise Creek: about 3.4 miles including the current road approach; start early in heat. Marble Falls: 7.8 miles round trip; exposed and much harder in high temperatures. Giant Forest and Lodgepole General Sherman and Congress Trail: the essential grove walk; Congress is about two miles. Tokopah Falls: 3.4 miles round trip and a useful easier fallback. Lakes Trail / Heather Lake: verify current route mileage, gain, and conditions before choosing it as the long day. Grant Grove and Cedar Grove Big Baldy: 4.4 miles with about 600 feet of gain. Mist Falls: about 8 miles; allow four to five hours after the long drive. Zumwalt Meadow and Roaring River Falls: shorter scenic options. Use the NPS day-hike pages and current trail report rather than email-derived mileage. Trips markdown",
+      "id": "sequoia-hikes-walks",
+      "primaryTopicId": "trips",
+      "route": "#/entities/sequoia-hikes-walks",
+      "summary": "Region-grouped walks and hikes with practical access from Three Rivers.",
+      "tags": [
+        "hikes",
+        "sequoia",
+        "walks"
+      ],
+      "title": "Sequoia hikes & walks"
+    },
+    {
+      "body": "Three Rivers lodging A private vacation rental in Three Rivers for five nights. Planning note Private confirmation details remain outside the public site. Trips reservation",
+      "id": "sequoia-lodging",
+      "primaryTopicId": "trips",
+      "route": "#/entities/sequoia-lodging",
+      "summary": "A private vacation rental in Three Rivers for five nights.",
+      "tags": [
+        "confirmed",
+        "lodging",
+        "year-2026"
+      ],
+      "title": "Three Rivers lodging"
+    },
+    {
+      "body": "Seattle to Fresno Alaska 383 from SEA to FAT on September 15. Times are shown in each airport's local time zone. Recheck the airline schedule before departure. Trips flight",
+      "id": "sequoia-outbound-flight",
+      "primaryTopicId": "trips",
+      "route": "#/entities/sequoia-outbound-flight",
+      "summary": "Alaska 383 from SEA to FAT on September 15.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Seattle to Fresno"
+    },
+    {
+      "body": "Fresno rental car Budget rental from Fresno airport for the Sequoia trip. Planning note Private confirmation details remain outside the public site. Trips reservation",
+      "id": "sequoia-rental-car",
+      "primaryTopicId": "trips",
+      "route": "#/entities/sequoia-rental-car",
+      "summary": "Budget rental from Fresno airport for the Sequoia trip.",
+      "tags": [
+        "confirmed",
+        "rental-car",
+        "year-2026"
+      ],
+      "title": "Fresno rental car"
+    },
+    {
+      "body": "Sequoia restaurants Flexible dining and supply options around Three Rivers and inside the parks. Three Rivers Gateway Restaurant is a practical sit-down meal near the entrance. River View Grill is useful after a park day. Reimer's is a local candy and ice-cream stop. Sierra Subs reports a September 11-October 5 closure, so it is unavailable. Park days Lodgepole, Wuksachi, Grant Grove, and Cedar Grove concessions are seasonal. Carry lunch and backup food for Kings Canyon rather than depending on late-season service. Fill the fuel tank in Three Rivers; no gasoline is sold inside park boundaries. Trips markdown",
+      "id": "sequoia-restaurants",
+      "primaryTopicId": "trips",
+      "route": "#/entities/sequoia-restaurants",
+      "summary": "Flexible dining and supply options around Three Rivers and inside the parks.",
+      "tags": [
+        "restaurants",
+        "sequoia"
+      ],
+      "title": "Sequoia restaurants"
+    },
+    {
+      "body": "Fresno to Seattle Alaska 394 from FAT to SEA on September 20. Times are shown in each airport's local time zone. Recheck the airline schedule before departure. Trips flight",
+      "id": "sequoia-return-flight",
+      "primaryTopicId": "trips",
+      "route": "#/entities/sequoia-return-flight",
+      "summary": "Alaska 394 from FAT to SEA on September 20.",
+      "tags": [
+        "flight",
+        "year-2026"
+      ],
+      "title": "Fresno to Seattle"
+    },
+    {
+      "body": "Sequoia things to do Giant sequoia groves, caves, viewpoints, scenic drives, and a practical Kings Canyon day. High-priority stops General Sherman Tree and the two-mile Congress Trail. Moro Rock, Tunnel Log, Crescent Meadow, and Big Trees Trail. Crystal Cave only with an advance guided-tour ticket; tickets are not sold at the cave. Grant Grove and the General Grant Tree on the Kings Canyon day. Kings Canyon day Leave Three Rivers early. Choose either a scenic day with Grant Grove, overlooks, Grizzly Falls, Roaring River Falls, and Zumwalt Meadow, or drive directly to Roads End for Mist Falls. Do not attempt every stop plus the full hike. Access notes The 2026 summer shuttle ended before this trip. Mineral King construction creates long closure windows, so it is a backup rather than a core day. Recheck roads , alerts , and Crystal Cave . Trips markdown",
+      "id": "sequoia-things-to-do",
+      "primaryTopicId": "trips",
+      "route": "#/entities/sequoia-things-to-do",
+      "summary": "Giant sequoia groves, caves, viewpoints, scenic drives, and a practical Kings Canyon day.",
+      "tags": [
+        "do",
+        "sequoia",
+        "things",
+        "to"
+      ],
+      "title": "Sequoia things to do"
+    },
+    {
+      "body": "Washington State Fair The 2026 fair in Puyallup runs September 4-27. Current status The fair is closed on its published dark days; consult the official daily calendar. Official information Festivals & Events event",
+      "id": "washington-state-fair-2026",
+      "primaryTopicId": "festivals-events",
+      "route": "#/entities/washington-state-fair-2026",
+      "summary": "The 2026 fair in Puyallup runs September 4-27.",
+      "tags": [
+        "fair",
+        "festival",
+        "interested"
+      ],
+      "title": "Washington State Fair"
+    },
+    {
+      "body": "Weezer with The Shins & Silversun Pickups A strong direct match for the concert watch list. Current status Doors are listed for 6:00 PM and the show for 7:00 PM. Tickets are offered; attendance is not assumed. Official information Concerts event",
+      "id": "weezer-shins-seattle-2026",
+      "primaryTopicId": "concerts",
+      "route": "#/entities/weezer-shins-seattle-2026",
+      "summary": "A strong direct match for the concert watch list.",
+      "tags": [
+        "concert",
+        "indie",
+        "interested"
+      ],
+      "title": "Weezer with The Shins & Silversun Pickups"
     }
   ],
   "taxonomy": [
     {
-      "description": "Purpose, operating boundaries, and local research workflow.",
-      "id": "tracker-foundations",
-      "order": 10,
-      "title": "Tracker foundations"
+      "description": "Upcoming travel, itineraries, reservations, and destination research.",
+      "id": "trips",
+      "order": 100,
+      "title": "Trips"
     },
     {
-      "description": "Canonical schemas, safe projections, independent views, and adapters.",
-      "id": "content-architecture",
-      "order": 20,
-      "parentId": "tracker-foundations",
-      "title": "Content architecture"
+      "description": "Upcoming games, concerts, productions, festivals, and other dated interests.",
+      "id": "events",
+      "order": 200,
+      "title": "Events"
+    },
+    {
+      "description": "Selected Seattle Seahawks games and practical game-day information.",
+      "id": "seahawks-games",
+      "order": 210,
+      "parentId": "events",
+      "title": "Seahawks Games"
+    },
+    {
+      "description": "Upcoming concerts of interest, ticket timing, and venue details.",
+      "id": "concerts",
+      "order": 220,
+      "parentId": "events",
+      "title": "Concerts"
+    },
+    {
+      "description": "Upcoming plays and musicals at Seattle-area theaters.",
+      "id": "productions",
+      "order": 230,
+      "parentId": "events",
+      "title": "Productions"
+    },
+    {
+      "description": "Other notable festivals, community events, and dated activities.",
+      "id": "festivals-events",
+      "order": 240,
+      "parentId": "events",
+      "title": "Festivals & Events"
     }
   ]
 }

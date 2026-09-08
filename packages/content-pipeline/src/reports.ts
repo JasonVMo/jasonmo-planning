@@ -30,11 +30,34 @@ export function dueReport(corpus: Corpus, asOf: string) {
 
 export async function reports(root: string, asOf: string) {
   const corpus = await loadCorpus(root);
-  const linked = new Set(
-    corpus.entities.flatMap(({ entity }) =>
-      entity.relationships.flatMap((edge) => [entity.id, edge.targetId]),
+  const supervisedCycles = corpus.entities.flatMap(({ runs }) =>
+    runs.filter(
+      (run) => ["succeeded", "no-change"].includes(run.outcome) && run.sourceEvidence.length > 0,
     ),
-  );
+  ).length;
+  const linked = new Set<string>();
+  for (const { entity } of corpus.entities) {
+    for (const edge of entity.relationships) {
+      linked.add(entity.id);
+      linked.add(edge.targetId);
+    }
+    if (entity.dataType === "trip" && "children" in entity.data) {
+      linked.add(entity.id);
+      for (const child of entity.data.children) linked.add(child.targetId);
+    }
+    if (entity.dataType === "event") linked.add(entity.id);
+  }
+  const usedTopics = new Set<string>();
+  const topics = new Map(corpus.taxonomy.nodes.map((node) => [node.id, node]));
+  for (const { entity } of corpus.entities) {
+    for (const initial of [entity.taxonomy.primaryTopicId, ...entity.taxonomy.relatedTopicIds]) {
+      let id: string | undefined = initial;
+      while (id) {
+        usedTopics.add(id);
+        id = topics.get(id)?.parentId;
+      }
+    }
+  }
   const titles = new Map<string, string[]>();
   for (const { entity } of corpus.entities) {
     const key = entity.title.toLowerCase().trim();
@@ -50,14 +73,7 @@ export async function reports(root: string, asOf: string) {
       .filter(([, ids]) => ids.length > 1)
       .map(([title, ids]) => ({ title, ids })),
     unusedTopics: corpus.taxonomy.nodes
-      .filter(
-        (node) =>
-          !corpus.entities.some(
-            ({ entity }) =>
-              entity.taxonomy.primaryTopicId === node.id ||
-              entity.taxonomy.relatedTopicIds.includes(node.id),
-          ),
-      )
+      .filter((node) => !usedTopics.has(node.id))
       .map((node) => node.id),
     maintenance: {
       unverifiedEntityIds: corpus.entities
@@ -66,8 +82,9 @@ export async function reports(root: string, asOf: string) {
       openContradictions: corpus.entities
         .filter((item) => item.state.contradictions.length)
         .map((item) => ({ id: item.entity.id, questions: item.state.contradictions })),
-      supervisedRealResearchCycles: "pending-owner-supervision",
-      networkPublication: "disabled",
+      supervisedRealResearchCycles:
+        supervisedCycles >= 3 ? `${supervisedCycles}-completed` : "pending-owner-supervision",
+      networkPublication: corpus.publication.networkPublicationEnabled ? "enabled" : "disabled",
     },
   };
 }

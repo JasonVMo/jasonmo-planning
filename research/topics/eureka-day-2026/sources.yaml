@@ -1,0 +1,10 @@
+schemaVersion: 1
+entityId: eureka-day-2026
+sources:
+  - id: production
+    title: Eureka Day
+    publisher: Seattle Rep
+    sourceType: primary-documentation
+    url: https://www.seattlerep.org/plays/202627-season/eureka-day
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

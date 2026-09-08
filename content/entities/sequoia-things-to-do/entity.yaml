@@ -1,0 +1,91 @@
+schemaVersion: 1
+id: sequoia-things-to-do
+dataType: markdown
+dataVersion: 1
+title: Sequoia things to do
+summary: Giant sequoia groves, caves, viewpoints, scenic drives, and a practical
+  Kings Canyon day.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - sequoia
+    - things
+    - to
+    - do
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: seki-conditions
+      title: Current conditions
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/conditions.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+      fingerprint: e677d468d2cd39374754d0461200dba2f283f82c26e59b7aa6ddd5bf2b5ab9f9
+    - id: seki-cave
+      title: Crystal Cave
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/crystal-cave.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: seki-roads
+      title: Road conditions
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/road-conditions.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: sequoia-things-to-do-source-1
+      basis: observed
+      statement: The page uses Current conditions as evidence for current planning
+        details.
+      sourceIds:
+        - seki-conditions
+    - id: sequoia-things-to-do-source-2
+      basis: observed
+      statement: The page uses Crystal Cave as evidence for current planning details.
+      sourceIds:
+        - seki-cave
+    - id: sequoia-things-to-do-source-3
+      basis: observed
+      statement: The page uses Road conditions as evidence for current planning details.
+      sourceIds:
+        - seki-roads
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: sequoia-things-to-do
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

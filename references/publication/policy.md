@@ -1,9 +1,10 @@
 # Publication policy
 
-All builds are local operations and all manifests are **non-deployable** until
-the separate host/identity/authorization gate is implemented and approved.
-`networkPublicationEnabled` is schema-constrained to false. No network
-publication command exists.
+Public GitHub Pages publication is owner-approved for the exact public
+projection built at `/tracker/`. Local and private-owner artifacts remain
+non-deployable. The deployment workflow has no authority to broaden content
+eligibility or create an approval; it can upload only the committed, audited
+`docs/` artifact after the exact public approval matches.
 
 Local may view all permitted repository content. Private-owner excludes
 local-only/restricted content. Group/public additionally require explicit
@@ -28,13 +29,13 @@ lease-held pass. Missing, unnormalized, or misdeclared approval paths fail
 closed. No seed approvals exist to migrate; older externally prepared records
 require explicit owner review rather than a silent reader rewrite.
 
-No reviewer/destination is initially authorized and the allowlist is empty.
-Agents cannot edit policies or approvals. Review candidate digests using the
-pure `projectCorpus(corpus, options, false)` internal review API; this does not
-write or authorize an artifact. CLI compilation always enforces approval.
+The owner-authorized reviewer and GitHub Pages destination are listed in
+`policy.yaml`. Agents cannot add reviewers, destinations, or approvals without
+an explicit owner instruction. Review candidate digests using the pure
+`projectCorpus(corpus, options, false)` internal review API; this does not write
+or authorize an artifact. CLI compilation always enforces approval.
 
 Time-limited approvals fail closed in deterministic compilation: the current
-pure API has no trusted validation clock. Use an owner-reviewed non-expiring
-digest-bound approval for local export, or extend the contract with a trusted
-explicit approval clock before enabling expiration support. Do not use ambient
-build time. Approvals never bypass the disabled network deployment gate.
+pure API has no trusted validation clock. Use the owner-reviewed non-expiring
+digest-bound approval, or extend the contract with a trusted explicit approval
+clock before enabling expiration support. Do not use ambient build time.

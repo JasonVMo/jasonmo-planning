@@ -1,0 +1,75 @@
+schemaVersion: 1
+id: seahawks-chargers-2026
+dataType: event
+dataVersion: 1
+title: Chargers at Seahawks
+summary: Selected Seahawks home game in Week 4.
+lifecycle: active
+taxonomy:
+  primaryTopicId: seahawks-games
+  relatedTopicIds: []
+  tags:
+    - seahawks
+    - nfl
+    - interested
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: event
+  status: tentative
+  schedule:
+    allDay: false
+    startAt: 2026-10-04T13:25:00-07:00
+    endAt: 2026-10-04T17:00:00-07:00
+    timeZone: America/Los_Angeles
+  location: Lumen Field, Seattle
+provenance:
+  sources:
+    - id: seahawks-schedule
+      title: 2026 Seahawks schedule
+      publisher: Seattle Seahawks
+      sourceType: primary-documentation
+      url: https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: seahawks-chargers-2026-official
+      basis: observed
+      statement: Selected Seahawks home game in Week 4.
+      sourceIds:
+        - seahawks-schedule
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: seahawks-chargers-2026
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

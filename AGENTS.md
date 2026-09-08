@@ -23,9 +23,10 @@
 10. `NEXT.md` is a roadmap and intake record, not verified external evidence.
     Resolve its explicit owner-review gates before changing global taxonomy or
     normalizing ambiguous trip facts.
-11. Rebuild and review tracked `docs/` after projected content changes. Do not
-    configure unattended agents or deployment until the documented
-    authorization gates are closed.
+11. Rebuild and review tracked `docs/` after projected content changes. The
+    approved public Pages workflow may deploy that exact artifact from `main`;
+    do not broaden its audience/content or configure unattended agents without
+    new owner approval.
 
 ## Workflows
 

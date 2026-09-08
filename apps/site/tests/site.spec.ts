@@ -15,23 +15,35 @@ function requiredFirst<Item>(items: readonly Item[], description: string): Item 
   return item;
 }
 
-test("loads through localhost at the configured base path and navigates topics", async ({
+test("loads through localhost at the configured base path and exposes primary navigation", async ({
   page,
 }) => {
   const manifest = await manifestFrom(page);
-  const topic = requiredFirst(manifest.taxonomy, "at least one topic");
+  const entity = requiredFirst(manifest.entities, "at least one entity");
+  const topic = manifest.taxonomy.find((candidate) => candidate.id === entity.primaryTopicId);
+  if (!topic) throw new Error("Test manifest requires an entity with a resolvable topic");
 
   await page.goto(".");
   await expect(page).toHaveURL(
     new RegExp(`^http://localhost:4173${manifest.basePath.replaceAll("/", "\\/")}`),
   );
-  await expect(
-    page.getByRole("heading", { name: "Follow the evidence, keep the context" }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "What's coming up" })).toBeVisible();
 
-  await page.getByRole("link", { name: topic.title }).first().click();
-  await expect(page).toHaveURL(new RegExp(`#\\/topics\\/${topic.id}$`));
-  await expect(page.getByRole("heading", { name: topic.title, level: 1 })).toBeVisible();
+  const nav = page.getByRole("navigation", { name: "Primary navigation" });
+  for (const label of ["Dashboard", "Calendar", "Trips", "Events", "Archive", "Search"]) {
+    await expect(nav.getByRole("link", { name: label })).toBeVisible();
+  }
+  await expect(nav.getByRole("link", { name: "Markdown guide" })).toHaveCount(0);
+
+  await page.goto(`.${entity.route}`);
+  await page
+    .getByRole("navigation", { name: "Breadcrumb" })
+    .getByRole("link", { name: topic.title })
+    .click();
+  const collectionRoute =
+    topic.id === "trips" ? "trips" : topic.id === "events" ? "events" : `topics/${topic.id}`;
+  await expect(page).toHaveURL(new RegExp(`#\\/${collectionRoute}$`));
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 });
 
 test("keeps search query state in the hash URL", async ({ page }) => {
@@ -83,9 +95,7 @@ test("supports dark theme and forced-colors rendering", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Use light theme" })).toBeVisible();
 
   await page.emulateMedia({ forcedColors: "active" });
-  await expect(
-    page.getByRole("heading", { name: "Follow the evidence, keep the context" }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "What's coming up" })).toBeVisible();
 });
 
 test("reloads a deep entity hash route", async ({ page }) => {

@@ -43,9 +43,9 @@ gaps under the pnpm linker; they do not
 suppress arbitrary peer warnings. Reevaluate them when upgrading those packages.
 
 `yarn doctor` executes the installed tools and confirms five projects.
-`yarn check` is the acceptance command. Read-only pull-request validation and a
-build-only Pages artifact workflow are configured; no deployment environment
-or write-capable deploy job is configured.
+`yarn check` is the acceptance command. Pull-request validation is read-only;
+the separate Pages workflow has only the permissions needed to deploy the exact
+approved public artifact from `main`.
 
 ## Local stand-up measurements
 
@@ -72,11 +72,11 @@ behavioral or accessibility failures.
 
 ## Platform gates
 
-The repository builds a minified private-owner site into tracked `docs/`, but
-the manifest remains non-deployable and the workflow has no deploy job.
-Selecting and proving a host audience, access model, deployment authorization,
-and source connector remains owner-controlled work.
+The repository builds a minified public site into tracked `docs/`. Its manifest
+is deployable only when the owner-authorized destination and exact digest-bound
+approval match. The Pages workflow audits and deploys that artifact from
+`main`; local/private-owner builds remain non-deployable.
 
-Public export, unattended research, real-source supervised cycles, and online
-access are not claimed by local fixture tests. See `architecture.md` for durable
-gates and `../NEXT.md` for the active delivery sequence.
+Unattended research and source connectors remain disabled. See
+`architecture.md` for durable gates and `../NEXT.md` for the executed delivery
+sequence and continuing research work.

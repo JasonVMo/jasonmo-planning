@@ -12,6 +12,8 @@ export const VIEW_TYPES = [
   "card",
   "full",
   "event",
+  "trip",
+  "flight",
   "calendar-month",
   "calendar-day",
   "timeline",

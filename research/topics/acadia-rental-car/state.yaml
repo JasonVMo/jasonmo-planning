@@ -1,0 +1,13 @@
+schemaVersion: 1
+entityId: acadia-rental-car
+objective: Keep Bangor rental car accurate, useful, and publicly safe.
+status: active
+completedSubtopics:
+  - Initial owner-directed research and structure captured
+remainingSubtopics:
+  - Recheck time-sensitive conditions and availability
+sourceCursors: []
+openQuestions: []
+contradictions: []
+nextAction: Recheck the provider schedule before travel.
+nextHumanReviewAt: 2026-09-12T09:00:00-07:00

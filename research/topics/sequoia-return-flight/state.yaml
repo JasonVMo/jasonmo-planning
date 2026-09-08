@@ -1,0 +1,13 @@
+schemaVersion: 1
+entityId: sequoia-return-flight
+objective: Keep Fresno to Seattle accurate, useful, and publicly safe.
+status: active
+completedSubtopics:
+  - Initial owner-directed research and structure captured
+remainingSubtopics:
+  - Recheck time-sensitive conditions and availability
+sourceCursors: []
+openQuestions: []
+contradictions: []
+nextAction: Recheck dynamic details before the relevant date.
+nextHumanReviewAt: 2026-09-12T09:00:00-07:00

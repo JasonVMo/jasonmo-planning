@@ -1,0 +1,19 @@
+schemaVersion: 1
+runId: seahawks-schedule-review
+workflow: research-topic
+baseRevision: 628e8a1dc9c680379b3c9daca6b5cd21a20c1b5a
+requestKey: 687505dfe005e28a488d734874ebb04c1e4512c84c3cff8f6a11da3040269d3e
+scopeIds:
+  - seahawks-patriots-2026
+sourceEvidence:
+  - sourceId: seahawks-schedule
+    retrievedAt: 2026-09-08T13:00:00-07:00
+    fingerprint: 275e1aa0454b8448375384f28812fcb22118f838743028f935f2c78d2eaf8b63
+changedEntityIds: []
+validation: Owner-supervised source review completed; canonical summary remained current.
+startedAt: 2026-09-08T12:55:00-07:00
+endedAt: 2026-09-08T13:00:00-07:00
+outcome: no-change
+reviewItems: []
+continuation: Recheck kickoff and broadcast details if the league announces a
+  schedule change.

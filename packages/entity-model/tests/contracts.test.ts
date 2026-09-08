@@ -13,7 +13,13 @@ describe("browser-safe generated model surface", () => {
     expect(RENDER_CONTEXTS).toEqual(contracts.definitions.RenderContext.enum);
   });
   it("owns independent strict data/view contracts and safe Markdown string body", () => {
-    expect(contracts.definitions.Entity.properties.dataType.enum).toEqual(["markdown", "event"]);
+    expect(contracts.definitions.Entity.properties.dataType.enum).toEqual([
+      "markdown",
+      "event",
+      "trip",
+      "flight",
+      "reservation",
+    ]);
     expect(contracts.definitions.Entity.properties.schemaVersion.const).toBe(1);
     expect(contracts.definitions.Entity.properties.dataVersion.const).toBe(1);
     expect(contracts.definitions.FullViewModel.properties.body.type).toBe("string");
@@ -25,6 +31,13 @@ describe("browser-safe generated model surface", () => {
       "FullViewModel",
       "CalendarEvent",
       "EventViewModel",
+      "TripViewModel",
+      "FlightViewModel",
+      "TripChildViewModel",
+      "FlightLeg",
+      "TripData",
+      "FlightData",
+      "ReservationData",
       "CalendarMonthViewModel",
       "CalendarDayViewModel",
       "TimelineViewModel",

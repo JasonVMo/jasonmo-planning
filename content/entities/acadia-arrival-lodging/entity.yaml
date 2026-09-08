@@ -1,0 +1,77 @@
+schemaVersion: 1
+id: acadia-arrival-lodging
+dataType: reservation
+dataVersion: 1
+title: Maine arrival-night lodging
+summary: Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - lodging
+    - needs-booking
+    - year-2026
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: lodging
+  status: needs-booking
+  provider: To be selected
+  schedule:
+    allDay: true
+    startDate: 2026-10-05
+    endDate: 2026-10-06
+  location: Bangor, Ellsworth, or Bar Harbor, Maine
+provenance:
+  sources:
+    - id: owner-itinerary
+      title: Owner-confirmed 2026 itinerary
+      publisher: Repository owner
+      sourceType: owner-material
+      locator: research/intake/initial-trips.md
+      access: restricted
+      retrievedAt: 2026-09-08T13:00:00-07:00
+      fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+  claims:
+    - id: acadia-arrival-lodging-status
+      basis: confirmed
+      statement: Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar
+        Harbor.
+      sourceIds:
+        - owner-itinerary
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: acadia-arrival-lodging
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

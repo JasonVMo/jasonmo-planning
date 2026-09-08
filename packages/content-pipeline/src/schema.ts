@@ -7,6 +7,9 @@ import {
   isCalendarDate,
   isCalendarTimestamp,
   isTimeZone,
+  tripRangeError,
+  flightLegOrderError,
+  orderedChildrenError,
 } from "@planning/entity-model";
 
 const ajv = new Ajv({ allErrors: true, strict: true, strictRequired: false, ownProperties: true });
@@ -44,6 +47,31 @@ ajv.addKeyword({
   errors: true,
   validate: validateEventRange,
 });
+for (const [keyword, type, check] of [
+  ["tripRange", "object", tripRangeError],
+  ["flightLegOrder", "array", flightLegOrderError],
+  ["orderedChildren", "array", orderedChildrenError],
+] as const) {
+  const validate = Object.assign(
+    (enabled: boolean, value: unknown, _schema: unknown, context?: { instancePath: string }) => {
+      const error = enabled ? check(value) : undefined;
+      validate.errors = error
+        ? [
+            {
+              keyword,
+              instancePath: `${context?.instancePath ?? ""}${error.field}`,
+              schemaPath: `#/${keyword}`,
+              params: {},
+              message: error.message,
+            },
+          ]
+        : [];
+      return !error;
+    },
+    { errors: [] as ErrorObject[] },
+  );
+  ajv.addKeyword({ keyword, type, schemaType: "boolean", errors: true, validate });
+}
 ajv.addSchema(contracts);
 export function assertSchema<T>(
   name: keyof typeof contracts.definitions,

@@ -15,7 +15,7 @@
     "fmt:check": "oxfmt --check .",
     "lint": "oxlint && tsx scripts/check-boundaries.mts",
     "typecheck": "tsc --noEmit",
-    "test": "NX_DAEMON=false nx run-many -t test -p @planning/entity-model @planning/content-pipeline && vitest run scripts",
+    "test": "NX_DAEMON=false nx run-many -t test -p @planning/entity-model @planning/content-pipeline @planning/entity-ui && vitest run scripts",
     "test:unit": "vitest run --config vitest.config.ts",
     "test:storybook": "STORYBOOK_DISABLE_TELEMETRY=1 yarn workspace @planning/storybook test",
     "test:e2e": "yarn test:e2e:nested && yarn test:e2e:root",
@@ -34,6 +34,7 @@
     "build:storybook": "STORYBOOK_DISABLE_TELEMETRY=1 yarn workspace @planning/storybook build",
     "build": "yarn build:pages",
     "publication:check": "tsx scripts/audit-artifact.mts",
+    "publication:check:pages": "tsx scripts/audit-artifact.mts --target public --base-path /tracker/ --directory docs",
     "check": "yarn doctor && yarn fmt:check && yarn schemas:check && yarn content:validate && yarn typecheck && yarn lint && yarn test && yarn build:tools && yarn build && yarn build:storybook && yarn test:storybook && yarn test:e2e"
   },
   "devDependencies": {

@@ -1,0 +1,75 @@
+schemaVersion: 1
+id: acadia-hikes-walks
+dataType: markdown
+dataVersion: 1
+title: Acadia hikes & walks
+summary: Region-grouped official routes with bus, driving, weather, and exposure notes.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - acadia
+    - hikes
+    - walks
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: acadia-hiking
+      title: Acadia hiking
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/acad/planyourvisit/hiking.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: island-explorer
+      title: Island Explorer
+      publisher: Downeast Transportation
+      sourceType: primary-documentation
+      url: https://www.exploreacadia.com/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: acadia-hikes-walks-source-1
+      basis: observed
+      statement: The page uses Acadia hiking as evidence for current planning details.
+      sourceIds:
+        - acadia-hiking
+    - id: acadia-hikes-walks-source-2
+      basis: observed
+      statement: The page uses Island Explorer as evidence for current planning details.
+      sourceIds:
+        - island-explorer
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: acadia-hikes-walks
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

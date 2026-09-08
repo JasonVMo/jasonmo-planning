@@ -1,0 +1,18 @@
+schemaVersion: 1
+entityId: sequoia-2026
+sources:
+  - id: owner-itinerary
+    title: Owner-confirmed 2026 itinerary
+    publisher: Repository owner
+    sourceType: owner-material
+    locator: research/intake/initial-trips.md
+    access: restricted
+    retrievedAt: 2026-09-08T13:00:00-07:00
+    fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+  - id: seki-conditions
+    title: Sequoia and Kings Canyon current conditions
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/seki/planyourvisit/conditions.htm
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

@@ -1,0 +1,89 @@
+schemaVersion: 1
+id: nyc-hoboken-getting-ready
+dataType: markdown
+dataVersion: 1
+title: Getting ready for Hoboken & New York
+summary: Lodging comparison, transit payment, show tickets, and holiday-weekend checks.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - nyc
+    - hoboken
+    - getting
+    - ready
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: stevens-visit
+      title: Visiting Stevens
+      publisher: Stevens Institute of Technology
+      sourceType: primary-documentation
+      url: https://www.stevens.edu/admission-aid/visit-stevens
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: path-fares
+      title: PATH fares
+      publisher: Port Authority of New York and New Jersey
+      sourceType: primary-documentation
+      url: https://www.panynj.gov/path/en/fares.html
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: tkts
+      title: TKTS discount tickets
+      publisher: Theatre Development Fund
+      sourceType: primary-documentation
+      url: https://www.tdf.org/discount-ticket-programs/tkts-by-tdf/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: nyc-hoboken-getting-ready-source-1
+      basis: observed
+      statement: The page uses Visiting Stevens as evidence for current planning details.
+      sourceIds:
+        - stevens-visit
+    - id: nyc-hoboken-getting-ready-source-2
+      basis: observed
+      statement: The page uses PATH fares as evidence for current planning details.
+      sourceIds:
+        - path-fares
+    - id: nyc-hoboken-getting-ready-source-3
+      basis: observed
+      statement: The page uses TKTS discount tickets as evidence for current planning
+        details.
+      sourceIds:
+        - tkts
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: nyc-hoboken-getting-ready
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

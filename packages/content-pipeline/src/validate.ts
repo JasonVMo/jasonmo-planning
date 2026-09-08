@@ -17,6 +17,7 @@ import { projectMarkdown, safeUrl } from "./markdown.ts";
 import { resolveView, validateDefaultView } from "./view-selection.ts";
 import { DATA_TYPES, supportedViews } from "./view-adapters.ts";
 import { beginSnapshot, finishSnapshot } from "./transaction.ts";
+import { validateTripComposition } from "./travel.ts";
 
 export interface LoadedEntity {
   entity: Entity;
@@ -222,6 +223,13 @@ export async function loadCorpus(
     publicationValid(entity, descriptorPath);
     plain(entity.title, descriptorPath, "/title");
     plain(entity.summary, descriptorPath, "/summary");
+    if (
+      entity.dataType === "reservation" &&
+      "bookingUrl" in entity.data &&
+      entity.data.bookingUrl !== undefined &&
+      !safeUrl(entity.data.bookingUrl)
+    )
+      fail(descriptorPath, "/data/bookingUrl", "booking URL must be safe and credential-free");
     before(entity.timestamps.createdAt, entity.timestamps.updatedAt, descriptorPath, "/timestamps");
     before(entity.review.lastReviewedAt, entity.review.nextReviewAt, descriptorPath, "/review");
     for (const topic of [entity.taxonomy.primaryTopicId, ...entity.taxonomy.relatedTopicIds])
@@ -327,6 +335,7 @@ export async function loadCorpus(
     "/id",
   );
   const byId = new Map(entities.map((item) => [item.entity.id, item.entity]));
+  validateTripComposition(entities);
   for (const { entity, descriptorPath } of entities) {
     unique(
       entity.relationships.map((edge) => `${edge.kind}:${edge.targetId}`),

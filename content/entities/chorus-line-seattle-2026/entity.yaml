@@ -1,0 +1,74 @@
+schemaVersion: 1
+id: chorus-line-seattle-2026
+dataType: event
+dataVersion: 1
+title: A Chorus Line
+summary: 5th Avenue Theatre production running September 15-27.
+lifecycle: active
+taxonomy:
+  primaryTopicId: productions
+  relatedTopicIds: []
+  tags:
+    - theater
+    - musical
+    - interested
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: event
+  status: tentative
+  schedule:
+    allDay: true
+    startDate: 2026-09-15
+    endDate: 2026-09-28
+  location: 5th Avenue Theatre, Seattle
+provenance:
+  sources:
+    - id: production
+      title: A Chorus Line
+      publisher: 5th Avenue Theatre
+      sourceType: primary-documentation
+      url: https://www.5thavenue.org/shows/2026-27/a-chorus-line/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: chorus-line-seattle-2026-official
+      basis: observed
+      statement: 5th Avenue Theatre production running September 15-27.
+      sourceIds:
+        - production
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: chorus-line-seattle-2026
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

@@ -1,0 +1,24 @@
+schemaVersion: 1
+entityId: nyc-hoboken-getting-ready
+sources:
+  - id: stevens-visit
+    title: Visiting Stevens
+    publisher: Stevens Institute of Technology
+    sourceType: primary-documentation
+    url: https://www.stevens.edu/admission-aid/visit-stevens
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: path-fares
+    title: PATH fares
+    publisher: Port Authority of New York and New Jersey
+    sourceType: primary-documentation
+    url: https://www.panynj.gov/path/en/fares.html
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: tkts
+    title: TKTS discount tickets
+    publisher: Theatre Development Fund
+    sourceType: primary-documentation
+    url: https://www.tdf.org/discount-ticket-programs/tkts-by-tdf/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

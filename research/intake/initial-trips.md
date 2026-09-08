@@ -2,8 +2,9 @@
 
 **Classification:** Restricted owner-provided itinerary
 
-**Status:** Unverified intake. Confirm dates, times, locations, and reservation
-state before promoting structured canonical entities.
+**Status:** Owner-confirmed 2026 itinerary. Individual times, locations, and
+reservation state still require source-level verification before being marked
+verified in canonical entities.
 
 This file preserves the operational details supplied with the initial site
 brief. It is private research input, not canonical content, and must never be
@@ -25,9 +26,7 @@ explicit private-owner detail fields after the relevant contract exists.
 - Return: Fresno to Seattle, FAT-SEA, Alaska 394, Sunday September 20,
   4:21 PM-6:39 PM.
 
-The original brief did not state a year. Its weekday/date combinations appear
-consistent with 2026, but the owner must confirm that inference before canonical
-authoring.
+The owner confirmed that all dates are in 2026.
 
 ## Acadia and New York City
 
@@ -46,11 +45,19 @@ authoring.
 - Return flight: Tuesday October 13, Alaska 373 EWR-SEA, 9:30 AM-12:35 PM.
   Confirmation: `IIIHRY`.
 
-The original brief did not state a year. Its weekday/date combinations appear
-consistent with 2026, but the owner must confirm that inference before canonical
-authoring.
+The owner confirmed that all dates are in 2026.
 
 The trip's NYC/Hoboken segment is primarily to visit the owner's son, Dylan, a
 student at Stevens Institute of Technology. No car is planned for this segment.
-One instruction in the original brief referred to `LGR` airport; the itinerary
-uses LGA. Treat LGA as likely but unconfirmed until owner review.
+One instruction in the original brief referred to `LGR`; the owner confirmed
+that the intended airport is LGA, New York's LaGuardia Airport.
+
+## Prior-research inventory
+
+Fingerprints recorded before incorporation:
+
+| Source                                        | SHA-256                                                            |
+| --------------------------------------------- | ------------------------------------------------------------------ |
+| `prior-research/sequoia/email-discussion.pdf` | `68e5b7542a7ea878e53a395f31f4ca1ce3c0765f0b285ddb415dda8adffaf079` |
+| `prior-research/acadia/things-to-do.md`       | `115c6deb5da6939fca4d4c892cd25d9a11b45c7d105eb94eb38ba34723c688ef` |
+| `prior-research/acadia/hiking.md`             | `e56fc73abe1dd09e1bff98c48c7d58c53deb6498021671a0e5ee880a1ad2a1ed` |

@@ -1,5 +1,12 @@
-import { isCalendarDate, type SiteManifest, type TopicView } from "@planning/entity-model";
 import {
+  isCalendarDate,
+  type EventViewModel,
+  type SiteEntity,
+  type SiteManifest,
+  type TripViewModel,
+} from "@planning/entity-model";
+import {
+  dateAt,
   EntityRenderer,
   formatCalendarDate,
   TrackerProvider,
@@ -23,7 +30,15 @@ import {
   Title2,
   Title3,
 } from "@fluentui/react-components";
-import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
+import {
+  Fragment,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type FormEvent,
+  type ReactNode,
+} from "react";
 import {
   HashRouter,
   Link,
@@ -38,15 +53,90 @@ import { Freshness } from "./freshness.tsx";
 import { CalendarPage } from "./CalendarPage.tsx";
 import { MarkdownGuidePage } from "./MarkdownGuidePage.tsx";
 import { createSearch, searchDocuments } from "./search.ts";
+import {
+  eventEffectiveEndDate,
+  isEntityArchived,
+  isPossibleNeedsBookingReservation,
+  isRootTrip,
+  tripAncestryOf,
+  tripEffectiveEndDate,
+} from "./archive.ts";
 import "./styles/site.css";
+
+const EVENT_CATEGORIES = [
+  { id: "seahawks-games", label: "Seahawks Games" },
+  { id: "concerts", label: "Concerts" },
+  { id: "productions", label: "Productions" },
+  { id: "festivals-events", label: "Festivals & Events" },
+] as const;
+
+function scheduleStartDate(event: EventViewModel): string {
+  return event.schedule.allDay
+    ? event.schedule.startDate
+    : dateAt(event.schedule.startAt, event.schedule.timeZone);
+}
+
+interface RootTripEntry {
+  entity: SiteEntity;
+  trip: TripViewModel;
+}
+
+interface StandaloneEventEntry {
+  entity: SiteEntity;
+  event: EventViewModel;
+  startDate: string;
+  effectiveEndDate: string;
+}
+
+function rootTripEntries(manifest: SiteManifest): RootTripEntry[] {
+  return manifest.entities.flatMap((entity) => {
+    const trip = entity.viewModels.trip;
+    return entity.dataType === "trip" && trip && isRootTrip(trip) ? [{ entity, trip }] : [];
+  });
+}
+
+function standaloneEventEntries(manifest: SiteManifest): StandaloneEventEntry[] {
+  return manifest.entities.flatMap((entity) => {
+    if (entity.dataType !== "event") return [];
+    const event = entity.viewModels.event;
+    if (!event) return [];
+    return [
+      {
+        entity,
+        event,
+        startDate: scheduleStartDate(event),
+        effectiveEndDate: eventEffectiveEndDate(event.schedule),
+      },
+    ];
+  });
+}
+
+function reservationEntries(manifest: SiteManifest): SiteEntity[] {
+  return manifest.entities.filter((entity) => isPossibleNeedsBookingReservation(entity));
+}
+
+function upcomingRootTrips(manifest: SiteManifest, now: number): RootTripEntry[] {
+  return rootTripEntries(manifest)
+    .filter(({ entity, trip }) => !isEntityArchived(entity, tripEffectiveEndDate(trip), now))
+    .sort((a, b) => a.trip.startDate.localeCompare(b.trip.startDate));
+}
+
+function upcomingStandaloneEvents(manifest: SiteManifest, now: number): StandaloneEventEntry[] {
+  return standaloneEventEntries(manifest)
+    .filter((entry) => !isEntityArchived(entry.entity, entry.effectiveEndDate, now))
+    .sort((a, b) => a.startDate.localeCompare(b.startDate));
+}
 
 interface AppProps {
   manifest: SiteManifest;
 }
 
 function routeTitle(pathname: string, manifest: SiteManifest): string {
-  if (pathname === "/") return "Research dashboard";
+  if (pathname === "/") return "Dashboard";
   if (pathname === "/search") return "Search";
+  if (pathname === "/trips") return "Trips";
+  if (pathname === "/events") return "Events";
+  if (pathname === "/archive") return "Archive";
   if (pathname === "/help/markdown") return "Markdown guide";
   if (pathname === "/calendar" || pathname.startsWith("/calendar/")) {
     const match = /^\/calendar\/(month|day)\/([^/]+)$/.exec(pathname);
@@ -70,27 +160,28 @@ function routeTitle(pathname: string, manifest: SiteManifest): string {
   return "Page not found";
 }
 
-function NavItems({ manifest, onNavigate }: { manifest: SiteManifest; onNavigate?: () => void }) {
+function NavItems({ onNavigate }: { manifest: SiteManifest; onNavigate?: () => void }) {
   return (
     <>
       <Link className="nav-link nav-link--home" to="/" onClick={onNavigate}>
         <span aria-hidden="true">⌂</span> Dashboard
       </Link>
-      <Link className="nav-link" to="/search" onClick={onNavigate}>
-        <span aria-hidden="true">⌕</span> Search
-      </Link>
       <Link className="nav-link" to="/calendar" onClick={onNavigate}>
         Calendar
       </Link>
-      <Link className="nav-link" to="/help/markdown" onClick={onNavigate}>
-        Markdown guide
+      <Link className="nav-link" to="/trips" onClick={onNavigate}>
+        Trips
       </Link>
-      <p className="nav-heading">Topics</p>
-      {manifest.taxonomy.map((topic) => (
-        <Link className="nav-link" key={topic.id} to={`/topics/${topic.id}`} onClick={onNavigate}>
-          {topic.title}
-        </Link>
-      ))}
+      <Link className="nav-link" to="/events" onClick={onNavigate}>
+        Events
+      </Link>
+      <Link className="nav-link" to="/archive" onClick={onNavigate}>
+        Archive
+      </Link>
+      <p className="nav-heading">More</p>
+      <Link className="nav-link" to="/search" onClick={onNavigate}>
+        <span aria-hidden="true">⌕</span> Search
+      </Link>
     </>
   );
 }
@@ -257,77 +348,268 @@ function PageIntro({
   );
 }
 
+interface UpcomingListItem {
+  key: string;
+  date: string;
+  title: string;
+  href: string;
+  kind: "Trip" | "Event";
+}
+
 function DashboardPage({ manifest }: AppProps) {
   const [now] = useState(() => Date.now());
-  const entitiesByTopic = useMemo(() => {
-    const counts = new Map<string, number>();
-    for (const entity of manifest.entities) {
-      counts.set(entity.primaryTopicId, (counts.get(entity.primaryTopicId) ?? 0) + 1);
+  const trips = useMemo(() => upcomingRootTrips(manifest, now), [manifest, now]);
+  const nextTrip = trips[0];
+  const upcomingEvents = useMemo(
+    () => upcomingStandaloneEvents(manifest, now).slice(0, 5),
+    [manifest, now],
+  );
+  const needsBooking = useMemo(() => reservationEntries(manifest), [manifest]);
+  const upcomingList = useMemo(() => {
+    const items: UpcomingListItem[] = [];
+    if (nextTrip) {
+      items.push({
+        key: nextTrip.entity.id,
+        date: nextTrip.trip.startDate,
+        title: nextTrip.trip.title,
+        href: nextTrip.trip.href,
+        kind: "Trip",
+      });
     }
-    return counts;
-  }, [manifest.entities]);
-  const needsReview = manifest.entities
-    .filter((entity) => {
-      if (entity.lastVerifiedAt === undefined) return true;
-      return now - Date.parse(entity.lastVerifiedAt) > 30 * 24 * 60 * 60 * 1000;
-    })
-    .slice(0, 4);
+    for (const { entity, event, startDate } of upcomingEvents) {
+      items.push({
+        key: entity.id,
+        date: startDate,
+        title: event.title,
+        href: event.href,
+        kind: "Event",
+      });
+    }
+    return items.sort((a, b) => a.date.localeCompare(b.date)).slice(0, 6);
+  }, [nextTrip, upcomingEvents]);
 
   return (
     <>
       <PageIntro
-        eyebrow="Research workspace"
-        title="Follow the evidence, keep the context"
-        description="Browse durable research topics, resume items that need verification, and trace every conclusion back to its source."
+        eyebrow="Personal tracker"
+        title="What's coming up"
+        description="Your next trip, upcoming events, and open booking actions from this audience's projected manifest."
       />
-      <section aria-labelledby="topics-heading">
+      <section aria-labelledby="next-trip-heading">
         <div className="section-heading">
-          <Title2 as="h2" id="topics-heading">
-            Topics
-          </Title2>
-          <Badge appearance="tint">{manifest.entities.length} entities</Badge>
-        </div>
-        <div className="topic-grid">
-          {manifest.taxonomy.map((topic, index) => (
-            <TopicSummary
-              key={topic.id}
-              topic={topic}
-              count={entitiesByTopic.get(topic.id) ?? 0}
-              index={index}
-            />
-          ))}
-        </div>
-      </section>
-      <section aria-labelledby="attention-heading" className="dashboard-section">
-        <div className="section-heading">
-          <Title2 as="h2" id="attention-heading">
-            Needs attention
+          <Title2 as="h2" id="next-trip-heading">
+            Next trip
           </Title2>
         </div>
-        {needsReview.length > 0 ? (
+        {nextTrip ? (
           <div className="entity-grid">
-            {needsReview.map((entity) => (
+            <EntityRenderer entity={nextTrip.entity} context="collection" />
+          </div>
+        ) : (
+          <div className="empty-state">
+            <Title3 as="h2">No upcoming trip</Title3>
+            <Text>A root trip will appear here once one is scheduled and not yet archived.</Text>
+          </div>
+        )}
+      </section>
+      <section aria-labelledby="upcoming-events-heading" className="dashboard-section">
+        <div className="section-heading">
+          <Title2 as="h2" id="upcoming-events-heading">
+            Upcoming events
+          </Title2>
+          <Badge appearance="tint">{upcomingEvents.length}</Badge>
+        </div>
+        {upcomingEvents.length > 0 ? (
+          <div className="entity-grid">
+            {upcomingEvents.map(({ entity }) => (
               <EntityRenderer key={entity.id} entity={entity} context="collection" />
             ))}
           </div>
         ) : (
-          <Text>All projected entities have been verified recently.</Text>
+          <div className="empty-state">
+            <Title3 as="h2">No upcoming events</Title3>
+            <Text>
+              Standalone Seahawks games, concerts, productions, and festivals appear here.
+            </Text>
+          </div>
+        )}
+      </section>
+      <section aria-labelledby="actions-heading" className="dashboard-section">
+        <div className="section-heading">
+          <Title2 as="h2" id="actions-heading">
+            Needs booking
+          </Title2>
+          <Badge appearance="tint" color={needsBooking.length > 0 ? "important" : "brand"}>
+            {needsBooking.length}
+          </Badge>
+        </div>
+        {needsBooking.length > 0 ? (
+          <div className="entity-grid" aria-label="Reservations that still need booking">
+            {needsBooking.map((entity) => (
+              <EntityRenderer key={entity.id} entity={entity} context="collection" />
+            ))}
+          </div>
+        ) : (
+          <Text>Nothing needs booking right now.</Text>
+        )}
+      </section>
+      <section aria-labelledby="upcoming-list-heading" className="dashboard-section">
+        <div className="section-heading">
+          <Title2 as="h2" id="upcoming-list-heading">
+            Coming up
+          </Title2>
+        </div>
+        {upcomingList.length > 0 ? (
+          <ol className="upcoming-list">
+            {upcomingList.map((item) => (
+              <li key={item.key}>
+                <span className="upcoming-list__date">
+                  {formatCalendarDate(item.date, { month: "short", day: "numeric" })}
+                </span>
+                <a href={item.href}>{item.title}</a>
+                <Badge appearance="outline">{item.kind}</Badge>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <Text>Nothing scheduled yet.</Text>
         )}
       </section>
     </>
   );
 }
 
-function TopicSummary({ topic, count, index }: { topic: TopicView; count: number; index: number }) {
+function TripsPage({ manifest }: AppProps) {
+  const [now] = useState(() => Date.now());
+  const trips = useMemo(() => upcomingRootTrips(manifest, now), [manifest, now]);
   return (
-    <Link to={`/topics/${topic.id}`} className={`topic-summary topic-summary--${(index % 4) + 1}`}>
-      <span className="topic-summary__accent" aria-hidden="true" />
-      <Title3 as="h3">{topic.title}</Title3>
-      <Text>{topic.description}</Text>
-      <span className="topic-summary__count">
-        {count} {count === 1 ? "entity" : "entities"} →
-      </span>
-    </Link>
+    <>
+      <PageIntro
+        eyebrow="Travel"
+        title="Trips"
+        description="Upcoming trips from this audience's projected manifest, soonest first. Segments appear inside each trip."
+      />
+      {trips.length > 0 ? (
+        <div className="entity-grid" aria-label="Upcoming trips">
+          {trips.map(({ entity }) => (
+            <EntityRenderer key={entity.id} entity={entity} context="collection" />
+          ))}
+        </div>
+      ) : (
+        <div className="empty-state">
+          <Title3 as="h2">No upcoming trips</Title3>
+          <Text>
+            Trips move to Archive five weeks after they end and reappear here once a new one is
+            scheduled.
+          </Text>
+        </div>
+      )}
+    </>
+  );
+}
+
+function EventsPage({ manifest }: AppProps) {
+  const [now] = useState(() => Date.now());
+  const events = useMemo(() => upcomingStandaloneEvents(manifest, now), [manifest, now]);
+  return (
+    <>
+      <PageIntro
+        eyebrow="Dated interests"
+        title="Events"
+        description="Seahawks games, concerts, productions, and festivals from this audience's projected manifest."
+      />
+      {EVENT_CATEGORIES.map((category) => {
+        const topic = manifest.taxonomy.find((candidate) => candidate.id === category.id);
+        const title = topic?.title ?? category.label;
+        const items = events
+          .filter(({ entity }) => entity.primaryTopicId === category.id)
+          .sort((a, b) => a.startDate.localeCompare(b.startDate));
+        return (
+          <section
+            key={category.id}
+            aria-labelledby={`events-category-${category.id}`}
+            className="dashboard-section"
+          >
+            <div className="section-heading">
+              <Title2 as="h2" id={`events-category-${category.id}`}>
+                {title}
+              </Title2>
+              <Badge appearance="tint">{items.length}</Badge>
+            </div>
+            {items.length > 0 ? (
+              <div className="entity-grid" aria-label={`${title} events`}>
+                {items.map(({ entity }) => (
+                  <EntityRenderer key={entity.id} entity={entity} context="collection" />
+                ))}
+              </div>
+            ) : (
+              <Text>No {title.toLowerCase()} scheduled yet.</Text>
+            )}
+          </section>
+        );
+      })}
+    </>
+  );
+}
+
+function ArchivePage({ manifest }: AppProps) {
+  const [now] = useState(() => Date.now());
+  const archivedTrips = useMemo(
+    () =>
+      rootTripEntries(manifest)
+        .filter(({ entity, trip }) => isEntityArchived(entity, tripEffectiveEndDate(trip), now))
+        .sort((a, b) => b.trip.endDate.localeCompare(a.trip.endDate)),
+    [manifest, now],
+  );
+  const archivedEvents = useMemo(
+    () =>
+      standaloneEventEntries(manifest)
+        .filter((entry) => isEntityArchived(entry.entity, entry.effectiveEndDate, now))
+        .sort((a, b) => b.effectiveEndDate.localeCompare(a.effectiveEndDate)),
+    [manifest, now],
+  );
+  return (
+    <>
+      <PageIntro
+        eyebrow="History"
+        title="Archive"
+        description="Trips and standalone events move here five weeks (35 calendar days) after they end, evaluated in America/Los_Angeles. Routes stay stable, and search still finds them."
+      />
+      <section aria-labelledby="archived-trips-heading">
+        <div className="section-heading">
+          <Title2 as="h2" id="archived-trips-heading">
+            Trips
+          </Title2>
+          <Badge appearance="tint">{archivedTrips.length}</Badge>
+        </div>
+        {archivedTrips.length > 0 ? (
+          <div className="entity-grid" aria-label="Archived trips">
+            {archivedTrips.map(({ entity }) => (
+              <EntityRenderer key={entity.id} entity={entity} context="collection" />
+            ))}
+          </div>
+        ) : (
+          <Text>No archived trips yet.</Text>
+        )}
+      </section>
+      <section aria-labelledby="archived-events-heading" className="dashboard-section">
+        <div className="section-heading">
+          <Title2 as="h2" id="archived-events-heading">
+            Events
+          </Title2>
+          <Badge appearance="tint">{archivedEvents.length}</Badge>
+        </div>
+        {archivedEvents.length > 0 ? (
+          <div className="entity-grid" aria-label="Archived events">
+            {archivedEvents.map(({ entity }) => (
+              <EntityRenderer key={entity.id} entity={entity} context="collection" />
+            ))}
+          </div>
+        ) : (
+          <Text>No archived events yet.</Text>
+        )}
+      </section>
+    </>
   );
 }
 
@@ -357,11 +639,54 @@ function TopicPage({ manifest }: AppProps) {
   );
 }
 
+function EntityBreadcrumbs({ manifest, entity }: { manifest: SiteManifest; entity: SiteEntity }) {
+  const trip = entity.viewModels.trip;
+  const ancestry = tripAncestryOf(manifest.entities, entity.route);
+  if (trip || ancestry.length > 0) {
+    return (
+      <nav className="breadcrumbs" aria-label="Breadcrumb">
+        <Link to="/">Dashboard</Link>
+        <span aria-hidden="true">/</span>
+        <Link to="/trips">Trips</Link>
+        {ancestry.map((ancestor) => (
+          <Fragment key={ancestor.id}>
+            <span aria-hidden="true">/</span>
+            <a href={ancestor.route}>{ancestor.title}</a>
+          </Fragment>
+        ))}
+      </nav>
+    );
+  }
+  if (entity.dataType === "event") {
+    const category = manifest.taxonomy.find((candidate) => candidate.id === entity.primaryTopicId);
+    return (
+      <nav className="breadcrumbs" aria-label="Breadcrumb">
+        <Link to="/">Dashboard</Link>
+        <span aria-hidden="true">/</span>
+        <Link to="/events">Events</Link>
+        {category ? (
+          <Fragment>
+            <span aria-hidden="true">/</span>
+            <Link to={`/topics/${category.id}`}>{category.title}</Link>
+          </Fragment>
+        ) : null}
+      </nav>
+    );
+  }
+  const topic = manifest.taxonomy.find((candidate) => candidate.id === entity.primaryTopicId);
+  return (
+    <nav className="breadcrumbs" aria-label="Breadcrumb">
+      <Link to="/">Dashboard</Link>
+      <span aria-hidden="true">/</span>
+      {topic ? <Link to={`/topics/${topic.id}`}>{topic.title}</Link> : <span>Uncategorized</span>}
+    </nav>
+  );
+}
+
 function EntityPage({ manifest }: AppProps) {
   const { entityId } = useParams();
   const entity = manifest.entities.find((candidate) => candidate.id === entityId);
   if (!entity) return <NotFound kind="entity" />;
-  const topic = manifest.taxonomy.find((candidate) => candidate.id === entity.primaryTopicId);
   const backlinks = manifest.entities.flatMap((source) =>
     source.relationships
       .filter((relationship) => relationship.targetId === entity.id)
@@ -370,15 +695,7 @@ function EntityPage({ manifest }: AppProps) {
   return (
     <div className="entity-page">
       <div className="entity-page__content">
-        <div className="breadcrumbs" aria-label="Breadcrumb">
-          <Link to="/">Dashboard</Link>
-          <span aria-hidden="true">/</span>
-          {topic ? (
-            <Link to={`/topics/${topic.id}`}>{topic.title}</Link>
-          ) : (
-            <span>Uncategorized</span>
-          )}
-        </div>
+        <EntityBreadcrumbs manifest={manifest} entity={entity} />
         <EntityRenderer entity={entity} context="detail" />
         {entity.relationships.length > 0 ? (
           <section className="relationships" aria-labelledby="relationships-heading">
@@ -565,6 +882,9 @@ function RoutedApp({ manifest }: AppProps) {
       <Shell manifest={manifest} mode={mode} setMode={setMode}>
         <Routes>
           <Route path="/" element={<DashboardPage manifest={manifest} />} />
+          <Route path="/trips" element={<TripsPage manifest={manifest} />} />
+          <Route path="/events" element={<EventsPage manifest={manifest} />} />
+          <Route path="/archive" element={<ArchivePage manifest={manifest} />} />
           <Route path="/topics/:topicId" element={<TopicPage manifest={manifest} />} />
           <Route path="/entities/:entityId" element={<EntityPage manifest={manifest} />} />
           <Route path="/search" element={<SearchPage manifest={manifest} />} />

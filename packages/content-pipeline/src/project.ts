@@ -18,6 +18,7 @@ import { searchDocuments } from "./search-documents.ts";
 import { loadCorpus, type Corpus } from "./validate.ts";
 import { adaptView, type Presentation } from "./view-adapters.ts";
 import { resolveView } from "./view-selection.ts";
+import { filterTripParentClosure, projectTravel } from "./travel.ts";
 
 export function normalizeBasePath(path: string): string {
   if (!/^\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_-]*$/.test(path))
@@ -108,7 +109,10 @@ export function projectCorpus(
   for (const node of visibleTopics)
     if (node.parentId && !topicIds.has(node.parentId))
       fail(node.id, "/parentId", "visible taxonomy requires audience-visible ancestor closure");
-  const selected = corpus.entities.filter((item) => eligible(item.entity, target));
+  const selected = filterTripParentClosure(
+    corpus.entities,
+    corpus.entities.filter((item) => eligible(item.entity, target)),
+  );
   const byId = new Map(selected.map((item) => [item.entity.id, item]));
   const entityIds = new Set(byId.keys());
   for (const item of selected)
@@ -160,7 +164,7 @@ export function projectCorpus(
     if (item.entity.view.defaultType)
       reachable.get(item.entity.id)!.add(item.entity.view.defaultType);
     // Calendar is an additional presentation, not permission to expose an unselected body.
-    if (item.entity.dataType === "event" && item.entity.view.permittedTypes.includes("event"))
+    if (item.entity.view.permittedTypes.includes("event"))
       reachable.get(item.entity.id)!.add("event");
   }
   for (const item of selected)
@@ -187,14 +191,7 @@ export function projectCorpus(
         body: safe.markdown,
         badges: [...entity.taxonomy.tags].sort(),
       };
-      if (entity.dataType === "event" && "schedule" in entity.data) {
-        presentation.event = {
-          kind: entity.data.kind,
-          status: entity.data.status,
-          schedule: entity.data.schedule,
-        };
-        if (entity.data.location !== undefined) presentation.event.location = entity.data.location;
-      }
+      projectTravel(entity, byId, presentation);
       for (const view of VIEW_TYPES.filter((type) => reachable.get(entity.id)!.has(type))) {
         // Keep the key/model correspondence concrete for TypeScript and schema validation.
         switch (view) {
@@ -212,6 +209,12 @@ export function projectCorpus(
             break;
           case "event":
             viewModels.event = adaptView(entity.dataType, "event", presentation);
+            break;
+          case "trip":
+            viewModels.trip = adaptView(entity.dataType, "trip", presentation);
+            break;
+          case "flight":
+            viewModels.flight = adaptView(entity.dataType, "flight", presentation);
             break;
           case "calendar-month":
             viewModels["calendar-month"] = adaptView(
@@ -232,6 +235,7 @@ export function projectCorpus(
         id: entity.id,
         dataType: entity.dataType,
         dataVersion: entity.dataVersion,
+        lifecycle: entity.lifecycle,
         title: entity.title,
         summary: entity.summary,
         route,
@@ -269,7 +273,10 @@ export function projectCorpus(
     schemaVersion: 1 as const,
     audience: target,
     basePath,
-    deployable: false,
+    deployable:
+      target === "public" &&
+      corpus.publication.networkPublicationEnabled &&
+      corpus.publication.destinations.some((destination) => destination.audience === "public"),
     taxonomy,
     entities,
     searchDocuments: searchDocuments(entities, taxonomy, text),

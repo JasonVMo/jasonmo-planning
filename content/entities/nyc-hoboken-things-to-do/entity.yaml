@@ -1,0 +1,105 @@
+schemaVersion: 1
+id: nyc-hoboken-things-to-do
+dataType: markdown
+dataVersion: 1
+title: New York City & Hoboken things to do
+summary: Transit from LaGuardia, Broadway options, and dated events during
+  October 10-13.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - nyc
+    - hoboken
+    - things
+    - to
+    - do
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: lga-transit
+      title: LaGuardia public transportation
+      publisher: Metropolitan Transportation Authority
+      sourceType: primary-documentation
+      url: https://www.mta.info/guides/airports/laguardia/lga-to-nyc
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: path-schedules
+      title: PATH schedules
+      publisher: Port Authority of New York and New Jersey
+      sourceType: primary-documentation
+      url: https://www.panynj.gov/path/en/schedules-maps.html
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: broadway-tickets
+      title: Buying Broadway tickets
+      publisher: The Broadway League
+      sourceType: primary-documentation
+      url: https://www.broadway.org/info/buying-broadway-tickets/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: nycc
+      title: New York Comic Con
+      publisher: ReedPop
+      sourceType: primary-documentation
+      url: https://www.newyorkcomiccon.com/en-us.html
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: nyc-hoboken-things-to-do-source-1
+      basis: observed
+      statement: The page uses LaGuardia public transportation as evidence for current
+        planning details.
+      sourceIds:
+        - lga-transit
+    - id: nyc-hoboken-things-to-do-source-2
+      basis: observed
+      statement: The page uses PATH schedules as evidence for current planning details.
+      sourceIds:
+        - path-schedules
+    - id: nyc-hoboken-things-to-do-source-3
+      basis: observed
+      statement: The page uses Buying Broadway tickets as evidence for current
+        planning details.
+      sourceIds:
+        - broadway-tickets
+    - id: nyc-hoboken-things-to-do-source-4
+      basis: observed
+      statement: The page uses New York Comic Con as evidence for current planning
+        details.
+      sourceIds:
+        - nycc
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: nyc-hoboken-things-to-do
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

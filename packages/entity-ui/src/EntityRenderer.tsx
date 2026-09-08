@@ -24,6 +24,22 @@ export function EntityRenderer({ entity, viewType, context }: EntityRendererProp
     viewType ?? (context === undefined ? entity.view.defaultType : entity.view.byContext[context]);
 
   switch (selectedType) {
+    case "trip": {
+      const model = entity.viewModels.trip;
+      return model ? (
+        <viewRegistry.trip {...model} compact={context !== undefined && context !== "detail"} />
+      ) : (
+        <MissingViewModel entity={entity} viewType={selectedType} />
+      );
+    }
+    case "flight": {
+      const model = entity.viewModels.flight;
+      return model ? (
+        <viewRegistry.flight {...model} compact={context !== undefined && context !== "detail"} />
+      ) : (
+        <MissingViewModel entity={entity} viewType={selectedType} />
+      );
+    }
     case "event": {
       const model = entity.viewModels.event;
       return model ? (

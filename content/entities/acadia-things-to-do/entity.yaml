@@ -1,0 +1,91 @@
+schemaVersion: 1
+id: acadia-things-to-do
+dataType: markdown
+dataVersion: 1
+title: Acadia things to do
+summary: Coast, carriage roads, Cadillac, Schoodic, west-side sights, and
+  adaptable day plans.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - acadia
+    - things
+    - to
+    - do
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: acadia-alerts
+      title: Acadia alerts
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/acad/park-alerts-acad.json
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: acadia-cadillac
+      title: Cadillac vehicle reservations
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/acad/planyourvisit/vehicle_reservations.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: acadia-schoodic
+      title: Schoodic Peninsula
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/acad/planyourvisit/schoodic.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: acadia-things-to-do-source-1
+      basis: observed
+      statement: The page uses Acadia alerts as evidence for current planning details.
+      sourceIds:
+        - acadia-alerts
+    - id: acadia-things-to-do-source-2
+      basis: observed
+      statement: The page uses Cadillac vehicle reservations as evidence for current
+        planning details.
+      sourceIds:
+        - acadia-cadillac
+    - id: acadia-things-to-do-source-3
+      basis: observed
+      statement: The page uses Schoodic Peninsula as evidence for current planning
+        details.
+      sourceIds:
+        - acadia-schoodic
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: acadia-things-to-do
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

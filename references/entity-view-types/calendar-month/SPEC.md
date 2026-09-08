@@ -3,8 +3,11 @@
 Schema: `CalendarMonthViewModel`: `title`, selected calendar `date`, IANA
 `timeZone`, and `events` containing browser-safe `CalendarEvent` summaries.
 No canonical payload, body text, arbitrary props, or hidden entity references.
-Compatible with collection and detail. The event adapter can supply a
-single-item calendar; the site aggregates eligible event presentations.
+Compatible with collection and detail. Event, trip, flight, and reservation
+adapters can supply a single-item calendar; the site aggregates eligible
+event presentations. Trip end dates are converted from inclusive to exclusive
+before this view; flight intervals span all legs; reservation schedules
+already use the calendar contract. The renderer never performs data-type dispatch.
 
 The view renders a Monday-first, six-week month table. Each day links to
 `#/calendar/day/YYYY-MM-DD?timeZone=<encoded-zone>`. The selected date is

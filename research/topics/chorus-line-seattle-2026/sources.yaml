@@ -1,0 +1,10 @@
+schemaVersion: 1
+entityId: chorus-line-seattle-2026
+sources:
+  - id: production
+    title: A Chorus Line
+    publisher: 5th Avenue Theatre
+    sourceType: primary-documentation
+    url: https://www.5thavenue.org/shows/2026-27/a-chorus-line/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

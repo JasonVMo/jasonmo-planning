@@ -1,0 +1,91 @@
+schemaVersion: 1
+id: acadia-getting-ready
+dataType: markdown
+dataVersion: 1
+title: Getting ready for Acadia
+summary: Lodging choice, Island Explorer schedules, foliage, reservations, rain
+  plans, and safety.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - acadia
+    - getting
+    - ready
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: island-explorer
+      title: Island Explorer 2026 service
+      publisher: Downeast Transportation
+      sourceType: primary-documentation
+      url: https://www.exploreacadia.com/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: maine-foliage
+      title: Maine foliage timing
+      publisher: Maine Forest Service
+      sourceType: primary-documentation
+      url: https://www.maine.gov/dacf/mfs/projects/fall_foliage/whenandwhere/index.html
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: bangor-lodging
+      title: Bangor airport lodging
+      publisher: Bangor International Airport
+      sourceType: primary-documentation
+      url: https://flybangor.com/area-information/local-lodging/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: acadia-getting-ready-source-1
+      basis: observed
+      statement: The page uses Island Explorer 2026 service as evidence for current
+        planning details.
+      sourceIds:
+        - island-explorer
+    - id: acadia-getting-ready-source-2
+      basis: observed
+      statement: The page uses Maine foliage timing as evidence for current planning
+        details.
+      sourceIds:
+        - maine-foliage
+    - id: acadia-getting-ready-source-3
+      basis: observed
+      statement: The page uses Bangor airport lodging as evidence for current planning
+        details.
+      sourceIds:
+        - bangor-lodging
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: acadia-getting-ready
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

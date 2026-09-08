@@ -16,6 +16,8 @@ export type ViewType =
   | "card"
   | "full"
   | "event"
+  | "trip"
+  | "flight"
   | "calendar-month"
   | "calendar-day"
   | "timeline";
@@ -64,6 +66,46 @@ export type EventStatus = "confirmed" | "tentative" | "cancelled";
  * via the `definition` "EventLocation".
  */
 export type EventLocation = string;
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TravelText".
+ */
+export type TravelText = string;
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TripKind".
+ */
+export type TripKind = "trip" | "segment";
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TripStatus".
+ */
+export type TripStatus = "planned" | "confirmed" | "active" | "completed" | "cancelled";
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TripChildRole".
+ */
+export type TripChildRole =
+  | "segment"
+  | "flight"
+  | "reservation"
+  | "things-to-do"
+  | "hikes-walks"
+  | "restaurants"
+  | "getting-ready";
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "FlightStatus".
+ */
+export type FlightStatus = "scheduled" | "delayed" | "cancelled" | "completed";
+/**
+ * @minItems 1
+ * @maxItems 32
+ *
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "FlightLegs".
+ */
+export type FlightLegs = [FlightLeg, ...FlightLeg[]];
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "EventSchedule".
@@ -121,6 +163,40 @@ export type Source1 = {
 };
 
 export interface TrackerContracts {}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TripChild".
+ */
+export interface TripChild {
+  targetId: StableId;
+  role: TripChildRole;
+  order: number;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TripChildViewModel".
+ */
+export interface TripChildViewModel {
+  title: string;
+  summary: string;
+  href: string;
+  role: TripChildRole;
+  order: number;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "FlightLeg".
+ */
+export interface FlightLeg {
+  carrier: TravelText;
+  flightNumber: TravelText;
+  origin: TravelText;
+  destination: TravelText;
+  departAt: CalendarTimestamp;
+  departureTimeZone: TimeZone;
+  arriveAt: CalendarTimestamp;
+  arrivalTimeZone: TimeZone;
+}
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "LabelViewModel".
@@ -200,6 +276,38 @@ export interface CalendarMonthViewModel {
 }
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TripViewModel".
+ */
+export interface TripViewModel {
+  title: string;
+  summary: string;
+  href: string;
+  kind: TripKind;
+  status: TripStatus;
+  startDate: CalendarDate;
+  endDate: CalendarDate;
+  destination: TravelText;
+  timeZone: TimeZone;
+  body: string;
+  /**
+   * @maxItems 200
+   */
+  children: TripChildViewModel[];
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "FlightViewModel".
+ */
+export interface FlightViewModel {
+  title: string;
+  summary: string;
+  href: string;
+  status: FlightStatus;
+  body: string;
+  legs: FlightLegs;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "CalendarDayViewModel".
  */
 export interface CalendarDayViewModel {
@@ -228,6 +336,8 @@ export interface ViewModels {
   card?: CardViewModel;
   full?: FullViewModel;
   event?: EventViewModel;
+  trip?: TripViewModel;
+  flight?: FlightViewModel;
   "calendar-month"?: CalendarMonthViewModel;
   "calendar-day"?: CalendarDayViewModel;
   timeline?: TimelineViewModel;
@@ -262,6 +372,7 @@ export interface SiteEntity {
   id: StableId;
   dataType: string;
   dataVersion: number;
+  lifecycle?: "draft" | "active" | "archived";
   title: string;
   summary: string;
   route: string;
@@ -357,6 +468,45 @@ export interface EventData {
 }
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TripData".
+ */
+export interface TripData {
+  bodyPath: RelativePath;
+  kind: TripKind;
+  status: TripStatus;
+  startDate: CalendarDate;
+  endDate: CalendarDate;
+  destination: TravelText;
+  timeZone: TimeZone;
+  /**
+   * @maxItems 200
+   */
+  children: TripChild[];
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "FlightData".
+ */
+export interface FlightData {
+  bodyPath: RelativePath;
+  status: FlightStatus;
+  legs: FlightLegs;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "ReservationData".
+ */
+export interface ReservationData {
+  bodyPath: RelativePath;
+  kind: "lodging" | "rental-car" | "ticket" | "tour" | "transit";
+  status: "confirmed" | "tentative" | "needs-booking" | "cancelled" | "completed";
+  provider: TravelText;
+  schedule: EventSchedule;
+  location?: EventLocation;
+  bookingUrl?: string;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "Claim".
  */
 export interface Claim {
@@ -371,7 +521,7 @@ export interface Claim {
 export interface Entity {
   schemaVersion: 1;
   id: StableId;
-  dataType: "markdown" | "event";
+  dataType: "markdown" | "event" | "trip" | "flight" | "reservation";
   dataVersion: 1;
   title: string;
   summary: string;
@@ -400,7 +550,7 @@ export interface Entity {
     permittedTypes: [ViewType, ...ViewType[]];
     contextOverrides?: ContextOverrides;
   };
-  data: MarkdownData | EventData;
+  data: MarkdownData | EventData | TripData | FlightData | ReservationData;
   provenance: {
     /**
      * @maxItems 200
@@ -573,7 +723,7 @@ export interface OwnershipPolicy {
 export interface PublicationPolicy {
   schemaVersion: 1;
   policyVersion: number;
-  networkPublicationEnabled: false;
+  networkPublicationEnabled: boolean;
   reviewers: string[];
   destinations: {
     id: StableId;

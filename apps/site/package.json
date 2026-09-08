@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "yarn run -T tsx ../../scripts/site.mts build --target private-owner --base-path /tracker/ --output-dir docs",
+    "build": "yarn run -T tsx ../../scripts/site.mts build --target public --base-path /tracker/ --output-dir docs",
     "dev": "yarn run -T tsx ../../scripts/site.mts dev"
   },
   "dependencies": {

@@ -1,0 +1,10 @@
+schemaVersion: 1
+entityId: earshot-jazz-festival-2026
+sources:
+  - id: event
+    title: Earshot Jazz Festival
+    publisher: Earshot Jazz
+    sourceType: primary-documentation
+    url: https://www.earshot.org/Festival/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

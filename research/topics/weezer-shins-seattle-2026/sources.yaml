@@ -1,0 +1,10 @@
+schemaVersion: 1
+entityId: weezer-shins-seattle-2026
+sources:
+  - id: arena-event
+    title: "Weezer: The Gathering"
+    publisher: Climate Pledge Arena
+    sourceType: primary-documentation
+    url: https://www.climatepledgearena.com/event/weezer-26/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

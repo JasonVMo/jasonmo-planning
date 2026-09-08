@@ -1,0 +1,31 @@
+schemaVersion: 1
+entityId: nyc-hoboken-things-to-do
+sources:
+  - id: lga-transit
+    title: LaGuardia public transportation
+    publisher: Metropolitan Transportation Authority
+    sourceType: primary-documentation
+    url: https://www.mta.info/guides/airports/laguardia/lga-to-nyc
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: path-schedules
+    title: PATH schedules
+    publisher: Port Authority of New York and New Jersey
+    sourceType: primary-documentation
+    url: https://www.panynj.gov/path/en/schedules-maps.html
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: broadway-tickets
+    title: Buying Broadway tickets
+    publisher: The Broadway League
+    sourceType: primary-documentation
+    url: https://www.broadway.org/info/buying-broadway-tickets/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: nycc
+    title: New York Comic Con
+    publisher: ReedPop
+    sourceType: primary-documentation
+    url: https://www.newyorkcomiccon.com/en-us.html
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

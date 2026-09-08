@@ -14,6 +14,8 @@
         "card",
         "full",
         "event",
+        "trip",
+        "flight",
         "calendar-month",
         "calendar-day",
         "timeline"
@@ -50,6 +52,86 @@
       "type": "string",
       "maxLength": 500,
       "pattern": "^[^<>\\u0000-\\u0008\\u000b\\u000c\\u000e-\\u001f]*$"
+    },
+    "TravelText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^[^<>\\u0000-\\u0008\\u000b\\u000c\\u000e-\\u001f]+$"
+    },
+    "TripKind": { "type": "string", "enum": ["trip", "segment"] },
+    "TripStatus": {
+      "type": "string",
+      "enum": ["planned", "confirmed", "active", "completed", "cancelled"]
+    },
+    "TripChildRole": {
+      "type": "string",
+      "enum": [
+        "segment",
+        "flight",
+        "reservation",
+        "things-to-do",
+        "hikes-walks",
+        "restaurants",
+        "getting-ready"
+      ]
+    },
+    "TripChild": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["targetId", "role", "order"],
+      "properties": {
+        "targetId": { "$ref": "#/definitions/StableId" },
+        "role": { "$ref": "#/definitions/TripChildRole" },
+        "order": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "TripChildViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "summary", "href", "role", "order"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "href": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" },
+        "role": { "$ref": "#/definitions/TripChildRole" },
+        "order": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "FlightStatus": {
+      "type": "string",
+      "enum": ["scheduled", "delayed", "cancelled", "completed"]
+    },
+    "FlightLeg": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "carrier",
+        "flightNumber",
+        "origin",
+        "destination",
+        "departAt",
+        "departureTimeZone",
+        "arriveAt",
+        "arrivalTimeZone"
+      ],
+      "properties": {
+        "carrier": { "$ref": "#/definitions/TravelText" },
+        "flightNumber": { "$ref": "#/definitions/TravelText" },
+        "origin": { "$ref": "#/definitions/TravelText" },
+        "destination": { "$ref": "#/definitions/TravelText" },
+        "departAt": { "$ref": "#/definitions/CalendarTimestamp" },
+        "departureTimeZone": { "$ref": "#/definitions/TimeZone" },
+        "arriveAt": { "$ref": "#/definitions/CalendarTimestamp" },
+        "arrivalTimeZone": { "$ref": "#/definitions/TimeZone" }
+      }
+    },
+    "FlightLegs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "flightLegOrder": true,
+      "items": { "$ref": "#/definitions/FlightLeg" }
     },
     "EventSchedule": {
       "type": "object",
@@ -170,6 +252,55 @@
         "events": { "type": "array", "items": { "$ref": "#/definitions/CalendarEvent" } }
       }
     },
+    "TripViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "tripRange": true,
+      "required": [
+        "title",
+        "summary",
+        "href",
+        "kind",
+        "status",
+        "startDate",
+        "endDate",
+        "destination",
+        "timeZone",
+        "body",
+        "children"
+      ],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "href": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" },
+        "kind": { "$ref": "#/definitions/TripKind" },
+        "status": { "$ref": "#/definitions/TripStatus" },
+        "startDate": { "$ref": "#/definitions/CalendarDate" },
+        "endDate": { "$ref": "#/definitions/CalendarDate" },
+        "destination": { "$ref": "#/definitions/TravelText" },
+        "timeZone": { "$ref": "#/definitions/TimeZone" },
+        "body": { "type": "string", "maxLength": 262144 },
+        "children": {
+          "type": "array",
+          "maxItems": 200,
+          "orderedChildren": true,
+          "items": { "$ref": "#/definitions/TripChildViewModel" }
+        }
+      }
+    },
+    "FlightViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "summary", "href", "status", "body", "legs"],
+      "properties": {
+        "title": { "type": "string", "maxLength": 240 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "href": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" },
+        "status": { "$ref": "#/definitions/FlightStatus" },
+        "body": { "type": "string", "maxLength": 262144 },
+        "legs": { "$ref": "#/definitions/FlightLegs" }
+      }
+    },
     "CalendarDayViewModel": {
       "type": "object",
       "additionalProperties": false,
@@ -201,6 +332,8 @@
         "card": { "$ref": "#/definitions/CardViewModel" },
         "full": { "$ref": "#/definitions/FullViewModel" },
         "event": { "$ref": "#/definitions/EventViewModel" },
+        "trip": { "$ref": "#/definitions/TripViewModel" },
+        "flight": { "$ref": "#/definitions/FlightViewModel" },
         "calendar-month": { "$ref": "#/definitions/CalendarMonthViewModel" },
         "calendar-day": { "$ref": "#/definitions/CalendarDayViewModel" },
         "timeline": { "$ref": "#/definitions/TimelineViewModel" }
@@ -251,6 +384,7 @@
         "id": { "$ref": "#/definitions/StableId" },
         "dataType": { "type": "string" },
         "dataVersion": { "type": "integer", "minimum": 1 },
+        "lifecycle": { "type": "string", "enum": ["draft", "active", "archived"] },
         "title": { "type": "string", "maxLength": 240 },
         "summary": { "type": "string", "maxLength": 2000 },
         "route": { "type": "string", "pattern": "^#/entities/[a-z0-9-]+$" },
@@ -384,6 +518,70 @@
         "location": { "$ref": "#/definitions/EventLocation" }
       }
     },
+    "TripData": {
+      "type": "object",
+      "additionalProperties": false,
+      "tripRange": true,
+      "required": [
+        "bodyPath",
+        "kind",
+        "status",
+        "startDate",
+        "endDate",
+        "destination",
+        "timeZone",
+        "children"
+      ],
+      "properties": {
+        "bodyPath": { "$ref": "#/definitions/RelativePath" },
+        "kind": { "$ref": "#/definitions/TripKind" },
+        "status": { "$ref": "#/definitions/TripStatus" },
+        "startDate": { "$ref": "#/definitions/CalendarDate" },
+        "endDate": { "$ref": "#/definitions/CalendarDate" },
+        "destination": { "$ref": "#/definitions/TravelText" },
+        "timeZone": { "$ref": "#/definitions/TimeZone" },
+        "children": {
+          "type": "array",
+          "maxItems": 200,
+          "items": { "$ref": "#/definitions/TripChild" }
+        }
+      }
+    },
+    "FlightData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bodyPath", "status", "legs"],
+      "properties": {
+        "bodyPath": { "$ref": "#/definitions/RelativePath" },
+        "status": { "$ref": "#/definitions/FlightStatus" },
+        "legs": { "$ref": "#/definitions/FlightLegs" }
+      }
+    },
+    "ReservationData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bodyPath", "kind", "status", "provider", "schedule"],
+      "properties": {
+        "bodyPath": { "$ref": "#/definitions/RelativePath" },
+        "kind": {
+          "type": "string",
+          "enum": ["lodging", "rental-car", "ticket", "tour", "transit"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["confirmed", "tentative", "needs-booking", "cancelled", "completed"]
+        },
+        "provider": { "$ref": "#/definitions/TravelText" },
+        "schedule": { "$ref": "#/definitions/EventSchedule" },
+        "location": { "$ref": "#/definitions/EventLocation" },
+        "bookingUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://",
+          "maxLength": 2000
+        }
+      }
+    },
     "Source": {
       "type": "object",
       "additionalProperties": false,
@@ -441,6 +639,18 @@
         {
           "if": { "properties": { "dataType": { "const": "event" } } },
           "then": { "properties": { "data": { "$ref": "#/definitions/EventData" } } }
+        },
+        {
+          "if": { "properties": { "dataType": { "const": "trip" } } },
+          "then": { "properties": { "data": { "$ref": "#/definitions/TripData" } } }
+        },
+        {
+          "if": { "properties": { "dataType": { "const": "flight" } } },
+          "then": { "properties": { "data": { "$ref": "#/definitions/FlightData" } } }
+        },
+        {
+          "if": { "properties": { "dataType": { "const": "reservation" } } },
+          "then": { "properties": { "data": { "$ref": "#/definitions/ReservationData" } } }
         }
       ],
       "required": [
@@ -467,7 +677,10 @@
       "properties": {
         "schemaVersion": { "const": 1 },
         "id": { "$ref": "#/definitions/StableId" },
-        "dataType": { "type": "string", "enum": ["markdown", "event"] },
+        "dataType": {
+          "type": "string",
+          "enum": ["markdown", "event", "trip", "flight", "reservation"]
+        },
         "dataVersion": { "const": 1 },
         "title": { "type": "string", "minLength": 1, "maxLength": 240 },
         "summary": { "type": "string", "minLength": 1, "maxLength": 2000 },
@@ -521,7 +734,13 @@
           }
         },
         "data": {
-          "oneOf": [{ "$ref": "#/definitions/MarkdownData" }, { "$ref": "#/definitions/EventData" }]
+          "oneOf": [
+            { "$ref": "#/definitions/MarkdownData" },
+            { "$ref": "#/definitions/EventData" },
+            { "$ref": "#/definitions/TripData" },
+            { "$ref": "#/definitions/FlightData" },
+            { "$ref": "#/definitions/ReservationData" }
+          ]
         },
         "provenance": {
           "type": "object",
@@ -820,7 +1039,7 @@
       "properties": {
         "schemaVersion": { "const": 1 },
         "policyVersion": { "type": "integer", "minimum": 1 },
-        "networkPublicationEnabled": { "const": false },
+        "networkPublicationEnabled": { "type": "boolean" },
         "reviewers": {
           "type": "array",
           "uniqueItems": true,

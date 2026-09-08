@@ -1,0 +1,10 @@
+schemaVersion: 1
+entityId: hadestown-seattle-2027
+sources:
+  - id: production
+    title: Hadestown
+    publisher: Seattle Theatre Group
+    sourceType: primary-documentation
+    url: https://www.stgpresents.org/events/hadestown/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

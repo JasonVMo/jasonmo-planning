@@ -96,17 +96,18 @@ canonical paths, machine paths, or unapproved source locators.
 | `local`         | Repository content permitted for local viewing    | Never deployable                                |
 | `private-owner` | Owner-eligible projection                         | Requires proven owner-only host authorization   |
 | `private-group` | Explicitly selected and approved group projection | Requires exact approval and group authorization |
-| `public`        | Public-eligible, non-personal projection          | Disabled unless explicitly approved             |
+| `public`        | Public-eligible, non-personal projection          | Owner-approved GitHub Pages destination         |
 
 Repository visibility and client-side login UI are not access controls. Private
 hosting must deny unauthorized direct requests for every artifact class.
 Revocation requires a clean rebuild of content, search, relationships, and
 assets. Rollback may use only an artifact valid under current policy.
 
-The current workflow builds the private-owner project site into tracked
-`docs/`, including `.nojekyll`, but deliberately does not deploy it. The
-manifest remains non-deployable until publication policy and access gates are
-explicitly changed.
+The current workflow builds the exact approved public project site into tracked
+`docs/`, including `.nojekyll`, audits it, and deploys it from `main`. Local and
+private-owner manifests remain non-deployable. Any projected content change
+invalidates the public approval and fails the build until the owner approves the
+new digest.
 
 ## Generated and operational artifacts
 

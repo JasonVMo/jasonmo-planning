@@ -1,0 +1,17 @@
+schemaVersion: 1
+entityId: acadia-restaurants
+sources:
+  - id: acadia-hours
+    title: Acadia operating hours and seasons
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/acad/planyourvisit/hours.htm
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: jordan-pond-house
+    title: Jordan Pond House
+    publisher: Jordan Pond House
+    sourceType: primary-documentation
+    url: https://jordanpondhouse.com/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

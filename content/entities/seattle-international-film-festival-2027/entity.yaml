@@ -1,0 +1,74 @@
+schemaVersion: 1
+id: seattle-international-film-festival-2027
+dataType: event
+dataVersion: 1
+title: Seattle International Film Festival
+summary: The 2027 festival is scheduled for May 13-23.
+lifecycle: active
+taxonomy:
+  primaryTopicId: festivals-events
+  relatedTopicIds: []
+  tags:
+    - festival
+    - film
+    - interested
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: event
+  status: tentative
+  schedule:
+    allDay: true
+    startDate: 2027-05-13
+    endDate: 2027-05-24
+  location: Seattle-area venues
+provenance:
+  sources:
+    - id: event
+      title: SIFF 2027 dates
+      publisher: SIFF
+      sourceType: primary-documentation
+      url: https://www.siff.net/media/news/pr-festival-2027-call-for-entries
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: seattle-international-film-festival-2027-official
+      basis: observed
+      statement: The 2027 festival is scheduled for May 13-23.
+      sourceIds:
+        - event
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: seattle-international-film-festival-2027
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

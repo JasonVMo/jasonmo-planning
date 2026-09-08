@@ -103,7 +103,7 @@ describe("deterministic audience-safe compiler", () => {
     expect(serialized).not.toContain("tracker-data-view-architecture");
     expect(serialized).not.toContain("private-canary-topic");
     expect(approved.entities[0]!.relationships).toHaveLength(0);
-    expect(approved.deployable).toBe(false);
+    expect(approved.deployable).toBe(true);
     await approve(root, "private-group");
     expect(
       serializeCanonical(await compileContent(root, { target: "private-group", basePath: "/" })),

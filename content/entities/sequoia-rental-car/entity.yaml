@@ -1,0 +1,77 @@
+schemaVersion: 1
+id: sequoia-rental-car
+dataType: reservation
+dataVersion: 1
+title: Fresno rental car
+summary: Budget rental from Fresno airport for the Sequoia trip.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - rental-car
+    - confirmed
+    - year-2026
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: rental-car
+  status: confirmed
+  provider: Budget
+  schedule:
+    allDay: false
+    startAt: 2026-09-15T16:00:00-07:00
+    endAt: 2026-09-20T15:00:00-07:00
+    timeZone: America/Los_Angeles
+  location: Fresno Yosemite International Airport
+provenance:
+  sources:
+    - id: owner-itinerary
+      title: Owner-confirmed 2026 itinerary
+      publisher: Repository owner
+      sourceType: owner-material
+      locator: research/intake/initial-trips.md
+      access: restricted
+      retrievedAt: 2026-09-08T13:00:00-07:00
+      fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+  claims:
+    - id: sequoia-rental-car-status
+      basis: confirmed
+      statement: Budget rental from Fresno airport for the Sequoia trip.
+      sourceIds:
+        - owner-itinerary
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: sequoia-rental-car
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

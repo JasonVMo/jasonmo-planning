@@ -1,0 +1,10 @@
+schemaVersion: 1
+entityId: washington-state-fair-2026
+sources:
+  - id: event
+    title: Washington State Fair
+    publisher: Washington State Fair
+    sourceType: primary-documentation
+    url: https://www.thefair.com/washington-state-fair/fair-event-details/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

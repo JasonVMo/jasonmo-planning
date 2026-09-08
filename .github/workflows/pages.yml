@@ -1,4 +1,4 @@
-name: Build GitHub Pages
+name: Publish GitHub Pages
 
 on:
   push:
@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
@@ -23,10 +25,24 @@ jobs:
       - run: corepack enable
       - run: yarn install --immutable
       - run: yarn build
+      - run: yarn publication:check:pages
       - name: Verify committed Pages artifact
         run: |
           git status --short -- docs
           test -z "$(git status --porcelain --untracked-files=all -- docs)"
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v4
         with:
           path: docs
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

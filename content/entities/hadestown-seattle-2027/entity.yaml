@@ -1,0 +1,74 @@
+schemaVersion: 1
+id: hadestown-seattle-2027
+dataType: event
+dataVersion: 1
+title: Hadestown
+summary: Paramount Theatre engagement running January 19-24.
+lifecycle: active
+taxonomy:
+  primaryTopicId: productions
+  relatedTopicIds: []
+  tags:
+    - theater
+    - musical
+    - interested
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: event
+  status: tentative
+  schedule:
+    allDay: true
+    startDate: 2027-01-19
+    endDate: 2027-01-25
+  location: Paramount Theatre, Seattle
+provenance:
+  sources:
+    - id: production
+      title: Hadestown
+      publisher: Seattle Theatre Group
+      sourceType: primary-documentation
+      url: https://www.stgpresents.org/events/hadestown/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: hadestown-seattle-2027-official
+      basis: observed
+      statement: Paramount Theatre engagement running January 19-24.
+      sourceIds:
+        - production
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: hadestown-seattle-2027
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

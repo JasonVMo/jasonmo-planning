@@ -4,6 +4,8 @@ import type {
   CalendarMonthViewModel,
   CardViewModel,
   EventViewModel,
+  TripViewModel,
+  FlightViewModel,
   FullViewModel,
   LabelViewModel,
   RenderContext,
@@ -20,6 +22,8 @@ export interface ViewModelMap {
   card: CardViewModel;
   full: FullViewModel;
   event: EventViewModel;
+  trip: TripViewModel;
+  flight: FlightViewModel;
   "calendar-month": CalendarMonthViewModel;
   "calendar-day": CalendarDayViewModel;
   timeline: TimelineViewModel;
@@ -33,6 +37,8 @@ export interface Presentation {
   body: string;
   badges: string[];
   event?: Pick<CalendarEvent, "kind" | "status" | "schedule" | "location">;
+  trip?: Omit<TripViewModel, "title" | "summary" | "href" | "body">;
+  flight?: Pick<FlightViewModel, "status" | "legs">;
 }
 
 export type AdapterRegistry = ReadonlyMap<
@@ -57,6 +63,26 @@ export const DATA_TYPES: ReadonlyMap<string, DataTypeRegistration> = new Map<
       contextDefaults: { collection: "event", detail: "event" },
     },
   ],
+  [
+    "trip",
+    { version: 1, fallbackView: "trip", contextDefaults: { collection: "trip", detail: "trip" } },
+  ],
+  [
+    "flight",
+    {
+      version: 1,
+      fallbackView: "flight",
+      contextDefaults: { collection: "flight", detail: "flight" },
+    },
+  ],
+  [
+    "reservation",
+    {
+      version: 1,
+      fallbackView: "event",
+      contextDefaults: { collection: "event", detail: "event" },
+    },
+  ],
 ]);
 export const VIEW_REGISTRY: Readonly<
   Record<
@@ -68,6 +94,8 @@ export const VIEW_REGISTRY: Readonly<
         | "CardViewModel"
         | "FullViewModel"
         | "EventViewModel"
+        | "TripViewModel"
+        | "FlightViewModel"
         | "CalendarMonthViewModel"
         | "CalendarDayViewModel"
         | "TimelineViewModel";
@@ -89,6 +117,8 @@ export const VIEW_REGISTRY: Readonly<
   },
   full: { schema: "FullViewModel", contexts: ["collection", "detail"] },
   event: { schema: "EventViewModel", contexts: ["collection", "relationship", "detail"] },
+  trip: { schema: "TripViewModel", contexts: ["collection", "relationship", "detail"] },
+  flight: { schema: "FlightViewModel", contexts: ["collection", "relationship", "detail"] },
   "calendar-month": { schema: "CalendarMonthViewModel", contexts: ["collection", "detail"] },
   "calendar-day": { schema: "CalendarDayViewModel", contexts: ["collection", "detail"] },
   timeline: { schema: "TimelineViewModel", contexts: ["navigation", "collection", "detail"] },
@@ -131,22 +161,82 @@ function calendarEvent(p: Presentation): CalendarEvent {
 
 function calendarCollection(p: Presentation): CalendarMonthViewModel {
   const event = calendarEvent(p);
-  return { title: p.title, ...calendarStart(event.schedule), events: [event] };
+  return {
+    title: p.title,
+    ...calendarStart(event.schedule),
+    ...(p.trip ? { timeZone: p.trip.timeZone } : {}),
+    events: [event],
+  };
 }
+
+const eventAdapters = {
+  ...commonAdapters,
+  event: (p: Presentation): EventViewModel => ({ ...calendarEvent(p), body: p.body }),
+  "calendar-month": calendarCollection,
+  "calendar-day": calendarCollection,
+  timeline: calendarCollection,
+};
 
 export const ADAPTERS: AdapterRegistry = new Map<
   string,
   Partial<{ [V in ViewType]: (value: Presentation) => ViewModelMap[V] }>
 >([
   ["markdown", commonAdapters],
+  ["event", eventAdapters],
+  ["reservation", eventAdapters],
   [
-    "event",
+    "trip",
     {
-      ...commonAdapters,
-      event: (p: Presentation): EventViewModel => ({ ...calendarEvent(p), body: p.body }),
-      "calendar-month": calendarCollection,
-      "calendar-day": calendarCollection,
-      timeline: calendarCollection,
+      ...eventAdapters,
+      trip: (p: Presentation): TripViewModel => {
+        if (!p.trip) throw new Error("Trip adapter requires an audience-safe trip presentation");
+        return {
+          title: p.title,
+          summary: p.summary,
+          href: p.href,
+          body: p.body,
+          kind: p.trip.kind,
+          status: p.trip.status,
+          startDate: p.trip.startDate,
+          endDate: p.trip.endDate,
+          destination: p.trip.destination,
+          timeZone: p.trip.timeZone,
+          children: p.trip.children.map((child) => ({
+            title: child.title,
+            summary: child.summary,
+            href: child.href,
+            role: child.role,
+            order: child.order,
+          })),
+        };
+      },
+    },
+  ],
+  [
+    "flight",
+    {
+      ...eventAdapters,
+      flight: (p: Presentation): FlightViewModel => {
+        if (!p.flight)
+          throw new Error("Flight adapter requires an audience-safe flight presentation");
+        return {
+          title: p.title,
+          summary: p.summary,
+          href: p.href,
+          body: p.body,
+          status: p.flight.status,
+          legs: p.flight.legs.map((leg) => ({
+            carrier: leg.carrier,
+            flightNumber: leg.flightNumber,
+            origin: leg.origin,
+            destination: leg.destination,
+            departAt: leg.departAt,
+            departureTimeZone: leg.departureTimeZone,
+            arriveAt: leg.arriveAt,
+            arrivalTimeZone: leg.arrivalTimeZone,
+          })) as FlightViewModel["legs"],
+        };
+      },
     },
   ],
 ]);

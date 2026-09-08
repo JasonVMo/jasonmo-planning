@@ -1,0 +1,75 @@
+schemaVersion: 1
+id: gorillaz-seattle-2026
+dataType: event
+dataVersion: 1
+title: Gorillaz
+summary: Halloween arena show and strong alternative-music match.
+lifecycle: active
+taxonomy:
+  primaryTopicId: concerts
+  relatedTopicIds: []
+  tags:
+    - concert
+    - alternative
+    - interested
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: event
+  status: tentative
+  schedule:
+    allDay: false
+    startAt: 2026-10-31T19:30:00-07:00
+    endAt: 2026-10-31T23:00:00-07:00
+    timeZone: America/Los_Angeles
+  location: Climate Pledge Arena, Seattle
+provenance:
+  sources:
+    - id: arena-event
+      title: Gorillaz
+      publisher: Climate Pledge Arena
+      sourceType: primary-documentation
+      url: https://www.climatepledgearena.com/event/gorillaz-26/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: gorillaz-seattle-2026-official
+      basis: observed
+      statement: Halloween arena show and strong alternative-music match.
+      sourceIds:
+        - arena-event
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: gorillaz-seattle-2026
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

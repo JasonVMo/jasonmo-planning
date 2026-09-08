@@ -1,0 +1,10 @@
+schemaVersion: 1
+entityId: emerald-city-comic-con-2027
+sources:
+  - id: event
+    title: Emerald City Comic Con
+    publisher: ReedPop
+    sourceType: primary-documentation
+    url: https://www.emeraldcitycomiccon.com/
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

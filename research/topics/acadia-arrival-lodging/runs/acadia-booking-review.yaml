@@ -1,0 +1,18 @@
+schemaVersion: 1
+runId: acadia-booking-review
+workflow: research-topic
+baseRevision: 628e8a1dc9c680379b3c9daca6b5cd21a20c1b5a
+requestKey: 7460bfff3bb0891fd7e910d320b331d92d92a84a3e6110d6f2cea57376fbfdf4
+scopeIds:
+  - acadia-arrival-lodging
+sourceEvidence:
+  - sourceId: owner-itinerary
+    retrievedAt: 2026-09-08T12:55:00-07:00
+    fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+changedEntityIds: []
+validation: Owner-supervised source review completed; canonical summary remained current.
+startedAt: 2026-09-08T12:50:00-07:00
+endedAt: 2026-09-08T12:55:00-07:00
+outcome: no-change
+reviewItems: []
+continuation: Compare refundable Bangor, Ellsworth, and Bar Harbor options and book one.

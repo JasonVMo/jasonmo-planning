@@ -1,0 +1,14 @@
+schemaVersion: 1
+entityId: hoboken-lodging
+objective: Keep Hoboken lodging accurate, useful, and publicly safe.
+status: active
+completedSubtopics:
+  - Initial owner-directed research and structure captured
+remainingSubtopics:
+  - Recheck time-sensitive conditions and availability
+sourceCursors: []
+openQuestions: []
+contradictions: []
+nextAction: Choose and reserve an option, then update the public status without
+  adding a confirmation code.
+nextHumanReviewAt: 2026-09-12T09:00:00-07:00

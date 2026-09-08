@@ -63,13 +63,23 @@ const input: Presentation = {
     location: data.location!,
   },
 };
+const eventViews = [
+  "label",
+  "tile",
+  "card",
+  "full",
+  "event",
+  "calendar-month",
+  "calendar-day",
+  "timeline",
+] as const;
 
 async function eventFixture(): Promise<string> {
   const root = await fixture();
   await editEntity(root, (entity) => {
     entity.dataType = "event";
     entity.data = structuredClone(data);
-    entity.view = { permittedTypes: [...VIEW_TYPES] };
+    entity.view = { permittedTypes: [...eventViews] };
   });
   return root;
 }
@@ -220,9 +230,10 @@ describe("strict event schedules and data schemas", () => {
 
 describe("calendar adapters and context selection", () => {
   it("validates every registered pair and preserves generic Markdown adapters", () => {
-    expect(supportedViews("event")).toEqual(VIEW_TYPES);
+    expect(supportedViews("event")).toEqual(eventViews);
+    expect(eventViews).toEqual(VIEW_TYPES.filter((view) => view !== "trip" && view !== "flight"));
     expect(supportedViews("markdown")).toEqual(["label", "tile", "card", "full"]);
-    for (const view of VIEW_TYPES) expect(adaptView("event", view, input).title).toBe(input.title);
+    for (const view of eventViews) expect(adaptView("event", view, input).title).toBe(input.title);
     for (const view of ["label", "tile", "card", "full"] as const)
       expect(adaptView("event", view, input)).toEqual(adaptView("markdown", view, input));
     expect(adaptView("event", "event", input).body).toBe(input.body);
@@ -263,7 +274,7 @@ describe("calendar adapters and context selection", () => {
     const entity: Pick<Entity, "id" | "dataType" | "view"> = {
       id: "synthetic-event",
       dataType: "event",
-      view: { permittedTypes: [...VIEW_TYPES] },
+      view: { permittedTypes: [...eventViews] },
     };
     expect(resolveView(entity, "detail")).toBe("event");
     expect(resolveView(entity, "collection")).toBe("event");
@@ -401,7 +412,7 @@ describe("event loading, reconciliation and audience-safe projection", () => {
       schedule: { ...timed, startAt: "2088-03-14T12:34:00Z", endAt: "2088-03-14T13:34:00Z" },
       location: CANARY,
     };
-    hidden.view = { permittedTypes: [...VIEW_TYPES] };
+    hidden.view = { permittedTypes: [...eventViews] };
     hidden.title = CANARY;
     await write(root, hiddenPath, hidden);
     const body = await readFile(join(root, BODY_PATH), "utf8");
@@ -421,7 +432,7 @@ describe("event loading, reconciliation and audience-safe projection", () => {
       expect(bytes).not.toContain("2088-03-14");
       expect(manifest.entities[0]!.viewModels.event!.body).not.toContain(CANARY);
       expect(manifest.entities[0]!.relationships).toHaveLength(0);
-      expect(manifest.deployable).toBe(false);
+      expect(manifest.deployable).toBe(target === "public");
     }
     const local = serializeCanonical(projectCorpus(corpus, { target: "local", basePath: "/" }));
     expect(local).toContain(CANARY);

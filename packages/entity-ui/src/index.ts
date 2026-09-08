@@ -14,6 +14,8 @@ export { FullView } from "./views/FullView.tsx";
 export { LabelView } from "./views/LabelView.tsx";
 export { TileView } from "./views/TileView.tsx";
 export { EventView } from "./views/EventView.tsx";
+export { TripView } from "./views/TripView.tsx";
+export { FlightView } from "./views/FlightView.tsx";
 export { CalendarMonthView } from "./views/CalendarMonthView.tsx";
 export { CalendarDayView } from "./views/CalendarDayView.tsx";
 export { TimelineView } from "./views/TimelineView.tsx";

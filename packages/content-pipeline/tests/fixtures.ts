@@ -21,15 +21,18 @@ export async function fixture(): Promise<string> {
   const root = join(ROOT, "research/.local", `test-${randomUUID()}`);
   await mkdir(root, { recursive: true });
   for (const path of [
-    "content/entities",
+    "content/entities/tracker-overview",
+    "content/entities/tracker-data-view-architecture",
     "references/taxonomy.yaml",
     "references/ownership",
-    "references/publication",
-    "research/topics",
+    "references/publication/policy.yaml",
+    "research/topics/tracker-overview",
+    "research/topics/tracker-data-view-architecture",
   ]) {
     await mkdir(dirname(join(root, path)), { recursive: true });
     await cp(join(ROOT, path), join(root, path), { recursive: true });
   }
+  await mkdir(join(root, "references/publication/approvals"), { recursive: true });
   active.add(root);
   return root;
 }

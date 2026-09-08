@@ -1,6 +1,60 @@
 schemaVersion: 1
 policyVersion: 1
-networkPublicationEnabled: false
-reviewers: []
-destinations: []
-publicSourceHosts: []
+networkPublicationEnabled: true
+reviewers: [jasonmo_microsoft]
+destinations:
+  - id: github-pages
+    audience: public
+publicSourceHosts:
+  - 5thavenue.org
+  - aa.usno.navy.mil
+  - barharbormaine.gov
+  - broadway.org
+  - chicagothemusical.com
+  - climatepledgearena.com
+  - earshot.org
+  - emeraldcitycomiccon.com
+  - exploreacadia.com
+  - flybangor.com
+  - forecast.weather.gov
+  - hamiltonmusical.com
+  - jordanpondhouse.com
+  - maine.gov
+  - mta.info
+  - nps.gov
+  - nywaterway.com
+  - panynj.gov
+  - recreation.gov
+  - seahawks.com
+  - seattlerep.org
+  - siff.net
+  - showboxpresents.com
+  - sixonbroadway.com
+  - stevens.edu
+  - stgpresents.org
+  - tdf.org
+  - thefair.com
+  - visitsequoia.com
+  - www.5thavenue.org
+  - www.broadway.org
+  - www.climatepledgearena.com
+  - www.earshot.org
+  - www.emeraldcitycomiccon.com
+  - www.exploreacadia.com
+  - www.hamiltonmusical.com
+  - www.jordanpondhouse.com
+  - www.maine.gov
+  - www.mta.info
+  - www.newyorkcomiccon.com
+  - www.nps.gov
+  - www.panynj.gov
+  - www.recreation.gov
+  - www.seahawks.com
+  - www.seattlerep.org
+  - www.siff.net
+  - www.showboxpresents.com
+  - www.sixonbroadway.com
+  - www.stevens.edu
+  - www.stgpresents.org
+  - www.tdf.org
+  - www.thefair.com

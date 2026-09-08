@@ -1,6 +1,6 @@
 # Personal Tracker Delivery Plan
 
-**Status:** Ready for owner review
+**Status:** Approved for execution
 
 **Planning baseline:** 2026-09-08
 
@@ -13,6 +13,22 @@ Durable engineering constraints live in
 [the architecture reference](references/architecture.md), and owner-confirmed
 research preferences live in
 [the research profile](references/research-profile.md).
+
+## Execution result
+
+The initial roadmap was executed on 2026-09-08:
+
+- trip, flight, reservation, trip-view, and flight-view contracts are active;
+- the final Dashboard, Calendar, Trips, Events, and Archive routes are active;
+- Sequoia and Acadia/NYC are represented as single- and multi-segment trips;
+- selected Seahawks games, concerts, productions, and festivals are seeded;
+- Archive uses the confirmed five-week threshold from each item's end date;
+- three supervised research cycles are recorded;
+- the exact public projection is approved, audited, and configured to deploy
+  from `main`.
+
+Dynamic conditions, booking choices, weather, ticket inventory, and future event
+announcements remain recurring research rather than unfinished implementation.
 
 ## 1. Target outcome
 
@@ -31,8 +47,8 @@ The primary navigation will be:
    structured research sections.
 3. **Events** - categorized Seahawks games, concerts, productions, and other
    festivals/events.
-4. **Archive** - trips and events after seven full calendar days have elapsed
-   since they ended.
+4. **Archive** - trips and events after five weeks have elapsed since their end
+   date.
 
 Search remains a utility available throughout the site rather than a fifth
 content category. The root route becomes an upcoming dashboard linking into
@@ -48,7 +64,7 @@ Observed at the planning baseline:
 | Data types     | `markdown` and `event`                                                                                                                        |
 | Views          | Label, tile, card, full, event, calendar month/day, and timeline                                                                              |
 | Site           | Generic dashboard, taxonomy pages, entity pages, search, and calendar                                                                         |
-| Build          | Minified private-owner site generated into tracked `docs/`; deployment disabled                                                               |
+| Build          | Minified public site generated into tracked `docs/`; main-branch Pages deployment authorized                                                  |
 | Validation     | Schema, graph, projection, artifact, Storybook, and browser checks exist                                                                      |
 | Content health | No duplicate titles, orphans, unused topics, or open contradictions                                                                           |
 | Research       | Real supervised research cycles have not yet been completed                                                                                   |
@@ -77,9 +93,9 @@ All phases follow these rules:
   broader-audience models.
 - The restricted owner itinerary in `research/intake/initial-trips.md` is an
   input to supervised authoring, never a browser import.
-- New content defaults to private/local. Pages deployment remains disabled
-  until direct access to every HTML, JavaScript, JSON, and asset URL is proven
-  to match the approved audience.
+- Public site content must be explicitly public, non-personal, and safe for
+  direct access to every HTML, JavaScript, JSON, and asset URL. Restricted
+  itinerary intake remains outside canonical browser content.
 - Research and taxonomy changes are reviewed proposals. One reconciliation
   writer promotes approved content changes.
 - Each phase ends with targeted checks and `corepack yarn check`. Generated
@@ -157,9 +173,12 @@ Acadia & New York City
 Archive is a presentation state, not an automated canonical move:
 
 - derive the effective end date from the structured trip or event schedule;
-- keep an item active through seven complete calendar days after it ends;
-- show it in Archive beginning at midnight on the eighth day, evaluated in
-  `America/Los_Angeles`;
+- derive trip archival from the trip's inclusive `endDate`, not from its last
+  segment, flight, reservation, research update, or build time;
+- keep an item active until five weeks (35 calendar days) have elapsed after
+  its end date;
+- show it in Archive at midnight on the 35th day after its end date, evaluated
+  in `America/Los_Angeles`;
 - keep its stable entity route and relationships;
 - exclude archived items from default upcoming lists while retaining search
   access;
@@ -211,14 +230,12 @@ Implementation constraints:
 
 **Actions:**
 
-1. Approve or revise the taxonomy proposal and the disposition of the two
-   current foundation entities.
-2. Confirm that dates in the supplied itineraries refer to 2026 before writing
-   canonical schedules.
-3. Confirm the NYC airport typo in the intake: the flight arrives at LGA, while
-   one research instruction says `LGR`.
-4. Confirm Archive's seven-full-days rule and `America/Los_Angeles` evaluation
-   zone.
+1. Use the proposed taxonomy and preserve the two current foundation entities
+   as retired IDs after their durable guidance is represented in references.
+2. Use 2026 for all supplied itinerary dates.
+3. Use LGA, New York's LaGuardia Airport, for the NYC arrival.
+4. Use the trip end date and a five-week (35-day) Archive threshold evaluated
+   in `America/Los_Angeles`.
 5. Classify itinerary fields:
    - trip dates, destinations, and general research as private;
    - confirmation codes, account/loyalty identifiers, addresses, and family
@@ -230,9 +247,8 @@ Implementation constraints:
    by path and SHA-256. Treat them as source material until each claim is
    reconciled.
 
-**Exit gate:** Owner-approved taxonomy/ID table, ambiguity decisions, sensitive
-field map, and source inventory. No canonical taxonomy or content changes occur
-before this gate.
+**Exit gate:** Taxonomy/ID table, confirmed date/airport/archive decisions,
+sensitive field map, and source inventory are recorded.
 
 ### Phase 1 - Add trip, flight, and reservation contracts
 
@@ -457,25 +473,26 @@ primary navigation areas are useful with real content.
 manual private-data inspection pass; the supervised research gate has real
 evidence rather than synthetic fixtures.
 
-### Phase 8 - Make a separate publication decision
+### Phase 8 - Publish the approved public projection
 
-**Entry:** All prior phases pass. This phase is not implicitly authorized.
+**Entry:** All prior phases pass. Public GitHub Pages publication from `main`
+is explicitly owner-authorized.
 
 **Actions:**
 
-1. Decide whether Pages access is owner-only, a named private group, or not
-   enabled.
-2. Prove unauthenticated and unauthorized direct requests fail for HTML,
-   JavaScript, JSON manifests, and assets.
-3. Reconcile the chosen audience with the publication policy, approvals, and
-   `deployable` manifest state.
-4. Separate validation/build permissions from deployment permissions.
-5. Enable a deploy job only after the owner explicitly approves the host,
-   audience, exact revision, and artifact digest.
+1. Build only the public projection into `docs/`.
+2. Prove private intake, confirmation codes, personal context, internal source
+   locators, and non-public entities are absent from HTML, JavaScript, JSON,
+   search data, and assets.
+3. Reconcile the public audience with the publication policy, exact approval,
+   and `deployable` manifest state.
+4. Keep validation/build permissions separate from deployment permissions.
+5. Configure the Pages workflow to deploy the audited `docs/` artifact after
+   commits reach `main`, with manual dispatch available for recovery.
 
-**Exit gate:** Either deployment remains deliberately disabled, or an
-owner-approved deployment design has passed direct access tests. A successful
-`docs/` build alone never closes this gate.
+**Exit gate:** The public artifact is approval-bound and deployable, the
+workflow publishes it only from `main` or manual dispatch, and privacy scans
+find no restricted intake.
 
 ## 7. Dependency order
 
@@ -503,15 +520,15 @@ The roadmap is complete when:
 - every selected event carries useful date, venue, ticket/status, and source
   data;
 - Sequoia and Acadia/NYC meet their trip-specific research requirements;
-- items enter Archive only after the defined seven-day grace period without
+- items enter Archive only after the defined five-week grace period without
   canonical file moves;
 - private details never appear in summary, search, calendar, or
   broader-audience output;
 - prior research is incorporated with provenance before any superseded input is
   removed;
 - real supervised refresh cycles preserve manual content and failure semantics;
-- the minified Pages artifact remains reproducible and deployment remains
-  separately authorized.
+- the minified public Pages artifact remains reproducible and is deployed only
+  from the audited `docs/` output.
 
 ## 9. Deliberate non-goals
 

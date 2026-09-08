@@ -1,0 +1,11 @@
+schemaVersion: 1
+entityId: seahawks-patriots-2026
+sources:
+  - id: seahawks-schedule
+    title: 2026 Seahawks schedule
+    publisher: Seattle Seahawks
+    sourceType: primary-documentation
+    url: https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00
+    fingerprint: 275e1aa0454b8448375384f28812fcb22118f838743028f935f2c78d2eaf8b63

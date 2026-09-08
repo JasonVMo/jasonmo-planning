@@ -32,3 +32,10 @@ infer events from research timestamps, or parse dates from Markdown.
 Synthetic stories cover appointments, multi-day/all-day events, cancellation,
 compact occurrences, long text, light/dark, narrow screens, and a second
 synthetic data type using the same renderer.
+
+Trip, flight, and reservation adapters also reuse this presentation without
+changing its generic kind/status enums. Trips convert inclusive dates to an
+exclusive all-day end; flights span first departure to last arrival;
+reservations copy the existing schedule. Their dedicated travel data/view
+specifications define the explicit status mappings. Event permission remains
+the aggregate-calendar opt-in for every compatible data type.

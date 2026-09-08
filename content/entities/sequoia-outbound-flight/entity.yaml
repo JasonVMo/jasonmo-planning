@@ -1,0 +1,78 @@
+schemaVersion: 1
+id: sequoia-outbound-flight
+dataType: flight
+dataVersion: 1
+title: Seattle to Fresno
+summary: Alaska 383 from SEA to FAT on September 15.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - flight
+    - year-2026
+relationships: []
+view:
+  defaultType: flight
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+    - flight
+  contextOverrides:
+    navigation: label
+    collection: flight
+    relationship: flight
+    search: label
+    detail: flight
+data:
+  bodyPath: body.md
+  status: scheduled
+  legs:
+    - carrier: Alaska Airlines
+      flightNumber: "383"
+      origin: SEA
+      destination: FAT
+      departAt: 2026-09-15T12:59:00-07:00
+      departureTimeZone: America/Los_Angeles
+      arriveAt: 2026-09-15T15:21:00-07:00
+      arrivalTimeZone: America/Los_Angeles
+provenance:
+  sources:
+    - id: owner-itinerary
+      title: Owner-confirmed 2026 itinerary
+      publisher: Repository owner
+      sourceType: owner-material
+      locator: research/intake/initial-trips.md
+      access: restricted
+      retrievedAt: 2026-09-08T13:00:00-07:00
+      fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+  claims:
+    - id: sequoia-outbound-flight-schedule
+      basis: confirmed
+      statement: Alaska 383 from SEA to FAT on September 15.
+      sourceIds:
+        - owner-itinerary
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: sequoia-outbound-flight
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

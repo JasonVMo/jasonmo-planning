@@ -1,0 +1,75 @@
+schemaVersion: 1
+id: sequoia-hikes-walks
+dataType: markdown
+dataVersion: 1
+title: Sequoia hikes & walks
+summary: Region-grouped walks and hikes with practical access from Three Rivers.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - sequoia
+    - hikes
+    - walks
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: seki-hikes
+      title: Day hikes
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/dayhikes.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+    - id: seki-trails
+      title: Trail conditions
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/trailcond.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: sequoia-hikes-walks-source-1
+      basis: observed
+      statement: The page uses Day hikes as evidence for current planning details.
+      sourceIds:
+        - seki-hikes
+    - id: sequoia-hikes-walks-source-2
+      basis: observed
+      statement: The page uses Trail conditions as evidence for current planning details.
+      sourceIds:
+        - seki-trails
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: sequoia-hikes-walks
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

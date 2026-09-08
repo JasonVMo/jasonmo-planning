@@ -27,9 +27,9 @@ invalid choices fail; only site defaults can fall through to the registered
 data-type fallback.
 
 Registered data types may supply implicit context defaults before the generic
-site defaults. Event data uses this for collection/detail; explicit selection
+site defaults. Event, trip, flight, and reservation data use this for collection/detail; explicit selection
 precedence and compatibility requirements are unchanged. The Calendar route
-adds a reachable event presentation only for event entities that permit it.
+adds a reachable event presentation only for compatible entities that permit it.
 
 An explicit `defaultType` is independently checked for registration, entity
 permission, and an available adapter even if every context overrides it. A
@@ -37,15 +37,19 @@ fully overridden default cannot bypass validation or expose a forbidden body.
 
 An entity references central ownership and research state. It never grants
 write permission or publication approval. General typed relationships may
-cycle; dangling IDs and duplicate edges fail. Composition is not implemented:
-unknown collection payloads fail rather than being executed.
+cycle; dangling IDs and duplicate edges fail. Bounded trip composition is
+validated separately: targets must exist, child order is unique, cycles are
+forbidden, and each segment has one parent leading to exactly one trip root.
+General collection payloads remain unsupported and cannot name executable components.
 
 Adding a production data type requires schema, data version, SPEC, migration
 decision, projection semantics, registered adapter, and fixtures. It does not
 require a new renderer.
 
-The opt-in `event` data contract retains schema/data version 1 alongside
-unchanged `markdown` entities. Both types require a confined Markdown
-`data.bodyPath`; their other payload fields cannot be mixed. See the
+The opt-in `event`, `trip`, `flight`, and `reservation` data contracts retain
+schema/data version 1 alongside unchanged `markdown` entities. All types
+require a confined Markdown `data.bodyPath`; their other payload fields cannot
+be mixed. See the [trip](../trip/SPEC.md), [flight](../flight/SPEC.md),
+[reservation](../reservation/SPEC.md), and
 [event contract](../event/SPEC.md) for date-only and timed interval validation,
 private/local defaults, and the deliberate no-conversion migration decision.

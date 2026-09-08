@@ -1,0 +1,74 @@
+schemaVersion: 1
+id: peter-pan-goes-wrong-2026
+dataType: event
+dataVersion: 1
+title: Peter Pan Goes Wrong
+summary: Seattle Rep production running November 27-January 3.
+lifecycle: active
+taxonomy:
+  primaryTopicId: productions
+  relatedTopicIds: []
+  tags:
+    - theater
+    - seattle-rep
+    - interested
+relationships: []
+view:
+  defaultType: event
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+  contextOverrides:
+    navigation: label
+    collection: event
+    relationship: event
+    search: label
+    detail: event
+data:
+  bodyPath: body.md
+  kind: event
+  status: tentative
+  schedule:
+    allDay: true
+    startDate: 2026-11-27
+    endDate: 2027-01-04
+  location: Seattle Rep, Seattle
+provenance:
+  sources:
+    - id: production
+      title: Peter Pan Goes Wrong
+      publisher: Seattle Rep
+      sourceType: primary-documentation
+      url: https://www.seattlerep.org/plays/202627-season/peter-pan-goes-wrong/
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: peter-pan-goes-wrong-2026-official
+      basis: observed
+      statement: Seattle Rep production running November 27-January 3.
+      sourceIds:
+        - production
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: peter-pan-goes-wrong-2026
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-08T13:05:50-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00

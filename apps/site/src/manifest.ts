@@ -5,6 +5,13 @@ import {
   isCalendarDate,
   isTimeZone,
   isEventSchedule,
+  isFlightLegs,
+  isTravelText,
+  tripRangeError,
+  orderedChildrenError,
+  TRIP_CHILD_ROLES,
+  type TripViewModel,
+  type FlightViewModel,
   type CalendarEvent,
   type EventViewModel,
   type CalendarMonthViewModel,
@@ -99,6 +106,74 @@ function isFullModel(value: unknown): value is FullViewModel {
   );
 }
 
+function isTravelHeader(value: JsonObject): boolean {
+  return (
+    typeof value.title === "string" &&
+    value.title.length <= 240 &&
+    typeof value.summary === "string" &&
+    value.summary.length <= 2000 &&
+    typeof value.href === "string" &&
+    /^#\/entities\/[a-z0-9-]+$/.test(value.href) &&
+    typeof value.body === "string" &&
+    value.body.length <= 262144
+  );
+}
+
+function isTripModel(value: unknown): value is TripViewModel {
+  return (
+    isObject(value) &&
+    onlyKeys(value, [
+      "title",
+      "summary",
+      "href",
+      "body",
+      "kind",
+      "status",
+      "startDate",
+      "endDate",
+      "destination",
+      "timeZone",
+      "children",
+    ]) &&
+    isTravelHeader(value) &&
+    isStringUnion(value.kind, ["trip", "segment"]) &&
+    isStringUnion(value.status, ["planned", "confirmed", "active", "completed", "cancelled"]) &&
+    isCalendarDate(value.startDate) &&
+    isCalendarDate(value.endDate) &&
+    !tripRangeError(value) &&
+    isTravelText(value.destination) &&
+    isTimeZone(value.timeZone) &&
+    Array.isArray(value.children) &&
+    value.children.length <= 200 &&
+    value.children.every(
+      (child) =>
+        isObject(child) &&
+        onlyKeys(child, ["title", "summary", "href", "role", "order"]) &&
+        typeof child.title === "string" &&
+        child.title.length <= 240 &&
+        typeof child.summary === "string" &&
+        child.summary.length <= 2000 &&
+        typeof child.href === "string" &&
+        /^#\/entities\/[a-z0-9-]+$/.test(child.href) &&
+        isStringUnion(child.role, TRIP_CHILD_ROLES) &&
+        typeof child.order === "number" &&
+        Number.isInteger(child.order) &&
+        child.order >= 0,
+    ) &&
+    !orderedChildrenError(value.children)
+  );
+}
+
+function isFlightModel(value: unknown): value is FlightViewModel {
+  return (
+    isObject(value) &&
+    onlyKeys(value, ["title", "summary", "href", "body", "status", "legs"]) &&
+    isTravelHeader(value) &&
+    isStringUnion(value.status, ["scheduled", "delayed", "cancelled", "completed"]) &&
+    isFlightLegs(value.legs)
+  );
+}
+
 function isViewModels(value: unknown): value is ViewModels {
   if (
     !isObject(value) ||
@@ -108,6 +183,8 @@ function isViewModels(value: unknown): value is ViewModels {
     (value.card !== undefined && !isCardModel(value.card)) ||
     (value.full !== undefined && !isFullModel(value.full)) ||
     (value.event !== undefined && !isEventModel(value.event)) ||
+    (value.trip !== undefined && !isTripModel(value.trip)) ||
+    (value.flight !== undefined && !isFlightModel(value.flight)) ||
     (value["calendar-month"] !== undefined && !isCalendarModel(value["calendar-month"])) ||
     (value["calendar-day"] !== undefined && !isCalendarModel(value["calendar-day"])) ||
     (value.timeline !== undefined && !isCalendarModel(value.timeline))
@@ -199,6 +276,7 @@ function isEntity(value: unknown): value is SiteEntity {
       "id",
       "dataType",
       "dataVersion",
+      "lifecycle",
       "title",
       "summary",
       "route",
@@ -213,6 +291,8 @@ function isEntity(value: unknown): value is SiteEntity {
     typeof value.id !== "string" ||
     typeof value.dataType !== "string" ||
     typeof value.dataVersion !== "number" ||
+    (value.lifecycle !== undefined &&
+      !isStringUnion(value.lifecycle, ["draft", "active", "archived"] as const)) ||
     typeof value.title !== "string" ||
     typeof value.summary !== "string" ||
     !isHashRoute(value.route) ||

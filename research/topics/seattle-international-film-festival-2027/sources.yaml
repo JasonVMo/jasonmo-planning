@@ -1,0 +1,10 @@
+schemaVersion: 1
+entityId: seattle-international-film-festival-2027
+sources:
+  - id: event
+    title: SIFF 2027 dates
+    publisher: SIFF
+    sourceType: primary-documentation
+    url: https://www.siff.net/media/news/pr-festival-2027-call-for-entries
+    access: public
+    retrievedAt: 2026-09-08T13:00:00-07:00

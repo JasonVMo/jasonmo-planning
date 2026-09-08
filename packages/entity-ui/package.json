@@ -5,6 +5,9 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "scripts": {
+    "test": "yarn run -T vitest run --config ../../vitest.config.ts packages/entity-ui"
+  },
   "dependencies": {
     "@fluentui/react-components": "9.74.7",
     "@planning/entity-model": "workspace:*",

@@ -108,8 +108,8 @@ event uses the following day as its end.
 
 Include `event` in the entity's `view.permittedTypes` to appear in the site's
 calendar. Existing Markdown entities are unchanged and are not automatically
-converted from their research timestamps. New content remains private/local,
-with no publication or research-ownership changes.
+converted from their research timestamps. New content defaults to private/local
+unless the owner explicitly authorizes a public-safe projection.
 
 The reusable [month](references/entity-view-types/calendar-month/SPEC.md),
 [day](references/entity-view-types/calendar-day/SPEC.md),
@@ -130,7 +130,7 @@ corepack yarn build:site --base-path /tracker/
 corepack yarn preview --base-path /tracker/ --port 4173
 ```
 
-`yarn build` creates the packaged, minified private-owner site in `docs/` with
+`yarn build` creates the packaged, minified public site in `docs/` with
 the `/tracker/` base path used by this repository's GitHub Pages project site.
 The generated `docs/` artifact is intentionally tracked; Storybook remains a
 separate build and is never copied into the Pages source.
@@ -150,16 +150,15 @@ TypeScript 6 shim; it does not replace TS7 checking.
 | `yarn schemas:generate` / `yarn schemas:check` | Generate or compare schema-derived types            |
 | `yarn test:storybook`                          | Synthetic browser stories and accessibility         |
 | `yarn test:e2e`                                | Production Chromium behavior at `/` and `/tracker/` |
-| `yarn build` / `yarn build:pages`              | Minified private-owner Pages site in `docs/`        |
+| `yarn build` / `yarn build:pages`              | Minified approved public Pages site in `docs/`      |
 | `yarn build:site`                              | Local-only site artifact in `dist/local/`           |
 | `yarn build:tools` / `yarn build:storybook`    | Explicit CLI and synthetic Storybook builds         |
-| `yarn publication:check --target local`        | Compare artifact to current projection and hashes   |
+| `yarn publication:check:pages`                 | Audit the approved public `docs/` artifact          |
 
-The Pages workflow builds and packages `docs/` but intentionally has no deploy
-job or Pages write permission. `dist/local/` is non-deployable, and the current
-host gate keeps every broader artifact non-deployable. Enabling deployment
-requires an explicit owner decision and appropriately restricted Pages access;
-a successful build is not permission to publish it.
+The Pages workflow rebuilds and audits `docs/`, verifies that the committed
+artifact has no drift, and deploys it after changes reach `main`. Public content
+must be explicitly eligible, non-personal, requested for the public target, and
+covered by the exact owner approval. `dist/local/` remains non-deployable.
 
 Canonical facts remain deliberately evidence-backed. Supervised real-source
 refresh cycles remain an operating gate; fixture scenarios do not claim that
@@ -182,13 +181,13 @@ projection, and publication contracts are implemented.
 
 ## Publication and infrastructure gates
 
-The repository includes pull-request validation and a build-only Pages
-workflow. The latter packages the tracked `docs/` site without deploying it.
-Online use still requires approved Pages access and an explicit deployment
-decision appropriate for private-owner content.
+The repository includes pull-request validation and a public GitHub Pages
+workflow. The Pages job has deployment permissions; validation jobs remain
+read-only. The public artifact is limited to exact approval-bound content and
+must not contain private itinerary details.
 
-No unattended research, public export, repository transfer, deployment,
-deployment credentials, remote cache, analytics, or public Storybook is configured.
+No unattended research, repository transfer, deployment credentials, remote
+cache, analytics, or public Storybook is configured.
 See [NEXT.md](NEXT.md) for current delivery phases,
 [references/architecture.md](references/architecture.md) for durable
 constraints, and [references/toolchain.md](references/toolchain.md) for the

@@ -1,0 +1,19 @@
+schemaVersion: 1
+runId: sequoia-initial-review
+workflow: research-topic
+baseRevision: 628e8a1dc9c680379b3c9daca6b5cd21a20c1b5a
+requestKey: 4735c18b8fc36cb8c21a2d35f833a06ec6adeb6d9024317e4c0a2f3a266e1151
+scopeIds:
+  - sequoia-things-to-do
+sourceEvidence:
+  - sourceId: seki-conditions
+    retrievedAt: 2026-09-08T12:50:00-07:00
+    fingerprint: e677d468d2cd39374754d0461200dba2f283f82c26e59b7aa6ddd5bf2b5ab9f9
+changedEntityIds: []
+validation: Owner-supervised source review completed; canonical summary remained current.
+startedAt: 2026-09-08T12:40:00-07:00
+endedAt: 2026-09-08T12:50:00-07:00
+outcome: no-change
+reviewItems: []
+continuation: Recheck park alerts, roads, smoke, and Crystal Cave availability
+  before departure.

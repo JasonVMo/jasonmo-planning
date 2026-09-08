@@ -69,7 +69,9 @@ export async function main(args: string[]): Promise<void> {
       } finally {
         await rm(staging, { force: true });
       }
-      console.log(`Compiled ${target}: ${manifest.contentDigest} (network publication disabled)`);
+      console.log(
+        `Compiled ${target}: ${manifest.contentDigest} (${manifest.deployable ? "deployable" : "non-deployable"})`,
+      );
       break;
     }
     case "due":
