@@ -1,8 +1,10 @@
 # Tracker agent entry point
 
-1. Read `README.md` and the relevant part of `PLAN.md`.
-2. Load only the affected data/view specs and existing topic state. Check for an
-   existing stable entity ID before creating content.
+1. Read `README.md`, the relevant phase of `NEXT.md`, and
+   `references/architecture.md`.
+2. Load only the affected data/view specs, taxonomy rules, existing topic
+   state, and the research profile when relevant. Check for an existing stable
+   entity ID before creating content.
 3. Canonical data is under `content/`; taxonomy and policy are under
    `references/`; private operational state is under `research/`. Never import
    those directories into browser code.
@@ -18,8 +20,12 @@
    checks expected hashes before one writer promotes canonical changes.
 9. Run targeted checks while editing, then `corepack yarn check`. Formatting
    and schema generation are explicit writes, not silent validation repairs.
-10. Do not configure hosted CI, unattended agents, or deployment until the
-    documented platform and authorization gates are closed.
+10. `NEXT.md` is a roadmap and intake record, not verified external evidence.
+    Resolve its explicit owner-review gates before changing global taxonomy or
+    normalizing ambiguous trip facts.
+11. Rebuild and review tracked `docs/` after projected content changes. Do not
+    configure unattended agents or deployment until the documented
+    authorization gates are closed.
 
 ## Workflows
 

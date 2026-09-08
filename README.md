@@ -1,11 +1,16 @@
 # Tracker
 
-A private, local-first research repository and static React website. Canonical
-YAML/JSON and Markdown are validated and projected into audience-safe browser
-data. Persisted **data types** and reusable **view types** are independent:
-compiler adapters connect data to `label`, `tile`, `card`, and `full` views.
-Date-based entities also support `event`, `calendar-month`, `calendar-day`,
-and compact `timeline` views.
+A private, local-first personal tracker and static React website for trips,
+events, projects, and other future plans. Canonical YAML/JSON and Markdown are
+validated and projected into audience-safe browser data. Persisted **data
+types** and reusable **view types** are independent: compiler adapters connect
+content to common views, while date-based entities also support event,
+calendar, and timeline presentations.
+
+The repository foundation is complete. [NEXT.md](NEXT.md) is the active,
+phased roadmap for the real information architecture and initial trip/event
+content. Durable engineering decisions live in
+[references/architecture.md](references/architecture.md).
 
 ## Start locally
 
@@ -156,10 +161,10 @@ host gate keeps every broader artifact non-deployable. Enabling deployment
 requires an explicit owner decision and appropriately restricted Pages access;
 a successful build is not permission to publish it.
 
-The seed entities are deliberately marked unverified. Supervised real-source
+Canonical facts remain deliberately evidence-backed. Supervised real-source
 refresh cycles remain an operating gate; fixture scenarios do not claim that
-research occurred. Assets and image rendering are disabled in this initial
-version.
+research occurred. Assets and image rendering remain disabled until provenance,
+projection, and publication contracts are implemented.
 
 ## Repository map
 
@@ -184,5 +189,7 @@ decision appropriate for private-owner content.
 
 No unattended research, public export, repository transfer, deployment,
 deployment credentials, remote cache, analytics, or public Storybook is configured.
-See [PLAN.md](PLAN.md) for the phased architecture and open gates, and
-[references/toolchain.md](references/toolchain.md) for the installed baseline.
+See [NEXT.md](NEXT.md) for current delivery phases,
+[references/architecture.md](references/architecture.md) for durable
+constraints, and [references/toolchain.md](references/toolchain.md) for the
+installed baseline.

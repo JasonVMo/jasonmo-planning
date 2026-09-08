@@ -17,3 +17,8 @@ ignored operational storage. Downloads and logs may be disposable, but preserve
 reconciliation journals, dispositions, and the monotonic `reconcile-generation`
 counter: deleting/resetting the counter can invalidate concurrent-read safety.
 Generation advances before apply/recovery writes and is never rolled back.
+
+`intake/` may contain bounded, owner-provided operational facts needed to create
+canonical entities. Treat it as restricted, unverified input: never import it
+into browser code, never expose it through search or summaries, and promote only
+explicit allowlisted fields through reviewed content contracts.

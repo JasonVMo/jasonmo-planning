@@ -20,9 +20,9 @@ installed graph.
 | Ajv / YAML                   | 8.20.0 / 2.9.0                                              |
 | MiniSearch / React Router    | 7.2.0 / 8.3.1                                               |
 
-## Deliberate differences from candidate versions
+## Deliberate version decisions
 
-The plan's Node 24.20.0 was a candidate. Stand-up uses the existing 24.18.0
+Node 24.20.0 was evaluated during bootstrap. Stand-up uses the existing 24.18.0
 runtime instead of modifying a shared machine's global tools. It satisfies the
 selected package engine requirements. Future Node patches require an explicit
 `.node-version` change and representative checks.
@@ -43,8 +43,9 @@ gaps under the pnpm linker; they do not
 suppress arbitrary peer warnings. Reevaluate them when upgrading those packages.
 
 `yarn doctor` executes the installed tools and confirms five projects.
-`yarn check` is the local acceptance command. No hosted runner or deployment
-environment is configured.
+`yarn check` is the acceptance command. Read-only pull-request validation and a
+build-only Pages artifact workflow are configured; no deployment environment
+or write-capable deploy job is configured.
 
 ## Local stand-up measurements
 
@@ -71,11 +72,11 @@ behavioral or accessibility failures.
 
 ## Platform gates
 
-This user-owned Enterprise Managed User repository cannot use GitHub-hosted
-Actions, Copilot cloud agent, or direct Pages. Selecting an approved runner,
-host, audience, and source connector is owner-controlled work, not a bootstrap
-side effect.
+The repository builds a minified private-owner site into tracked `docs/`, but
+the manifest remains non-deployable and the workflow has no deploy job.
+Selecting and proving a host audience, access model, deployment authorization,
+and source connector remains owner-controlled work.
 
-See the dated primary sources and the unresolved gates in `PLAN.md`. Public
-export, unattended research, real-source supervised cycles, and online access
-are not claimed by local fixture tests.
+Public export, unattended research, real-source supervised cycles, and online
+access are not claimed by local fixture tests. See `architecture.md` for durable
+gates and `../NEXT.md` for the active delivery sequence.
