@@ -45,10 +45,27 @@ export async function artifactFiles(directory: string): Promise<Map<string, Buff
   return files;
 }
 
+function outputDirectory(root: string, target: Audience, configured?: string): string {
+  const destination = path.resolve(root, configured ?? path.join("dist", target));
+  const distRoot = path.join(root, "dist");
+  const relativeToDist = path.relative(distRoot, destination);
+  const isDistArtifact =
+    relativeToDist !== "" &&
+    relativeToDist !== ".staging" &&
+    !relativeToDist.startsWith(`.staging${path.sep}`) &&
+    !relativeToDist.startsWith(`..${path.sep}`) &&
+    !path.isAbsolute(relativeToDist);
+  if (destination !== path.join(root, "docs") && !isDistArtifact) {
+    throw new Error("Output directory must be docs or a child of dist");
+  }
+  return destination;
+}
+
 export async function buildSite(
   root: string,
   target: Audience,
   basePath: string,
+  configuredOutputDirectory?: string,
 ): Promise<SiteManifest> {
   basePath = normalizeBasePath(basePath);
   const manifest = await compileContent(root, { target, basePath });
@@ -56,7 +73,7 @@ export async function buildSite(
   await mkdir(stageRoot, { recursive: true });
   const stage = path.join(stageRoot, `site-${randomUUID()}`);
   await mkdir(stage);
-  const destination = path.join(root, "dist", target);
+  const destination = outputDirectory(root, target, configuredOutputDirectory);
   const backup = path.join(stageRoot, `previous-${randomUUID()}`);
   let backupExists = false;
   try {
@@ -99,6 +116,7 @@ export async function buildSite(
     if (/\{\{[A-Z_]+\}\}/.test(html)) throw new Error("Unresolved HTML template placeholder");
     await writeFile(path.join(stage, "index.html"), html);
     await writeFile(path.join(stage, "manifest.json"), serializeCanonical(manifest));
+    await writeFile(path.join(stage, ".nojekyll"), "");
     await auditSiteArtifact(stage, manifest);
     const inventory = Object.fromEntries(
       [...(await artifactFiles(stage)).entries()].map(([name, bytes]) => [
@@ -291,6 +309,7 @@ async function main() {
     options: {
       target: { type: "string", default: "local" },
       "base-path": { type: "string", default: "/" },
+      "output-dir": { type: "string" },
       port: { type: "string", default: "4173" },
     },
     allowPositionals: true,
@@ -298,18 +317,20 @@ async function main() {
   const command = positionals[0];
   if (positionals.length !== 1 || !["build", "dev", "preview"].includes(command ?? "")) {
     throw new Error(
-      "Usage: site.mts build|dev|preview [--target local] [--base-path /tracker/] [--port 4173]",
+      "Usage: site.mts build|dev|preview [--target local] [--base-path /tracker/] [--output-dir docs] [--port 4173]",
     );
   }
   const target = targetFrom(values.target);
   if (command !== "build" && target !== "local")
     throw new Error("The local server only serves the non-deployable local target");
+  if (command !== "build" && values["output-dir"])
+    throw new Error("--output-dir is available only for production builds");
   const basePath = normalizeBasePath(values["base-path"]);
   const port = Number(values.port);
   if (!Number.isInteger(port) || port < 1024 || port > 65535)
     throw new Error("Port must be between 1024 and 65535");
   if (command !== "preview") {
-    const manifest = await buildSite(repositoryRoot, target, basePath);
+    const manifest = await buildSite(repositoryRoot, target, basePath, values["output-dir"]);
     console.log(
       `Built ${manifest.entities.length} entities for ${target}: ${manifest.contentDigest}`,
     );

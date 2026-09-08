@@ -26,7 +26,7 @@ the sections below retain the architecture and delivery contract.
 | Site and Storybook | Local esbuild site, bidirectional relationship navigation, local search, and synthetic React/Vite Storybook |
 | Calendar extension | Opt-in event data, event/month/day/timeline view contracts, time-zone-aware navigation and day agendas; existing content unchanged |
 | Research operations | Local validation, due/review reporting, and supervised proposal reconciliation; real-source pilot cycles remain a separate operating gate |
-| CI and deployment | Not configured; approved runner, host, audience, and authorization remain required |
+| CI and deployment | Pull-request validation and a build-only Pages artifact workflow are configured; deployment remains disabled pending approved access and authorization |
 
 The installed Node 24.18.0 baseline deliberately replaces the earlier candidate
 24.20.0 without modifying the shared machine's global runtime. A successful

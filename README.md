@@ -120,9 +120,15 @@ notifications, and browser editing are not included.
 ```sh
 corepack yarn playwright install chromium
 corepack yarn check
+corepack yarn build
 corepack yarn build:site --base-path /tracker/
 corepack yarn preview --base-path /tracker/ --port 4173
 ```
+
+`yarn build` creates the packaged, minified private-owner site in `docs/` with
+the `/tracker/` base path used by this repository's GitHub Pages project site.
+The generated `docs/` artifact is intentionally tracked; Storybook remains a
+separate build and is never copied into the Pages source.
 
 The Chromium install is a one-time browser prerequisite, not a production
 dependency. `yarn check` covers the complete small repository: schema drift,
@@ -139,13 +145,16 @@ TypeScript 6 shim; it does not replace TS7 checking.
 | `yarn schemas:generate` / `yarn schemas:check` | Generate or compare schema-derived types            |
 | `yarn test:storybook`                          | Synthetic browser stories and accessibility         |
 | `yarn test:e2e`                                | Production Chromium behavior at `/` and `/tracker/` |
-| `yarn build`                                   | Node CLI, local site, and synthetic Storybook       |
+| `yarn build` / `yarn build:pages`              | Minified private-owner Pages site in `docs/`        |
+| `yarn build:site`                              | Local-only site artifact in `dist/local/`           |
+| `yarn build:tools` / `yarn build:storybook`    | Explicit CLI and synthetic Storybook builds         |
 | `yarn publication:check --target local`        | Compare artifact to current projection and hashes   |
 
-All deployment commands are intentionally absent. `dist/local/` is
-non-deployable; the current host gate also keeps every broader artifact
-non-deployable. Broader projections require explicit eligibility and
-owner-controlled approvals; a successful build is not permission to upload it.
+The Pages workflow builds and packages `docs/` but intentionally has no deploy
+job or Pages write permission. `dist/local/` is non-deployable, and the current
+host gate keeps every broader artifact non-deployable. Enabling deployment
+requires an explicit owner decision and appropriately restricted Pages access;
+a successful build is not permission to publish it.
 
 The seed entities are deliberately marked unverified. Supervised real-source
 refresh cycles remain an operating gate; fixture scenarios do not claim that
@@ -168,12 +177,12 @@ version.
 
 ## Publication and infrastructure gates
 
-This managed-user personal repository cannot use GitHub-hosted Actions,
-Copilot cloud agent, or GitHub Pages directly. Local commands work without those
-services. CI needs an approved runner; online use needs an approved host and
-server-enforced authorization for HTML, JavaScript, JSON, and assets.
+The repository includes pull-request validation and a build-only Pages
+workflow. The latter packages the tracked `docs/` site without deploying it.
+Online use still requires approved Pages access and an explicit deployment
+decision appropriate for private-owner content.
 
-No unattended research, public export, repository transfer, deployment
-credentials, remote cache, analytics, or public Storybook is configured.
+No unattended research, public export, repository transfer, deployment,
+deployment credentials, remote cache, analytics, or public Storybook is configured.
 See [PLAN.md](PLAN.md) for the phased architecture and open gates, and
 [references/toolchain.md](references/toolchain.md) for the installed baseline.

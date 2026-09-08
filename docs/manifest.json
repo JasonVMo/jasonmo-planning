@@ -1,0 +1,170 @@
+{
+  "audience": "private-owner",
+  "basePath": "/tracker/",
+  "contentDigest": "936018a29f68f936f9a7d013e5fdb08447776b13331c418fa05fa6ce6dbf33d6",
+  "deployable": false,
+  "entities": [
+    {
+      "citations": [],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "tracker-data-view-architecture",
+      "primaryTopicId": "content-architecture",
+      "relationships": [
+        {
+          "kind": "related-to",
+          "targetId": "tracker-overview",
+          "viewType": "tile"
+        }
+      ],
+      "route": "#/entities/tracker-data-view-architecture",
+      "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
+      "tags": [
+        "adapters",
+        "schemas",
+        "views"
+      ],
+      "title": "Independent data and view architecture",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "adapters",
+            "schemas",
+            "views"
+          ],
+          "href": "#/entities/tracker-data-view-architecture",
+          "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
+          "title": "Independent data and view architecture"
+        },
+        "full": {
+          "body": "# Independent data and view architecture\n\nThis owner-maintained design note separates persisted semantics from reusable\nvisual contracts. Return to [the tracker overview](#/entities/tracker-overview)\nfor the intended research workflow.\n\n## Three boundaries\n\n1. **Entity model:** strict JSON Schema draft-07 contracts and generated\n   TypeScript types; no React or filesystem dependencies.\n2. **Content pipeline:** Node-only parsing, complete-graph validation,\n   audience projection, view resolution, adapters, and search documents.\n3. **Entity UI:** React renderers selected only by view type. The browser does\n   not parse canonical descriptors or receive operational research state.\n\n## Data is not a component name\n\nThe initial data type is `markdown`: its payload identifies a confined body\nfile. A view type is independently one of `label`, `tile`, `card`, or `full`.\nCode-owned adapters convert safe presentation data into those common view\nmodels. A later data type can reuse a card without creating another card\nrenderer; a new view does not require a new persisted data type.\n\nExplicit occurrence overrides win, then entity context overrides, then an\nentity default. Site context defaults and the data-type fallback apply only\nwhen the entity has not explicitly selected a view. Invalid explicit choices\nare errors, not silent fallbacks.\n\n## Review checklist\n\n- Validate persisted data independently of view-model schemas.\n- Filter hidden entities, taxonomy, links, and citations before adapting.\n- Emit only reachable registered view models and deterministic search data.\n- Keep Markdown inert: no HTML, JSX, remote images, or executable blocks.\n- Prove a synthetic second data type can adapt into an existing common view.\n\nThis architecture note starts unverified. External evidence collection and\nthree real supervised refresh cycles remain pending; fixture tests do not\ncount as research cycles.\n",
+          "href": "#/entities/tracker-data-view-architecture",
+          "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
+          "title": "Independent data and view architecture"
+        },
+        "label": {
+          "href": "#/entities/tracker-data-view-architecture",
+          "title": "Independent data and view architecture"
+        },
+        "tile": {
+          "href": "#/entities/tracker-data-view-architecture",
+          "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
+          "title": "Independent data and view architecture"
+        }
+      }
+    },
+    {
+      "citations": [],
+      "dataType": "markdown",
+      "dataVersion": 1,
+      "id": "tracker-overview",
+      "primaryTopicId": "tracker-foundations",
+      "relationships": [
+        {
+          "kind": "related-to",
+          "targetId": "tracker-data-view-architecture",
+          "viewType": "tile"
+        }
+      ],
+      "route": "#/entities/tracker-overview",
+      "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
+      "tags": [
+        "local-first",
+        "research",
+        "tracker"
+      ],
+      "title": "Tracker — a local research workspace",
+      "view": {
+        "byContext": {
+          "collection": "card",
+          "detail": "full",
+          "navigation": "label",
+          "relationship": "tile",
+          "search": "label"
+        },
+        "defaultType": "full"
+      },
+      "viewModels": {
+        "card": {
+          "badges": [
+            "local-first",
+            "research",
+            "tracker"
+          ],
+          "href": "#/entities/tracker-overview",
+          "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
+          "title": "Tracker — a local research workspace"
+        },
+        "full": {
+          "body": "# Tracker: a local research workspace\n\nTracker is designed to keep useful research in reviewable, durable files while\nshowing a deliberately selected browser projection. The repository—not the\nwebsite—is the source of truth. This owner-maintained introduction describes\nthe intended operating model; it is not a report of completed source research.\n\n## Start here\n\n- Browse topics to find a bounded area of work.\n- Open an entity to read the current explanation and its relationships.\n- Use local search for titles, summaries, topic labels, tags, and safe body text.\n- Check research state before attempting a refresh. Unverified does not mean\n  failed, and a failed attempt must not replace the last verified conclusion.\n\nSee [the independent data/view architecture](#/entities/tracker-data-view-architecture)\nfor the boundary between persisted meaning and reusable presentation.\n\n## Research status\n\nInitial state: unverified and manually maintained. No external retrieval or\nsupervised research cycle has been completed for this entity. The next step is\nan owner-scoped source review with explicit evidence, expected file hashes,\nand a dry-run proposal.\n\n## Publication posture\n\nLocal output is non-deployable. Group or public export requires exact\nprojection approval, and online deployment remains separately blocked until\nan authorized host, audience, identity, and review process are established.\n",
+          "href": "#/entities/tracker-overview",
+          "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
+          "title": "Tracker — a local research workspace"
+        },
+        "label": {
+          "href": "#/entities/tracker-overview",
+          "title": "Tracker — a local research workspace"
+        },
+        "tile": {
+          "href": "#/entities/tracker-overview",
+          "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
+          "title": "Tracker — a local research workspace"
+        }
+      }
+    }
+  ],
+  "schemaVersion": 1,
+  "searchDocuments": [
+    {
+      "body": "Independent data and view architecture This owner-maintained design note separates persisted semantics from reusable visual contracts. Return to the tracker overview for the intended research workflow. Three boundaries Entity model: strict JSON Schema draft-07 contracts and generated TypeScript types; no React or filesystem dependencies. Content pipeline: Node-only parsing, complete-graph validation, audience projection, view resolution, adapters, and search documents. Entity UI: React renderers selected only by view type. The browser does not parse canonical descriptors or receive operational research state. Data is not a component name The initial data type is markdown : its payload identifies a confined body file. A view type is independently one of label , tile , card , or full . Code-owned adapters convert safe presentation data into those common view models. A later data type can reuse a card without creating another card renderer; a new view does not require a new persisted data type. Explicit occurrence overrides win, then entity context overrides, then an entity default. Site context defaults and the data-type fallback apply only when the entity has not explicitly selected a view. Invalid explicit choices are errors, not silent fallbacks. Review checklist Validate persisted data independently of view-model schemas. Filter hidden entities, taxonomy, links, and citations before adapting. Emit only reachable registered view models and deterministic search data. Keep Markdown inert: no HTML, JSX, remote images, or executable blocks. Prove a synthetic second data type can adapt into an existing common view. This architecture note starts unverified. External evidence collection and three real supervised refresh cycles remain pending; fixture tests do not count as research cycles. Content architecture markdown Tracker — a local research workspace",
+      "id": "tracker-data-view-architecture",
+      "primaryTopicId": "content-architecture",
+      "route": "#/entities/tracker-data-view-architecture",
+      "summary": "Persisted data types define meaning; common label, tile, card, and full views define presentation.",
+      "tags": [
+        "adapters",
+        "schemas",
+        "views"
+      ],
+      "title": "Independent data and view architecture"
+    },
+    {
+      "body": "Tracker: a local research workspace Tracker is designed to keep useful research in reviewable, durable files while showing a deliberately selected browser projection. The repository—not the website—is the source of truth. This owner-maintained introduction describes the intended operating model; it is not a report of completed source research. Start here Browse topics to find a bounded area of work. Open an entity to read the current explanation and its relationships. Use local search for titles, summaries, topic labels, tags, and safe body text. Check research state before attempting a refresh. Unverified does not mean failed, and a failed attempt must not replace the last verified conclusion. See the independent data/view architecture for the boundary between persisted meaning and reusable presentation. Research status Initial state: unverified and manually maintained. No external retrieval or supervised research cycle has been completed for this entity. The next step is an owner-scoped source review with explicit evidence, expected file hashes, and a dry-run proposal. Publication posture Local output is non-deployable. Group or public export requires exact projection approval, and online deployment remains separately blocked until an authorized host, audience, identity, and review process are established. Tracker foundations markdown Independent data and view architecture",
+      "id": "tracker-overview",
+      "primaryTopicId": "tracker-foundations",
+      "route": "#/entities/tracker-overview",
+      "summary": "A private, local-first tracker that separates durable research, safe browser views, and supervised changes.",
+      "tags": [
+        "local-first",
+        "research",
+        "tracker"
+      ],
+      "title": "Tracker — a local research workspace"
+    }
+  ],
+  "taxonomy": [
+    {
+      "description": "Purpose, operating boundaries, and local research workflow.",
+      "id": "tracker-foundations",
+      "order": 10,
+      "title": "Tracker foundations"
+    },
+    {
+      "description": "Canonical schemas, safe projections, independent views, and adapters.",
+      "id": "content-architecture",
+      "order": 20,
+      "parentId": "tracker-foundations",
+      "title": "Content architecture"
+    }
+  ]
+}

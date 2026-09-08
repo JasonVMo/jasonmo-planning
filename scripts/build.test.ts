@@ -19,6 +19,11 @@ it("builds byte-identical artifacts and preserves the last valid output on failu
   await cp(path.join(repositoryRoot, "tsconfig.base.json"), path.join(root, "tsconfig.base.json"));
   await buildSite(root, "local", "/nested/");
   const original = await artifactFiles(path.join(root, "dist/local"));
+  await buildSite(root, "local", "/nested/", "docs");
+  expect((await artifactFiles(path.join(root, "docs"))).get(".nojekyll")).toEqual(Buffer.from(""));
+  await expect(buildSite(root, "local", "/nested/", "apps/site")).rejects.toThrow(
+    "Output directory must be docs or a child of dist",
+  );
   await buildSite(root, "local", "/nested/");
   expect(await artifactFiles(path.join(root, "dist/local"))).toEqual(original);
   const sourceMarkdown = path.join(root, "apps/site/src/markdown/guide.md");
