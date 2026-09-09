@@ -1,7 +1,7 @@
 # Publication policy
 
 Public GitHub Pages publication is owner-approved for the exact public
-projection built at `/tracker/`. Local and private-owner artifacts remain
+projection built at `/jasonmo-planning/`. Local and private-owner artifacts remain
 non-deployable. The deployment workflow has no authority to broaden content
 eligibility or create an approval; it can upload only the committed, audited
 `docs/` artifact after the exact public approval matches.

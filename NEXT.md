@@ -300,7 +300,7 @@ real trip content.
    coverage for the new routes.
 
 **Exit gate:** Synthetic single- and multi-segment trips can be navigated
-through the final shell at `/` and `/tracker/`, with no canonical real content.
+through the final shell at `/` and `/jasonmo-planning/`, with no canonical real content.
 
 ### Phase 3 - Seed the Sequoia single-segment vertical slice
 

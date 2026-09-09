@@ -126,12 +126,12 @@ notifications, and browser editing are not included.
 corepack yarn playwright install chromium
 corepack yarn check
 corepack yarn build
-corepack yarn build:site --base-path /tracker/
-corepack yarn preview --base-path /tracker/ --port 4173
+corepack yarn build:site --base-path /jasonmo-planning/
+corepack yarn preview --base-path /jasonmo-planning/ --port 4173
 ```
 
 `yarn build` creates the packaged, minified public site in `docs/` with
-the `/tracker/` base path used by this repository's GitHub Pages project site.
+the `/jasonmo-planning/` base path used by this repository's GitHub Pages project site.
 The generated `docs/` artifact is intentionally tracked; Storybook remains a
 separate build and is never copied into the Pages source.
 
@@ -141,19 +141,19 @@ canonical content, TypeScript 7, Oxlint, tests, site/Storybook builds, browser
 behavior, and publication boundaries. API-dependent tooling uses the documented
 TypeScript 6 shim; it does not replace TS7 checking.
 
-| Command                                        | Purpose                                             |
-| ---------------------------------------------- | --------------------------------------------------- |
-| `yarn fmt` / `yarn fmt:check`                  | Format or check source and content with Oxfmt       |
-| `yarn lint`                                    | Oxlint plus runtime package-boundary checks         |
-| `yarn typecheck`                               | TypeScript 7 across all source                      |
-| `yarn test` / `yarn test:unit`                 | Nx package tests / direct unit runner               |
-| `yarn schemas:generate` / `yarn schemas:check` | Generate or compare schema-derived types            |
-| `yarn test:storybook`                          | Synthetic browser stories and accessibility         |
-| `yarn test:e2e`                                | Production Chromium behavior at `/` and `/tracker/` |
-| `yarn build` / `yarn build:pages`              | Minified approved public Pages site in `docs/`      |
-| `yarn build:site`                              | Local-only site artifact in `dist/local/`           |
-| `yarn build:tools` / `yarn build:storybook`    | Explicit CLI and synthetic Storybook builds         |
-| `yarn publication:check:pages`                 | Audit the approved public `docs/` artifact          |
+| Command                                        | Purpose                                                      |
+| ---------------------------------------------- | ------------------------------------------------------------ |
+| `yarn fmt` / `yarn fmt:check`                  | Format or check source and content with Oxfmt                |
+| `yarn lint`                                    | Oxlint plus runtime package-boundary checks                  |
+| `yarn typecheck`                               | TypeScript 7 across all source                               |
+| `yarn test` / `yarn test:unit`                 | Nx package tests / direct unit runner                        |
+| `yarn schemas:generate` / `yarn schemas:check` | Generate or compare schema-derived types                     |
+| `yarn test:storybook`                          | Synthetic browser stories and accessibility                  |
+| `yarn test:e2e`                                | Production Chromium behavior at `/` and `/jasonmo-planning/` |
+| `yarn build` / `yarn build:pages`              | Minified approved public Pages site in `docs/`               |
+| `yarn build:site`                              | Local-only site artifact in `dist/local/`                    |
+| `yarn build:tools` / `yarn build:storybook`    | Explicit CLI and synthetic Storybook builds                  |
+| `yarn publication:check:pages`                 | Audit the approved public `docs/` artifact                   |
 
 The Pages workflow rebuilds and audits `docs/`, verifies that the committed
 artifact has no drift, and deploys it after changes reach `main`. Public content

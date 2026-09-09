@@ -20,7 +20,7 @@
     "test:storybook": "STORYBOOK_DISABLE_TELEMETRY=1 yarn workspace @planning/storybook test",
     "test:e2e": "yarn test:e2e:nested && yarn test:e2e:root",
     "test:e2e:root": "TRACKER_TEST_BASE_PATH=/ playwright test",
-    "test:e2e:nested": "TRACKER_TEST_BASE_PATH=/tracker/ playwright test",
+    "test:e2e:nested": "TRACKER_TEST_BASE_PATH=/jasonmo-planning/ playwright test",
     "schemas:generate": "tsx scripts/generate-types.mts",
     "schemas:check": "tsx scripts/generate-types.mts --check",
     "content:validate": "tsx packages/content-pipeline/src/cli.ts validate",
@@ -34,7 +34,7 @@
     "build:storybook": "STORYBOOK_DISABLE_TELEMETRY=1 yarn workspace @planning/storybook build",
     "build": "yarn build:pages",
     "publication:check": "tsx scripts/audit-artifact.mts",
-    "publication:check:pages": "tsx scripts/audit-artifact.mts --target public --base-path /tracker/ --directory docs",
+    "publication:check:pages": "tsx scripts/audit-artifact.mts --target public --base-path /jasonmo-planning/ --directory docs",
     "check": "yarn doctor && yarn fmt:check && yarn schemas:check && yarn content:validate && yarn typecheck && yarn lint && yarn test && yarn build:tools && yarn build && yarn build:storybook && yarn test:storybook && yarn test:e2e"
   },
   "devDependencies": {

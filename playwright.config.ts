@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const configuredBasePath = process.env.TRACKER_TEST_BASE_PATH ?? "/tracker/";
+const configuredBasePath = process.env.TRACKER_TEST_BASE_PATH ?? "/jasonmo-planning/";
 const basePath =
   configuredBasePath === "/" ? "/" : `/${configuredBasePath.replace(/^\/|\/$/g, "")}/`;
 

@@ -22,7 +22,7 @@ import { filterTripParentClosure, projectTravel } from "./travel.ts";
 
 export function normalizeBasePath(path: string): string {
   if (!/^\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_-]*$/.test(path))
-    throw new Error("Invalid base path; use / or /tracker/");
+    throw new Error("Invalid base path; use / or /repository/");
   return path.endsWith("/") ? path : `${path}/`;
 }
 

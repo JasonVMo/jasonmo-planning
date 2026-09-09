@@ -1,7 +1,7 @@
 {
   "audience": "public",
-  "basePath": "/tracker/",
-  "contentDigest": "8ca4767aa45c0f30289463960f1a7234ab022541bd69bce2b3a0cada607be5aa",
+  "basePath": "/jasonmo-planning/",
+  "contentDigest": "e42b10c2e28945f7fa19b62d3f660ead91ca3da695f9ce452ce0638d8c047e3d",
   "deployable": true,
   "entities": [
     {

@@ -61,7 +61,7 @@ cross-machine service guarantees.
 
 The search corpus and 100 ms p95 guard live in `scripts/search.test.ts`. The
 corpus uses 20 subject tags, short titles/summaries, and repeated plain-text
-bodies. Production browser coverage runs at both `/` and `/tracker/`; build
+bodies. Production browser coverage runs at both `/` and `/jasonmo-planning/`; build
 fixtures additionally compare output bytes and preserve prior output after a
 canonical validation failure.
 

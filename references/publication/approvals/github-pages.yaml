@@ -1,7 +1,7 @@
 schemaVersion: 1
 target: public
 deploymentId: github-pages
-basePath: /tracker/
+basePath: /jasonmo-planning/
 entityIds:
   - acadia-arrival-lodging
   - acadia-bar-harbor-lodging
@@ -45,7 +45,7 @@ entityIds:
   - sequoia-things-to-do
   - washington-state-fair-2026
   - weezer-shins-seattle-2026
-contentDigest: 8ca4767aa45c0f30289463960f1a7234ab022541bd69bce2b3a0cada607be5aa
+contentDigest: e42b10c2e28945f7fa19b62d3f660ead91ca3da695f9ce452ce0638d8c047e3d
 taxonomyDigest: 55afd6fb61cfcf483643d405b20f5c2c89e60578c6cab9f80084cd11bc1e6144
 citationsDigest: 64f0268de82cfadfdba8be19c3c91e2dbb1b1fb7a2417d9fb9f7c75132df2dd8
 assetsDigest: 37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570

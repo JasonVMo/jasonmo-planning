@@ -75,7 +75,7 @@ published artifacts.
 - The product is a client-rendered static React SPA using stable hash routes.
 - esbuild owns the actual site development and production bundle. Vite is
   isolated to Storybook, so actual-site Playwright coverage is mandatory.
-- The site is tested at root and nested `/tracker/` base paths.
+- The site is tested at root and its deployed `/jasonmo-planning/` base path.
 - Browser search uses MiniSearch over an audience-filtered document list from
   the content pipeline. It never indexes private operational state, source
   cursors, internal errors, or hidden entities.

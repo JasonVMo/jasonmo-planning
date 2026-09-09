@@ -317,7 +317,7 @@ async function main() {
   const command = positionals[0];
   if (positionals.length !== 1 || !["build", "dev", "preview"].includes(command ?? "")) {
     throw new Error(
-      "Usage: site.mts build|dev|preview [--target local] [--base-path /tracker/] [--output-dir docs] [--port 4173]",
+      "Usage: site.mts build|dev|preview [--target local] [--base-path /repository/] [--output-dir docs] [--port 4173]",
     );
   }
   const target = targetFrom(values.target);
