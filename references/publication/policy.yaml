@@ -1,7 +1,7 @@
 schemaVersion: 1
 policyVersion: 1
 networkPublicationEnabled: true
-reviewers: [jasonmo_microsoft]
+reviewers: [JasonVMo]
 destinations:
   - id: github-pages
     audience: public
