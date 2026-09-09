@@ -1,7 +1,3 @@
-# The B-52s & DEVO
-
-Co-headlining alternative and new-wave arena show.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

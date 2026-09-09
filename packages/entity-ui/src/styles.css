@@ -43,13 +43,21 @@
 }
 
 .tracker-full__header {
+  display: block;
   padding-bottom: var(--spacingVerticalL);
   border-bottom: 1px solid var(--colorNeutralStroke2);
   margin-bottom: var(--spacingVerticalXL);
 }
 
-.tracker-full__header p {
+.tracker-full__header h1 {
+  display: block;
+  margin-block: 0;
+}
+
+.tracker-full__summary {
+  display: block;
   max-width: 70ch;
+  margin-block: var(--spacingVerticalS) 0;
   color: var(--colorNeutralForeground2);
   line-height: 1.6;
 }

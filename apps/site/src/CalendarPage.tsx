@@ -6,6 +6,7 @@ import {
   CalendarDayView,
   CalendarMonthView,
   dateAt,
+  eventStartDate,
   formatCalendarDate,
   TimelineView,
 } from "@planning/entity-ui";
@@ -38,9 +39,25 @@ export function CalendarPage({ manifest }: { manifest: SiteManifest }) {
       document.removeEventListener("visibilitychange", refresh);
     };
   }, [timeZone]);
-  const events = useMemo(
-    () => manifest.entities.flatMap((entity) => calendarEventsForEntity(entity)),
+  const calendarEntries = useMemo(
+    () =>
+      manifest.entities.flatMap((entity) =>
+        calendarEventsForEntity(entity).map((event) => ({ entity, event })),
+      ),
     [manifest.entities],
+  );
+  const suggestedActivities = useMemo(
+    () =>
+      calendarEntries
+        .filter(({ entity, event }) => entity.dataType === "event" && event.status === "tentative")
+        .map(({ event }) => event)
+        .sort((a, b) => eventStartDate(a, timeZone).localeCompare(eventStartDate(b, timeZone))),
+    [calendarEntries, timeZone],
+  );
+  const events = useMemo(
+    () =>
+      calendarEntries.filter(({ event }) => event.status !== "tentative").map(({ event }) => event),
+    [calendarEntries],
   );
 
   if (
@@ -90,6 +107,22 @@ export function CalendarPage({ manifest }: { manifest: SiteManifest }) {
         <h1>Calendar</h1>
         <p>Events, appointments, deadlines, and reminders from this audience's entity views.</p>
       </header>
+      {suggestedActivities.length ? (
+        <aside className="suggested-activities" aria-labelledby="suggested-activities-heading">
+          <header>
+            <p className="eyebrow">Ideas to consider</p>
+            <h2 id="suggested-activities-heading">Suggested activities</h2>
+          </header>
+          <ul>
+            {suggestedActivities.map((event) => (
+              <li key={event.href}>
+                <a href={event.href}>{event.title}</a>
+                <span>{formatCalendarDate(eventStartDate(event, timeZone))}</span>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      ) : null}
       <div className="calendar-toolbar">
         <nav aria-label="Calendar views" className="calendar-view-switch">
           <a
@@ -174,8 +207,9 @@ export function CalendarPage({ manifest }: { manifest: SiteManifest }) {
         <aside className="calendar-page__empty">
           <h2>No calendar events yet</h2>
           <p>
-            Add an event entity with a structured schedule and the permitted <code>event</code>{" "}
-            view. Existing research notes are not automatically treated as appointments.
+            Add a confirmed event entity with a structured schedule and the permitted{" "}
+            <code>event</code> view. Tentative suggestions stay in the suggested activities widget
+            instead of the calendar.
           </p>
         </aside>
       ) : null}

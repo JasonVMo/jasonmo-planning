@@ -1,7 +1,3 @@
-# Fresno rental car
-
-Budget rental from Fresno airport for the Sequoia trip.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Planning note

@@ -1,7 +1,3 @@
-# Chargers at Seahawks
-
-Selected Seahawks home game in Week 4.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

@@ -1,7 +1,3 @@
-# Sequoia restaurants
-
-Flexible dining and supply options around Three Rivers and inside the parks.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Three Rivers

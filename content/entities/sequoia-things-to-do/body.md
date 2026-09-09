@@ -1,7 +1,3 @@
-# Sequoia things to do
-
-Giant sequoia groves, caves, viewpoints, scenic drives, and a practical Kings Canyon day.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## High-priority stops

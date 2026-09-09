@@ -1,7 +1,3 @@
-# New York City & Hoboken things to do
-
-Transit from LaGuardia, Broadway options, and dated events during October 10-13.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## LGA to Hoboken

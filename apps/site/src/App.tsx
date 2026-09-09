@@ -160,7 +160,58 @@ function routeTitle(pathname: string, manifest: SiteManifest): string {
   return "Page not found";
 }
 
-function NavItems({ onNavigate }: { manifest: SiteManifest; onNavigate?: () => void }) {
+const conciseResearchLabels = new Map([
+  ["things-to-do", "Things to Do"],
+  ["hikes-walks", "Hikes & Walks"],
+  ["restaurants", "Restaurants"],
+  ["getting-ready", "Getting Ready"],
+]);
+
+function NavItems({ manifest, onNavigate }: { manifest: SiteManifest; onNavigate?: () => void }) {
+  const location = useLocation();
+  const currentRoute = `#${location.pathname}`;
+  const currentEntity = manifest.entities.find((entity) => entity.route === currentRoute);
+  const ancestry = currentEntity ? tripAncestryOf(manifest.entities, currentEntity.route) : [];
+  const currentRoot = currentEntity?.viewModels.trip?.kind === "trip" ? currentEntity : ancestry[0];
+  const [tripsOverride, setTripsOverride] = useState<
+    { pathname: string; open: boolean } | undefined
+  >();
+  const [expandedOverride, setExpandedOverride] = useState<
+    { pathname: string; tripId: string | undefined } | undefined
+  >();
+  const tripsOpen =
+    tripsOverride?.pathname === location.pathname
+      ? tripsOverride.open
+      : location.pathname === "/trips" || currentRoot !== undefined;
+  const expandedTripId =
+    expandedOverride?.pathname === location.pathname ? expandedOverride.tripId : currentRoot?.id;
+  const roots = rootTripEntries(manifest);
+  const entitiesByRoute = new Map(manifest.entities.map((entity) => [entity.route, entity]));
+
+  const tripChildren = (trip: TripViewModel, depth = 0): ReactNode => (
+    <ul className="nav-tree" data-depth={depth}>
+      {trip.children.map((child) => {
+        const childEntity = entitiesByRoute.get(child.href);
+        const childTrip = childEntity?.viewModels.trip;
+        return (
+          <li key={`${trip.href}:${child.href}:${child.order}`}>
+            <Link
+              className="nav-link nav-link--nested"
+              to={child.href.slice(1)}
+              aria-current={currentRoute === child.href ? "page" : undefined}
+              onClick={onNavigate}
+            >
+              {conciseResearchLabels.get(child.role) ?? child.title}
+            </Link>
+            {childTrip?.kind === "segment" && childTrip.children.length
+              ? tripChildren(childTrip, depth + 1)
+              : null}
+          </li>
+        );
+      })}
+    </ul>
+  );
+
   return (
     <>
       <Link className="nav-link nav-link--home" to="/" onClick={onNavigate}>
@@ -169,9 +220,74 @@ function NavItems({ onNavigate }: { manifest: SiteManifest; onNavigate?: () => v
       <Link className="nav-link" to="/calendar" onClick={onNavigate}>
         Calendar
       </Link>
-      <Link className="nav-link" to="/trips" onClick={onNavigate}>
-        Trips
-      </Link>
+      <div className="nav-accordion">
+        <div className="nav-accordion__row">
+          <Link
+            className="nav-link"
+            to="/trips"
+            aria-current={location.pathname === "/trips" ? "page" : undefined}
+            onClick={() => {
+              setTripsOverride({ pathname: "/trips", open: true });
+              onNavigate?.();
+            }}
+          >
+            Trips
+          </Link>
+          <button
+            type="button"
+            className="nav-disclosure"
+            aria-label={`${tripsOpen ? "Hide" : "Show"} trips`}
+            aria-expanded={tripsOpen}
+            onClick={() => setTripsOverride({ pathname: location.pathname, open: !tripsOpen })}
+          >
+            <span aria-hidden="true">{tripsOpen ? "▾" : "▸"}</span>
+          </button>
+        </div>
+        {tripsOpen ? (
+          <ul className="nav-tree">
+            {roots.map(({ entity, trip }) => {
+              const expanded = expandedTripId === entity.id;
+              return (
+                <li key={entity.id}>
+                  <div className="nav-accordion__row">
+                    <Link
+                      className="nav-link nav-link--nested"
+                      to={entity.route.slice(1)}
+                      aria-current={currentRoute === entity.route ? "page" : undefined}
+                      onClick={() => {
+                        setExpandedOverride({
+                          pathname: entity.route.slice(1),
+                          tripId: entity.id,
+                        });
+                        onNavigate?.();
+                      }}
+                    >
+                      {entity.title}
+                    </Link>
+                    {trip.children.length ? (
+                      <button
+                        type="button"
+                        className="nav-disclosure"
+                        aria-label={`${expanded ? "Hide" : "Show"} pages for ${entity.title}`}
+                        aria-expanded={expanded}
+                        onClick={() =>
+                          setExpandedOverride({
+                            pathname: location.pathname,
+                            tripId: expanded ? undefined : entity.id,
+                          })
+                        }
+                      >
+                        <span aria-hidden="true">{expanded ? "▾" : "▸"}</span>
+                      </button>
+                    ) : null}
+                  </div>
+                  {expanded ? tripChildren(trip, 1) : null}
+                </li>
+              );
+            })}
+          </ul>
+        ) : null}
+      </div>
       <Link className="nav-link" to="/events" onClick={onNavigate}>
         Events
       </Link>

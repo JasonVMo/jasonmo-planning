@@ -167,6 +167,62 @@ input {
   color: var(--colorBrandForeground1);
 }
 
+.nav-link[aria-current="page"] {
+  background: var(--colorNeutralBackground3);
+  color: var(--colorBrandForeground1);
+}
+
+.nav-accordion__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.nav-accordion__row > .nav-link {
+  min-width: 0;
+}
+
+.nav-disclosure {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 0;
+  border-radius: var(--borderRadiusMedium);
+  background: transparent;
+  color: var(--colorNeutralForeground2);
+  cursor: pointer;
+}
+
+.nav-disclosure:hover,
+.nav-disclosure:focus-visible {
+  background: var(--colorNeutralBackground3);
+  color: var(--colorNeutralForeground1);
+}
+
+.nav-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin: 0;
+  padding: 0 0 0 var(--spacingHorizontalM);
+  list-style: none;
+}
+
+.nav-tree[data-depth="1"] {
+  padding-inline-start: var(--spacingHorizontalL);
+}
+
+.nav-tree[data-depth="2"] {
+  padding-inline-start: var(--spacingHorizontalXL);
+}
+
+.nav-link--nested {
+  padding-block: 0.42rem;
+  font-size: var(--fontSizeBase200);
+  font-weight: 500;
+}
+
 .nav-heading {
   margin: 1.3rem 0 0.3rem;
   padding-inline: 0.7rem;
@@ -510,6 +566,50 @@ input {
   line-height: 1.6;
 }
 
+.suggested-activities {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.35fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--colorNeutralStroke2);
+  border-radius: var(--borderRadiusXLarge);
+  background: var(--colorNeutralBackground1);
+  padding: 1.25rem;
+  box-shadow: var(--shadow2);
+}
+
+.suggested-activities h2,
+.suggested-activities p {
+  margin-block: 0;
+}
+
+.suggested-activities ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.suggested-activities li {
+  display: grid;
+  gap: 0.2rem;
+  border-inline-start: 3px solid var(--colorBrandStroke1);
+  padding-inline-start: 0.75rem;
+}
+
+.suggested-activities a {
+  color: var(--colorBrandForegroundLink);
+  font-weight: 650;
+  text-underline-offset: 0.18em;
+}
+
+.suggested-activities span {
+  color: var(--colorNeutralForeground2);
+  font-size: var(--fontSizeBase200);
+}
+
 .calendar-toolbar,
 .calendar-period,
 .calendar-view-switch,
@@ -579,6 +679,12 @@ input {
   margin-top: 1.5rem;
   border-inline-start: 3px solid var(--colorBrandStroke1);
   padding-inline-start: 1rem;
+}
+
+@media (max-width: 700px) {
+  .suggested-activities {
+    grid-template-columns: 1fr;
+  }
 }
 
 .bootstrap-provider {

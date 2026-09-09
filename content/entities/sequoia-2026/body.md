@@ -1,7 +1,3 @@
-# Sequoia & Kings Canyon
-
-A five-night single-base trip designed around high-country hikes, giant sequoia groves, and one full Kings Canyon day.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Shape of the trip

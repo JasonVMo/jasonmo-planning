@@ -421,13 +421,13 @@ test("navigates a single-segment trip directly to its flight and reservation wit
   page,
 }) => {
   await page.goto(".#/trips");
-  await page.getByRole("link", { name: "Fresno trip", exact: true }).click();
+  await page.getByRole("main").getByRole("link", { name: "Fresno trip", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Fresno trip", level: 1 })).toBeVisible();
   await expect(
     page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: "Trips" }),
   ).toBeVisible();
 
-  await page.getByRole("link", { name: "Outbound flight", exact: true }).click();
+  await page.getByRole("main").getByRole("link", { name: "Outbound flight", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Outbound flight", level: 1 })).toBeVisible();
   const breadcrumb = page.getByRole("navigation", { name: "Breadcrumb" });
   await expect(breadcrumb.getByRole("link", { name: "Dashboard" })).toBeVisible();
@@ -439,10 +439,10 @@ test("navigates a multi-segment trip through its segments to their own bookings"
   page,
 }) => {
   await page.goto(".#/trips");
-  await page.getByRole("link", { name: "Acadia & NYC", exact: true }).click();
+  await page.getByRole("main").getByRole("link", { name: "Acadia & NYC", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Acadia & NYC", level: 1 })).toBeVisible();
 
-  await page.getByRole("link", { name: "Acadia segment", exact: true }).click();
+  await page.getByRole("main").getByRole("link", { name: "Acadia segment", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Acadia segment", level: 1 })).toBeVisible();
   const segmentBreadcrumb = page.getByRole("navigation", { name: "Breadcrumb" });
   await expect(segmentBreadcrumb.getByRole("link", { name: "Trips" })).toBeVisible();
@@ -450,7 +450,10 @@ test("navigates a multi-segment trip through its segments to their own bookings"
     segmentBreadcrumb.getByRole("link", { name: "Acadia & NYC", exact: true }),
   ).toBeVisible();
 
-  await page.getByRole("link", { name: "Bar Harbor lodging", exact: true }).click();
+  await page
+    .getByRole("main")
+    .getByRole("link", { name: "Bar Harbor lodging", exact: true })
+    .click();
   await expect(page.getByRole("heading", { name: "Bar Harbor lodging", level: 1 })).toBeVisible();
   const bookingBreadcrumb = page.getByRole("navigation", { name: "Breadcrumb" });
   await expect(

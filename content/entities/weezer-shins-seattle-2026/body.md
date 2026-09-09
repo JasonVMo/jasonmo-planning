@@ -1,7 +1,3 @@
-# Weezer with The Shins & Silversun Pickups
-
-A strong direct match for the concert watch list.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

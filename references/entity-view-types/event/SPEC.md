@@ -29,6 +29,11 @@ removes that entity from the aggregate calendar. The site constructs bounded
 calendar DTOs by selecting summary fields; it does not import canonical data,
 infer events from research timestamps, or parse dates from Markdown.
 
+Tentative items do not enter the month, day, or timeline calendar models.
+Tentative standalone event suggestions appear in a separate **Suggested
+activities** widget; tentative reservation appointments remain action items
+outside the calendar.
+
 Synthetic stories cover appointments, multi-day/all-day events, cancellation,
 compact occurrences, long text, light/dark, narrow screens, and a second
 synthetic data type using the same renderer.

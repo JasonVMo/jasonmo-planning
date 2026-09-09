@@ -1,7 +1,3 @@
-# Acadia restaurants
-
-Local and practical dining around Bar Harbor with seasonal-hour caveats.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Options

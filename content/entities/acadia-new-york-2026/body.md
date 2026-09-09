@@ -1,7 +1,3 @@
-# Acadia & New York City
-
-A two-segment trip: five nights around Acadia, followed by three nights based in Hoboken.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Timeline

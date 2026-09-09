@@ -1,7 +1,3 @@
-# Getting ready for Hoboken & New York
-
-Lodging comparison, transit payment, show tickets, and holiday-weekend checks.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Lodging

@@ -1,7 +1,3 @@
-# Peter Pan Goes Wrong
-
-Seattle Rep production running November 27-January 3.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

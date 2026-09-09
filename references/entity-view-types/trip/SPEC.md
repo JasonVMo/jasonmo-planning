@@ -14,11 +14,14 @@ view type, never persisted data type. Explicit incompatible selection fails
 rather than substituting another view.
 
 Detail uses an article/header, h1, textual kind/status badges, a definition
-list with semantic inclusive dates, safe body, and ordered itinerary/research
-links. Compact collection/relationship occurrences use h3 and omit the body
-and child list. Compact is a code-owned option, not persisted content.
-Cancellation remains explicit text, not color alone. Missing sections have
-an empty-state message.
+list with semantic inclusive dates, safe body, and separate ordered
+**Itinerary** and **Research** sections. Segment, flight, and reservation
+children form the itinerary. Research child links use their concise role label
+(`Things to Do`, `Hikes & Walks`, `Restaurants`, or `Getting Ready`) because
+the containing trip already supplies destination context. Compact
+collection/relationship occurrences use h3 and omit the body and child list.
+Compact is a code-owned option, not persisted content. Cancellation remains
+explicit text, not color alone. Missing sections have an empty-state message.
 
 Compiler projection happens after audience selection and parent closure.
 Child titles/summaries never come from hidden entities, and canonical objects

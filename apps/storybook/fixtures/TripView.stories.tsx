@@ -21,7 +21,7 @@ export const SingleSegment: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole("heading", { name: singleTrip.title, level: 1 })).toBeVisible();
-    const link = canvas.getByRole("link", { name: "Coastal walks" });
+    const link = canvas.getByRole("link", { name: "Hikes & Walks" });
     await expect(link).toHaveAttribute("href", "#/entities/synthetic-walks");
     canvas.getByRole("link", { name: singleTrip.title }).focus();
     await userEvent.tab();

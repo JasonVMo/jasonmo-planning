@@ -1,7 +1,3 @@
-# Maine arrival-night lodging
-
-Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Action needed

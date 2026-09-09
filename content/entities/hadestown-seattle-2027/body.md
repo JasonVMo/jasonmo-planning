@@ -1,7 +1,3 @@
-# Hadestown
-
-Paramount Theatre engagement running January 19-24.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

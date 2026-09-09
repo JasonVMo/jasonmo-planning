@@ -1,7 +1,3 @@
-# Sequoia hikes & walks
-
-Region-grouped walks and hikes with practical access from Three Rivers.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Foothills

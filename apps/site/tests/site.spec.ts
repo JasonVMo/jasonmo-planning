@@ -46,6 +46,47 @@ test("loads through localhost at the configured base path and exposes primary na
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 });
 
+test("expands trips and the selected trip's concise sub-page links", async ({ page }) => {
+  await page.goto(".#/trips");
+  const nav = page.getByRole("navigation", { name: "Primary navigation" });
+  await expect(
+    nav.getByRole("link", { name: "Sequoia & Kings Canyon", exact: true }),
+  ).toBeVisible();
+  await expect(
+    nav.getByRole("link", { name: "Acadia & New York City", exact: true }),
+  ).toBeVisible();
+  await nav.getByRole("link", { name: "Sequoia & Kings Canyon", exact: true }).click();
+  await expect(nav.getByRole("link", { name: "Things to Do", exact: true })).toBeVisible();
+  await expect(nav.getByRole("link", { name: "Hikes & Walks", exact: true })).toBeVisible();
+  await expect(nav.getByRole("link", { name: "Sequoia things to do", exact: true })).toHaveCount(0);
+  const itinerary = page.getByRole("region", { name: "Itinerary" });
+  const research = page.getByRole("region", { name: "Research" });
+  await expect(itinerary.getByRole("link", { name: "Seattle to Fresno" })).toBeVisible();
+  await expect(research.getByRole("link", { name: "Things to Do", exact: true })).toBeVisible();
+  await expect(
+    research.getByRole("link", { name: "Sequoia things to do", exact: true }),
+  ).toHaveCount(0);
+});
+
+test("renders a research title and summary once on separate lines", async ({ page }) => {
+  await page.goto(".#/entities/acadia-things-to-do");
+  const title = page.getByRole("heading", { name: "Acadia things to do", level: 1 });
+  const summary = page.locator(".tracker-full__summary");
+  await expect(title).toHaveCount(1);
+  await expect(summary).toHaveText(
+    "Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.",
+  );
+  const [titleBox, summaryBox] = await Promise.all([title.boundingBox(), summary.boundingBox()]);
+  expect(titleBox).not.toBeNull();
+  expect(summaryBox).not.toBeNull();
+  expect(summaryBox!.y).toBeGreaterThan(titleBox!.y + titleBox!.height);
+  await expect(
+    page.locator(".tracker-markdown").getByRole("heading", {
+      name: "Acadia things to do",
+    }),
+  ).toHaveCount(0);
+});
+
 test("keeps search query state in the hash URL", async ({ page }) => {
   const manifest = await manifestFrom(page);
   const document = requiredFirst(manifest.searchDocuments, "at least one search document");

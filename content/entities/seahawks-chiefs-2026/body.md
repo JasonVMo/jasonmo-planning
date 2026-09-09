@@ -1,7 +1,3 @@
-# Chiefs at Seahawks
-
-Sunday Night Football and a Seahawks throwback-uniform game.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

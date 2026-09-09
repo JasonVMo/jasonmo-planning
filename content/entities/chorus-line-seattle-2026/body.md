@@ -1,7 +1,3 @@
-# A Chorus Line
-
-5th Avenue Theatre production running September 15-27.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

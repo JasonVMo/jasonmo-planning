@@ -8,8 +8,10 @@ is a validation error. Detail default and Markdown fallback.
 Render with `react-markdown`, `skipHtml`, safe link allowlisting, and no
 raw-HTML/MDX/plugin execution. Remote and unapproved local images are disabled.
 Maintain heading structure, readable code/quotes, visible focus, and wrapping
-at narrow widths. A new data type may reuse this view by producing safe body
-text in its code-owned adapter.
+at narrow widths. The descriptor title and summary render once in a block
+header; canonical bodies begin with additional detail rather than repeating
+that metadata. A new data type may reuse this view by producing safe body text
+in its code-owned adapter.
 
 `SafeMarkdown` is also exported for code-owned page embeds. Its `children`
 must be a Markdown string, either a JavaScript string or a `*.md?raw` import.

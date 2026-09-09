@@ -1,7 +1,3 @@
-# Eureka Day
-
-Seattle Rep production running September 24-November 15.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

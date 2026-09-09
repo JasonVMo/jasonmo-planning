@@ -1,7 +1,3 @@
-# Acadia things to do
-
-Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Four-day framework

@@ -1,7 +1,3 @@
-# Bleachers with The Linda Lindas
-
-Alternative-pop show at Dune Peninsula in Tacoma.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

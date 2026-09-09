@@ -1,7 +1,3 @@
-# Washington State Fair
-
-The 2026 fair in Puyallup runs September 4-27.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

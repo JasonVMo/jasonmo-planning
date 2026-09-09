@@ -24,7 +24,11 @@ describe("travel renderers", () => {
     expect(html).toContain('dateTime="2026-10-09"');
     expect(html.indexOf("Coast segment")).toBeLessThan(html.indexOf("City segment"));
     expect(html).toContain('href="#/entities/synthetic-coast-segment"');
-    expect(html).toContain("Itinerary and research");
+    expect(html).toContain(">Itinerary<");
+    const singleHtml = renderToStaticMarkup(createElement(TripView, singleTrip));
+    expect(singleHtml).toContain(">Research<");
+    expect(singleHtml).toContain(">Getting Ready<");
+    expect(singleHtml).not.toContain(">Packing notes<");
     expect(html).not.toContain("2026-10-10");
   });
   it("renders airport-local times and connection duration", () => {

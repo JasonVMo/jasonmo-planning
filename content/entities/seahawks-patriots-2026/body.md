@@ -1,7 +1,3 @@
-# Patriots at Seahawks
-
-Seattle's 2026 season opener and championship-banner game.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

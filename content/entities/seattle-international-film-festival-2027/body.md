@@ -1,7 +1,3 @@
-# Seattle International Film Festival
-
-The 2027 festival is scheduled for May 13-23.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

@@ -1,7 +1,3 @@
-# Hoboken lodging
-
-Choose lodging near Stevens for October 10-13.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Action needed

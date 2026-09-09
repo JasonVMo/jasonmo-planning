@@ -1,7 +1,3 @@
-# Gorillaz
-
-Halloween arena show and strong alternative-music match.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

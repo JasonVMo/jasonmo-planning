@@ -10,12 +10,19 @@ test("navigates month, day, event details, and reloads date URLs", async ({ page
   await expect(page.getByRole("heading", { name: "September 2026" })).toBeVisible();
   const month = page.getByRole("region", { name: "September 2026" });
   await month
-    .getByRole("link", { name: "Monday, September 7, 2026, 6 events", exact: true })
+    .getByRole("link", { name: "Monday, September 7, 2026, 5 events", exact: true })
     .click();
   await expect(page).toHaveURL(/#\/calendar\/day\/2026-09-07\?timeZone=America%2FLos_Angeles$/);
   await expect(page.getByRole("heading", { name: "Day at a glance" })).toBeVisible();
-  await expect(page.getByText("Overlaps another event")).toHaveCount(2);
+  await expect(page.getByText("Overlaps another event")).toHaveCount(0);
   await expect(page.getByText("Continues from previous day")).toBeVisible();
+  const suggestions = page.getByRole("complementary", { name: "Suggested activities" });
+  await expect(suggestions.getByRole("link", { name: "Roadmap check-in" })).toBeVisible();
+  await expect(
+    page.getByRole("region", { name: "Timed events" }).getByRole("link", {
+      name: "Roadmap check-in",
+    }),
+  ).toHaveCount(0);
   await page.reload();
   await expect(page.getByRole("heading", { name: "Day at a glance" })).toBeVisible();
   await page.getByRole("link", { name: "Design review", exact: true }).click();
@@ -31,7 +38,7 @@ test("supports timeline keyboard navigation, history, and exclusive all-day ends
 }) => {
   await page.goto(".#/calendar/day/2026-09-07?timeZone=America%2FLos_Angeles");
   const timeline = page.getByRole("navigation", { name: "Around this day" });
-  await timeline.getByRole("link", { name: "Monday, September 7, 2026, 6 events" }).focus();
+  await timeline.getByRole("link", { name: "Monday, September 7, 2026, 5 events" }).focus();
   await page.keyboard.press("ArrowRight");
   await expect(
     timeline.getByRole("link", { name: "Tuesday, September 8, 2026, 1 event" }),

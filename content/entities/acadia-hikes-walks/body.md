@@ -1,7 +1,3 @@
-# Acadia Hikes
-
-Region-grouped official routes with bus, driving, weather, and exposure notes.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## East side

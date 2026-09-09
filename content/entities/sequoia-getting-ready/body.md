@@ -1,7 +1,3 @@
-# Getting ready for Sequoia
-
-Weather, reservations, road checks, packing, and day-plan decisions.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Weather

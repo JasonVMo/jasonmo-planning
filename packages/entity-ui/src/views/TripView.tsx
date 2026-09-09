@@ -13,8 +13,17 @@ const roleLabels: Record<TripChildRole, string> = {
   "getting-ready": "Getting Ready",
 };
 
+const researchRoles = new Set<TripChildRole>([
+  "things-to-do",
+  "hikes-walks",
+  "restaurants",
+  "getting-ready",
+]);
+
 export function TripView({ compact = false, ...model }: TripViewModel & { compact?: boolean }) {
   const Heading = compact ? "h3" : "h1";
+  const itinerary = model.children.filter((child) => !researchRoles.has(child.role));
+  const research = model.children.filter((child) => researchRoles.has(child.role));
   return (
     <article className="tracker-travel" data-view-type="trip" data-status={model.status}>
       <header className="tracker-travel__header">
@@ -52,11 +61,11 @@ export function TripView({ compact = false, ...model }: TripViewModel & { compac
       {!compact ? (
         <>
           {model.body ? <SafeMarkdown>{model.body}</SafeMarkdown> : null}
-          <section aria-label="Itinerary and research">
-            <h2>Itinerary and research</h2>
-            {model.children.length ? (
+          {itinerary.length ? (
+            <section aria-labelledby={`${model.href.slice(2)}-itinerary`}>
+              <h2 id={`${model.href.slice(2)}-itinerary`}>Itinerary</h2>
               <ol className="tracker-travel__list">
-                {model.children.map((child) => (
+                {itinerary.map((child) => (
                   <li key={child.order}>
                     <span className="tracker-travel__eyebrow">{roleLabels[child.role]}</span>
                     <h3>
@@ -66,10 +75,24 @@ export function TripView({ compact = false, ...model }: TripViewModel & { compac
                   </li>
                 ))}
               </ol>
-            ) : (
-              <p>No itinerary sections yet.</p>
-            )}
-          </section>
+            </section>
+          ) : null}
+          {research.length ? (
+            <section aria-labelledby={`${model.href.slice(2)}-research`}>
+              <h2 id={`${model.href.slice(2)}-research`}>Research</h2>
+              <ol className="tracker-travel__list">
+                {research.map((child) => (
+                  <li key={child.order}>
+                    <h3>
+                      <a href={child.href}>{roleLabels[child.role]}</a>
+                    </h3>
+                    <p>{child.summary}</p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ) : null}
+          {!itinerary.length && !research.length ? <p>No itinerary or research yet.</p> : null}
         </>
       ) : null}
     </article>

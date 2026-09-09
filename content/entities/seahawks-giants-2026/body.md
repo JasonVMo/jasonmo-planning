@@ -1,7 +1,3 @@
-# Giants at Seahawks
-
-Selected December Seahawks home game.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

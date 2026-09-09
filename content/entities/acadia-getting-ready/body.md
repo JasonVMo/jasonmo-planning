@@ -1,7 +1,3 @@
-# Getting ready for Acadia
-
-Lodging choice, Island Explorer schedules, foliage, reservations, rain plans, and safety.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Open decision

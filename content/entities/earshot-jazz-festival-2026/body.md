@@ -1,7 +1,3 @@
-# Earshot Jazz Festival
-
-Seattle-area jazz festival running October 7-25.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Current status

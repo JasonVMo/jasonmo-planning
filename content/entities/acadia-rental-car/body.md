@@ -1,7 +1,3 @@
-# Bangor rental car
-
-Enterprise rental from Bangor airport for the Acadia segment.
-
 <!-- BEGIN AGENT-MANAGED: research-summary -->
 
 ## Planning note
