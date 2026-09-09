@@ -1,4 +1,4 @@
-# Acadia hikes & walks
+# Acadia Hikes
 
 Region-grouped official routes with bus, driving, weather, and exposure notes.
 

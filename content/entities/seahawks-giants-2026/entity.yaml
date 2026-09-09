@@ -33,7 +33,7 @@ view:
 data:
   bodyPath: body.md
   kind: event
-  status: tentative
+  status: confirmed
   schedule:
     allDay: false
     startAt: 2026-12-13T13:25:00-08:00

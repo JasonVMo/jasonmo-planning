@@ -2,7 +2,7 @@ schemaVersion: 1
 id: acadia-hikes-walks
 dataType: markdown
 dataVersion: 1
-title: Acadia hikes & walks
+title: Acadia Hikes
 summary: Region-grouped official routes with bus, driving, weather, and exposure notes.
 lifecycle: active
 taxonomy:
