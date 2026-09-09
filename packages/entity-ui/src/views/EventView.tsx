@@ -1,5 +1,5 @@
 import type { CalendarEvent, EventViewModel } from "@planning/entity-model";
-import { Badge } from "@fluentui/react-components";
+import { Badge, Card, CardFooter, CardHeader } from "@fluentui/react-components";
 import { SafeMarkdown } from "../markdown.tsx";
 import { calendarHref, eventDateRange, eventStartDate, eventTime } from "../calendar.ts";
 
@@ -14,14 +14,53 @@ export function EventBadges({ kind, status }: Pick<CalendarEvent, "kind" | "stat
 
 export function EventView({ compact = false, ...model }: EventViewModel & { compact?: boolean }) {
   const timeZone = model.schedule.allDay ? "UTC" : model.schedule.timeZone;
-  const Heading = compact ? "h3" : "h1";
+  if (compact) {
+    return (
+      <article data-view-type="event" data-status={model.status}>
+        <Card className="tracker-event tracker-event--card" appearance="outline">
+          <CardHeader
+            header={
+              <h3>
+                <a href={model.href}>{model.title}</a>
+              </h3>
+            }
+            description={<p>{model.summary}</p>}
+          />
+          <dl className="tracker-event-card__details">
+            <div>
+              <dt>When</dt>
+              <dd>
+                {eventDateRange(model, timeZone)}
+                {!model.schedule.allDay ? ` · ${eventTime(model, timeZone)}` : null}
+              </dd>
+            </div>
+            {model.location ? (
+              <div>
+                <dt>Where</dt>
+                <dd>{model.location}</dd>
+              </div>
+            ) : null}
+          </dl>
+          <CardFooter className="tracker-event-card__footer">
+            <EventBadges {...model} />
+            <a
+              className="tracker-calendar__link"
+              href={calendarHref("day", eventStartDate(model, timeZone), timeZone)}
+            >
+              View this day
+            </a>
+          </CardFooter>
+        </Card>
+      </article>
+    );
+  }
   return (
     <article className="tracker-event" data-view-type="event" data-status={model.status}>
       <header className="tracker-event__header">
         <EventBadges {...model} />
-        <Heading>
+        <h1>
           <a href={model.href}>{model.title}</a>
-        </Heading>
+        </h1>
         <p>{model.summary}</p>
       </header>
       <dl className="tracker-event__details">

@@ -75,8 +75,8 @@ export const directFlight: FlightViewModel = {
   body: "## Before departure\n\nCheck the carrier's current departure information.",
   legs: [
     {
-      carrier: "Example Air",
-      flightNumber: "EX 101",
+      carrier: "American Airlines",
+      flightNumber: "1872",
       origin: "SEA",
       destination: "BOS",
       departAt: "2026-10-03T08:00:00-07:00",
@@ -98,8 +98,8 @@ export const connectingFlight: FlightViewModel = {
       arrivalTimeZone: "America/Chicago",
     },
     {
-      carrier: "Example Air",
-      flightNumber: "EX 202",
+      carrier: "American Airlines",
+      flightNumber: "3683",
       origin: "ORD",
       destination: "BOS",
       departAt: "2026-10-03T15:30:00-05:00",

@@ -6,6 +6,7 @@ export interface EntityRendererProps {
   entity: SiteEntity;
   viewType?: ViewType;
   context?: RenderContext;
+  showTripChildren?: boolean;
 }
 
 function MissingViewModel({ entity, viewType }: { entity: SiteEntity; viewType: ViewType }) {
@@ -19,7 +20,12 @@ function MissingViewModel({ entity, viewType }: { entity: SiteEntity; viewType: 
   );
 }
 
-export function EntityRenderer({ entity, viewType, context }: EntityRendererProps) {
+export function EntityRenderer({
+  entity,
+  viewType,
+  context,
+  showTripChildren = true,
+}: EntityRendererProps) {
   const selectedType =
     viewType ?? (context === undefined ? entity.view.defaultType : entity.view.byContext[context]);
 
@@ -27,7 +33,11 @@ export function EntityRenderer({ entity, viewType, context }: EntityRendererProp
     case "trip": {
       const model = entity.viewModels.trip;
       return model ? (
-        <viewRegistry.trip {...model} compact={context !== undefined && context !== "detail"} />
+        <viewRegistry.trip
+          {...model}
+          compact={context !== undefined && context !== "detail"}
+          showChildren={showTripChildren}
+        />
       ) : (
         <MissingViewModel entity={entity} viewType={selectedType} />
       );

@@ -20,7 +20,11 @@ const researchRoles = new Set<TripChildRole>([
   "getting-ready",
 ]);
 
-export function TripView({ compact = false, ...model }: TripViewModel & { compact?: boolean }) {
+export function TripView({
+  compact = false,
+  showChildren = true,
+  ...model
+}: TripViewModel & { compact?: boolean; showChildren?: boolean }) {
   const Heading = compact ? "h3" : "h1";
   const itinerary = model.children.filter((child) => !researchRoles.has(child.role));
   const research = model.children.filter((child) => researchRoles.has(child.role));
@@ -61,7 +65,7 @@ export function TripView({ compact = false, ...model }: TripViewModel & { compac
       {!compact ? (
         <>
           {model.body ? <SafeMarkdown>{model.body}</SafeMarkdown> : null}
-          {itinerary.length ? (
+          {showChildren && itinerary.length ? (
             <section aria-labelledby={`${model.href.slice(2)}-itinerary`}>
               <h2 id={`${model.href.slice(2)}-itinerary`}>Itinerary</h2>
               <ol className="tracker-travel__list">
@@ -77,7 +81,7 @@ export function TripView({ compact = false, ...model }: TripViewModel & { compac
               </ol>
             </section>
           ) : null}
-          {research.length ? (
+          {showChildren && research.length ? (
             <section aria-labelledby={`${model.href.slice(2)}-research`}>
               <h2 id={`${model.href.slice(2)}-research`}>Research</h2>
               <ol className="tracker-travel__list">
@@ -92,7 +96,9 @@ export function TripView({ compact = false, ...model }: TripViewModel & { compac
               </ol>
             </section>
           ) : null}
-          {!itinerary.length && !research.length ? <p>No itinerary or research yet.</p> : null}
+          {showChildren && !itinerary.length && !research.length ? (
+            <p>No itinerary or research yet.</p>
+          ) : null}
         </>
       ) : null}
     </article>

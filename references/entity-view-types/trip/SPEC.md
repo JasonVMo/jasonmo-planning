@@ -22,6 +22,10 @@ the containing trip already supplies destination context. Compact
 collection/relationship occurrences use h3 and omit the body and child list.
 Compact is a code-owned option, not persisted content. Cancellation remains
 explicit text, not color alone. Missing sections have an empty-state message.
+The actual site may suppress the reference-only child lists and compose the
+same audience-safe targets as cards: dedicated compact flight/event cards for
+flights and reservations, compact trip views for segments, and the common card
+view for research pages such as hikes.
 
 Compiler projection happens after audience selection and parent closure.
 Child titles/summaries never come from hidden entities, and canonical objects

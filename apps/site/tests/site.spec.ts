@@ -87,6 +87,28 @@ test("renders a research title and summary once on separate lines", async ({ pag
   ).toHaveCount(0);
 });
 
+test("renders compact travel and research children with Fluent cards", async ({ page }) => {
+  await page.goto(".#/entities/acadia-new-york-2026");
+  const flightCard = page
+    .getByRole("main")
+    .locator('[data-view-type="flight"]')
+    .filter({ hasText: "American 1872" });
+  await expect(flightCard.locator(".fui-Card")).toBeVisible();
+  const firstLeg = flightCard.getByLabel("SEA to ORD");
+  await expect(firstLeg.getByText("SEA", { exact: true })).toBeVisible();
+  await expect(firstLeg.getByText("ORD", { exact: true })).toBeVisible();
+  await expect(flightCard).not.toContainText("American Airlines 1872");
+  await expect(flightCard).not.toContainText("America/Los_Angeles");
+
+  await page.goto(".#/entities/acadia-segment-2026");
+  await expect(
+    page.getByRole("main").locator('[data-view-type="event"] .fui-Card').first(),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("main").locator('[data-view-type="card"] .fui-Card').first(),
+  ).toBeVisible();
+});
+
 test("keeps search query state in the hash URL", async ({ page }) => {
   const manifest = await manifestFrom(page);
   const document = requiredFirst(manifest.searchDocuments, "at least one search document");

@@ -18,8 +18,10 @@ incompatible override fails rather than falling back.
 
 The renderer dispatches only by view type. Detail includes preparation/body
 text, original-zone timing, location, kind, status, and a link to that day.
-Collection and relationship occurrences use compact headings and omit body
-text. `compact` is a code-owned rendering option, not an entity-authored prop.
+Collection and relationship occurrences use Fluent UI `Card`, `CardHeader`,
+and `CardFooter` primitives with compact timing/location metadata and no body
+text. Reservations reuse this same compact card through the event adapter.
+`compact` is a code-owned rendering option, not an entity-authored prop.
 Cancelled items retain their details and explicit status.
 
 The site's Calendar route collects only audience-projected, permitted event
