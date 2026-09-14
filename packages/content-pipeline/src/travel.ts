@@ -9,6 +9,7 @@ import { exclusiveTripEnd } from "@planning/entity-model";
 import { fail } from "./diagnostics.ts";
 import type { LoadedEntity } from "./validate.ts";
 import type { Presentation } from "./view-adapters.ts";
+import { tripBannerHref } from "./assets.ts";
 
 export function tripData(entity: Entity): TripData | undefined {
   return entity.dataType === "trip" && "children" in entity.data ? entity.data : undefined;
@@ -120,6 +121,7 @@ export function projectTravel(
   entity: Entity,
   selected: ReadonlyMap<string, LoadedEntity>,
   presentation: Presentation,
+  basePath: string,
 ): void {
   const data = entity.data;
   if (entity.dataType === "trip" && "children" in data) {
@@ -130,6 +132,14 @@ export function projectTravel(
       endDate: data.endDate,
       destination: data.destination,
       timeZone: data.timeZone,
+      ...(data.banner
+        ? {
+            banner: {
+              src: tripBannerHref(basePath, entity.id, data.banner.fingerprint),
+              digest: data.banner.fingerprint,
+            },
+          }
+        : {}),
       children: [...data.children]
         .sort((a, b) => a.order - b.order)
         .flatMap((child) => {

@@ -7,7 +7,8 @@
 .tracker-tile,
 .tracker-card,
 .tracker-event--card,
-.tracker-flight-card {
+.tracker-flight-card,
+.tracker-trip-card {
   height: 100%;
   min-width: 0;
   transition:
@@ -18,7 +19,8 @@
 .tracker-tile:hover,
 .tracker-card:hover,
 .tracker-event--card:hover,
-.tracker-flight-card:hover {
+.tracker-flight-card:hover,
+.tracker-trip-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow8);
 }
@@ -26,7 +28,8 @@
 .tracker-tile a,
 .tracker-card a,
 .tracker-event--card a,
-.tracker-flight-card a {
+.tracker-flight-card a,
+.tracker-trip-card a {
   color: var(--colorNeutralForeground1);
   text-decoration: none;
 }
@@ -34,7 +37,8 @@
 .tracker-tile a:hover,
 .tracker-card a:hover,
 .tracker-event--card a:hover,
-.tracker-flight-card a:hover {
+.tracker-flight-card a:hover,
+.tracker-trip-card a:hover {
   color: var(--colorBrandForeground1);
   text-decoration: underline;
   text-underline-offset: 0.18em;
@@ -204,7 +208,8 @@
 .tracker-event--card h3,
 .tracker-event--card p,
 .tracker-flight-card h3,
-.tracker-flight-card p {
+.tracker-flight-card p,
+.tracker-trip-card p {
   margin-block: 0;
 }
 

@@ -1,4 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
+import { writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import type {
   Entity,
   FlightData,
@@ -6,7 +8,7 @@ import type {
   TripData,
   ViewType,
 } from "@planning/entity-model";
-import { serializeCanonical } from "../src/canonical.ts";
+import { hashBytes, serializeCanonical } from "../src/canonical.ts";
 import { assertSchema } from "../src/schema.ts";
 import { loadCorpus } from "../src/validate.ts";
 import { projectCorpus, compileContent } from "../src/project.ts";
@@ -52,6 +54,34 @@ const reservation: ReservationData = {
   location: "Example public visitor area",
   bookingUrl: "https://example.com/lodge",
 };
+
+function jpegFixture(width = 1200, height = 480): Buffer {
+  return Buffer.from([
+    0xff,
+    0xd8,
+    0xff,
+    0xc0,
+    0x00,
+    0x11,
+    0x08,
+    height >> 8,
+    height & 0xff,
+    width >> 8,
+    width & 0xff,
+    0x03,
+    0x01,
+    0x11,
+    0x00,
+    0x02,
+    0x11,
+    0x00,
+    0x03,
+    0x11,
+    0x00,
+    0xff,
+    0xd9,
+  ]);
+}
 
 async function travelFixture(dataType: "trip" | "flight" | "reservation", data: Entity["data"]) {
   const root = await fixture();
@@ -157,6 +187,30 @@ describe("strict travel contracts", () => {
       bookingUrl: "https://synthetic-user@example.com/lodge",
     });
     await expect(loadCorpus(reservationRoot)).rejects.toThrow("/data/bookingUrl");
+  });
+  it("validates and projects an entity-local trip banner", async () => {
+    const root = await travelFixture("trip", trip);
+    const bytes = jpegFixture();
+    const bannerPath = join(root, `content/entities/${ENTITY_ID}/banner.jpg`);
+    await writeFile(bannerPath, bytes);
+    await editEntity(root, (entity) => {
+      const data = entity.data as TripData;
+      data.banner = {
+        sourceUrl: "https://example.com/synthetic-banner",
+        credit: "Synthetic photographer",
+        license: "cc0-1.0",
+        fingerprint: hashBytes(bytes),
+      };
+    });
+    const manifest = await compileContent(root, { target: "local", basePath: "/nested/" });
+    expect(
+      manifest.entities.find((entity) => entity.id === ENTITY_ID)!.viewModels.trip!.banner,
+    ).toEqual({
+      src: `/nested/assets/trip-banners/${ENTITY_ID}-${hashBytes(bytes).slice(0, 12)}.jpg`,
+      digest: hashBytes(bytes),
+    });
+    await writeFile(bannerPath, Buffer.concat([bytes, Buffer.from([0])]));
+    await expect(loadCorpus(root)).rejects.toThrow("fingerprint mismatch");
   });
 });
 
@@ -282,6 +336,7 @@ describe("travel calendar projections and browser guards", () => {
         entity,
         new Map(corpus.entities.map((item) => [item.entity.id, item])),
         presentation,
+        "/",
       );
       for (const view of supportedViews(type)) {
         const model = adaptView(type, view, presentation);

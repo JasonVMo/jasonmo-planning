@@ -9,7 +9,7 @@ export type ActivityDataEntry = {
   /**
    * Resolved span for the activity icon using google material symbols that can be set into the <CardHeader> image prop.
    */
-  headerIcon: ReactElement;
+  headerIcon: ReactElement | null;
 
   /**
    * Background style for the activity header that can be set into the <CardHeader> style prop.
@@ -51,6 +51,14 @@ const activityStyles: Record<ActivityKind, ActivityDataEntry> = {
     headerIcon: materialSymbol("notifications"),
     headerBgStyle: darkGradient("#6b4a00", "#2c1d00"),
   },
+  trip: {
+    headerIcon: materialSymbol("travel_explore"),
+    headerBgStyle: darkGradient("#315345", "#122a22"),
+  },
+  segment: {
+    headerIcon: null,
+    headerBgStyle: darkGradient("#3e5266", "#172838"),
+  },
   flight: {
     headerIcon: materialSymbol("flight"),
     headerBgStyle: darkGradient("#123f73", "#061a33"),
@@ -77,12 +85,17 @@ const activityStyles: Record<ActivityKind, ActivityDataEntry> = {
   },
 };
 
-export function getHeaderIcon(kind: ActivityKind): ReactElement {
+export function getHeaderIcon(kind: ActivityKind): ReactElement | null {
   return activityStyles[kind].headerIcon;
 }
 
-export function getHeaderBgStyle(kind: ActivityKind, bgOverride?: CSSProperties): CSSProperties {
-  return bgOverride
-    ? { ...activityStyles[kind].headerBgStyle, ...bgOverride }
-    : activityStyles[kind].headerBgStyle;
+export function getHeaderBgStyle(
+  kind: ActivityKind,
+  backgroundImage?: CSSProperties["backgroundImage"],
+): CSSProperties {
+  if (!backgroundImage) return activityStyles[kind].headerBgStyle;
+  return {
+    backgroundImage: `linear-gradient(90deg, rgb(0 0 0 / 28%) 0%, rgb(0 0 0 / 18%) 62%, rgb(0 0 0 / 0%) 100%), ${backgroundImage}`,
+    backgroundBlendMode: "multiply",
+  };
 }

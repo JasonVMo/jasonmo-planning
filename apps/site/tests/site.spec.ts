@@ -97,6 +97,22 @@ test("renders compact travel and research children with Fluent cards", async ({ 
   const firstLeg = flightCard.getByLabel("SEA to ORD");
   await expect(firstLeg.getByText("SEA", { exact: true })).toBeVisible();
   await expect(firstLeg.getByText("ORD", { exact: true })).toBeVisible();
+  const acadiaSegment = page
+    .getByRole("main")
+    .locator('[data-view-type="trip"]')
+    .filter({ hasText: "Acadia National Park & Bar Harbor" });
+  const segmentHeader = acadiaSegment.locator('[data-has-background-image="true"]');
+  await expect(segmentHeader).toBeVisible();
+  const segmentBackground = await segmentHeader.evaluate(
+    (element) => getComputedStyle(element).backgroundImage,
+  );
+  expect(segmentBackground).toContain("linear-gradient");
+  expect(segmentBackground).toContain("rgba(0, 0, 0, 0.68)");
+  expect(segmentBackground).toContain("assets/trip-banners/acadia-segment-2026-");
+  await expect(segmentHeader.locator(".tracker-activity-header__icon")).toHaveCount(0);
+  const segmentImageUrl = segmentBackground.match(/url\("([^"]+)"/)?.[1];
+  expect(segmentImageUrl).toBeTruthy();
+  expect((await page.request.get(segmentImageUrl!)).ok()).toBe(true);
   const flightHeader = flightCard.locator('[data-activity-kind="flight"]');
   await expect(flightHeader).toBeVisible();
   await page.evaluate(() => document.fonts.ready);

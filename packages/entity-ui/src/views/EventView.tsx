@@ -27,6 +27,8 @@ export function EventView({ compact = false, ...model }: EventViewModel & { comp
       appointment: "Appointment",
       deadline: "Deadline",
       reminder: "Reminder",
+      trip: "Trip",
+      segment: "Trip segment",
       flight: "Flight",
     }[activityKind];
     return (

@@ -412,7 +412,9 @@ test("lists only root trips on the Trips page, soonest first, with no segment ca
   await page.goto(".#/trips");
   await expect(page.getByRole("heading", { name: "Trips", level: 1 })).toBeVisible();
   const trips = page.locator(".entity-grid").getByRole("link");
-  await expect(trips).toHaveText(["Fresno trip", "Acadia & NYC"]);
+  await expect(trips).toHaveCount(2);
+  await expect(trips.nth(0)).toHaveAccessibleName("Fresno trip");
+  await expect(trips.nth(1)).toHaveAccessibleName("Acadia & NYC");
   await expect(page.getByRole("link", { name: "Acadia segment", exact: true })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "NYC segment", exact: true })).toHaveCount(0);
 });

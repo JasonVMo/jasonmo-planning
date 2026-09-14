@@ -206,6 +206,7 @@ export const ADAPTERS: AdapterRegistry = new Map<
           endDate: p.trip.endDate,
           destination: p.trip.destination,
           timeZone: p.trip.timeZone,
+          ...(p.trip.banner ? { banner: { ...p.trip.banner } } : {}),
           children: p.trip.children.map((child) => ({
             title: child.title,
             summary: child.summary,

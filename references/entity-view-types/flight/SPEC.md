@@ -23,7 +23,7 @@ connection duration. Duration is a display approximation to the nearest minute;
 canonical comparisons retain full timestamp precision. Compact cards omit body
 text. Cancellation/delay are textual states, not color alone.
 The shared [activity-card header](../card/ACTIVITY.md) supplies the dark blue
-gradient and can accept a reviewed image background later.
+gradient and automatically masks reviewed image backgrounds for contrast.
 
 Compiler projections explicitly allowlist each leg field and sanitize body
 Markdown. No booking locator, confirmation, private address, canonical path,

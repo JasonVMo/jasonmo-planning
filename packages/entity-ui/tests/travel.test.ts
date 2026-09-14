@@ -24,6 +24,8 @@ const activityKinds = [
   "appointment",
   "deadline",
   "reminder",
+  "trip",
+  "segment",
   "flight",
   "lodging",
   "rental-car",
@@ -87,13 +89,20 @@ describe("travel renderers", () => {
     expect(hike).toContain("fui-Card");
     expect(hike).toContain("tracker-card");
   });
-  it("defines a local Material Symbol treatment for every activity kind", () => {
+  it("defines a local header treatment for every activity kind", () => {
     for (const kind of activityKinds) {
-      const icon = renderToStaticMarkup(getHeaderIcon(kind));
-      expect(icon).toContain("material-symbols-rounded");
-      expect(icon).toContain("tracker-activity-header__icon");
       expect(getHeaderBgStyle(kind).backgroundImage).toMatch(/^linear-gradient/);
+      if (kind === "segment") {
+        expect(getHeaderIcon(kind)).toBeNull();
+      } else {
+        const icon = renderToStaticMarkup(getHeaderIcon(kind));
+        expect(icon).toContain("material-symbols-rounded");
+        expect(icon).toContain("tracker-activity-header__icon");
+      }
     }
+    expect(getHeaderBgStyle("segment", 'url("/banner.jpg")').backgroundImage).toContain(
+      "rgb(0 0 0 / 68%)",
+    );
   });
   it("dispatches by view only and keeps compact body text out of collections", () => {
     for (const model of [singleTrip, directFlight]) {

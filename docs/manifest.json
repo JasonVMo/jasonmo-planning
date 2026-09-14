@@ -1,7 +1,7 @@
 {
   "audience": "public",
   "basePath": "/jasonmo-planning/",
-  "contentDigest": "33f2be6f1a7541dd504b0a053c1480e420a0604718c7096c513d3ac1a05ad0eb",
+  "contentDigest": "fc59cddda8c41c34eba37f1547e640c6c08712ded472db9bfc985834383138a0",
   "deployable": true,
   "entities": [
     {
@@ -579,6 +579,10 @@
           "title": "Acadia National Park & Bar Harbor"
         },
         "trip": {
+          "banner": {
+            "digest": "aab5acf5b7d235d28c015a03e225b280087f03f481d667dfad00c88986bc03b4",
+            "src": "/jasonmo-planning/assets/trip-banners/acadia-segment-2026-aab5acf5b7d2.jpg"
+          },
           "body": "Use Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor.\n",
           "children": [
             {
@@ -1510,6 +1514,10 @@
           "title": "New York City & Hoboken"
         },
         "trip": {
+          "banner": {
+            "digest": "2d5b7ac45c15a9bc1c6dfe8bf752f27311c03a8c40c7709abfccdd3fdd637237",
+            "src": "/jasonmo-planning/assets/trip-banners/nyc-hoboken-segment-2026-2d5b7ac45c15.jpg"
+          },
           "body": "Use PATH as the main cross-Hudson connection. The confirmed arrival airport is LGA. Keep one Broadway option flexible until tickets and the visit schedule are coordinated.\n",
           "children": [
             {
@@ -2015,6 +2023,10 @@
           "title": "Sequoia & Kings Canyon"
         },
         "trip": {
+          "banner": {
+            "digest": "9cb9015a989057b54baddbbc6ec4b4d7116d33bb5cf0d5220545be4273d470e6",
+            "src": "/jasonmo-planning/assets/trip-banners/sequoia-2026-9cb9015a9890.jpg"
+          },
           "body": "## Shape of the trip\n\n- **Base:** Three Rivers, outside the Ash Mountain entrance.\n- **Giant Forest day:** General Sherman, Congress Trail, Moro Rock, and Crescent Meadow.\n- **Long hike day:** choose a current-condition-appropriate route from Lodgepole or Wolverton.\n- **Kings Canyon day:** Grant Grove plus either a scenic Cedar Grove day or one substantial hike.\n- **Flex day:** hold for weather, smoke, construction, or Crystal Cave availability.\n\nCheck the [NPS current conditions](https://www.nps.gov/seki/planyourvisit/conditions.htm) before each long driving day.\n",
           "children": [
             {

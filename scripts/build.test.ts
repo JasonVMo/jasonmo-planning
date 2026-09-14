@@ -19,6 +19,11 @@ it("builds byte-identical artifacts and preserves the last valid output on failu
   await cp(path.join(repositoryRoot, "tsconfig.base.json"), path.join(root, "tsconfig.base.json"));
   await buildSite(root, "local", "/nested/");
   const original = await artifactFiles(path.join(root, "dist/local"));
+  const banners = [...original].filter(([name]) => name.startsWith("assets/trip-banners/"));
+  expect(banners).toHaveLength(3);
+  expect(banners.every(([name, bytes]) => name.endsWith(".jpg") && bytes.length < 262_144)).toBe(
+    true,
+  );
   await buildSite(root, "local", "/nested/", "docs");
   expect((await artifactFiles(path.join(root, "docs"))).get(".nojekyll")).toEqual(Buffer.from(""));
   await expect(buildSite(root, "local", "/nested/", "apps/site")).rejects.toThrow(

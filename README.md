@@ -162,8 +162,9 @@ covered by the exact owner approval. `dist/local/` remains non-deployable.
 
 Canonical facts remain deliberately evidence-backed. Supervised real-source
 refresh cycles remain an operating gate; fixture scenarios do not claim that
-research occurred. Assets and image rendering remain disabled until provenance,
-projection, and publication contracts are implemented.
+research occurred. Validated trip banners may use entity-local, source-attributed
+public-domain or CC0 JPEGs. Markdown and all other image surfaces remain
+disabled.
 
 ## Repository map
 

@@ -9,6 +9,8 @@ const activities = [
   { kind: "appointment", title: "Planning call", subtitle: "Appointment" },
   { kind: "deadline", title: "Reservation window", subtitle: "Deadline" },
   { kind: "reminder", title: "Pack trail permit", subtitle: "Reminder" },
+  { kind: "trip", title: "Sequoia & Kings Canyon", subtitle: "Trip" },
+  { kind: "segment", title: "Acadia National Park", subtitle: "Trip segment" },
   { kind: "flight", title: "Seattle to Bangor", subtitle: "Flight" },
   { kind: "lodging", title: "Bar Harbor hotel", subtitle: "Lodging" },
   { kind: "rental-car", title: "Bangor rental car", subtitle: "Rental car" },
@@ -70,7 +72,12 @@ export const RentalCar: Story = {
 export const ImageBackground: Story = {
   args: {
     backgroundImage:
-      'linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 60%)), url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 800 300%27%3E%3Crect width=%27800%27 height=%27300%27 fill=%27%230b5a46%27/%3E%3Ccircle cx=%27640%27 cy=%27100%27 r=%27140%27 fill=%27%23228b6b%27/%3E%3C/svg%3E")',
+      'url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 800 300%27%3E%3Crect width=%27800%27 height=%27300%27 fill=%27%230b5a46%27/%3E%3Ccircle cx=%27640%27 cy=%27100%27 r=%27140%27 fill=%27%23228b6b%27/%3E%3C/svg%3E")',
+  },
+  play: async ({ canvasElement }) => {
+    const header = canvasElement.querySelector('[data-has-background-image="true"]');
+    await expect(header).not.toBeNull();
+    await expect(getComputedStyle(header!).backgroundImage).toContain("linear-gradient");
   },
 };
 
@@ -98,7 +105,12 @@ export const AllActivityKinds: Story = {
     for (const activity of activities) {
       const header = canvasElement.querySelector(`[data-activity-kind="${activity.kind}"]`);
       await expect(header).not.toBeNull();
-      await expect(header?.querySelector(".material-symbols-rounded")).not.toBeNull();
+      const icon = header?.querySelector(".material-symbols-rounded");
+      if (activity.kind === "segment") {
+        await expect(icon).toBeNull();
+      } else {
+        await expect(icon).not.toBeNull();
+      }
     }
   },
 };

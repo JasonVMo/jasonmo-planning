@@ -58,6 +58,17 @@ function isBasePath(value: unknown): value is string {
   return typeof value === "string" && /^\/(?:[A-Za-z0-9_-]+\/)*$/.test(value);
 }
 
+function isTripBanner(value: unknown): boolean {
+  return (
+    isObject(value) &&
+    onlyKeys(value, ["src", "digest"]) &&
+    typeof value.src === "string" &&
+    /^\/(?:[A-Za-z0-9_-]+\/)*assets\/trip-banners\/[a-z0-9-]+-[a-f0-9]{12}\.jpg$/.test(value.src) &&
+    typeof value.digest === "string" &&
+    /^[a-f0-9]{64}$/.test(value.digest)
+  );
+}
+
 function isStringUnion<const Values extends readonly string[]>(
   value: unknown,
   values: Values,
@@ -133,6 +144,7 @@ function isTripModel(value: unknown): value is TripViewModel {
       "endDate",
       "destination",
       "timeZone",
+      "banner",
       "children",
     ]) &&
     isTravelHeader(value) &&
@@ -143,6 +155,7 @@ function isTripModel(value: unknown): value is TripViewModel {
     !tripRangeError(value) &&
     isTravelText(value.destination) &&
     isTimeZone(value.timeZone) &&
+    (value.banner === undefined || isTripBanner(value.banner)) &&
     Array.isArray(value.children) &&
     value.children.length <= 200 &&
     value.children.every(
@@ -246,6 +259,8 @@ function isViewModels(value: unknown): value is ViewModels {
             "appointment",
             "deadline",
             "reminder",
+            "trip",
+            "segment",
             "flight",
             "lodging",
             "rental-car",

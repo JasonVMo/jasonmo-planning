@@ -105,10 +105,11 @@ export function ActivityCard({
       <CardHeader
         className={mergeClasses(styles.header, "tracker-activity-header")}
         data-activity-kind={kind}
-        style={getHeaderBgStyle(kind, backgroundImage ? { backgroundImage } : undefined)}
+        data-has-background-image={backgroundImage ? "true" : undefined}
+        style={getHeaderBgStyle(kind, backgroundImage)}
         image={getHeaderIcon(kind)}
         header={
-          <Subtitle1 className={styles.headerText}>
+          <Subtitle1 as="h3" className={styles.headerText}>
             {title}
           </Subtitle1>
         }
