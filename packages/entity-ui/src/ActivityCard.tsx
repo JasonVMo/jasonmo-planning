@@ -108,7 +108,7 @@ export function ActivityCard({
         style={getHeaderBgStyle(kind, backgroundImage ? { backgroundImage } : undefined)}
         image={getHeaderIcon(kind)}
         header={
-          <Subtitle1 as="h3" className={styles.headerText}>
+          <Subtitle1 className={styles.headerText}>
             {title}
           </Subtitle1>
         }
