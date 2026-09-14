@@ -1,5 +1,6 @@
 import type { FlightViewModel } from "@planning/entity-model";
-import { Badge, Card, CardFooter, CardHeader } from "@fluentui/react-components";
+import { Badge } from "@fluentui/react-components";
+import { ActivityCard } from "../ActivityCard.tsx";
 import { SafeMarkdown } from "../markdown.tsx";
 
 function localTime(timestamp: string, timeZone: string): string {
@@ -23,31 +24,24 @@ function duration(start: string, end: string): string {
   return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
 }
 
-function AirplaneGraphic() {
-  return (
-    <div className="tracker-flight-card__graphic" aria-hidden="true">
-      <svg viewBox="0 0 64 64" role="presentation">
-        <path d="M55 29 36 18V8c0-4-2-7-4-7s-4 3-4 7v10L9 29l-7-4v6l7 5 19-5v14l-7 6v5l11-3 11 3v-5l-7-6V31l19 5 7-5v-6z" />
-      </svg>
-    </div>
-  );
-}
-
 function FlightCard(model: FlightViewModel) {
   return (
     <article data-view-type="flight" data-status={model.status}>
-      <Card className="tracker-flight-card" appearance="outline">
-        <AirplaneGraphic />
-        <CardHeader
-          header={
-            <h3>
-              <a href={model.href}>{model.title}</a>
-            </h3>
-          }
-          description={
-            <p>{model.legs.length === 1 ? "Direct flight" : `${model.legs.length}-leg flight`}</p>
-          }
-        />
+      <ActivityCard
+        className="tracker-flight-card"
+        kind="flight"
+        title={model.title}
+        subtitle={model.legs.length === 1 ? "Direct flight" : `${model.legs.length}-leg flight`}
+        href={model.href}
+        footer={
+          <>
+            <Badge appearance="tint">
+              {model.legs.length === 1 ? "Direct" : `${model.legs.length} legs`}
+            </Badge>
+            <Badge appearance="outline">{model.status}</Badge>
+          </>
+        }
+      >
         <ol className="tracker-flight-card__legs" aria-label="Flight legs">
           {model.legs.map((leg, index) => (
             <li key={`${index}-${leg.flightNumber}`}>
@@ -76,13 +70,7 @@ function FlightCard(model: FlightViewModel) {
             </li>
           ))}
         </ol>
-        <CardFooter>
-          <Badge appearance="tint">
-            {model.legs.length === 1 ? "Direct" : `${model.legs.length} legs`}
-          </Badge>
-          <Badge appearance="outline">{model.status}</Badge>
-        </CardFooter>
-      </Card>
+      </ActivityCard>
     </article>
   );
 }

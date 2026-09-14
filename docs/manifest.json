@@ -1,7 +1,7 @@
 {
   "audience": "public",
   "basePath": "/jasonmo-planning/",
-  "contentDigest": "e42b10c2e28945f7fa19b62d3f660ead91ca3da695f9ce452ce0638d8c047e3d",
+  "contentDigest": "33f2be6f1a7541dd504b0a053c1480e420a0604718c7096c513d3ac1a05ad0eb",
   "deployable": true,
   "entities": [
     {
@@ -9,18 +9,18 @@
       "dataType": "reservation",
       "dataVersion": 1,
       "id": "acadia-arrival-lodging",
-      "lastVerifiedAt": "2026-09-08T12:55:00-07:00",
+      "lastVerifiedAt": "2026-09-10T17:43:14-07:00",
       "lifecycle": "active",
       "primaryTopicId": "trips",
       "relationships": [],
       "route": "#/entities/acadia-arrival-lodging",
-      "summary": "Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.",
+      "summary": "Arrival-night lodging in Ellsworth from October 5 at 3 PM through October 6 at 11 AM.",
       "tags": [
+        "confirmed",
         "lodging",
-        "needs-booking",
         "year-2026"
       ],
-      "title": "Maine arrival-night lodging",
+      "title": "Comfort Inn Ellsworth - Bar Harbor",
       "view": {
         "byContext": {
           "collection": "event",
@@ -33,22 +33,26 @@
       },
       "viewModels": {
         "event": {
-          "body": "## Action needed\n\nSelect and reserve an option. Private confirmation details remain outside the public site.\n",
+          "activity": {
+            "kind": "lodging"
+          },
+          "body": "## Booking\n\nComfort Inn Ellsworth - Bar Harbor is booked for the arrival night. Check in\nat 3 PM on October 5 and check out at 11 AM on October 6. The hotel is at\n130 High Street in Ellsworth, providing a shorter first-night drive from\nBangor before continuing to Bar Harbor.\n",
           "href": "#/entities/acadia-arrival-lodging",
           "kind": "appointment",
-          "location": "Bangor, Ellsworth, or Bar Harbor, Maine",
+          "location": "130 High St, Ellsworth, ME 04605",
           "schedule": {
-            "allDay": true,
-            "endDate": "2026-10-06",
-            "startDate": "2026-10-05"
+            "allDay": false,
+            "endAt": "2026-10-06T11:00:00-04:00",
+            "startAt": "2026-10-05T15:00:00-04:00",
+            "timeZone": "America/New_York"
           },
-          "status": "tentative",
-          "summary": "Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.",
-          "title": "Maine arrival-night lodging"
+          "status": "confirmed",
+          "summary": "Arrival-night lodging in Ellsworth from October 5 at 3 PM through October 6 at 11 AM.",
+          "title": "Comfort Inn Ellsworth - Bar Harbor"
         },
         "label": {
           "href": "#/entities/acadia-arrival-lodging",
-          "title": "Maine arrival-night lodging"
+          "title": "Comfort Inn Ellsworth - Bar Harbor"
         }
       }
     },
@@ -80,6 +84,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "lodging"
+          },
           "body": "## Planning note\n\nPrivate confirmation details remain outside the public site.\n",
           "href": "#/entities/acadia-bar-harbor-lodging",
           "kind": "appointment",
@@ -265,7 +272,7 @@
       },
       "viewModels": {
         "event": {
-          "body": "## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nTwo lodging actions remain open: the arrival night in Maine and the Hoboken stay.\n",
+          "body": "## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nThe Maine arrival night is booked in Ellsworth. The Hoboken stay remains the\nopen lodging action.\n",
           "href": "#/entities/acadia-new-york-2026",
           "kind": "event",
           "location": "Maine, New York City, and Hoboken",
@@ -283,7 +290,7 @@
           "title": "Acadia & New York City"
         },
         "trip": {
-          "body": "## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nTwo lodging actions remain open: the arrival night in Maine and the Hoboken stay.\n",
+          "body": "## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nThe Maine arrival night is booked in Ellsworth. The Hoboken stay remains the\nopen lodging action.\n",
           "children": [
             {
               "href": "#/entities/acadia-outbound-flight",
@@ -436,6 +443,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "rental-car"
+          },
           "body": "## Planning note\n\nPrivate confirmation details remain outside the public site.\n",
           "href": "#/entities/acadia-rental-car",
           "kind": "appointment",
@@ -575,8 +585,8 @@
               "href": "#/entities/acadia-arrival-lodging",
               "order": 10,
               "role": "reservation",
-              "summary": "Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.",
-              "title": "Maine arrival-night lodging"
+              "summary": "Arrival-night lodging in Ellsworth from October 5 at 3 PM through October 6 at 11 AM.",
+              "title": "Comfort Inn Ellsworth - Bar Harbor"
             },
             {
               "href": "#/entities/acadia-rental-car",
@@ -735,6 +745,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nDoors are listed for 6:00 PM. Tickets are offered; attendance is not assumed.\n\n[Official information](https://www.climatepledgearena.com/event/the-b-52s-devo-26/)\n",
           "href": "#/entities/b52s-devo-seattle-2026",
           "kind": "event",
@@ -853,6 +866,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nDoors are listed for 5:00 PM. Tickets are offered; attendance is not assumed.\n\n[Official information](https://www.showboxpresents.com/events/detail/1367722)\n",
           "href": "#/entities/bleachers-tacoma-2026",
           "kind": "event",
@@ -906,6 +922,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nThis range represents the production run, not a selected performance.\n\n[Official information](https://www.5thavenue.org/shows/2026-27/a-chorus-line/)\n",
           "href": "#/entities/chorus-line-seattle-2026",
           "kind": "event",
@@ -958,6 +977,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nIndividual performances have separate venues and times; consult the official program.\n\n[Official information](https://www.earshot.org/Festival/)\n",
           "href": "#/entities/earshot-jazz-festival-2026",
           "kind": "event",
@@ -1010,6 +1032,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nTickets are offered; attendance is not assumed.\n\n[Official information](https://www.emeraldcitycomiccon.com/)\n",
           "href": "#/entities/emerald-city-comic-con-2027",
           "kind": "event",
@@ -1062,6 +1087,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nThis range represents the production run, not a selected performance.\n\n[Official information](https://www.seattlerep.org/plays/202627-season/eureka-day)\n",
           "href": "#/entities/eureka-day-2026",
           "kind": "event",
@@ -1114,6 +1142,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nDoors are listed for 6:30 PM. Tickets are offered; attendance is not assumed.\n\n[Official information](https://www.climatepledgearena.com/event/gorillaz-26/)\n",
           "href": "#/entities/gorillaz-seattle-2026",
           "kind": "event",
@@ -1167,6 +1198,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nThis range represents the production run, not a selected performance.\n\n[Official information](https://www.stgpresents.org/events/hadestown/)\n",
           "href": "#/entities/hadestown-seattle-2027",
           "kind": "event",
@@ -1214,6 +1248,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "lodging"
+          },
           "body": "## Action needed\n\nSelect and reserve an option. Private confirmation details remain outside the public site.\n",
           "href": "#/entities/hoboken-lodging",
           "kind": "appointment",
@@ -1624,6 +1661,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nThis range represents the production run, not a selected performance.\n\n[Official information](https://www.seattlerep.org/plays/202627-season/peter-pan-goes-wrong/)\n",
           "href": "#/entities/peter-pan-goes-wrong-2026",
           "kind": "event",
@@ -1676,6 +1716,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nCBS. Hispanic/Latino Heritage Month and Legends Weekend. End time is a planning estimate.\n\n[Official information](https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule)\n",
           "href": "#/entities/seahawks-chargers-2026",
           "kind": "event",
@@ -1729,6 +1772,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nNBC Sunday Night Football. Royal-blue throwback uniforms are planned. End time is a planning estimate.\n\n[Official information](https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule)\n",
           "href": "#/entities/seahawks-chiefs-2026",
           "kind": "event",
@@ -1782,6 +1828,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nFOX. Inspire Change and 12s Appreciation themes are planned. End time is a planning estimate.\n\n[Official information](https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule)\n",
           "href": "#/entities/seahawks-giants-2026",
           "kind": "event",
@@ -1836,6 +1885,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nNBC. Season opener, Super Bowl LX rematch, and championship-banner unveiling. End time is a planning estimate.\n\n[Official information](https://www.seahawks.com/news/a-game-by-game-look-at-the-seahawks-2026-schedule)\n",
           "href": "#/entities/seahawks-patriots-2026",
           "kind": "event",
@@ -1889,6 +1941,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nThe attendee program and ticket schedule were not yet published at research time.\n\n[Official information](https://www.siff.net/media/news/pr-festival-2027-call-for-entries)\n",
           "href": "#/entities/seattle-international-film-festival-2027",
           "kind": "event",
@@ -2189,6 +2244,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "lodging"
+          },
           "body": "## Planning note\n\nPrivate confirmation details remain outside the public site.\n",
           "href": "#/entities/sequoia-lodging",
           "kind": "appointment",
@@ -2302,6 +2360,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "rental-car"
+          },
           "body": "## Planning note\n\nPrivate confirmation details remain outside the public site.\n",
           "href": "#/entities/sequoia-rental-car",
           "kind": "appointment",
@@ -2551,6 +2612,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nThe fair is closed on its published dark days; consult the official daily calendar.\n\n[Official information](https://www.thefair.com/washington-state-fair/fair-event-details/)\n",
           "href": "#/entities/washington-state-fair-2026",
           "kind": "event",
@@ -2603,6 +2667,9 @@
       },
       "viewModels": {
         "event": {
+          "activity": {
+            "kind": "event"
+          },
           "body": "## Current status\n\nDoors are listed for 6:00 PM and the show for 7:00 PM. Tickets are offered; attendance is not assumed.\n\n[Official information](https://www.climatepledgearena.com/event/weezer-26/)\n",
           "href": "#/entities/weezer-shins-seattle-2026",
           "kind": "event",
@@ -2627,17 +2694,17 @@
   "schemaVersion": 1,
   "searchDocuments": [
     {
-      "body": "Action needed Select and reserve an option. Private confirmation details remain outside the public site. Trips reservation",
+      "body": "Booking Comfort Inn Ellsworth - Bar Harbor is booked for the arrival night. Check in at 3 PM on October 5 and check out at 11 AM on October 6. The hotel is at 130 High Street in Ellsworth, providing a shorter first-night drive from Bangor before continuing to Bar Harbor. Trips reservation",
       "id": "acadia-arrival-lodging",
       "primaryTopicId": "trips",
       "route": "#/entities/acadia-arrival-lodging",
-      "summary": "Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.",
+      "summary": "Arrival-night lodging in Ellsworth from October 5 at 3 PM through October 6 at 11 AM.",
       "tags": [
+        "confirmed",
         "lodging",
-        "needs-booking",
         "year-2026"
       ],
-      "title": "Maine arrival-night lodging"
+      "title": "Comfort Inn Ellsworth - Bar Harbor"
     },
     {
       "body": "Planning note Private confirmation details remain outside the public site. Trips reservation",
@@ -2679,7 +2746,7 @@
       "title": "Acadia Hikes"
     },
     {
-      "body": "Timeline Fly Seattle-Chicago-Bangor and collect the rental car. Explore Acadia and Bar Harbor through October 10. Fly Bangor-LaGuardia and continue to Hoboken without a car. Explore Hoboken and New York City before returning from Newark. Two lodging actions remain open: the arrival night in Maine and the Hoboken stay. Trips trip",
+      "body": "Timeline Fly Seattle-Chicago-Bangor and collect the rental car. Explore Acadia and Bar Harbor through October 10. Fly Bangor-LaGuardia and continue to Hoboken without a car. Explore Hoboken and New York City before returning from Newark. The Maine arrival night is booked in Ellsworth. The Hoboken stay remains the open lodging action. Trips trip",
       "id": "acadia-new-york-2026",
       "primaryTopicId": "trips",
       "route": "#/entities/acadia-new-york-2026",

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { EntityRenderer } from "../src/EntityRenderer.tsx";
+import { getHeaderBgStyle, getHeaderIcon } from "../src/activityStyles.ts";
 import { CardView } from "../src/views/CardView.tsx";
 import { EventView } from "../src/views/EventView.tsx";
 import { TripView } from "../src/views/TripView.tsx";
@@ -16,6 +17,20 @@ import {
 } from "../../../apps/storybook/fixtures/travel.ts";
 import { viewRegistry } from "../src/view-registry.tsx";
 import { VIEW_TYPES } from "@planning/entity-model";
+import type { ActivityKind } from "@planning/entity-model";
+
+const activityKinds = [
+  "event",
+  "appointment",
+  "deadline",
+  "reminder",
+  "flight",
+  "lodging",
+  "rental-car",
+  "ticket",
+  "tour",
+  "transit",
+] as const satisfies readonly ActivityKind[];
 
 describe("travel renderers", () => {
   it("registers every closed view type", () => {
@@ -61,7 +76,9 @@ describe("travel renderers", () => {
       }),
     );
     expect(flight).toContain("fui-Card");
-    expect(flight).toContain("tracker-flight-card__graphic");
+    expect(flight).toContain("tracker-activity-header__icon");
+    expect(flight).toContain("tracker-activity-card__link");
+    expect(flight).toContain('href="#/entities/synthetic-flight"');
     expect(flight).toContain("American 1872");
     expect(flight).not.toContain("America/Los_Angeles");
     expect(event).toContain("fui-Card");
@@ -70,13 +87,21 @@ describe("travel renderers", () => {
     expect(hike).toContain("fui-Card");
     expect(hike).toContain("tracker-card");
   });
+  it("defines a local Material Symbol treatment for every activity kind", () => {
+    for (const kind of activityKinds) {
+      const icon = renderToStaticMarkup(getHeaderIcon(kind));
+      expect(icon).toContain("material-symbols-rounded");
+      expect(icon).toContain("tracker-activity-header__icon");
+      expect(getHeaderBgStyle(kind).backgroundImage).toMatch(/^linear-gradient/);
+    }
+  });
   it("dispatches by view only and keeps compact body text out of collections", () => {
     for (const model of [singleTrip, directFlight]) {
       const entity = travelEntity(model);
       const html = renderToStaticMarkup(
         createElement(EntityRenderer, { entity, context: "collection" }),
       );
-      expect(html).toContain("<h3>");
+      expect(html).toContain("<h3");
       if ("legs" in model) expect(html).toContain("fui-Card");
       expect(html).not.toContain("tracker-markdown");
       expect(html).not.toContain("View unavailable");

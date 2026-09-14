@@ -59,7 +59,7 @@ export const CompactDifferentDataType: Story = {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole("list", { name: "Flight legs" })).toBeVisible();
     await expect(canvas.getByText("American 1872")).toBeVisible();
-    await expect(canvasElement.querySelector(".tracker-flight-card__graphic")).not.toBeNull();
+    await expect(canvasElement.querySelector(".tracker-activity-header__icon")).not.toBeNull();
   },
 };
 export const NarrowDark: Story = { ...Narrow, globals: { theme: "dark" } };

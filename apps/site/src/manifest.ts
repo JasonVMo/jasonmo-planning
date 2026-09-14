@@ -220,9 +220,39 @@ function isViewModels(value: unknown): value is ViewModels {
   }
 
   function isEventModel(value: unknown): value is EventViewModel {
+    if (
+      !isObject(value) ||
+      !onlyKeys(value, [
+        "title",
+        "summary",
+        "href",
+        "kind",
+        "status",
+        "schedule",
+        "location",
+        "activity",
+        "body",
+      ])
+    )
+      return false;
+    const { activity, ...calendarEvent } = value;
     return (
-      isObject(value) &&
-      isCalendarEvent(value, true) &&
+      isCalendarEvent(calendarEvent, true) &&
+      (activity === undefined ||
+        (isObject(activity) &&
+          onlyKeys(activity, ["kind"]) &&
+          isStringUnion(activity.kind, [
+            "event",
+            "appointment",
+            "deadline",
+            "reminder",
+            "flight",
+            "lodging",
+            "rental-car",
+            "ticket",
+            "tour",
+            "transit",
+          ] as const))) &&
       typeof value.body === "string" &&
       value.body.length <= 262144
     );

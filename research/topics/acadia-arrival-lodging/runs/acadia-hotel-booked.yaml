@@ -1,0 +1,19 @@
+schemaVersion: 1
+runId: acadia-hotel-booked
+workflow: research-topic
+baseRevision: 442ef94aa5474500f2860cf6f1c0417d6498fa60
+requestKey: c82ef31f3a47406d67df4962de0f97724a5428bc48b28c126fff4f68497bd0ef
+scopeIds:
+  - acadia-arrival-lodging
+sourceEvidence:
+  - sourceId: owner-itinerary
+    retrievedAt: 2026-09-10T17:43:14-07:00
+    fingerprint: 28ca768d0a401d758294eec885e6604ad12c0bc055c62ae31b525e1edbbea6b4
+changedEntityIds:
+  - acadia-arrival-lodging
+validation: Owner confirmed the hotel, public address, and check-in/check-out times.
+startedAt: 2026-09-10T17:43:14-07:00
+endedAt: 2026-09-10T17:43:14-07:00
+outcome: succeeded
+reviewItems: []
+continuation: Reconfirm the hotel address and check-in window before departure.

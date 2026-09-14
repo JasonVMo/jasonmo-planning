@@ -1,5 +1,6 @@
 import type { CalendarEvent, EventViewModel } from "@planning/entity-model";
-import { Badge, Card, CardFooter, CardHeader } from "@fluentui/react-components";
+import { Badge } from "@fluentui/react-components";
+import { ActivityCard } from "../ActivityCard.tsx";
 import { SafeMarkdown } from "../markdown.tsx";
 import { calendarHref, eventDateRange, eventStartDate, eventTime } from "../calendar.ts";
 
@@ -15,17 +16,40 @@ export function EventBadges({ kind, status }: Pick<CalendarEvent, "kind" | "stat
 export function EventView({ compact = false, ...model }: EventViewModel & { compact?: boolean }) {
   const timeZone = model.schedule.allDay ? "UTC" : model.schedule.timeZone;
   if (compact) {
+    const activityKind = model.activity?.kind ?? model.kind;
+    const subtitle = {
+      lodging: "Lodging",
+      "rental-car": "Rental car",
+      ticket: "Ticket",
+      tour: "Tour",
+      transit: "Transit",
+      event: "Event",
+      appointment: "Appointment",
+      deadline: "Deadline",
+      reminder: "Reminder",
+      flight: "Flight",
+    }[activityKind];
     return (
       <article data-view-type="event" data-status={model.status}>
-        <Card className="tracker-event tracker-event--card" appearance="outline">
-          <CardHeader
-            header={
-              <h3>
-                <a href={model.href}>{model.title}</a>
-              </h3>
-            }
-            description={<p>{model.summary}</p>}
-          />
+        <ActivityCard
+          className="tracker-event tracker-event--card"
+          kind={activityKind}
+          title={model.title}
+          subtitle={subtitle}
+          href={model.href}
+          footer={
+            <div className="tracker-event-card__footer">
+              <EventBadges {...model} />
+              <a
+                className="tracker-calendar__link"
+                href={calendarHref("day", eventStartDate(model, timeZone), timeZone)}
+              >
+                View this day
+              </a>
+            </div>
+          }
+        >
+          <p className="tracker-event-card__summary">{model.summary}</p>
           <dl className="tracker-event-card__details">
             <div>
               <dt>When</dt>
@@ -41,16 +65,7 @@ export function EventView({ compact = false, ...model }: EventViewModel & { comp
               </div>
             ) : null}
           </dl>
-          <CardFooter className="tracker-event-card__footer">
-            <EventBadges {...model} />
-            <a
-              className="tracker-calendar__link"
-              href={calendarHref("day", eventStartDate(model, timeZone), timeZone)}
-            >
-              View this day
-            </a>
-          </CardFooter>
-        </Card>
+        </ActivityCard>
       </article>
     );
   }

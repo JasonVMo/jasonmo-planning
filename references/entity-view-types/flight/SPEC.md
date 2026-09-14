@@ -13,7 +13,8 @@ available. Dispatch is by view type, not persisted data type.
 
 Detail uses an article with textual direct/connecting and status badges, an h1,
 and an ordered flight-leg list. Compact collection/relationship occurrences use
-a dedicated Fluent UI `Card` with a code-owned airplane graphic. Carrier names
+a dedicated Fluent UI `Card` with the locally bundled Google Material `flight`
+symbol font glyph. Carrier names
 drop redundant suffixes (`American Airlines` becomes `American`), airport codes
 are positioned origin-to-destination without repeated departure/arrival labels,
 and local timestamps use short zone labels such as PDT/CDT rather than exposing
@@ -21,6 +22,8 @@ IANA identifiers. Each leg retains semantic times, elapsed duration, and
 connection duration. Duration is a display approximation to the nearest minute;
 canonical comparisons retain full timestamp precision. Compact cards omit body
 text. Cancellation/delay are textual states, not color alone.
+The shared [activity-card header](../card/ACTIVITY.md) supplies the dark blue
+gradient and can accept a reviewed image background later.
 
 Compiler projections explicitly allowlist each leg field and sanitize body
 Markdown. No booking locator, confirmation, private address, canonical path,

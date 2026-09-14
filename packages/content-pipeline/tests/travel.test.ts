@@ -352,10 +352,14 @@ describe("travel calendar projections and browser guards", () => {
       const models = manifest.entities.find((entity) => entity.id === ENTITY_ID)!.viewModels;
       expect(models.event).toMatchObject({ status, schedule });
       expect(models.event!.kind).toBe(type === "reservation" ? "appointment" : "event");
+      expect(models.event!.activity).toEqual(
+        type === "reservation" ? { kind: "lodging" } : undefined,
+      );
       for (const view of ["calendar-month", "calendar-day", "timeline"] as const) {
         expect(models[view]!.events[0]!.schedule).toEqual(schedule);
         expect(models[view]!.events[0]).not.toHaveProperty("body");
         expect(models[view]!.events[0]).not.toHaveProperty("bookingUrl");
+        expect(models[view]!.events[0]).not.toHaveProperty("activity");
       }
     },
   );

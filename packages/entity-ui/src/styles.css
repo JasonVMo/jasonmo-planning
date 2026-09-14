@@ -208,6 +208,25 @@
   margin-block: 0;
 }
 
+.tracker-activity-header__icon {
+  display: block;
+  color: #fff;
+  font-size: 2.75rem;
+  font-variation-settings: "FILL" 1;
+}
+
+.tracker-activity-card
+  :is(a, button, input, select, textarea, [role="button"], [role="link"]):not(
+    .tracker-activity-card__link
+  ) {
+  position: relative;
+  z-index: 2;
+}
+
+.tracker-event-card__summary {
+  color: var(--colorNeutralForeground2);
+}
+
 .tracker-event-card__details {
   display: grid;
   gap: var(--spacingVerticalS);
@@ -232,26 +251,15 @@
 }
 
 .tracker-event-card__footer {
+  display: flex;
+  width: 100%;
+  align-items: center;
   justify-content: space-between;
+  gap: var(--spacingHorizontalM);
 }
 
 .tracker-flight-card {
   overflow: hidden;
-}
-
-.tracker-flight-card__graphic {
-  display: grid;
-  min-height: 5rem;
-  place-items: center;
-  border-radius: var(--borderRadiusMedium);
-  background: linear-gradient(135deg, var(--colorBrandBackground2), var(--colorBrandBackground));
-}
-
-.tracker-flight-card__graphic svg {
-  width: 3.25rem;
-  height: 3.25rem;
-  fill: var(--colorNeutralForegroundOnBrand);
-  transform: rotate(-8deg);
 }
 
 .tracker-flight-card__legs {

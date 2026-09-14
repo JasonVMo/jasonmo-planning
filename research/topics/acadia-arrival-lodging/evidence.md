@@ -1,3 +1,6 @@
-# Evidence for Maine arrival-night lodging
+# Evidence for Comfort Inn Ellsworth - Bar Harbor
 
-Initial owner-directed research captured 2026-09-08T13:00:00-07:00. Sources are listed in `sources.yaml`; dynamic facts remain subject to the next review.
+The owner confirmed the Comfort Inn Ellsworth - Bar Harbor booking on
+2026-09-10, including its public business address and check-in/check-out
+times. Private confirmation details were not added. Sources are listed in
+`sources.yaml`; operational details remain subject to the next review.

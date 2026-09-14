@@ -53,6 +53,28 @@ export const CompactCollection: Story = {
     await expect(canvasElement.querySelector(".fui-Card")).not.toBeNull();
   },
 };
+export const LodgingCard: Story = {
+  args: {
+    compact: true,
+    title: "Comfort Inn Ellsworth - Bar Harbor",
+    summary: "Arrival-night lodging in Ellsworth.",
+    activity: { kind: "lodging" },
+  },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.querySelector('[data-activity-kind="lodging"]')).not.toBeNull();
+  },
+};
+export const RentalCarCard: Story = {
+  args: {
+    compact: true,
+    title: "Bangor rental car",
+    summary: "Enterprise rental from Bangor airport.",
+    activity: { kind: "rental-car" },
+  },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.querySelector('[data-activity-kind="rental-car"]')).not.toBeNull();
+  },
+};
 export const DifferentDataType: Story = {
   render: () => (
     <EntityRenderer

@@ -63,6 +63,21 @@ export type EventKind = "event" | "appointment" | "deadline" | "reminder";
 export type EventStatus = "confirmed" | "tentative" | "cancelled";
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "ActivityKind".
+ */
+export type ActivityKind =
+  | "event"
+  | "appointment"
+  | "deadline"
+  | "reminder"
+  | "flight"
+  | "lodging"
+  | "rental-car"
+  | "ticket"
+  | "tour"
+  | "transit";
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "EventLocation".
  */
 export type EventLocation = string;
@@ -165,6 +180,13 @@ export type Source1 = {
 export interface TrackerContracts {}
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "ActivityHeaderViewModel".
+ */
+export interface ActivityHeaderViewModel {
+  kind: ActivityKind;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "TripChild".
  */
 export interface TripChild {
@@ -262,6 +284,7 @@ export interface EventViewModel {
   status: EventStatus;
   schedule: EventSchedule;
   location?: EventLocation;
+  activity?: ActivityHeaderViewModel;
   body: string;
 }
 /**

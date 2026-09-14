@@ -7,6 +7,7 @@
 3. Fly Bangor-LaGuardia and continue to Hoboken without a car.
 4. Explore Hoboken and New York City before returning from Newark.
 
-Two lodging actions remain open: the arrival night in Maine and the Hoboken stay.
+The Maine arrival night is booked in Ellsworth. The Hoboken stay remains the
+open lodging action.
 
 <!-- END AGENT-MANAGED: research-summary -->

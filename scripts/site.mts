@@ -86,7 +86,7 @@ export async function buildSite(
       platform: "browser",
       target: ["es2022"],
       jsx: "automatic",
-      loader: { ".md": "text" },
+      loader: { ".md": "text", ".woff2": "file" },
       minify: true,
       sourcemap: false,
       metafile: true,
@@ -156,6 +156,7 @@ const contentTypes: Record<string, string> = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".css": "text/css; charset=utf-8",
+  ".woff2": "font/woff2",
   ".json": "application/json; charset=utf-8",
   ".svg": "image/svg+xml",
 };

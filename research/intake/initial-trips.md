@@ -35,7 +35,9 @@ The owner confirmed that all dates are in 2026.
 - Rental car: Enterprise at Bangor International Airport, October 5 at 5:45 PM
   through October 10 at 12:00 PM, booked via myEHTrip. Confirmation:
   `2132296621`.
-- Lodging October 5-6: not booked; find a cost-effective option.
+- Lodging October 5-6: Comfort Inn Ellsworth - Bar Harbor, 130 High Street,
+  Ellsworth, Maine 04605. Check-in October 5 at 3:00 PM; check-out October 6 at
+  11:00 AM.
 - Lodging October 6-10: Days Inn Bar Harbor, check-in October 6 at 4:00 PM,
   check-out October 10 at 11:00 AM.
 - Segment flight: Saturday October 10, AA 4343 BGR-LGA, 12:57 PM-2:41 PM.

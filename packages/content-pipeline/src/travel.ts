@@ -184,6 +184,7 @@ export function projectTravel(
       },
     };
   } else if (entity.dataType === "reservation" && "provider" in data) {
+    presentation.activity = { kind: data.kind };
     presentation.event = {
       kind: "appointment",
       status: calendarStatus(data.status),
@@ -191,6 +192,7 @@ export function projectTravel(
     };
     if (data.location !== undefined) presentation.event.location = data.location;
   } else if (entity.dataType === "event" && "schedule" in data && !("provider" in data)) {
+    presentation.activity = { kind: data.kind };
     presentation.event = {
       kind: data.kind,
       status: data.status,

@@ -48,6 +48,29 @@
     "TimeZone": { "type": "string", "format": "iana-time-zone", "maxLength": 100 },
     "EventKind": { "type": "string", "enum": ["event", "appointment", "deadline", "reminder"] },
     "EventStatus": { "type": "string", "enum": ["confirmed", "tentative", "cancelled"] },
+    "ActivityKind": {
+      "type": "string",
+      "enum": [
+        "event",
+        "appointment",
+        "deadline",
+        "reminder",
+        "flight",
+        "lodging",
+        "rental-car",
+        "ticket",
+        "tour",
+        "transit"
+      ]
+    },
+    "ActivityHeaderViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "$ref": "#/definitions/ActivityKind" }
+      }
+    },
     "EventLocation": {
       "type": "string",
       "maxLength": 500,
@@ -238,6 +261,7 @@
         "status": { "$ref": "#/definitions/EventStatus" },
         "schedule": { "$ref": "#/definitions/EventSchedule" },
         "location": { "$ref": "#/definitions/EventLocation" },
+        "activity": { "$ref": "#/definitions/ActivityHeaderViewModel" },
         "body": { "type": "string", "maxLength": 262144 }
       }
     },

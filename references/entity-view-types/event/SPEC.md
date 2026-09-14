@@ -2,7 +2,9 @@
 
 Schema: `EventViewModel`. Required fields are `title`, `summary`, entity-route
 `href`, `kind`, `status`, `schedule`, and sanitized Markdown `body`. Optional
-`location` is plain text. `CalendarEvent` is the same presentation without body.
+`location` is plain text. Optional `activity.kind` selects the code-owned
+activity card icon/tone for reservation/event collections. `CalendarEvent` is
+the same scheduling presentation without body or activity decoration.
 Kinds are event, appointment, deadline, and reminder; statuses are confirmed,
 tentative, and cancelled. Status is always text, not color alone.
 
@@ -21,6 +23,10 @@ text, original-zone timing, location, kind, status, and a link to that day.
 Collection and relationship occurrences use Fluent UI `Card`, `CardHeader`,
 and `CardFooter` primitives with compact timing/location metadata and no body
 text. Reservations reuse this same compact card through the event adapter.
+Lodging uses the Material `hotel` symbol and deep green header; rental cars use
+`directions_car` and dark purple. Other events use the generic Material event
+icon and a dark warm gradient. See the
+[activity-card contract](../card/ACTIVITY.md).
 `compact` is a code-owned rendering option, not an entity-authored prop.
 Cancelled items retain their details and explicit status.
 

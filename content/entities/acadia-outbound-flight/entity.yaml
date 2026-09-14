@@ -58,8 +58,8 @@ provenance:
       sourceType: owner-material
       locator: research/intake/initial-trips.md
       access: restricted
-      retrievedAt: 2026-09-08T13:00:00-07:00
-      fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+      retrievedAt: 2026-09-10T17:43:14-07:00
+      fingerprint: 28ca768d0a401d758294eec885e6604ad12c0bc055c62ae31b525e1edbbea6b4
   claims:
     - id: acadia-outbound-flight-schedule
       basis: confirmed
@@ -81,6 +81,6 @@ refresh:
   stateId: acadia-outbound-flight
 timestamps:
   createdAt: 2026-09-08T13:05:50-07:00
-  updatedAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-10T17:43:14-07:00
 review:
   nextReviewAt: 2026-09-12T09:00:00-07:00
