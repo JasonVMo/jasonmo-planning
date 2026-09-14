@@ -1,5 +1,6 @@
 import type { FlightViewModel } from "@planning/entity-model";
 import { Badge } from "@fluentui/react-components";
+import { ActivityCard } from "../ActivityCard.tsx";
 import { SafeMarkdown } from "../markdown.tsx";
 
 function localTime(timestamp: string, timeZone: string): string {
@@ -14,14 +15,68 @@ function localTime(timestamp: string, timeZone: string): string {
   }).format(new Date(timestamp));
 }
 
+function carrierName(carrier: string): string {
+  return carrier.replace(/\s+(?:Airlines?|Air Lines)$/i, "");
+}
+
 function duration(start: string, end: string): string {
   const minutes = Math.round((Date.parse(end) - Date.parse(start)) / 60_000);
   return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
 }
 
+function FlightCard(model: FlightViewModel) {
+  return (
+    <article data-view-type="flight" data-status={model.status}>
+      <ActivityCard
+        className="tracker-flight-card"
+        kind="flight"
+        title={model.title}
+        subtitle={model.legs.length === 1 ? "Direct flight" : `${model.legs.length}-leg flight`}
+        href={model.href}
+        footer={
+          <>
+            <Badge appearance="tint">
+              {model.legs.length === 1 ? "Direct" : `${model.legs.length} legs`}
+            </Badge>
+            <Badge appearance="outline">{model.status}</Badge>
+          </>
+        }
+      >
+        <ol className="tracker-flight-card__legs" aria-label="Flight legs">
+          {model.legs.map((leg, index) => (
+            <li key={`${index}-${leg.flightNumber}`}>
+              <p className="tracker-flight-card__carrier">
+                {carrierName(leg.carrier)} {leg.flightNumber}
+              </p>
+              <div
+                className="tracker-flight-card__route"
+                aria-label={`${leg.origin} to ${leg.destination}`}
+              >
+                <strong>{leg.origin}</strong>
+                <span aria-hidden="true">→</span>
+                <strong>{leg.destination}</strong>
+              </div>
+              <div className="tracker-flight-card__times">
+                <time dateTime={leg.departAt}>
+                  {localTime(leg.departAt, leg.departureTimeZone)}
+                </time>
+                <time dateTime={leg.arriveAt}>{localTime(leg.arriveAt, leg.arrivalTimeZone)}</time>
+              </div>
+              {model.legs[index + 1] ? (
+                <p className="tracker-flight-card__connection">
+                  {duration(leg.arriveAt, model.legs[index + 1]!.departAt)} connection
+                </p>
+              ) : null}
+            </li>
+          ))}
+        </ol>
+      </ActivityCard>
+    </article>
+  );
+}
+
 export function FlightView({ compact = false, ...model }: FlightViewModel & { compact?: boolean }) {
-  const Heading = compact ? "h3" : "h1";
-  const LegHeading = compact ? "h4" : "h2";
+  if (compact) return <FlightCard {...model} />;
   return (
     <article className="tracker-travel" data-view-type="flight" data-status={model.status}>
       <header className="tracker-travel__header">
@@ -31,34 +86,32 @@ export function FlightView({ compact = false, ...model }: FlightViewModel & { co
           </Badge>
           <Badge appearance="outline">{model.status}</Badge>
         </div>
-        <Heading>
+        <h1>
           <a href={model.href}>{model.title}</a>
-        </Heading>
+        </h1>
         <p>{model.summary}</p>
       </header>
       <ol className="tracker-travel__list" aria-label="Flight legs">
         {model.legs.map((leg, index) => (
           <li key={`${index}-${leg.flightNumber}`}>
-            <LegHeading>
-              {leg.carrier} {leg.flightNumber}: {leg.origin} to {leg.destination}
-            </LegHeading>
+            <h2>
+              {carrierName(leg.carrier)} {leg.flightNumber}: {leg.origin} to {leg.destination}
+            </h2>
             <dl className="tracker-travel__details">
               <div>
-                <dt>Departure · {leg.origin}</dt>
+                <dt>{leg.origin}</dt>
                 <dd>
                   <time dateTime={leg.departAt}>
                     {localTime(leg.departAt, leg.departureTimeZone)}
                   </time>
-                  <span className="tracker-travel__zone">{leg.departureTimeZone}</span>
                 </dd>
               </div>
               <div>
-                <dt>Arrival · {leg.destination}</dt>
+                <dt>{leg.destination}</dt>
                 <dd>
                   <time dateTime={leg.arriveAt}>
                     {localTime(leg.arriveAt, leg.arrivalTimeZone)}
                   </time>
-                  <span className="tracker-travel__zone">{leg.arrivalTimeZone}</span>
                 </dd>
               </div>
               <div>

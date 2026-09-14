@@ -18,6 +18,13 @@ import { resolveView, validateDefaultView } from "./view-selection.ts";
 import { DATA_TYPES, supportedViews } from "./view-adapters.ts";
 import { beginSnapshot, finishSnapshot } from "./transaction.ts";
 import { validateTripComposition } from "./travel.ts";
+import {
+  jpegDimensions,
+  TRIP_BANNER_HEIGHT,
+  TRIP_BANNER_WIDTH,
+  tripBannerSourcePath,
+} from "./assets.ts";
+import { hashBytes } from "./canonical.ts";
 
 export interface LoadedEntity {
   entity: Entity;
@@ -230,6 +237,31 @@ export async function loadCorpus(
       !safeUrl(entity.data.bookingUrl)
     )
       fail(descriptorPath, "/data/bookingUrl", "booking URL must be safe and credential-free");
+    const banner =
+      entity.dataType === "trip" && "children" in entity.data ? entity.data.banner : undefined;
+    const hasBannerFile = names.includes("banner.jpg");
+    if (Boolean(banner) !== hasBannerFile)
+      fail(
+        descriptorPath,
+        "/data/banner",
+        "trip banner metadata and the entity-local banner.jpg must be present together",
+      );
+    if (banner) {
+      if (!safeUrl(banner.sourceUrl))
+        fail(descriptorPath, "/data/banner/sourceUrl", "banner source URL must be safe");
+      plain(banner.credit, descriptorPath, "/data/banner/credit");
+      const bannerPath = tripBannerSourcePath(entity.id);
+      const bytes = await reader.bytes(bannerPath);
+      if (hashBytes(bytes) !== banner.fingerprint)
+        fail(descriptorPath, "/data/banner/fingerprint", "trip banner fingerprint mismatch");
+      const dimensions = jpegDimensions(bytes);
+      if (dimensions?.width !== TRIP_BANNER_WIDTH || dimensions.height !== TRIP_BANNER_HEIGHT)
+        fail(
+          bannerPath,
+          "",
+          `trip banner must be a ${TRIP_BANNER_WIDTH}x${TRIP_BANNER_HEIGHT} JPEG`,
+        );
+    }
     before(entity.timestamps.createdAt, entity.timestamps.updatedAt, descriptorPath, "/timestamps");
     before(entity.review.lastReviewedAt, entity.review.nextReviewAt, descriptorPath, "/review");
     for (const topic of [entity.taxonomy.primaryTopicId, ...entity.taxonomy.relatedTopicIds])

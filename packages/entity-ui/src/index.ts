@@ -1,7 +1,13 @@
+import "@material-symbols/font-400/rounded.css";
 import "./styles.css";
 import "./calendar.css";
 
 export { EntityRenderer, type EntityRendererProps } from "./EntityRenderer.tsx";
+export {
+  ActivityCard,
+  type ActivityCardProps,
+  type ActivityCardHeaderProps,
+} from "./ActivityCard.tsx";
 export {
   TrackerProvider,
   type TrackerProviderProps,

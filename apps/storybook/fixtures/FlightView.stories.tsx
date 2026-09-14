@@ -21,8 +21,8 @@ export const Direct: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole("list", { name: "Flight legs" })).toBeVisible();
-    await expect(canvas.getByText("America/Los_Angeles")).toBeVisible();
-    await expect(canvas.getByText("America/New_York")).toBeVisible();
+    await expect(canvas.getByText(/PDT/)).toBeVisible();
+    await expect(canvas.getByText(/EDT/)).toBeVisible();
   },
 };
 export const Connecting: Story = {
@@ -30,7 +30,7 @@ export const Connecting: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getAllByRole("listitem")).toHaveLength(2);
-    await expect(canvas.getByText("Connection: 1h 30m before the next leg.")).toBeVisible();
+    await expect(canvas.getByText(/Connection: 1h 30m before the next leg/)).toBeVisible();
   },
 };
 export const Delayed: Story = { args: { status: "delayed" } };
@@ -55,6 +55,12 @@ export const CompactDifferentDataType: Story = {
       <EntityRenderer entity={travelEntity(connectingFlight)} context="collection" />
     </StoryWidth>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole("list", { name: "Flight legs" })).toBeVisible();
+    await expect(canvas.getByText("American 1872")).toBeVisible();
+    await expect(canvasElement.querySelector(".tracker-activity-header__icon")).not.toBeNull();
+  },
 };
 export const NarrowDark: Story = { ...Narrow, globals: { theme: "dark" } };
 export const Overnight: Story = {

@@ -6,6 +6,7 @@ import {
   type TripViewModel,
 } from "@planning/entity-model";
 import {
+  CardView,
   dateAt,
   EntityRenderer,
   formatCalendarDate,
@@ -799,6 +800,55 @@ function EntityBreadcrumbs({ manifest, entity }: { manifest: SiteManifest; entit
   );
 }
 
+function TripCompositionCards({ manifest, trip }: { manifest: SiteManifest; trip: TripViewModel }) {
+  const entitiesByRoute = new Map(manifest.entities.map((entity) => [entity.route, entity]));
+  const itinerary = trip.children.filter((child) => !conciseResearchLabels.has(child.role));
+  const research = trip.children.filter((child) => conciseResearchLabels.has(child.role));
+  const renderChild = (child: TripViewModel["children"][number], concise: boolean) => {
+    const target = entitiesByRoute.get(child.href);
+    if (!target) return null;
+    return concise ? (
+      <CardView
+        title={conciseResearchLabels.get(child.role) ?? child.title}
+        summary={child.summary}
+        href={child.href}
+        badges={[]}
+      />
+    ) : (
+      <EntityRenderer entity={target} context="collection" />
+    );
+  };
+
+  return (
+    <>
+      {itinerary.length ? (
+        <section className="trip-composition" aria-labelledby={`${trip.href.slice(2)}-itinerary`}>
+          <Title2 as="h2" id={`${trip.href.slice(2)}-itinerary`}>
+            Itinerary
+          </Title2>
+          <div className="entity-grid">
+            {itinerary.map((child) => (
+              <Fragment key={`${child.href}:${child.order}`}>{renderChild(child, false)}</Fragment>
+            ))}
+          </div>
+        </section>
+      ) : null}
+      {research.length ? (
+        <section className="trip-composition" aria-labelledby={`${trip.href.slice(2)}-research`}>
+          <Title2 as="h2" id={`${trip.href.slice(2)}-research`}>
+            Research
+          </Title2>
+          <div className="entity-grid">
+            {research.map((child) => (
+              <Fragment key={`${child.href}:${child.order}`}>{renderChild(child, true)}</Fragment>
+            ))}
+          </div>
+        </section>
+      ) : null}
+    </>
+  );
+}
+
 function EntityPage({ manifest }: AppProps) {
   const { entityId } = useParams();
   const entity = manifest.entities.find((candidate) => candidate.id === entityId);
@@ -812,7 +862,14 @@ function EntityPage({ manifest }: AppProps) {
     <div className="entity-page">
       <div className="entity-page__content">
         <EntityBreadcrumbs manifest={manifest} entity={entity} />
-        <EntityRenderer entity={entity} context="detail" />
+        <EntityRenderer
+          entity={entity}
+          context="detail"
+          showTripChildren={!entity.viewModels.trip}
+        />
+        {entity.viewModels.trip ? (
+          <TripCompositionCards manifest={manifest} trip={entity.viewModels.trip} />
+        ) : null}
         {entity.relationships.length > 0 ? (
           <section className="relationships" aria-labelledby="relationships-heading">
             <Title2 as="h2" id="relationships-heading">

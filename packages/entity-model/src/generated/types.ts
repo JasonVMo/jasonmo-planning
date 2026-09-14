@@ -63,6 +63,23 @@ export type EventKind = "event" | "appointment" | "deadline" | "reminder";
 export type EventStatus = "confirmed" | "tentative" | "cancelled";
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "ActivityKind".
+ */
+export type ActivityKind =
+  | "event"
+  | "appointment"
+  | "deadline"
+  | "reminder"
+  | "trip"
+  | "segment"
+  | "flight"
+  | "lodging"
+  | "rental-car"
+  | "ticket"
+  | "tour"
+  | "transit";
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "EventLocation".
  */
 export type EventLocation = string;
@@ -76,6 +93,11 @@ export type TravelText = string;
  * via the `definition` "TripKind".
  */
 export type TripKind = "trip" | "segment";
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "Digest".
+ */
+export type Digest = string;
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "TripStatus".
@@ -124,11 +146,6 @@ export type EventSchedule =
     };
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
- * via the `definition` "Digest".
- */
-export type Digest = string;
-/**
- * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "RelativePath".
  */
 export type RelativePath = string;
@@ -163,6 +180,31 @@ export type Source1 = {
 };
 
 export interface TrackerContracts {}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "ActivityHeaderViewModel".
+ */
+export interface ActivityHeaderViewModel {
+  kind: ActivityKind;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TripBannerData".
+ */
+export interface TripBannerData {
+  sourceUrl: string;
+  credit: TravelText;
+  license: "public-domain" | "cc0-1.0";
+  fingerprint: Digest;
+}
+/**
+ * This interface was referenced by `TrackerContracts`'s JSON-Schema
+ * via the `definition` "TripBannerViewModel".
+ */
+export interface TripBannerViewModel {
+  src: string;
+  digest: Digest;
+}
 /**
  * This interface was referenced by `TrackerContracts`'s JSON-Schema
  * via the `definition` "TripChild".
@@ -262,6 +304,7 @@ export interface EventViewModel {
   status: EventStatus;
   schedule: EventSchedule;
   location?: EventLocation;
+  activity?: ActivityHeaderViewModel;
   body: string;
 }
 /**
@@ -288,6 +331,7 @@ export interface TripViewModel {
   endDate: CalendarDate;
   destination: TravelText;
   timeZone: TimeZone;
+  banner?: TripBannerViewModel;
   body: string;
   /**
    * @maxItems 200
@@ -478,6 +522,7 @@ export interface TripData {
   endDate: CalendarDate;
   destination: TravelText;
   timeZone: TimeZone;
+  banner?: TripBannerData;
   /**
    * @maxItems 200
    */

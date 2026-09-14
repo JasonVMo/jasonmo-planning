@@ -37,6 +37,7 @@ export interface Presentation {
   body: string;
   badges: string[];
   event?: Pick<CalendarEvent, "kind" | "status" | "schedule" | "location">;
+  activity?: NonNullable<EventViewModel["activity"]>;
   trip?: Omit<TripViewModel, "title" | "summary" | "href" | "body">;
   flight?: Pick<FlightViewModel, "status" | "legs">;
 }
@@ -171,7 +172,11 @@ function calendarCollection(p: Presentation): CalendarMonthViewModel {
 
 const eventAdapters = {
   ...commonAdapters,
-  event: (p: Presentation): EventViewModel => ({ ...calendarEvent(p), body: p.body }),
+  event: (p: Presentation): EventViewModel => ({
+    ...calendarEvent(p),
+    ...(p.activity ? { activity: { ...p.activity } } : {}),
+    body: p.body,
+  }),
   "calendar-month": calendarCollection,
   "calendar-day": calendarCollection,
   timeline: calendarCollection,
@@ -201,6 +206,7 @@ export const ADAPTERS: AdapterRegistry = new Map<
           endDate: p.trip.endDate,
           destination: p.trip.destination,
           timeZone: p.trip.timeZone,
+          ...(p.trip.banner ? { banner: { ...p.trip.banner } } : {}),
           children: p.trip.children.map((child) => ({
             title: child.title,
             summary: child.summary,

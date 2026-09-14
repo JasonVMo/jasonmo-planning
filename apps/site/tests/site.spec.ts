@@ -87,6 +87,65 @@ test("renders a research title and summary once on separate lines", async ({ pag
   ).toHaveCount(0);
 });
 
+test("renders compact travel and research children with Fluent cards", async ({ page }) => {
+  await page.goto(".#/entities/acadia-new-york-2026");
+  const flightCard = page
+    .getByRole("main")
+    .locator('[data-view-type="flight"]')
+    .filter({ hasText: "American 1872" });
+  await expect(flightCard.locator(".fui-Card")).toBeVisible();
+  const firstLeg = flightCard.getByLabel("SEA to ORD");
+  await expect(firstLeg.getByText("SEA", { exact: true })).toBeVisible();
+  await expect(firstLeg.getByText("ORD", { exact: true })).toBeVisible();
+  const acadiaSegment = page
+    .getByRole("main")
+    .locator('[data-view-type="trip"]')
+    .filter({ hasText: "Acadia National Park & Bar Harbor" });
+  const segmentHeader = acadiaSegment.locator('[data-has-background-image="true"]');
+  await expect(segmentHeader).toBeVisible();
+  const segmentBackground = await segmentHeader.evaluate(
+    (element) => getComputedStyle(element).backgroundImage,
+  );
+  expect(segmentBackground).toContain("linear-gradient");
+  expect(segmentBackground).toContain("rgba(0, 0, 0, 0.68)");
+  expect(segmentBackground).toContain("assets/trip-banners/acadia-segment-2026-");
+  await expect(segmentHeader.locator(".tracker-activity-header__icon")).toHaveCount(0);
+  const segmentImageUrl = segmentBackground.match(/url\("([^"]+)"/)?.[1];
+  expect(segmentImageUrl).toBeTruthy();
+  expect((await page.request.get(segmentImageUrl!)).ok()).toBe(true);
+  const flightHeader = flightCard.locator('[data-activity-kind="flight"]');
+  await expect(flightHeader).toBeVisible();
+  await page.evaluate(() => document.fonts.ready);
+  expect(
+    await page.evaluate(() => document.fonts.check('400 44px "Material Symbols Rounded"')),
+  ).toBe(true);
+  await expect(flightHeader.locator(".tracker-activity-header__icon")).toHaveCSS(
+    "color",
+    "rgb(255, 255, 255)",
+  );
+  await expect(flightHeader.getByRole("heading")).toHaveCSS("color", "rgb(255, 255, 255)");
+  await expect(flightCard).not.toContainText("American Airlines 1872");
+  await expect(flightCard).not.toContainText("America/Los_Angeles");
+  await flightCard.locator(".fui-Card").click();
+  await expect(page).toHaveURL(/#\/entities\/acadia-outbound-flight$/);
+
+  await page.goto(".#/entities/acadia-segment-2026");
+  const lodging = page
+    .getByRole("main")
+    .locator('[data-view-type="event"]')
+    .filter({ hasText: "Comfort Inn Ellsworth - Bar Harbor" });
+  await expect(lodging.locator('[data-activity-kind="lodging"]')).toBeVisible();
+  await expect(lodging).toContainText("Oct 5, 2026");
+  const rentalCar = page
+    .getByRole("main")
+    .locator('[data-view-type="event"]')
+    .filter({ hasText: "Bangor rental car" });
+  await expect(rentalCar.locator('[data-activity-kind="rental-car"]')).toBeVisible();
+  await expect(
+    page.getByRole("main").locator('[data-view-type="card"] .fui-Card').first(),
+  ).toBeVisible();
+});
+
 test("keeps search query state in the hash URL", async ({ page }) => {
   const manifest = await manifestFrom(page);
   const document = requiredFirst(manifest.searchDocuments, "at least one search document");

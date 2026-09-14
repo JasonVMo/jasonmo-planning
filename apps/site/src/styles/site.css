@@ -427,6 +427,14 @@ input {
   gap: 1rem;
 }
 
+.trip-composition {
+  margin-top: 2.5rem;
+}
+
+.trip-composition > h2 {
+  margin-bottom: 1rem;
+}
+
 .metadata-panel {
   display: flex;
   flex-direction: column;
@@ -583,31 +591,10 @@ input {
   margin-block: 0;
 }
 
-.suggested-activities ul {
+.suggested-activities__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   gap: 0.6rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.suggested-activities li {
-  display: grid;
-  gap: 0.2rem;
-  border-inline-start: 3px solid var(--colorBrandStroke1);
-  padding-inline-start: 0.75rem;
-}
-
-.suggested-activities a {
-  color: var(--colorBrandForegroundLink);
-  font-weight: 650;
-  text-underline-offset: 0.18em;
-}
-
-.suggested-activities span {
-  color: var(--colorNeutralForeground2);
-  font-size: var(--fontSizeBase200);
 }
 
 .calendar-toolbar,

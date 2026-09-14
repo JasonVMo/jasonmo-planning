@@ -19,7 +19,8 @@ digest, and taxonomy/citation/asset/relationship-closure digests. The digest is
 SHA-256 of canonical JSON containing publication policy and the complete
 browser projection (excluding its own digest). Changes to any projected byte,
 base path, audience, or policy invalidate approval. Hidden research fields do
-not enter the digest. Asset digest is the empty-list digest until assets exist.
+not enter the digest. The asset digest covers each audience-projected asset's
+entity ID, same-origin href, and exact byte digest.
 
 Every approval must additionally record its exact normalized `basePath`, for
 example `/` or `/tracker/` (leading and trailing slash, safe path segments only).

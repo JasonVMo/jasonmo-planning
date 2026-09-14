@@ -48,6 +48,31 @@
     "TimeZone": { "type": "string", "format": "iana-time-zone", "maxLength": 100 },
     "EventKind": { "type": "string", "enum": ["event", "appointment", "deadline", "reminder"] },
     "EventStatus": { "type": "string", "enum": ["confirmed", "tentative", "cancelled"] },
+    "ActivityKind": {
+      "type": "string",
+      "enum": [
+        "event",
+        "appointment",
+        "deadline",
+        "reminder",
+        "trip",
+        "segment",
+        "flight",
+        "lodging",
+        "rental-car",
+        "ticket",
+        "tour",
+        "transit"
+      ]
+    },
+    "ActivityHeaderViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "$ref": "#/definitions/ActivityKind" }
+      }
+    },
     "EventLocation": {
       "type": "string",
       "maxLength": 500,
@@ -60,6 +85,35 @@
       "pattern": "^[^<>\\u0000-\\u0008\\u000b\\u000c\\u000e-\\u001f]+$"
     },
     "TripKind": { "type": "string", "enum": ["trip", "segment"] },
+    "TripBannerData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceUrl", "credit", "license", "fingerprint"],
+      "properties": {
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://",
+          "maxLength": 2000
+        },
+        "credit": { "$ref": "#/definitions/TravelText" },
+        "license": { "type": "string", "enum": ["public-domain", "cc0-1.0"] },
+        "fingerprint": { "$ref": "#/definitions/Digest" }
+      }
+    },
+    "TripBannerViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "digest"],
+      "properties": {
+        "src": {
+          "type": "string",
+          "pattern": "^/(?:[A-Za-z0-9_-]+/)*assets/trip-banners/[a-z0-9-]+-[a-f0-9]{12}\\.jpg$",
+          "maxLength": 500
+        },
+        "digest": { "$ref": "#/definitions/Digest" }
+      }
+    },
     "TripStatus": {
       "type": "string",
       "enum": ["planned", "confirmed", "active", "completed", "cancelled"]
@@ -238,6 +292,7 @@
         "status": { "$ref": "#/definitions/EventStatus" },
         "schedule": { "$ref": "#/definitions/EventSchedule" },
         "location": { "$ref": "#/definitions/EventLocation" },
+        "activity": { "$ref": "#/definitions/ActivityHeaderViewModel" },
         "body": { "type": "string", "maxLength": 262144 }
       }
     },
@@ -279,6 +334,7 @@
         "endDate": { "$ref": "#/definitions/CalendarDate" },
         "destination": { "$ref": "#/definitions/TravelText" },
         "timeZone": { "$ref": "#/definitions/TimeZone" },
+        "banner": { "$ref": "#/definitions/TripBannerViewModel" },
         "body": { "type": "string", "maxLength": 262144 },
         "children": {
           "type": "array",
@@ -540,6 +596,7 @@
         "endDate": { "$ref": "#/definitions/CalendarDate" },
         "destination": { "$ref": "#/definitions/TravelText" },
         "timeZone": { "$ref": "#/definitions/TimeZone" },
+        "banner": { "$ref": "#/definitions/TripBannerData" },
         "children": {
           "type": "array",
           "maxItems": 200,

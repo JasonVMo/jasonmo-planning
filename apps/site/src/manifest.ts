@@ -58,6 +58,17 @@ function isBasePath(value: unknown): value is string {
   return typeof value === "string" && /^\/(?:[A-Za-z0-9_-]+\/)*$/.test(value);
 }
 
+function isTripBanner(value: unknown): boolean {
+  return (
+    isObject(value) &&
+    onlyKeys(value, ["src", "digest"]) &&
+    typeof value.src === "string" &&
+    /^\/(?:[A-Za-z0-9_-]+\/)*assets\/trip-banners\/[a-z0-9-]+-[a-f0-9]{12}\.jpg$/.test(value.src) &&
+    typeof value.digest === "string" &&
+    /^[a-f0-9]{64}$/.test(value.digest)
+  );
+}
+
 function isStringUnion<const Values extends readonly string[]>(
   value: unknown,
   values: Values,
@@ -133,6 +144,7 @@ function isTripModel(value: unknown): value is TripViewModel {
       "endDate",
       "destination",
       "timeZone",
+      "banner",
       "children",
     ]) &&
     isTravelHeader(value) &&
@@ -143,6 +155,7 @@ function isTripModel(value: unknown): value is TripViewModel {
     !tripRangeError(value) &&
     isTravelText(value.destination) &&
     isTimeZone(value.timeZone) &&
+    (value.banner === undefined || isTripBanner(value.banner)) &&
     Array.isArray(value.children) &&
     value.children.length <= 200 &&
     value.children.every(
@@ -220,9 +233,41 @@ function isViewModels(value: unknown): value is ViewModels {
   }
 
   function isEventModel(value: unknown): value is EventViewModel {
+    if (
+      !isObject(value) ||
+      !onlyKeys(value, [
+        "title",
+        "summary",
+        "href",
+        "kind",
+        "status",
+        "schedule",
+        "location",
+        "activity",
+        "body",
+      ])
+    )
+      return false;
+    const { activity, ...calendarEvent } = value;
     return (
-      isObject(value) &&
-      isCalendarEvent(value, true) &&
+      isCalendarEvent(calendarEvent, true) &&
+      (activity === undefined ||
+        (isObject(activity) &&
+          onlyKeys(activity, ["kind"]) &&
+          isStringUnion(activity.kind, [
+            "event",
+            "appointment",
+            "deadline",
+            "reminder",
+            "trip",
+            "segment",
+            "flight",
+            "lodging",
+            "rental-car",
+            "ticket",
+            "tour",
+            "transit",
+          ] as const))) &&
       typeof value.body === "string" &&
       value.body.length <= 262144
     );

@@ -14,6 +14,9 @@ Required fields:
   The end must be on or after the start; same-day trips are valid.
 - `destination`: nonempty public-safe plain text, at most 500 characters.
 - `timeZone`: named IANA zone, including `UTC`; numeric offsets are not zones.
+- optional `banner` metadata for an entity-local `banner.jpg`: source URL,
+  credit, public-domain/CC0 license, and the exact SHA-256 fingerprint of the
+  resized asset.
 - `children`: zero to 200 `{targetId, role, order}` records. `order` is a
   nonnegative integer, unique per parent. Storage order is not authoritative:
   adapters sort numerically by `order`.
@@ -48,6 +51,12 @@ entity href, role, and order. No canonical objects, target payloads, paths,
 booking identifiers, or operational state are copied. Hidden child labels are
 omitted; segments beneath hidden parents are excluded recursively to preserve
 parent closure. Links in bodies use the same filtered entity set.
+
+Trip banners are fixed at 1200x480 JPEG and remain under the repository's
+256 KiB canonical-file ceiling. Validation requires metadata and file presence
+to agree, verifies JPEG dimensions and bytes against the stored fingerprint,
+and projects only a same-origin hashed URL and digest. Builds copy only assets
+referenced by the audience-filtered manifest.
 
 This is an additive opt-in type, not a migration of existing Markdown or event
 entities. No stable IDs, manual regions, provenance, ownership, publication

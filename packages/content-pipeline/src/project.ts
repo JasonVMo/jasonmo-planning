@@ -19,6 +19,7 @@ import { loadCorpus, type Corpus } from "./validate.ts";
 import { adaptView, type Presentation } from "./view-adapters.ts";
 import { resolveView } from "./view-selection.ts";
 import { filterTripParentClosure, projectTravel } from "./travel.ts";
+import { manifestAssets } from "./assets.ts";
 
 export function normalizeBasePath(path: string): string {
   if (!/^\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_-]*$/.test(path))
@@ -61,7 +62,7 @@ export function approvalDigests(
     citationsDigest: digest(
       manifest.entities.map((entity) => ({ id: entity.id, citations: entity.citations })),
     ),
-    assetsDigest: digest([]),
+    assetsDigest: digest(manifestAssets(manifest)),
     closureDigest: digest(
       manifest.entities.map((entity) => ({ id: entity.id, relationships: entity.relationships })),
     ),
@@ -191,7 +192,7 @@ export function projectCorpus(
         body: safe.markdown,
         badges: [...entity.taxonomy.tags].sort(),
       };
-      projectTravel(entity, byId, presentation);
+      projectTravel(entity, byId, presentation, basePath);
       for (const view of VIEW_TYPES.filter((type) => reachable.get(entity.id)!.has(type))) {
         // Keep the key/model correspondence concrete for TypeScript and schema validation.
         switch (view) {

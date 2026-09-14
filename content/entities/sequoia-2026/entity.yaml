@@ -41,6 +41,11 @@ data:
   endDate: 2026-09-20
   destination: Sequoia and Kings Canyon National Parks, California
   timeZone: America/Los_Angeles
+  banner:
+    sourceUrl: https://commons.wikimedia.org/wiki/File:Giant_Sequoia_trees_in_Sequoia_and_Kings_Canyon_National_Parks_(2d8ec2a7-5b6e-42f9-b60b-edcd1047fcec).jpg
+    credit: NPS staff
+    license: public-domain
+    fingerprint: 9cb9015a989057b54baddbbc6ec4b4d7116d33bb5cf0d5220545be4273d470e6
   children:
     - targetId: sequoia-outbound-flight
       role: flight
@@ -74,8 +79,8 @@ provenance:
       sourceType: owner-material
       locator: research/intake/initial-trips.md
       access: restricted
-      retrievedAt: 2026-09-08T13:00:00-07:00
-      fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+      retrievedAt: 2026-09-10T17:43:14-07:00
+      fingerprint: 28ca768d0a401d758294eec885e6604ad12c0bc055c62ae31b525e1edbbea6b4
     - id: seki-conditions
       title: Sequoia and Kings Canyon current conditions
       publisher: National Park Service
@@ -104,6 +109,6 @@ refresh:
   stateId: sequoia-2026
 timestamps:
   createdAt: 2026-09-08T13:05:50-07:00
-  updatedAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-14T11:16:20-07:00
 review:
   nextReviewAt: 2026-09-12T09:00:00-07:00

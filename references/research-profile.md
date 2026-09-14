@@ -24,8 +24,9 @@ for external facts or expose this reference directly to browser code.
 - Group options by region or practical access area.
 - Report distance, elevation gain, difficulty, access constraints, drive or
   transit time, and source.
-- Include permitted images only after an asset provenance/publication contract
-  exists. Until then, link to authoritative pages rather than copying images.
+- Include images only through the validated trip-banner
+  provenance/publication contract. Continue linking to authoritative pages
+  rather than copying images for every other content surface.
 
 ## Restaurants
 

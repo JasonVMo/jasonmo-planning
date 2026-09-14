@@ -6,6 +6,7 @@ import {
   CalendarDayView,
   CalendarMonthView,
   dateAt,
+  EntityRenderer,
   eventStartDate,
   formatCalendarDate,
   TimelineView,
@@ -50,8 +51,9 @@ export function CalendarPage({ manifest }: { manifest: SiteManifest }) {
     () =>
       calendarEntries
         .filter(({ entity, event }) => entity.dataType === "event" && event.status === "tentative")
-        .map(({ event }) => event)
-        .sort((a, b) => eventStartDate(a, timeZone).localeCompare(eventStartDate(b, timeZone))),
+        .sort((a, b) =>
+          eventStartDate(a.event, timeZone).localeCompare(eventStartDate(b.event, timeZone)),
+        ),
     [calendarEntries, timeZone],
   );
   const events = useMemo(
@@ -113,14 +115,11 @@ export function CalendarPage({ manifest }: { manifest: SiteManifest }) {
             <p className="eyebrow">Ideas to consider</p>
             <h2 id="suggested-activities-heading">Suggested activities</h2>
           </header>
-          <ul>
-            {suggestedActivities.map((event) => (
-              <li key={event.href}>
-                <a href={event.href}>{event.title}</a>
-                <span>{formatCalendarDate(eventStartDate(event, timeZone))}</span>
-              </li>
+          <div className="suggested-activities__grid">
+            {suggestedActivities.map(({ entity }) => (
+              <EntityRenderer key={entity.id} entity={entity} context="collection" />
             ))}
-          </ul>
+          </div>
         </aside>
       ) : null}
       <div className="calendar-toolbar">

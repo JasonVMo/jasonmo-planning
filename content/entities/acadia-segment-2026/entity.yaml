@@ -40,6 +40,11 @@ data:
   endDate: 2026-10-10
   destination: Acadia National Park and Bar Harbor, Maine
   timeZone: America/New_York
+  banner:
+    sourceUrl: https://commons.wikimedia.org/wiki/File:Acadia_National_Park,_autumn_colors_at_the_Tarn.jpg
+    credit: National Park Service / uncredited; landscape crop by Wikimedia Commons user Maps and stuff
+    license: public-domain
+    fingerprint: aab5acf5b7d235d28c015a03e225b280087f03f481d667dfad00c88986bc03b4
   children:
     - targetId: acadia-arrival-lodging
       role: reservation
@@ -70,8 +75,8 @@ provenance:
       sourceType: owner-material
       locator: research/intake/initial-trips.md
       access: restricted
-      retrievedAt: 2026-09-08T13:00:00-07:00
-      fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+      retrievedAt: 2026-09-10T17:43:14-07:00
+      fingerprint: 28ca768d0a401d758294eec885e6604ad12c0bc055c62ae31b525e1edbbea6b4
     - id: acadia-conditions
       title: Acadia current conditions
       publisher: National Park Service
@@ -100,6 +105,6 @@ refresh:
   stateId: acadia-segment-2026
 timestamps:
   createdAt: 2026-09-08T13:05:50-07:00
-  updatedAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-14T11:16:20-07:00
 review:
   nextReviewAt: 2026-09-12T09:00:00-07:00

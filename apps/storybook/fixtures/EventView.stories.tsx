@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 import { EntityRenderer, EventView } from "@planning/entity-ui";
 import { appointment, appointmentEntity } from "./calendar.ts";
 import { StoryWidth } from "./StoryWidth.tsx";
@@ -46,6 +47,33 @@ export const CompactCollection: Story = {
       <EntityRenderer entity={appointmentEntity} context="collection" />
     </StoryWidth>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole("heading", { name: appointment.title })).toBeVisible();
+    await expect(canvasElement.querySelector(".fui-Card")).not.toBeNull();
+  },
+};
+export const LodgingCard: Story = {
+  args: {
+    compact: true,
+    title: "Comfort Inn Ellsworth - Bar Harbor",
+    summary: "Arrival-night lodging in Ellsworth.",
+    activity: { kind: "lodging" },
+  },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.querySelector('[data-activity-kind="lodging"]')).not.toBeNull();
+  },
+};
+export const RentalCarCard: Story = {
+  args: {
+    compact: true,
+    title: "Bangor rental car",
+    summary: "Enterprise rental from Bangor airport.",
+    activity: { kind: "rental-car" },
+  },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.querySelector('[data-activity-kind="rental-car"]')).not.toBeNull();
+  },
 };
 export const DifferentDataType: Story = {
   render: () => (

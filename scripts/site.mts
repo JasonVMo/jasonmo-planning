@@ -8,7 +8,12 @@ import { parseArgs } from "node:util";
 import { build } from "esbuild";
 import { watch } from "chokidar";
 import type { Audience, SiteManifest } from "../packages/entity-model/src/index.ts";
-import { compileContent, serializeCanonical } from "../packages/content-pipeline/src/index.ts";
+import {
+  compileContent,
+  manifestAssets,
+  serializeCanonical,
+  tripBannerSourcePath,
+} from "../packages/content-pipeline/src/index.ts";
 import { auditSiteArtifact } from "./audit-artifact.mts";
 
 export const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
@@ -86,7 +91,7 @@ export async function buildSite(
       platform: "browser",
       target: ["es2022"],
       jsx: "automatic",
-      loader: { ".md": "text" },
+      loader: { ".md": "text", ".woff2": "file" },
       minify: true,
       sourcemap: false,
       metafile: true,
@@ -117,6 +122,19 @@ export async function buildSite(
     await writeFile(path.join(stage, "index.html"), html);
     await writeFile(path.join(stage, "manifest.json"), serializeCanonical(manifest));
     await writeFile(path.join(stage, ".nojekyll"), "");
+    for (const asset of manifestAssets(manifest)) {
+      if (!asset.href.startsWith(basePath))
+        throw new Error(`Projected asset is outside the base path: ${asset.href}`);
+      const relativeAsset = asset.href.slice(basePath.length);
+      if (!/^assets\/trip-banners\/[a-z0-9-]+-[a-f0-9]{12}\.jpg$/.test(relativeAsset))
+        throw new Error(`Invalid projected asset path: ${asset.href}`);
+      const bytes = await readFile(path.join(root, tripBannerSourcePath(asset.entityId)));
+      if (createHash("sha256").update(bytes).digest("hex") !== asset.digest)
+        throw new Error(`Projected asset changed after validation: ${asset.entityId}`);
+      const output = path.join(stage, relativeAsset);
+      await mkdir(path.dirname(output), { recursive: true });
+      await writeFile(output, bytes);
+    }
     await auditSiteArtifact(stage, manifest);
     const inventory = Object.fromEntries(
       [...(await artifactFiles(stage)).entries()].map(([name, bytes]) => [
@@ -156,6 +174,8 @@ const contentTypes: Record<string, string> = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".css": "text/css; charset=utf-8",
+  ".jpg": "image/jpeg",
+  ".woff2": "font/woff2",
   ".json": "application/json; charset=utf-8",
   ".svg": "image/svg+xml",
 };

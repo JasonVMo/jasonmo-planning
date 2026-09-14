@@ -4,15 +4,16 @@ objective: Keep Maine arrival-night lodging accurate, useful, and publicly safe.
 status: active
 completedSubtopics:
   - Initial owner-directed research and structure captured
+  - Arrival-night lodging booked
 remainingSubtopics:
-  - Recheck time-sensitive conditions and availability
+  - Reconfirm check-in details before travel
 sourceCursors: []
 openQuestions: []
 contradictions: []
-nextAction: Compare refundable Bangor, Ellsworth, and Bar Harbor options and book one.
-nextHumanReviewAt: 2026-09-12T09:00:00-07:00
-lastAttemptAt: 2026-09-08T12:55:00-07:00
-lastAttemptOutcome: no-change
-lastSuccessfulRetrievalAt: 2026-09-08T12:55:00-07:00
-lastVerifiedAt: 2026-09-08T12:55:00-07:00
-lastReviewedAt: 2026-09-08T12:55:00-07:00
+nextAction: Reconfirm the hotel address and check-in window before departure.
+nextHumanReviewAt: 2026-10-04T09:00:00-07:00
+lastAttemptAt: 2026-09-10T17:43:14-07:00
+lastAttemptOutcome: succeeded
+lastSuccessfulRetrievalAt: 2026-09-10T17:43:14-07:00
+lastVerifiedAt: 2026-09-10T17:43:14-07:00
+lastReviewedAt: 2026-09-10T17:43:14-07:00

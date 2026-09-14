@@ -2169,6 +2169,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@material-symbols/font-400@npm:0.47.2":
+  version: 0.47.2
+  resolution: "@material-symbols/font-400@npm:0.47.2"
+  checksum: 10c0/f72f6f32b27011482c1fbeec3cb17501fefa5a46038e0c3f3f55cfd761228ac667d302a77b7c21d5b65a7aa6e5d78bebae939a4b065127833cb02e2df74df93d
+  languageName: node
+  linkType: hard
+
 "@napi-rs/wasm-runtime@npm:0.2.4":
   version: 0.2.4
   resolution: "@napi-rs/wasm-runtime@npm:0.2.4"
@@ -2854,6 +2861,7 @@ __metadata:
   resolution: "@planning/entity-ui@workspace:packages/entity-ui"
   dependencies:
     "@fluentui/react-components": "npm:9.74.7"
+    "@material-symbols/font-400": "npm:0.47.2"
     "@planning/entity-model": "workspace:*"
     "@types/react": "npm:19.2.18"
     "@types/react-dom": "npm:19.2.7"

@@ -1,4 +1,5 @@
-export { compileContent, normalizeBasePath } from "./project.ts";
+export { approvalDigests, compileContent, normalizeBasePath } from "./project.ts";
+export { manifestAssets, tripBannerSourcePath } from "./assets.ts";
 export { validateContent } from "./validate.ts";
 export { serializeCanonical } from "./canonical.ts";
 export { reconcileContent, recoverReconciliation, requestKey } from "./reconcile.ts";

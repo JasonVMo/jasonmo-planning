@@ -2,15 +2,16 @@ schemaVersion: 1
 id: acadia-arrival-lodging
 dataType: reservation
 dataVersion: 1
-title: Maine arrival-night lodging
-summary: Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar Harbor.
+title: Comfort Inn Ellsworth - Bar Harbor
+summary: Arrival-night lodging in Ellsworth from October 5 at 3 PM through
+  October 6 at 11 AM.
 lifecycle: active
 taxonomy:
   primaryTopicId: trips
   relatedTopicIds: []
   tags:
     - lodging
-    - needs-booking
+    - confirmed
     - year-2026
 relationships: []
 view:
@@ -33,13 +34,14 @@ view:
 data:
   bodyPath: body.md
   kind: lodging
-  status: needs-booking
-  provider: To be selected
+  status: confirmed
+  provider: Comfort Inn Ellsworth - Bar Harbor
   schedule:
-    allDay: true
-    startDate: 2026-10-05
-    endDate: 2026-10-06
-  location: Bangor, Ellsworth, or Bar Harbor, Maine
+    allDay: false
+    startAt: 2026-10-05T15:00:00-04:00
+    endAt: 2026-10-06T11:00:00-04:00
+    timeZone: America/New_York
+  location: 130 High St, Ellsworth, ME 04605
 provenance:
   sources:
     - id: owner-itinerary
@@ -48,13 +50,13 @@ provenance:
       sourceType: owner-material
       locator: research/intake/initial-trips.md
       access: restricted
-      retrievedAt: 2026-09-08T13:00:00-07:00
-      fingerprint: 6ea2816f43f7000d9bc6a64134d2c4b3306081a8fe24848e61896c6baa335feb
+      retrievedAt: 2026-09-10T17:43:14-07:00
+      fingerprint: 28ca768d0a401d758294eec885e6604ad12c0bc055c62ae31b525e1edbbea6b4
   claims:
     - id: acadia-arrival-lodging-status
       basis: confirmed
-      statement: Choose a cost-effective October 5 stay in Bangor, Ellsworth, or Bar
-        Harbor.
+      statement: Comfort Inn Ellsworth - Bar Harbor is booked for October 5-6, 2026,
+        with 3 PM check-in and 11 AM check-out.
       sourceIds:
         - owner-itinerary
 sensitivity:
@@ -72,6 +74,6 @@ refresh:
   stateId: acadia-arrival-lodging
 timestamps:
   createdAt: 2026-09-08T13:05:50-07:00
-  updatedAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-10T17:43:14-07:00
 review:
-  nextReviewAt: 2026-09-12T09:00:00-07:00
+  nextReviewAt: 2026-10-04T09:00:00-07:00
