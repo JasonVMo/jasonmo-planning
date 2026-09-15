@@ -1,0 +1,28 @@
+schemaVersion: 1
+runId: sequoia-pretrip-research-20260914
+workflow: research-topic
+baseRevision: 61de80d91a33d8f6b61797769ba860054299dbbf
+requestKey: d660804b54854d1e0f0ac020dce55011c60f7c6ea7b5edc1d7b75ad76ac35412
+scopeIds:
+  - sequoia-getting-ready
+  - sequoia-hikes-walks
+  - sequoia-restaurants
+  - sequoia-things-to-do
+sourceEvidence:
+  - sourceId: seki-trails
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: 86425e2491ca16e02a4e663a85f94b912bb6d0244609a2348a13f0eea776bd22
+  - sourceId: seki-roads
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: 267abd3caf73fbbecb84cdc4402f7370c75b573867cec48552a6bb255af49232
+changedEntityIds:
+  - sequoia-hikes-walks
+validation: Current NPS evidence was retrieved and the isolated four-entity
+  candidate passed content and projection validation.
+startedAt: 2026-09-14T12:50:37-07:00
+endedAt: 2026-09-14T12:57:25-07:00
+outcome: succeeded
+reviewItems:
+  - AllTrails blocked direct retrieval; seven ratings came from indexed AllTrails results.
+  - Marble Falls and Big Baldy ratings remain unavailable.
+continuation: Recheck trail and road reports immediately before each hike.

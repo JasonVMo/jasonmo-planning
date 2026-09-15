@@ -1,0 +1,86 @@
+schemaVersion: 1
+runId: sequoia-pretrip-research-20260914
+workflow: research-topic
+baseRevision: 61de80d91a33d8f6b61797769ba860054299dbbf
+requestKey: d660804b54854d1e0f0ac020dce55011c60f7c6ea7b5edc1d7b75ad76ac35412
+scopeIds:
+  - sequoia-getting-ready
+  - sequoia-hikes-walks
+  - sequoia-restaurants
+  - sequoia-things-to-do
+asOf: 2026-09-14T12:57:25-07:00
+policyVersion: 2
+outcome: succeeded
+changes:
+  - path: content/entities/sequoia-getting-ready/body.md
+    expectedHash: d12369cfebc96bc558caa7ba3138eeff40fecc6ab874e3b739955a50e3729633
+    proposedPath: changes/content/entities/sequoia-getting-ready/body.md
+  - path: content/entities/sequoia-getting-ready/entity.yaml
+    expectedHash: 44d10b598d0a0d2e2de1275597144c882c220bfe91ad5587536136ff9902587b
+    proposedPath: changes/content/entities/sequoia-getting-ready/entity.yaml
+  - path: content/entities/sequoia-hikes-walks/body.md
+    expectedHash: 407a88a345ba46f0ce086f22c86feefc612e8d4485081c34c1ca2538c6aadd6d
+    proposedPath: changes/content/entities/sequoia-hikes-walks/body.md
+  - path: content/entities/sequoia-hikes-walks/entity.yaml
+    expectedHash: a16229e3cfc9b4e5d0ba32e224a89f0ac3122b76ac9ef27d0e3072e481b537dd
+    proposedPath: changes/content/entities/sequoia-hikes-walks/entity.yaml
+  - path: content/entities/sequoia-restaurants/body.md
+    expectedHash: 37b1001d782898648e89acc751ab67bd5f6e42b0acf5f718d8127f8819fcec29
+    proposedPath: changes/content/entities/sequoia-restaurants/body.md
+  - path: content/entities/sequoia-restaurants/entity.yaml
+    expectedHash: 622f472599b6f5d12edc4d2feb9b42c517010adfde17aa34fe7c694adc11e626
+    proposedPath: changes/content/entities/sequoia-restaurants/entity.yaml
+  - path: content/entities/sequoia-things-to-do/body.md
+    expectedHash: ce0fbb8202f983544d98bfa6338c1a8cb8bf53a066dd44bb2801068e2ba1f26d
+    proposedPath: changes/content/entities/sequoia-things-to-do/body.md
+  - path: content/entities/sequoia-things-to-do/entity.yaml
+    expectedHash: 29daee88ab75c961b67f286e09ccf3c5ab32e9b52a87f20afc86377e6e9dd461
+    proposedPath: changes/content/entities/sequoia-things-to-do/entity.yaml
+  - path: research/topics/sequoia-getting-ready/evidence.md
+    expectedHash: 56af4d77d84b0edd932e22b59641e33bff1ff965c7b236775c082472e0a4b094
+    proposedPath: changes/research/topics/sequoia-getting-ready/evidence.md
+  - path: research/topics/sequoia-getting-ready/runs/sequoia-pretrip-research-20260914.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/sequoia-getting-ready/runs/sequoia-pretrip-research-20260914.yaml
+  - path: research/topics/sequoia-getting-ready/sources.yaml
+    expectedHash: 5cea099afd95e818914647a80534248e3603955b4256560695d394a49f853d3d
+    proposedPath: changes/research/topics/sequoia-getting-ready/sources.yaml
+  - path: research/topics/sequoia-getting-ready/state.yaml
+    expectedHash: 792404389b4fe084ac894fbeace34bd1c6291026c14447a931b25093f44016f6
+    proposedPath: changes/research/topics/sequoia-getting-ready/state.yaml
+  - path: research/topics/sequoia-hikes-walks/evidence.md
+    expectedHash: 3b4966ea756fc455b61e27d35ebb941bdd91ac9dbaf1e383d0f5b0fe0483e740
+    proposedPath: changes/research/topics/sequoia-hikes-walks/evidence.md
+  - path: research/topics/sequoia-hikes-walks/runs/sequoia-pretrip-research-20260914.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/sequoia-hikes-walks/runs/sequoia-pretrip-research-20260914.yaml
+  - path: research/topics/sequoia-hikes-walks/sources.yaml
+    expectedHash: a590f72940c94d35012c0c018b44f299220f3d1794a7bb203477d1749dd338b2
+    proposedPath: changes/research/topics/sequoia-hikes-walks/sources.yaml
+  - path: research/topics/sequoia-hikes-walks/state.yaml
+    expectedHash: e78185a15841c4637b15aad102ce329e7d8006e93eea0ba66475deaea7d68b34
+    proposedPath: changes/research/topics/sequoia-hikes-walks/state.yaml
+  - path: research/topics/sequoia-restaurants/evidence.md
+    expectedHash: 6fe1940f8a63df62fa9846562a0c856248a9a31fb06e4f9effeb47c5440cb27e
+    proposedPath: changes/research/topics/sequoia-restaurants/evidence.md
+  - path: research/topics/sequoia-restaurants/runs/sequoia-pretrip-research-20260914.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/sequoia-restaurants/runs/sequoia-pretrip-research-20260914.yaml
+  - path: research/topics/sequoia-restaurants/sources.yaml
+    expectedHash: 363f9a516d1a8c09c176507fedc2d9b6404fba2e8ecfc6b3d1ff8a414467a241
+    proposedPath: changes/research/topics/sequoia-restaurants/sources.yaml
+  - path: research/topics/sequoia-restaurants/state.yaml
+    expectedHash: bb6bcc2369efdd2dc373d77fb399877b6bb68469c939833b36fec6739fdab55f
+    proposedPath: changes/research/topics/sequoia-restaurants/state.yaml
+  - path: research/topics/sequoia-things-to-do/evidence.md
+    expectedHash: 400e6ec9f2faae007116352248923b0e31e5ab42f86757ea33022e992d06a6fb
+    proposedPath: changes/research/topics/sequoia-things-to-do/evidence.md
+  - path: research/topics/sequoia-things-to-do/runs/sequoia-pretrip-research-20260914.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/sequoia-things-to-do/runs/sequoia-pretrip-research-20260914.yaml
+  - path: research/topics/sequoia-things-to-do/sources.yaml
+    expectedHash: 24f8a4b5a78921ccaa3da4d02638c6ab23366e75d7507eef5e2e150708f6b9c8
+    proposedPath: changes/research/topics/sequoia-things-to-do/sources.yaml
+  - path: research/topics/sequoia-things-to-do/state.yaml
+    expectedHash: 4c810df624fdde30c22e11aa31edf2f3b19db12c95c21e147bfacb3bb02ad074
+    proposedPath: changes/research/topics/sequoia-things-to-do/state.yaml

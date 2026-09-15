@@ -119,7 +119,12 @@ function reservationEntries(manifest: SiteManifest): SiteEntity[] {
 function upcomingRootTrips(manifest: SiteManifest, now: number): RootTripEntry[] {
   return rootTripEntries(manifest)
     .filter(({ entity, trip }) => !isEntityArchived(entity, tripEffectiveEndDate(trip), now))
-    .sort((a, b) => a.trip.startDate.localeCompare(b.trip.startDate));
+    .sort(
+      (a, b) =>
+        a.trip.startDate.localeCompare(b.trip.startDate) ||
+        a.trip.endDate.localeCompare(b.trip.endDate) ||
+        a.entity.title.localeCompare(b.entity.title),
+    );
 }
 
 function upcomingStandaloneEvents(manifest: SiteManifest, now: number): StandaloneEventEntry[] {
@@ -607,7 +612,7 @@ function TripsPage({ manifest }: AppProps) {
         description="Upcoming trips from this audience's projected manifest, soonest first. Segments appear inside each trip."
       />
       {trips.length > 0 ? (
-        <div className="entity-grid" aria-label="Upcoming trips">
+        <div className="entity-grid entity-grid--sequential" aria-label="Upcoming trips">
           {trips.map(({ entity }) => (
             <EntityRenderer key={entity.id} entity={entity} context="collection" />
           ))}
@@ -700,7 +705,7 @@ function ArchivePage({ manifest }: AppProps) {
           <Badge appearance="tint">{archivedTrips.length}</Badge>
         </div>
         {archivedTrips.length > 0 ? (
-          <div className="entity-grid" aria-label="Archived trips">
+          <div className="entity-grid entity-grid--sequential" aria-label="Archived trips">
             {archivedTrips.map(({ entity }) => (
               <EntityRenderer key={entity.id} entity={entity} context="collection" />
             ))}

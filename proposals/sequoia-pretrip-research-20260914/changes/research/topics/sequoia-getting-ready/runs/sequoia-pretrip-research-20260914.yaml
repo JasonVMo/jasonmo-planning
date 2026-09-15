@@ -1,0 +1,33 @@
+schemaVersion: 1
+runId: sequoia-pretrip-research-20260914
+workflow: research-topic
+baseRevision: 61de80d91a33d8f6b61797769ba860054299dbbf
+requestKey: d660804b54854d1e0f0ac020dce55011c60f7c6ea7b5edc1d7b75ad76ac35412
+scopeIds:
+  - sequoia-getting-ready
+  - sequoia-hikes-walks
+  - sequoia-restaurants
+  - sequoia-things-to-do
+sourceEvidence:
+  - sourceId: nws-three-rivers
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: 59a40409339f0bed40e897d37195dd75b50859695c18edb4d43e5bc5c015df25
+  - sourceId: nws-foothills-vc
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: bf68760be841f14f26f3c373864a12ff02d455fb3f283d38097b7d0b757a206e
+  - sourceId: nws-lodgepole-vc
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: 59c545aab5586e27f65502ab297354714255d6e619fb97277da0291565d1d62f
+  - sourceId: nws-grant-grove-vc
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: 754c7af21bfc50319980b2ffd64dac6081b46656159d0ff0fcccf19e8c39b65f
+changedEntityIds:
+  - sequoia-getting-ready
+validation: Four distinct NWS point forecasts were retrieved and the isolated
+  four-entity candidate passed content and projection validation.
+startedAt: 2026-09-14T12:50:37-07:00
+endedAt: 2026-09-14T12:57:25-07:00
+outcome: succeeded
+reviewItems:
+  - Forecasts are time-sensitive and require daily refresh.
+continuation: Refresh all four point forecasts and active hazards each morning.

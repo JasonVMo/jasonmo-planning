@@ -1,0 +1,31 @@
+schemaVersion: 1
+runId: sequoia-pretrip-research-20260914
+workflow: research-topic
+baseRevision: 61de80d91a33d8f6b61797769ba860054299dbbf
+requestKey: d660804b54854d1e0f0ac020dce55011c60f7c6ea7b5edc1d7b75ad76ac35412
+scopeIds:
+  - sequoia-getting-ready
+  - sequoia-hikes-walks
+  - sequoia-restaurants
+  - sequoia-things-to-do
+sourceEvidence:
+  - sourceId: seki-facility-hours
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: 0051001f58539e35a1be8a1f7742a100a2cec616d07c1b5066ea110b892e556a
+  - sourceId: seki-roads
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: 267abd3caf73fbbecb84cdc4402f7370c75b573867cec48552a6bb255af49232
+  - sourceId: seki-cave
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: 18033a92d4e45f11c6531329c8dc7bd87799ca74748f79a5f4e9c4d38cf91aff
+changedEntityIds:
+  - sequoia-things-to-do
+validation: Current NPS evidence was retrieved and the isolated four-entity
+  candidate passed content and projection validation.
+startedAt: 2026-09-14T12:50:37-07:00
+endedAt: 2026-09-14T12:57:25-07:00
+outcome: succeeded
+reviewItems:
+  - Congress Trail construction leaves exact trip-window routing unclear.
+  - Same-day emergency closures remain possible.
+continuation: Recheck NPS alerts, roads, fire restrictions, and parking each morning.

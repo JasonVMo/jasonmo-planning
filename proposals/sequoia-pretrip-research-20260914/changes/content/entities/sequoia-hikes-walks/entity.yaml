@@ -1,0 +1,163 @@
+schemaVersion: 1
+id: sequoia-hikes-walks
+dataType: markdown
+dataVersion: 1
+title: Sequoia hikes & walks
+summary: Comparison tables of Sequoia and Kings Canyon hikes with ratings,
+  mileage, elevation gain, and current access notes.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - sequoia
+    - hikes
+    - walks
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: seki-hikes
+      title: Day hikes
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/dayhikes.htm
+      access: public
+      retrievedAt: 2026-09-14T12:57:25-07:00
+    - id: seki-trails
+      title: Trail conditions
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/trailcond.htm
+      access: public
+      retrievedAt: 2026-09-14T12:57:25-07:00
+      fingerprint: 86425e2491ca16e02a4e663a85f94b912bb6d0244609a2348a13f0eea776bd22
+    - id: seki-roads
+      title: Road conditions
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/road-conditions.htm
+      access: public
+      retrievedAt: 2026-09-14T12:57:25-07:00
+      fingerprint: 267abd3caf73fbbecb84cdc4402f7370c75b573867cec48552a6bb255af49232
+    - id: alltrails-paradise-creek
+      title: Paradise Creek Trail
+      publisher: AllTrails
+      sourceType: primary-documentation
+      url: https://www.alltrails.com/explore/trail/us/california/paradise-creek-trail
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: alltrails-marble-falls
+      title: Marble Falls Trail
+      publisher: AllTrails
+      sourceType: primary-documentation
+      url: https://www.alltrails.com/trail/us/california/marble-falls-trail
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: alltrails-congress
+      title: Congress Trail
+      publisher: AllTrails
+      sourceType: primary-documentation
+      url: https://www.alltrails.com/explore/trail/us/california/congress-trail
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: alltrails-tokopah
+      title: Tokopah Falls
+      publisher: AllTrails
+      sourceType: primary-documentation
+      url: https://www.alltrails.com/explore/trail/us/california/tokopah-falls
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: alltrails-heather-lake
+      title: Heather Lake via Lakes Trail
+      publisher: AllTrails
+      sourceType: primary-documentation
+      url: https://www.alltrails.com/explore/trail/us/california/heather-lake-via-lakes-trail
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: alltrails-big-baldy
+      title: Big Baldy Trail
+      publisher: AllTrails
+      sourceType: primary-documentation
+      url: https://www.alltrails.com/trail/us/california/big-baldy-trail
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: alltrails-mist-falls
+      title: Mist Falls
+      publisher: AllTrails
+      sourceType: primary-documentation
+      url: https://www.alltrails.com/explore/trail/us/california/mist-falls
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: alltrails-zumwalt
+      title: Zumwalt Meadow
+      publisher: AllTrails
+      sourceType: primary-documentation
+      url: https://www.alltrails.com/explore/trail/us/california/zumwalt-meadow
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: alltrails-roaring-river
+      title: Roaring River Falls
+      publisher: AllTrails
+      sourceType: primary-documentation
+      url: https://www.alltrails.com/explore/trail/us/california/roaring-river-falls--2
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+  claims:
+    - id: sequoia-hikes-alltrails
+      basis: observed
+      statement: Indexed AllTrails results supplied the displayed ratings,
+        distances, and elevation gain where values were available.
+      sourceIds:
+        - alltrails-paradise-creek
+        - alltrails-congress
+        - alltrails-tokopah
+        - alltrails-heather-lake
+        - alltrails-mist-falls
+        - alltrails-zumwalt
+        - alltrails-roaring-river
+    - id: sequoia-hikes-current-access
+      basis: observed
+      statement: NPS trail and road reports supplied current access,
+        construction, and route qualifications.
+      sourceIds:
+        - seki-trails
+        - seki-roads
+    - id: sequoia-hikes-recheck
+      basis: recommended
+      statement: Recheck road and trail conditions before selecting a long hike.
+      sourceIds:
+        - seki-trails
+        - seki-roads
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: sequoia-hikes-walks
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-14T12:57:25-07:00
+review:
+  nextReviewAt: 2026-09-15T06:00:00-07:00

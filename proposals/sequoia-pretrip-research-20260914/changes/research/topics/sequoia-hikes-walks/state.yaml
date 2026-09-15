@@ -1,0 +1,25 @@
+schemaVersion: 1
+entityId: sequoia-hikes-walks
+objective: Keep Sequoia hikes & walks accurate, useful, and publicly safe.
+status: active
+completedSubtopics:
+  - Initial owner-directed research and structure captured
+  - Pre-trip AllTrails comparison and NPS access review completed
+remainingSubtopics:
+  - Recheck same-day trail, road, heat, and smoke conditions
+sourceCursors:
+  - sourceId: seki-trails
+    fingerprint: 86425e2491ca16e02a4e663a85f94b912bb6d0244609a2348a13f0eea776bd22
+  - sourceId: seki-roads
+    fingerprint: 267abd3caf73fbbecb84cdc4402f7370c75b573867cec48552a6bb255af49232
+lastAttemptAt: 2026-09-14T12:57:25-07:00
+lastAttemptOutcome: succeeded
+lastSuccessfulRetrievalAt: 2026-09-14T12:57:25-07:00
+lastVerifiedAt: 2026-09-14T12:57:25-07:00
+lastReviewedAt: 2026-09-14T12:57:25-07:00
+openQuestions:
+  - Current AllTrails ratings and metrics for Marble Falls and Big Baldy were not retrievable.
+  - Paradise Creek total mileage depends on the current pedestrian road approach.
+contradictions: []
+nextAction: Recheck NPS trail and road reports before each selected hike.
+nextHumanReviewAt: 2026-09-15T06:00:00-07:00

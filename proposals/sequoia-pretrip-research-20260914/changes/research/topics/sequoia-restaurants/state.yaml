@@ -1,0 +1,25 @@
+schemaVersion: 1
+entityId: sequoia-restaurants
+objective: Keep Sequoia restaurants accurate, useful, and publicly safe.
+status: active
+completedSubtopics:
+  - Initial owner-directed research and structure captured
+  - Three Rivers, in-park, Grant Grove, and Cedar Grove options reviewed
+remainingSubtopics:
+  - Recheck same-day concession and restaurant hours
+sourceCursors:
+  - sourceId: seki-food
+    fingerprint: 9b046bd9c9f5125c716e259570f56d12c09492a983f3fc4fdf66b1d6b0ffb238
+  - sourceId: seki-fall-2026
+    fingerprint: edaaa7f5bd6e6917381dcc4436e606172c331da64af264c2f448a3f3e656abc1
+lastAttemptAt: 2026-09-14T12:57:25-07:00
+lastAttemptOutcome: succeeded
+lastSuccessfulRetrievalAt: 2026-09-14T12:57:25-07:00
+lastVerifiedAt: 2026-09-14T12:57:25-07:00
+lastReviewedAt: 2026-09-14T12:57:25-07:00
+openQuestions:
+  - Google did not expose price levels for the retrieved listings.
+  - Dated NPS and concession pages differ on several in-park closing times.
+contradictions: []
+nextAction: Confirm same-day operating hours and carry backup food for Kings Canyon.
+nextHumanReviewAt: 2026-09-15T06:00:00-07:00

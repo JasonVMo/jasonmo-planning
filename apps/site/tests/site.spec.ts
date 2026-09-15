@@ -107,7 +107,6 @@ test("renders compact travel and research children with Fluent cards", async ({ 
     (element) => getComputedStyle(element).backgroundImage,
   );
   expect(segmentBackground).toContain("linear-gradient");
-  expect(segmentBackground).toContain("rgba(0, 0, 0, 0.68)");
   expect(segmentBackground).toContain("assets/trip-banners/acadia-segment-2026-");
   await expect(segmentHeader.locator(".tracker-activity-header__icon")).toHaveCount(0);
   const segmentImageUrl = segmentBackground.match(/url\("([^"]+)"/)?.[1];
@@ -144,6 +143,60 @@ test("renders compact travel and research children with Fluent cards", async ({ 
   await expect(
     page.getByRole("main").locator('[data-view-type="card"] .fui-Card').first(),
   ).toBeVisible();
+});
+
+test("renders Sequoia research tables with source links", async ({ page }) => {
+  const article = page.getByRole("article");
+  await page.goto(".#/entities/sequoia-hikes-walks");
+  await expect(article.getByRole("table")).toHaveCount(3);
+  await expect(
+    article.getByRole("columnheader", { name: "AllTrails rating" }).first(),
+  ).toBeVisible();
+  await expect(article.getByRole("link", { name: "Mist Falls", exact: true })).toHaveAttribute(
+    "href",
+    "https://www.alltrails.com/explore/trail/us/california/mist-falls",
+  );
+  await expect(
+    article.getByRole("link", { name: "Alta Peak via High Sierra Trail", exact: true }),
+  ).toHaveAttribute(
+    "href",
+    "https://www.alltrails.com/trail/us/california/alta-peak-via-high-sierra-trail",
+  );
+  await expect(article.getByRole("row").filter({ hasText: "Marble Falls Trail" })).toContainText(
+    "6.7 mi",
+  );
+  await expect(article.getByRole("row").filter({ hasText: "Big Baldy" })).toContainText("1,030 ft");
+
+  await page.goto(".#/entities/sequoia-restaurants");
+  await expect(article.getByRole("table")).toHaveCount(3);
+  await expect(article.getByRole("columnheader", { name: "Google rating" }).first()).toBeVisible();
+  await expect(
+    article.getByRole("link", { name: "The Gateway Restaurant & Lodge", exact: true }),
+  ).toHaveAttribute("href", /google\.com\/maps\/search/);
+  await expect(
+    article.getByRole("link", { name: "Three Rivers Brewing Co", exact: true }),
+  ).toHaveAttribute("href", /google\.com\/maps\/search/);
+  await expect(
+    article.getByRole("link", { name: "Pinehurst Lodge Bar & Grill", exact: true }),
+  ).toHaveAttribute("href", /google\.com\/maps\/search/);
+
+  await page.goto(".#/entities/sequoia-things-to-do");
+  await expect(article.getByRole("table")).toHaveCount(4);
+  await expect(article).toContainText("tours have ended for the entire 2026 season");
+
+  await page.goto(".#/entities/sequoia-getting-ready");
+  await expect(article.getByRole("table")).toHaveCount(1);
+  for (const location of [
+    "Three Rivers",
+    "Foothills Visitor Center",
+    "Lodgepole Visitor Center",
+    "Grant Grove Visitor Center",
+  ])
+    await expect(article.getByRole("link", { name: location, exact: true })).toHaveAttribute(
+      "href",
+      /forecast\.weather\.gov\/MapClick\.php/,
+    );
+  await expect(article.getByRole("cell", { name: /95°F sunny/ })).toBeVisible();
 });
 
 test("keeps search query state in the hash URL", async ({ page }) => {

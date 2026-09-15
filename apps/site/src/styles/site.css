@@ -296,6 +296,10 @@ input {
   max-width: 78rem;
 }
 
+.entity-grid--sequential {
+  grid-template-columns: minmax(0, 42rem);
+}
+
 .topic-summary {
   position: relative;
   display: flex;

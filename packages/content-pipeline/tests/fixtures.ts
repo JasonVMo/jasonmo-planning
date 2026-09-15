@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { stringify } from "yaml";
-import type { Entity, Proposal, ResearchState } from "@planning/entity-model";
+import type { Entity, Proposal, PublicationPolicy, ResearchState } from "@planning/entity-model";
 import { execFileSync } from "node:child_process";
 import { hashBytes, serializeCanonical } from "../src/canonical.ts";
 import { parseStrict } from "../src/load.ts";
@@ -69,6 +69,7 @@ export async function proposal(
   const baseRevision = execFileSync("git", ["-C", ROOT, "rev-parse", "HEAD"], {
     encoding: "utf8",
   }).trim();
+  const policy = await read<PublicationPolicy>(root, "references/publication/policy.yaml");
   const result: Proposal = {
     schemaVersion: 1,
     runId,
@@ -77,7 +78,7 @@ export async function proposal(
     requestKey: "",
     scopeIds: [ENTITY_ID],
     asOf: "2026-09-08T10:30:00-07:00",
-    policyVersion: 1,
+    policyVersion: policy.policyVersion,
     outcome: "succeeded",
     changes: [],
     ...options,

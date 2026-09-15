@@ -1,0 +1,42 @@
+schemaVersion: 1
+runId: sequoia-owner-additions-20260914
+workflow: research-topic
+baseRevision: 61de80d91a33d8f6b61797769ba860054299dbbf
+requestKey: 1e1678640b0e04cec1619758824abf83dfe3ff92c37ebcb75f8441be6aa40e22
+scopeIds:
+  - sequoia-hikes-walks
+  - sequoia-restaurants
+asOf: 2026-09-14T16:49:38-07:00
+policyVersion: 2
+outcome: succeeded
+changes:
+  - path: content/entities/sequoia-hikes-walks/body.md
+    expectedHash: 072129181cbcfb6fdb82e8b9110935e3f0579cdd725f1005e660c3c3ae968ec0
+    proposedPath: changes/content/entities/sequoia-hikes-walks/body.md
+  - path: content/entities/sequoia-hikes-walks/entity.yaml
+    expectedHash: 2b95a4738a689d50fe4396a1dc921a180009664c89271fe2bf1f696f1360993b
+    proposedPath: changes/content/entities/sequoia-hikes-walks/entity.yaml
+  - path: content/entities/sequoia-restaurants/body.md
+    expectedHash: b1d246ee573313240343e6be87a3f4306211b953e52cc9602830eb8bea209cb3
+    proposedPath: changes/content/entities/sequoia-restaurants/body.md
+  - path: content/entities/sequoia-restaurants/entity.yaml
+    expectedHash: 384986b1ee933721f5b82121be3ca39120242436cd882e8dd0efb7a528e7bee1
+    proposedPath: changes/content/entities/sequoia-restaurants/entity.yaml
+  - path: research/topics/sequoia-hikes-walks/evidence.md
+    expectedHash: 8b580718e7e53a10bf7a8e15327321efee63fa62bbbfc51c4a4122d890c1fbb6
+    proposedPath: changes/research/topics/sequoia-hikes-walks/evidence.md
+  - path: research/topics/sequoia-hikes-walks/runs/sequoia-owner-additions-20260914.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/sequoia-hikes-walks/runs/sequoia-owner-additions-20260914.yaml
+  - path: research/topics/sequoia-hikes-walks/state.yaml
+    expectedHash: 8ca3b127ddf85bb99bffba0a7de92c3db0d68fb694860dee2419b752fe1aafed
+    proposedPath: changes/research/topics/sequoia-hikes-walks/state.yaml
+  - path: research/topics/sequoia-restaurants/evidence.md
+    expectedHash: 8bd6180531074602fc1791497ecb5e0fbb3200dd2f9642c1824f1cf1f187e863
+    proposedPath: changes/research/topics/sequoia-restaurants/evidence.md
+  - path: research/topics/sequoia-restaurants/runs/sequoia-owner-additions-20260914.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/sequoia-restaurants/runs/sequoia-owner-additions-20260914.yaml
+  - path: research/topics/sequoia-restaurants/state.yaml
+    expectedHash: a570c85bc78e052fa86fd740fdf1a146c9721ae594b759deecce803ac0330312
+    proposedPath: changes/research/topics/sequoia-restaurants/state.yaml

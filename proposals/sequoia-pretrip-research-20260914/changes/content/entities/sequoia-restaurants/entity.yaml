@@ -1,0 +1,211 @@
+schemaVersion: 1
+id: sequoia-restaurants
+dataType: markdown
+dataVersion: 1
+title: Sequoia restaurants
+summary: Comparison tables for Three Rivers, in-park, Grant Grove, and Cedar
+  Grove dining with current ratings and hours.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - sequoia
+    - restaurants
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: seki-food
+      title: Where to eat
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/planyourvisit/wheretoeat.htm
+      access: public
+      retrievedAt: 2026-09-14T12:57:25-07:00
+      fingerprint: 9b046bd9c9f5125c716e259570f56d12c09492a983f3fc4fdf66b1d6b0ffb238
+    - id: seki-fall-2026
+      title: Fall 2026 trip planner
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/seki/learn/news/upload/Trip_Planner_2026_Fall_2026-08-21_web_508.pdf
+      access: public
+      retrievedAt: 2026-09-14T12:57:25-07:00
+      fingerprint: edaaa7f5bd6e6917381dcc4436e606172c331da64af264c2f448a3f3e656abc1
+    - id: gateway-restaurant
+      title: The Gateway Restaurant & Lodge
+      publisher: The Gateway Restaurant & Lodge
+      sourceType: primary-documentation
+      url: https://gateway-sequoia.com/
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: river-view-grill
+      title: River View Grill & Bar
+      publisher: River View Grill & Bar
+      sourceType: primary-documentation
+      url: https://riverviewgrillandbar.com/
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: reimers-three-rivers
+      title: Reimer's Three Rivers
+      publisher: Reimer's Candies & Ice Cream
+      sourceType: primary-documentation
+      url: https://reimerscandies.com/three-rivers/
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: sierra-subs
+      title: Sierra Subs & Salads
+      publisher: Sierra Subs & Salads
+      sourceType: primary-documentation
+      url: https://www.sierrasubsandsalads.com/
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: visitsequoia-dining
+      title: Sequoia and Kings Canyon dining
+      publisher: Delaware North
+      sourceType: primary-documentation
+      url: https://www.visitsequoia.com/sequoia-dining/
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-gateway
+      title: The Gateway Restaurant & Lodge on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=The%20Gateway%20Restaurant%20%26%20Lodge&query_place_id=ChIJRaQIW8BalYAREaV8O1t8NfQ
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-river-view
+      title: River View Grill & Bar on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=River%20View%20Grill%20%26%20Bar&query_place_id=ChIJk9SQyntFlYARMV2MJX5L_8E
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-reimers
+      title: Reimer's Candies & Gifts on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=Reimers%20Candies%20%26%20Gifts&query_place_id=ChIJXZ9oVHpFlYARB1Oa6fyfeo8
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-sierra-subs
+      title: Sierra Subs & Salad on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=Sierra%20Subs%20%26%20Salad&query_place_id=ChIJW7RBQIBPlYAR2V3GORFhjI0
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-peaks
+      title: The Peaks Restaurant on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=The%20Peaks%20Restaurant&query_place_id=ChIJ5c6bf2VelYAR7k-gxq8lqxo
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-wuksachi-pizza
+      title: Wuksachi Pizza Deck on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=Wuksachi%20Pizza%20Deck&query_place_id=ChIJMR3kRABflYARQ3Dt0WmVlHk
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-lodgepole
+      title: Lodgepole Market & Grill on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=Lodgepole%20Market%20%26%20Grill&query_place_id=ChIJXxxww_helYARoTxzNc9g98Q
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-grant-grove-restaurant
+      title: Grant Grove Restaurant on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=Grant%20Grove%20Restaurant&query_place_id=ChIJ8Xu4TPhtlYARXIfznQG8jN4
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-grant-grove-market
+      title: Grant Grove Market on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=Grant%20Grove%20Market&query_place_id=ChIJ52PuFfhtlYARLzhtcMEdepc
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+    - id: google-cedar-grove-lodge
+      title: Cedar Grove Lodge on Google Maps
+      publisher: Google Maps
+      sourceType: primary-documentation
+      url: https://www.google.com/maps/search/?api=1&query=Cedar%20Grove%20Lodge&query_place_id=ChIJ48PVMZYMlYARNIXEYa7ro9A
+      access: public
+      retrievedAt: 2026-09-14T12:50:37-07:00
+  claims:
+    - id: sequoia-restaurants-google-ratings
+      basis: observed
+      statement: Google Maps supplied the displayed restaurant ratings; it did
+        not expose price levels for the retrieved listings.
+      sourceIds:
+        - google-gateway
+        - google-river-view
+        - google-reimers
+        - google-sierra-subs
+        - google-peaks
+        - google-wuksachi-pizza
+        - google-lodgepole
+        - google-grant-grove-restaurant
+        - google-grant-grove-market
+        - google-cedar-grove-lodge
+    - id: sequoia-restaurants-three-rivers-hours
+      basis: observed
+      statement: Restaurant-operated pages supplied Three Rivers hours and the
+        Sierra Subs closure covering the trip.
+      sourceIds:
+        - gateway-restaurant
+        - river-view-grill
+        - reimers-three-rivers
+        - sierra-subs
+    - id: sequoia-restaurants-park-hours
+      basis: observed
+      statement: The Fall 2026 NPS guide supplied conservative trip-window
+        hours and seasonal closing dates for park concessions.
+      sourceIds:
+        - seki-food
+        - seki-fall-2026
+        - visitsequoia-dining
+    - id: sequoia-restaurants-backup-food
+      basis: recommended
+      statement: Carry backup food for Cedar Grove because concessions are
+        seasonal and remote.
+      sourceIds:
+        - seki-food
+        - seki-fall-2026
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: sequoia-restaurants
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-09-14T12:57:25-07:00
+review:
+  nextReviewAt: 2026-09-15T06:00:00-07:00

@@ -415,6 +415,12 @@ test("lists only root trips on the Trips page, soonest first, with no segment ca
   await expect(trips).toHaveCount(2);
   await expect(trips.nth(0)).toHaveAccessibleName("Fresno trip");
   await expect(trips.nth(1)).toHaveAccessibleName("Acadia & NYC");
+  const tripCards = page.locator(".entity-grid--sequential > [data-view-type='trip']");
+  const firstCard = await tripCards.nth(0).boundingBox();
+  const secondCard = await tripCards.nth(1).boundingBox();
+  expect(firstCard).not.toBeNull();
+  expect(secondCard).not.toBeNull();
+  expect(secondCard!.y).toBeGreaterThanOrEqual(firstCard!.y + firstCard!.height);
   await expect(page.getByRole("link", { name: "Acadia segment", exact: true })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "NYC segment", exact: true })).toHaveCount(0);
 });

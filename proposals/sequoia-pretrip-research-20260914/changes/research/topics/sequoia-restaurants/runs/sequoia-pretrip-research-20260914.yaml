@@ -1,0 +1,28 @@
+schemaVersion: 1
+runId: sequoia-pretrip-research-20260914
+workflow: research-topic
+baseRevision: 61de80d91a33d8f6b61797769ba860054299dbbf
+requestKey: d660804b54854d1e0f0ac020dce55011c60f7c6ea7b5edc1d7b75ad76ac35412
+scopeIds:
+  - sequoia-getting-ready
+  - sequoia-hikes-walks
+  - sequoia-restaurants
+  - sequoia-things-to-do
+sourceEvidence:
+  - sourceId: seki-food
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: 9b046bd9c9f5125c716e259570f56d12c09492a983f3fc4fdf66b1d6b0ffb238
+  - sourceId: seki-fall-2026
+    retrievedAt: 2026-09-14T12:57:25-07:00
+    fingerprint: edaaa7f5bd6e6917381dcc4436e606172c331da64af264c2f448a3f3e656abc1
+changedEntityIds:
+  - sequoia-restaurants
+validation: Current dining evidence was retrieved and the isolated four-entity
+  candidate passed content and projection validation.
+startedAt: 2026-09-14T12:50:37-07:00
+endedAt: 2026-09-14T12:57:25-07:00
+outcome: succeeded
+reviewItems:
+  - Google price levels were unavailable and are not inferred.
+  - Conservative NPS hours are used where official sources disagree.
+continuation: Confirm same-day hours and retain backup food for remote park days.

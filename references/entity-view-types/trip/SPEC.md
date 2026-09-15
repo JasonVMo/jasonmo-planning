@@ -30,6 +30,9 @@ The actual site may suppress the reference-only child lists and compose the
 same audience-safe targets as cards: dedicated compact flight/event cards for
 flights and reservations, compact trip views for segments, and the common card
 view for research pages such as hikes.
+Root trip collections retain deterministic calendar order by start date, then
+end date and title, and render as a single vertical sequence rather than a
+multi-column card grid.
 
 Compiler projection happens after audience selection and parent closure.
 Child titles/summaries never come from hidden entities, and canonical objects

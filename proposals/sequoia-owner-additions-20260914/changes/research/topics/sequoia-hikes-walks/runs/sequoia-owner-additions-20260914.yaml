@@ -1,0 +1,19 @@
+schemaVersion: 1
+runId: sequoia-owner-additions-20260914
+workflow: research-topic
+baseRevision: 61de80d91a33d8f6b61797769ba860054299dbbf
+requestKey: 1e1678640b0e04cec1619758824abf83dfe3ff92c37ebcb75f8441be6aa40e22
+scopeIds:
+  - sequoia-hikes-walks
+  - sequoia-restaurants
+sourceEvidence: []
+changedEntityIds:
+  - sequoia-hikes-walks
+validation: Owner-confirmed hike additions were normalized into the existing
+  comparison table without claiming a new external verification.
+startedAt: 2026-09-14T16:49:00-07:00
+endedAt: 2026-09-14T16:49:38-07:00
+outcome: succeeded
+reviewItems:
+  - The Alta Peak routes exceed the usual under-10-mile preference.
+continuation: Recheck NPS trail and road reports before attempting a long hike.

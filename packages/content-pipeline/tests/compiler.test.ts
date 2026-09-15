@@ -64,13 +64,14 @@ async function publicFixture() {
   return root;
 }
 async function approve(root: string, target: "public" | "private-group", basePath = "/") {
-  const projection = projectCorpus(await loadCorpus(root), { target, basePath }, false);
+  const corpus = await loadCorpus(root);
+  const projection = projectCorpus(corpus, { target, basePath }, false);
   await write(root, `references/publication/approvals/${target}.yaml`, {
     schemaVersion: 1,
     target,
     deploymentId: target === "public" ? "synthetic-public" : "synthetic-group",
     ...approvalDigests(projection),
-    policyVersion: 1,
+    policyVersion: corpus.publication.policyVersion,
     reviewer: "synthetic-owner",
     approvedAt: "2026-09-08T10:30:00-07:00",
   });

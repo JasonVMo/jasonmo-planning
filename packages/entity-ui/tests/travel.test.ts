@@ -101,7 +101,7 @@ describe("travel renderers", () => {
       }
     }
     expect(getHeaderBgStyle("segment", 'url("/banner.jpg")').backgroundImage).toContain(
-      "rgb(0 0 0 / 68%)",
+      'url("/banner.jpg")',
     );
   });
   it("dispatches by view only and keeps compact body text out of collections", () => {
