@@ -1,0 +1,31 @@
+schemaVersion: 1
+runId: acadia-cadillac-section-20261002
+workflow: research-topic
+baseRevision: e7e9a48378bf94d5784f986f320b737615f18440
+requestKey: 59d2d4ab2ba62c17ad0d99f8a7a34320f2d9382be533cadafecf9d7812435555
+scopeIds:
+  - acadia-things-to-do
+sourceEvidence:
+  - sourceId: acadia-cadillac
+    retrievedAt: 2026-10-02T16:50:00-07:00
+    fingerprint: 34a4af1cc9d6e1746de0555c14fa3b31fd5cacf72cbb7f4969d6d9a23f326b0c
+  - sourceId: cadillac-recreation-gov
+    retrievedAt: 2026-10-02T16:50:00-07:00
+    fingerprint: c6234035b4cd3d3ed79db6f15b1fc73a433060948162dc8af752a0d650a45285
+  - sourceId: cadillac-park-loop
+    retrievedAt: 2026-10-02T16:50:00-07:00
+    fingerprint: 5152be350144805768653383b9e3af86e27acb18c76388b8edcd914718e97533
+changedEntityIds:
+  - acadia-things-to-do
+validation: Official 2026 NPS reservation details, Recreation.gov booking rules,
+  and NPS Park Loop Road guidance checked; visit-date release times calculated
+  from the two-day booking rule.
+startedAt: 2026-10-02T16:40:00-07:00
+endedAt: 2026-10-02T16:53:12-07:00
+outcome: succeeded
+reviewItems:
+  - The 2026 dates and rules are time-sensitive; recheck before each reservation
+    release.
+  - Best-time guidance is a recommendation based on visibility and traffic
+    preferences.
+continuation: Check forecast and any NPS road alerts before booking or driving.

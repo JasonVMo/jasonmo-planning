@@ -1,3 +1,3 @@
 # Evidence for Hoboken lodging
 
-Initial owner-directed research captured 2026-09-08T13:00:00-07:00. Sources are listed in `sources.yaml`; dynamic facts remain subject to the next review.
+The owner confirmed on 2026-10-02 that an Airbnb in Hoboken is booked from October 10 at 4:00 p.m. EDT through October 14 at 11:00 a.m. EDT. The owner leaves on October 13; their wife stays through the final night. The exact street address is stored only on the owner-only lodging page.

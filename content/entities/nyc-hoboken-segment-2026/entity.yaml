@@ -3,8 +3,7 @@ id: nyc-hoboken-segment-2026
 dataType: trip
 dataVersion: 1
 title: New York City & Hoboken
-summary: Three nights based near Stevens in Hoboken, using PATH and transit for
-  New York City.
+summary: Hoboken base for New York City, with PATH and transit; Airbnb lodging is booked through October 14.
 lifecycle: active
 taxonomy:
   primaryTopicId: trips
@@ -36,7 +35,7 @@ view:
 data:
   bodyPath: body.md
   kind: segment
-  status: planned
+  status: confirmed
   startDate: 2026-10-10
   endDate: 2026-10-13
   destination: Hoboken and New York City
@@ -72,7 +71,7 @@ provenance:
   claims:
     - id: nyc-segment-dates
       basis: confirmed
-      statement: The Hoboken and NYC segment runs October 10-13, 2026.
+      statement: The Hoboken and NYC segment runs October 10-13, 2026; booked lodging continues through October 14.
       sourceIds:
         - owner-itinerary
 sensitivity:
@@ -90,6 +89,6 @@ refresh:
   stateId: nyc-hoboken-segment-2026
 timestamps:
   createdAt: 2026-09-08T13:05:50-07:00
-  updatedAt: 2026-09-14T11:16:20-07:00
+  updatedAt: 2026-10-02T14:53:30-07:00
 review:
   nextReviewAt: 2026-09-12T09:00:00-07:00

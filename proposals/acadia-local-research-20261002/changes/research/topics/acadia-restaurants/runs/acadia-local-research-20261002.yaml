@@ -1,0 +1,43 @@
+schemaVersion: 1
+runId: acadia-local-research-20261002
+workflow: research-topic
+baseRevision: e7e9a48378bf94d5784f986f320b737615f18440
+requestKey: ddfcc90fcd73b481bf6ac811a60de9db668604e5243a0e4a60b9ef9d9e4f575d
+scopeIds:
+  - acadia-hikes-walks
+  - acadia-things-to-do
+  - acadia-restaurants
+sourceEvidence:
+  - sourceId: acadia-hours
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 3e04f66b1a9ae1a7fdc6760e6d248fe3e0c6312a3680ed3cfd61b528c6b672b9
+  - sourceId: jordan-pond-house
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: c786347bc5dcfd08536d44ebb27aabcbad27d5d43cdab9d2ca7810fef4b29690
+  - sourceId: jordan-hours
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 34c431e28ad9675ce65163c0e71793e4b8280ea90dc8ac9924e0d3bd89aff934
+  - sourceId: atlantic-hours
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 9b5b801bc6922a1909b72b372dece457ef76ba9b121fa43a313ca8dbf9248290
+  - sourceId: thrive-hours
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: eb658d76b5c1b35b17844f87af470ba07349ec55b96b3d07978527f01dc89f77
+  - sourceId: reading-room
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: ef08dadd0864ab7014218fd3b773b8ef31df2a58b80e87b9878e85b7cfffb820
+  - sourceId: seasonal-open
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 50ea08e4d440cd96163d49b4d4d4cdfb367e5b92d5a28e5cd686bfe90bedbd4b
+changedEntityIds:
+  - acadia-restaurants
+validation: Current official attraction, hike, transit and seasonal-hours pages
+  reviewed; discussion sources used only to discover candidates.
+startedAt: 2026-10-02T15:55:00-07:00
+endedAt: 2026-10-02T16:13:48-07:00
+outcome: succeeded
+reviewItems:
+  - Hours are seasonal and were retrieved October 2, 2026.
+  - Elevation gains are approximate planning values.
+continuation: Recheck service dates, trail closures, tides and business hours
+  immediately before travel.

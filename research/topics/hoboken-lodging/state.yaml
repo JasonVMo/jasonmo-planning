@@ -4,11 +4,11 @@ objective: Keep Hoboken lodging accurate, useful, and publicly safe.
 status: active
 completedSubtopics:
   - Initial owner-directed research and structure captured
+  - Airbnb booking confirmed for October 10-14
 remainingSubtopics:
-  - Recheck time-sensitive conditions and availability
+  - Recheck time-sensitive conditions
 sourceCursors: []
 openQuestions: []
 contradictions: []
-nextAction: Choose and reserve an option, then update the public status without
-  adding a confirmation code.
-nextHumanReviewAt: 2026-09-12T09:00:00-07:00
+nextAction: Refresh the owner-only lodging details if the booking changes; never copy the street address into a public summary.
+nextHumanReviewAt: 2026-10-09T09:00:00-07:00

@@ -1,3 +1,3 @@
 # Evidence for Acadia National Park & Bar Harbor
 
-Initial owner-directed research captured 2026-09-08T13:00:00-07:00. Sources are listed in `sources.yaml`; dynamic facts remain subject to the next review.
+Weather researched on 2026-10-02 for October 5-10. The National Weather Service Bar Harbor forecast was current through October 8. Weather Atlas published the daily forecast snapshot used for temperatures and precipitation; the last days are less certain. Timeanddate.com supplied sunrise and sunset times. Full source locators and retrieval times are in `sources.yaml`.

@@ -1,7 +1,7 @@
 {
   "audience": "public",
   "basePath": "/jasonmo-planning/",
-  "contentDigest": "d85ac57fde5ebbc568c1eccc603a4774f4de9012233415c0e85437457e68bc1b",
+  "contentDigest": "70ba5632aa33aed63722696916d96986e0222bc9e3ba66eadae3eacb9f646e9f",
   "deployable": true,
   "entities": [
     {
@@ -188,6 +188,7 @@
       "dataType": "markdown",
       "dataVersion": 1,
       "id": "acadia-hikes-walks",
+      "lastVerifiedAt": "2026-10-02T16:13:48-07:00",
       "lifecycle": "active",
       "primaryTopicId": "trips",
       "relationships": [],
@@ -221,7 +222,7 @@
           "title": "Acadia Hikes"
         },
         "full": {
-          "body": "## East side\n\n- **Gorham Mountain Loop:** 3.5 miles, moderate and rocky.\n- **Beehive Loop:** 1.4 miles with iron rungs and exposed cliff travel; only in dry conditions.\n- **Great Head:** 1.7 miles over rocky coastal terrain.\n\n## Central mountains\n\n- **Jordan Pond Path:** 3.3 miles with boulders and narrow boardwalk on the west side.\n- **Pemetic Loop:** 4 miles with scrambling, rungs, and a ladder.\n- **Cadillac South Ridge:** 7.1 miles and a substantial exposed ridge day.\n\n## West side and Schoodic\n\n- **Beech Mountain:** 1.2 miles; drive because there is no direct trailhead transit.\n- **Ship Harbor:** 1.3-mile easier coastal loop.\n- **Schoodic:** choose among 7.5 miles of linked trails.\n\nRoutes 4, 5, and 6 do not stop at the Bubble Rock trailhead. Use Jordan Pond for a bus-based approach or drive with a parking backup.\n",
+          "body": "Distances and elevation gains are approximate route-planning figures; footing, weather, and chosen variants change effort. Acadia trails are rocky, and wet granite can be slippery. Check current NPS alerts before setting out.\n\n| Distance / elevation gain                                                                   | Description                                                                                                                                                                                                                              | How to get there                                                                                                                                                                                    |\n| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Ocean Path:** up to 4.4 mi round trip; mostly level                                       | Easy coastal walk between Sand Beach and Otter Point, with shorter turnarounds at Thunder Hole or Otter Cliff.                                                                                                                           | **Island Explorer Route 4** stops along the corridor, including Sand Beach, Thunder Hole, and Otter Cliff; or drive to Park Loop Road lots.                                                         |\n| **Great Head:** about 1.5 mi loop; modest gain (\\~300 ft)                                   | Rocky headland loop above Sand Beach; uneven footing and exposed ocean edges.                                                                                                                                                            | **Route 4** to Sand Beach, then walk to the east end of the beach; or drive to Sand Beach and walk across.                                                                                          |\n| **Beehive:** about 1.4 mi loop; \\~500 ft                                                    | Short, strenuous iron-rung route with exposed cliff sections. Choose only in dry conditions and if comfortable with heights; use the Bowl bypass to avoid the rungs.                                                                     | **Route 4** to Sand Beach, then walk to the trailhead; or drive to the Sand Beach lot.                                                                                                              |\n| **Gorham Mountain:** 3.5 mi loop; \\~500 ft gain (approx.)                                   | Moderate rocky climb to open views. Can be paired with Ocean Path; expect rough granite.                                                                                                                                                 | **Route 4** serves the Gorham Mountain parking loop; or drive to the Park Loop Road trailhead.                                                                                                      |\n| **Jordan Pond Path:** 3.2 mi loop; nearly level, with short rocky/bouldery sections         | Scenic shoreline circuit; the west shore has the roughest footing and narrow boardwalks.                                                                                                                                                 | **Island Explorer Route 5** to Jordan Pond House; or drive to the Jordan Pond lot (often busy).                                                                                                     |\n| **South Bubble / Bubble Rock:** about 1.5 mi round trip from Jordan Pond House; \\~500 ft    | Short, steep climb to the glacial erratic and pond views.                                                                                                                                                                                | **Route 5** to Jordan Pond House, then follow the pond-side trail toward the Bubbles. Buses do not stop at the Bubble Rock trailhead. Driving to that trailhead is possible but parking is limited. |\n| **Beech Mountain:** about 1.2 mi summit loop; \\~400 ft                                      | Short forest climb to a fire tower and broad west-side views. Check alerts: the eastern Beech Mountain Loop has a reported closure.                                                                                                      | **Drive** to the Beech Mountain parking area off Route 102; no direct Island Explorer trailhead stop.                                                                                               |\n| **Ship Harbor:** 1.3 mi loop; minimal gain                                                  | Easy coastal loop through spruce and salt-marsh edges, with rocky shore access and tide pools.                                                                                                                                           | **Drive** to the Route 102A trailhead; NPS lists no public transportation for this hike.                                                                                                            |\n| **Wonderland:** 1.4 mi round trip; minimal gain                                             | Easy old fire road through woods to a broad rocky shore, a good short west-side coast walk.                                                                                                                                              | **Drive** to the Route 102A trailhead; NPS lists no public transportation to this trailhead.                                                                                                        |\n| **Flying Mountain:** about 1.5 mi loop; \\~300 ft                                            | Short, steeper summit walk with views over Somes Sound; combine with Valley Cove only if conditions and time suit.                                                                                                                       | **Drive** to the Fernald Point Road trailhead; NPS lists no public transportation to this trailhead.                                                                                                |\n| **Acadia Mountain:** 2.8 mi loop; \\~500 ft gain (approx.)                                   | Moderate, rocky loop with open views over Somes Sound; the west-side climb is steep, with a gentler eastern descent.                                                                                                                     | **Island Explorer Route 7** stops at the Acadia Mountain trailhead; or drive to the Route 102 parking area and cross carefully.                                                                     |\n| **Bar Island:** 0.5 mi each way across the bar, plus about 1 mi island trail; low elevation | Walk the natural sand-and-gravel land bridge and optional forest trail to a view over Bar Harbor. The bar is crossable only from 1.5 hours before to 1.5 hours after low tide; check tide tables and turn back while the tide is rising. | Walk from downtown Bar Harbor via Bridge Street; **Island Explorer** serves downtown. Do not drive onto Bridge Street or the bar.                                                                   |\n\n**Shuttle planning:** the 2026 Island Explorer season runs through October 12, covering the Acadia stay. Route 4 serves the Park Loop Road; Route 5 serves Jordan Pond every 30 minutes in the posted fall schedule. Verify the live timetable and stop details before leaving. The bus does not serve Cadillac summit. For itineraries that combine distant stops, leave room for waits and use the myStop app for live tracking.\n",
           "href": "#/entities/acadia-hikes-walks",
           "summary": "Region-grouped official routes with bus, driving, weather, and exposure notes.",
           "title": "Acadia Hikes"
@@ -272,7 +273,7 @@
       },
       "viewModels": {
         "event": {
-          "body": "## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nThe Maine arrival night is booked in Ellsworth. The Hoboken stay remains the\nopen lodging action.\n",
+          "body": "## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nThe Maine arrival night is booked in Ellsworth. Hoboken Airbnb lodging is confirmed for October 10-14.\n",
           "href": "#/entities/acadia-new-york-2026",
           "kind": "event",
           "location": "Maine, New York City, and Hoboken",
@@ -290,7 +291,7 @@
           "title": "Acadia & New York City"
         },
         "trip": {
-          "body": "## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nThe Maine arrival night is booked in Ellsworth. The Hoboken stay remains the\nopen lodging action.\n",
+          "body": "## Timeline\n\n1. Fly Seattle-Chicago-Bangor and collect the rental car.\n2. Explore Acadia and Bar Harbor through October 10.\n3. Fly Bangor-LaGuardia and continue to Hoboken without a car.\n4. Explore Hoboken and New York City before returning from Newark.\n\nThe Maine arrival night is booked in Ellsworth. Hoboken Airbnb lodging is confirmed for October 10-14.\n",
           "children": [
             {
               "href": "#/entities/acadia-outbound-flight",
@@ -317,7 +318,7 @@
               "href": "#/entities/nyc-hoboken-segment-2026",
               "order": 40,
               "role": "segment",
-              "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+              "summary": "Hoboken base for New York City, with PATH and transit; Airbnb lodging is booked through October 14.",
               "title": "New York City & Hoboken"
             },
             {
@@ -480,6 +481,7 @@
       "dataType": "markdown",
       "dataVersion": 1,
       "id": "acadia-restaurants",
+      "lastVerifiedAt": "2026-10-02T16:13:48-07:00",
       "lifecycle": "active",
       "primaryTopicId": "trips",
       "relationships": [],
@@ -511,7 +513,7 @@
           "title": "Acadia restaurants"
         },
         "full": {
-          "body": "## Options\n\n- Jordan Pond House for a timed park meal; reservations are useful.\n- Atlantic Brewing in Town Hill for local beer and casual food.\n- Thirsty Whale for a flexible downtown meal.\n- Havana for a special dinner.\n- A seasonal lobster pound in Trenton or on the quiet side for local character.\n\nLate-season hours can change. Carry lunch on long hike and Schoodic days rather than depending on one concession.\n",
+          "body": "## In and around the park\n\n- **Jordan Pond House:** classic popovers, tea, and a full menu beside Jordan Pond. Restaurant service is listed daily from 11 a.m.; the carryout window is listed 9 a.m.–4 p.m. Many tables are walk-in, but check current service status before planning a meal around a hike.\n- **Atlantic Brewing, Town Hill:** brewery and barbecue at 15 Knox Road; listed daily 11 a.m.–7 p.m. Brewery tours are listed Friday at 3 p.m. and Saturday/Sunday at noon and 3 p.m.\n- **Atlantic Brewing Midtown:** casual brewery food and beer at 52 Cottage Street in Bar Harbor; listed daily 11 a.m.–9 p.m., convenient after a day in town.\n- **Thrive Juice Bar & Kitchen:** quick breakfast, juice, and lunch at 6 Rodick Place; fall hours listed daily 7:30 a.m.–2 p.m., with the 2026 season ending October 18.\n- **The Reading Room at Bar Harbor Inn:** waterfront fine dining for a special dinner; 2026 season listed May 1–November 9, breakfast 7–10:30 a.m. and dinner 5–9 p.m.\n\n## Seasonal planning\n\nThe Island Explorer serves downtown Bar Harbor and Jordan Pond through October 12, which covers the main Acadia stay. On October 13–14 the shuttle is no longer in its 2026 operating season, so plan those days around driving or walkable Bar Harbor options. Hours and last service dates can change; check the restaurant’s current page or call before making a special trip. Carry food and water on longer hikes and Schoodic days rather than relying on a concession being open.\n",
           "href": "#/entities/acadia-restaurants",
           "summary": "Local and practical dining around Bar Harbor with seasonal-hour caveats.",
           "title": "Acadia restaurants"
@@ -561,7 +563,7 @@
       },
       "viewModels": {
         "event": {
-          "body": "Use Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor.\n",
+          "body": "## Daily weather snapshot for Acadia & Bar Harbor\n\nForecast snapshot checked October 2, 2026. Daily temperatures and precipitation use the October 2 Weather Atlas forecast snapshot; temperatures are highs/lows in °F and precipitation is the chance of precipitation. Sunrise and sunset are local Eastern Daylight Time. Check the [updated National Weather Service forecast](https://forecast.weather.gov/MapClick.php?lat=44.3792\\&lon=-68.2249) before heading out,.\n\n| Date        | Forecast high / low | Precipitation                            | Sunrise   | Sunset    |\n| ----------- | ------------------- | ---------------------------------------- | --------- | --------- |\n| Mon, Oct 5  | 59°F / 43°F         | 52% chance of showers (0.12 in forecast) | 6:35 a.m. | 6:06 p.m. |\n| Tue, Oct 6  | 57°F / 43°F         | 1%                                       | 6:36 a.m. | 6:04 p.m. |\n| Wed, Oct 7  | 59°F / 48°F         | 3%                                       | 6:38 a.m. | 6:02 p.m. |\n| Thu, Oct 8  | 63°F / 50°F         | 5%                                       | 6:39 a.m. | 6:00 p.m. |\n| Fri, Oct 9  | 64°F / 50°F         | 21%                                      | 6:40 a.m. | 5:59 p.m. |\n| Sat, Oct 10 | 61°F / 46°F         | 15%                                      | 6:41 a.m. | 5:57 p.m. |\n\nForecasts toward the end of this range are less certain and may change.\n\nUse Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor.\n",
           "href": "#/entities/acadia-segment-2026",
           "kind": "event",
           "location": "Acadia National Park and Bar Harbor, Maine",
@@ -583,7 +585,7 @@
             "digest": "aab5acf5b7d235d28c015a03e225b280087f03f481d667dfad00c88986bc03b4",
             "src": "/jasonmo-planning/assets/trip-banners/acadia-segment-2026-aab5acf5b7d2.jpg"
           },
-          "body": "Use Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor.\n",
+          "body": "## Daily weather snapshot for Acadia & Bar Harbor\n\nForecast snapshot checked October 2, 2026. Daily temperatures and precipitation use the October 2 Weather Atlas forecast snapshot; temperatures are highs/lows in °F and precipitation is the chance of precipitation. Sunrise and sunset are local Eastern Daylight Time. Check the [updated National Weather Service forecast](https://forecast.weather.gov/MapClick.php?lat=44.3792\\&lon=-68.2249) before heading out,.\n\n| Date        | Forecast high / low | Precipitation                            | Sunrise   | Sunset    |\n| ----------- | ------------------- | ---------------------------------------- | --------- | --------- |\n| Mon, Oct 5  | 59°F / 43°F         | 52% chance of showers (0.12 in forecast) | 6:35 a.m. | 6:06 p.m. |\n| Tue, Oct 6  | 57°F / 43°F         | 1%                                       | 6:36 a.m. | 6:04 p.m. |\n| Wed, Oct 7  | 59°F / 48°F         | 3%                                       | 6:38 a.m. | 6:02 p.m. |\n| Thu, Oct 8  | 63°F / 50°F         | 5%                                       | 6:39 a.m. | 6:00 p.m. |\n| Fri, Oct 9  | 64°F / 50°F         | 21%                                      | 6:40 a.m. | 5:59 p.m. |\n| Sat, Oct 10 | 61°F / 46°F         | 15%                                      | 6:41 a.m. | 5:57 p.m. |\n\nForecasts toward the end of this range are less certain and may change.\n\nUse Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor.\n",
           "children": [
             {
               "href": "#/entities/acadia-arrival-lodging",
@@ -654,17 +656,26 @@
           "url": "https://www.nps.gov/acad/park-alerts-acad.json"
         },
         {
+          "title": "Park Loop Road",
+          "url": "https://www.nps.gov/acad/planyourvisit/park-loop-road.htm"
+        },
+        {
           "title": "Schoodic Peninsula",
           "url": "https://www.nps.gov/acad/planyourvisit/schoodic.htm"
         },
         {
           "title": "Cadillac vehicle reservations",
           "url": "https://www.nps.gov/acad/planyourvisit/vehicle_reservations.htm"
+        },
+        {
+          "title": "Cadillac Summit Road Vehicle Reservations",
+          "url": "https://www.recreation.gov/timed-entry/400000"
         }
       ],
       "dataType": "markdown",
       "dataVersion": 1,
       "id": "acadia-things-to-do",
+      "lastVerifiedAt": "2026-10-02T16:53:12-07:00",
       "lifecycle": "active",
       "primaryTopicId": "trips",
       "relationships": [],
@@ -700,7 +711,7 @@
           "title": "Acadia things to do"
         },
         "full": {
-          "body": "## Four-day framework\n\n1. East-side coast: Sand Beach, Great Head or dry-weather Beehive, open Ocean Path sections, and Gorham Mountain.\n2. Jordan Pond and central mountains: Jordan Pond Path, South Bubble from the pond, or dry-weather Pemetic.\n3. West side and carriage roads: Beech Mountain alternatives, Southwest Harbor, Ship Harbor, and Bass Harbor Head Light.\n4. Schoodic Peninsula: shoreline stops and short hikes; use October 7 to avoid the largest cruise day.\n\nCadillac Summit Road requires a separate vehicle reservation through October 25. Current alerts include southern Ocean Path, Schoodic Mountain Road, and eastern Beech Mountain Loop closures.\n",
+          "body": "## Four-day framework\n\n1. East-side coast: Sand Beach, Great Head or dry-weather Beehive, open Ocean Path sections, and Gorham Mountain.\n2. Jordan Pond and central mountains: Jordan Pond Path, South Bubble from the pond, or dry-weather Pemetic.\n3. West side and carriage roads: Beech Mountain alternatives, Southwest Harbor, Ship Harbor, and Bass Harbor Head Light.\n4. Schoodic Peninsula: shoreline stops and short hikes; use October 7 to avoid the largest cruise day.\n\nRecheck NPS alerts for trail, road, and facility conditions before each outing.\n\n## Cadillac Mountain Summit Road drive\n\nCadillac Summit Road is a three-mile drive from Park Loop Road to the 1,530-foot summit. A timed vehicle reservation is required from May 20 through October 25, 2026. This is separate from the Acadia entrance pass. The road has two-way traffic, signed pullouts, and two summit parking areas; RVs and trailers are prohibited, as are vehicles longer than 21 feet including racks and hitch attachments. The Island Explorer does not go to the summit.\n\n**Best fit for October 5–10:** choose the day with the clearest summit forecast and reserve a Daytime entry. A morning slot avoids the busiest middle of the day without requiring a pre-dawn start. If watching sunrise is the main goal, Sunrise is the right choice, but plan for darkness, cold, wind, and the chance that fog or clouds hide the view. The NPS notes lighter park traffic before 8 a.m. and after 5 p.m.; Cadillac itself is popular at sunrise and sunset.\n\nFor October 1–15, Sunrise reservations allow entry from **5:30–7:00 a.m.**; Daytime entry is **7:30 a.m.–6:00 p.m.** Sunrise is a 90-minute arrival window and Daytime is 30 minutes. You may stay until the summit road closes to vehicles at 9 p.m., but the reservation does not allow re-entry or assign a parking space.\n\n### How to reserve\n\nBook in advance on [Recreation.gov](https://www.recreation.gov/timed-entry/400000); tickets are not sold at the park. The fee is **$6 per vehicle**, in addition to the park entrance pass. Thirty percent of Sunrise and Daytime tickets are released 90 days ahead; the remaining 70 percent go on sale at **10 a.m. Eastern Time, two days before** the visit. Sign in before the release and have the date and ticket type ready. The release dates for this stay are:\n\n| Visit date           | Remaining tickets released         |\n| -------------------- | ---------------------------------- |\n| Monday, October 5    | Saturday, October 3 at 10 a.m. ET  |\n| Tuesday, October 6   | Sunday, October 4 at 10 a.m. ET    |\n| Wednesday, October 7 | Monday, October 5 at 10 a.m. ET    |\n| Thursday, October 8  | Tuesday, October 6 at 10 a.m. ET   |\n| Friday, October 9    | Wednesday, October 7 at 10 a.m. ET |\n| Saturday, October 10 | Thursday, October 8 at 10 a.m. ET  |\n\nSave the confirmation QR code offline because cell service can be unreliable. Sunrise is limited to one reservation per vehicle in seven days; Daytime is limited to one per day. Check [NPS reservation details](https://www.nps.gov/acad/planyourvisit/vehicle_reservations.htm) before booking for any rule updates.\n\n### Driving approach and backup\n\nFrom Bar Harbor, take Route 3 to Park Loop Road and follow signs for Cadillac Summit Road. The summit spur can be reached near either end of the loop. With a reservation, the NPS recommends driving directly to Cadillac rather than stopping elsewhere first, since traffic can make you miss the entry window. Review the [Park Loop Road guide](https://www.nps.gov/acad/planyourvisit/park-loop-road.htm) and [current park alerts](https://www.nps.gov/acad/park-alerts-acad.json) before leaving.\n\nIf tickets are unavailable, the Island Explorer is not a summit alternative. The NPS says visitors arriving by foot, bicycle, or taxi do not need a vehicle reservation; the Cadillac South Ridge Trail is a strenuous hike option. Check current trail conditions and daylight before choosing it. For an easier drive-free view, use Ocean Drive or another open coastal overlook.\n\n## Walks, curiosities, and indoor stops\n\n- **Bar Island land bridge:** walk from downtown Bar Harbor at low tide; the gravel bar is exposed for only 1.5 hours either side of low tide. Continue the short wooded trail for a view over town. Check the tide table first and leave as the tide rises; walking across is free, though a park entrance pass is required in season.\n- **Bar Harbor Museum in the Streets:** self-guided historic walk among 26 downtown panels, with two longer village-perimeter routes. Panels are outdoors, so visit any time in daylight; the downtown circuit is easy to fit between meals or shops.\n- **Abbe Museum (downtown):** Wabanaki-led museum focused on Wabanaki history and living culture. Listed hours: Monday–Saturday, 10 a.m.–5 p.m.; adult admission $18. The Sieur de Monts location is closed for maintenance.\n- **Dorr Museum of Natural History:** student-designed natural-history exhibits at College of the Atlantic; fall hours listed as weekdays 10 a.m.–5 p.m. and Saturday 1–4 p.m.; admission by donation. Walkable from downtown on the Route 3 multi-use path; Island Explorer Route 2 stops at the campus.\n- **Oceanarium & Education Center:** lobster and Maine-coast exhibits plus marsh boardwalk; fall hours are Wednesday–Sunday, 9 a.m.–4 p.m., with admission charged. Island Explorer serves it during the season; confirm daily programming and the current schedule.\n- **Asticou Azalea Garden:** Japanese-inspired garden and pond in Northeast Harbor; open daily dawn to dusk through November 1, with a suggested $5 donation. Pair it with the nearby village and harbor walk.\n- **Thuya Garden:** woodland garden and historic lodge in Northeast Harbor; open daily dawn to dusk through October 13, with lodge hours 10 a.m.–5 p.m. and a suggested $5 donation. Parking is limited.\n- **Somesville:** pause at the small harbor, historic bridge, and village setting on the way to the west side; a useful brief photo stop when driving Route 102.\n- **Bass Harbor Head Light:** dramatic working lighthouse and rocky shoreline viewpoint; the grounds are a short walk from the parking area. Parking is very limited, and visitors cannot enter the tower; arrive early and follow posted safety signs.\n\nThese businesses and gardens operate seasonally. Confirm hours before driving, especially for October 12–14, when many attractions change to reduced schedules or close.\n",
           "href": "#/entities/acadia-things-to-do",
           "summary": "Coast, carriage roads, Cadillac, Schoodic, west-side sights, and adaptable day plans.",
           "title": "Acadia things to do"
@@ -1226,56 +1237,6 @@
     },
     {
       "citations": [],
-      "dataType": "reservation",
-      "dataVersion": 1,
-      "id": "hoboken-lodging",
-      "lifecycle": "active",
-      "primaryTopicId": "trips",
-      "relationships": [],
-      "route": "#/entities/hoboken-lodging",
-      "summary": "Choose lodging near Stevens for October 10-13.",
-      "tags": [
-        "lodging",
-        "needs-booking",
-        "year-2026"
-      ],
-      "title": "Hoboken lodging",
-      "view": {
-        "byContext": {
-          "collection": "event",
-          "detail": "event",
-          "navigation": "label",
-          "relationship": "event",
-          "search": "label"
-        },
-        "defaultType": "event"
-      },
-      "viewModels": {
-        "event": {
-          "activity": {
-            "kind": "lodging"
-          },
-          "body": "## Action needed\n\nSelect and reserve an option. Private confirmation details remain outside the public site.\n",
-          "href": "#/entities/hoboken-lodging",
-          "kind": "appointment",
-          "location": "Hoboken or Jersey City, New Jersey",
-          "schedule": {
-            "allDay": true,
-            "endDate": "2026-10-13",
-            "startDate": "2026-10-10"
-          },
-          "status": "tentative",
-          "summary": "Choose lodging near Stevens for October 10-13.",
-          "title": "Hoboken lodging"
-        },
-        "label": {
-          "href": "#/entities/hoboken-lodging",
-          "title": "Hoboken lodging"
-        }
-      }
-    },
-    {
-      "citations": [],
       "dataType": "flight",
       "dataVersion": 1,
       "id": "newark-seattle-flight",
@@ -1476,7 +1437,7 @@
       "primaryTopicId": "trips",
       "relationships": [],
       "route": "#/entities/nyc-hoboken-segment-2026",
-      "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+      "summary": "Hoboken base for New York City, with PATH and transit; Airbnb lodging is booked through October 14.",
       "tags": [
         "broadway",
         "hoboken",
@@ -1505,8 +1466,8 @@
             "endDate": "2026-10-14",
             "startDate": "2026-10-10"
           },
-          "status": "tentative",
-          "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+          "status": "confirmed",
+          "summary": "Hoboken base for New York City, with PATH and transit; Airbnb lodging is booked through October 14.",
           "title": "New York City & Hoboken"
         },
         "label": {
@@ -1520,13 +1481,6 @@
           },
           "body": "Use PATH as the main cross-Hudson connection. The confirmed arrival airport is LGA. Keep one Broadway option flexible until tickets and the visit schedule are coordinated.\n",
           "children": [
-            {
-              "href": "#/entities/hoboken-lodging",
-              "order": 10,
-              "role": "reservation",
-              "summary": "Choose lodging near Stevens for October 10-13.",
-              "title": "Hoboken lodging"
-            },
             {
               "href": "#/entities/nyc-hoboken-things-to-do",
               "order": 20,
@@ -1554,8 +1508,8 @@
           "href": "#/entities/nyc-hoboken-segment-2026",
           "kind": "segment",
           "startDate": "2026-10-10",
-          "status": "planned",
-          "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+          "status": "confirmed",
+          "summary": "Hoboken base for New York City, with PATH and transit; Airbnb lodging is booked through October 14.",
           "timeZone": "America/New_York",
           "title": "New York City & Hoboken"
         }
@@ -2884,7 +2838,7 @@
       "title": "Getting ready for Acadia"
     },
     {
-      "body": "East side Gorham Mountain Loop: 3.5 miles, moderate and rocky. Beehive Loop: 1.4 miles with iron rungs and exposed cliff travel; only in dry conditions. Great Head: 1.7 miles over rocky coastal terrain. Central mountains Jordan Pond Path: 3.3 miles with boulders and narrow boardwalk on the west side. Pemetic Loop: 4 miles with scrambling, rungs, and a ladder. Cadillac South Ridge: 7.1 miles and a substantial exposed ridge day. West side and Schoodic Beech Mountain: 1.2 miles; drive because there is no direct trailhead transit. Ship Harbor: 1.3-mile easier coastal loop. Schoodic: choose among 7.5 miles of linked trails. Routes 4, 5, and 6 do not stop at the Bubble Rock trailhead. Use Jordan Pond for a bus-based approach or drive with a parking backup. Trips markdown",
+      "body": "Distances and elevation gains are approximate route-planning figures; footing, weather, and chosen variants change effort. Acadia trails are rocky, and wet granite can be slippery. Check current NPS alerts before setting out. Distance / elevation gain Description How to get there Ocean Path: up to 4.4 mi round trip; mostly level Easy coastal walk between Sand Beach and Otter Point, with shorter turnarounds at Thunder Hole or Otter Cliff. Island Explorer Route 4 stops along the corridor, including Sand Beach, Thunder Hole, and Otter Cliff; or drive to Park Loop Road lots. Great Head: about 1.5 mi loop; modest gain (~300 ft) Rocky headland loop above Sand Beach; uneven footing and exposed ocean edges. Route 4 to Sand Beach, then walk to the east end of the beach; or drive to Sand Beach and walk across. Beehive: about 1.4 mi loop; ~500 ft Short, strenuous iron-rung route with exposed cliff sections. Choose only in dry conditions and if comfortable with heights; use the Bowl bypass to avoid the rungs. Route 4 to Sand Beach, then walk to the trailhead; or drive to the Sand Beach lot. Gorham Mountain: 3.5 mi loop; ~500 ft gain (approx.) Moderate rocky climb to open views. Can be paired with Ocean Path; expect rough granite. Route 4 serves the Gorham Mountain parking loop; or drive to the Park Loop Road trailhead. Jordan Pond Path: 3.2 mi loop; nearly level, with short rocky/bouldery sections Scenic shoreline circuit; the west shore has the roughest footing and narrow boardwalks. Island Explorer Route 5 to Jordan Pond House; or drive to the Jordan Pond lot (often busy). South Bubble / Bubble Rock: about 1.5 mi round trip from Jordan Pond House; ~500 ft Short, steep climb to the glacial erratic and pond views. Route 5 to Jordan Pond House, then follow the pond-side trail toward the Bubbles. Buses do not stop at the Bubble Rock trailhead. Driving to that trailhead is possible but parking is limited. Beech Mountain: about 1.2 mi summit loop; ~400 ft Short forest climb to a fire tower and broad west-side views. Check alerts: the eastern Beech Mountain Loop has a reported closure. Drive to the Beech Mountain parking area off Route 102; no direct Island Explorer trailhead stop. Ship Harbor: 1.3 mi loop; minimal gain Easy coastal loop through spruce and salt-marsh edges, with rocky shore access and tide pools. Drive to the Route 102A trailhead; NPS lists no public transportation for this hike. Wonderland: 1.4 mi round trip; minimal gain Easy old fire road through woods to a broad rocky shore, a good short west-side coast walk. Drive to the Route 102A trailhead; NPS lists no public transportation to this trailhead. Flying Mountain: about 1.5 mi loop; ~300 ft Short, steeper summit walk with views over Somes Sound; combine with Valley Cove only if conditions and time suit. Drive to the Fernald Point Road trailhead; NPS lists no public transportation to this trailhead. Acadia Mountain: 2.8 mi loop; ~500 ft gain (approx.) Moderate, rocky loop with open views over Somes Sound; the west-side climb is steep, with a gentler eastern descent. Island Explorer Route 7 stops at the Acadia Mountain trailhead; or drive to the Route 102 parking area and cross carefully. Bar Island: 0.5 mi each way across the bar, plus about 1 mi island trail; low elevation Walk the natural sand-and-gravel land bridge and optional forest trail to a view over Bar Harbor. The bar is crossable only from 1.5 hours before to 1.5 hours after low tide; check tide tables and turn back while the tide is rising. Walk from downtown Bar Harbor via Bridge Street; Island Explorer serves downtown. Do not drive onto Bridge Street or the bar. Shuttle planning: the 2026 Island Explorer season runs through October 12, covering the Acadia stay. Route 4 serves the Park Loop Road; Route 5 serves Jordan Pond every 30 minutes in the posted fall schedule. Verify the live timetable and stop details before leaving. The bus does not serve Cadillac summit. For itineraries that combine distant stops, leave room for waits and use the myStop app for live tracking. Trips markdown",
       "id": "acadia-hikes-walks",
       "primaryTopicId": "trips",
       "route": "#/entities/acadia-hikes-walks",
@@ -2897,7 +2851,7 @@
       "title": "Acadia Hikes"
     },
     {
-      "body": "Timeline Fly Seattle-Chicago-Bangor and collect the rental car. Explore Acadia and Bar Harbor through October 10. Fly Bangor-LaGuardia and continue to Hoboken without a car. Explore Hoboken and New York City before returning from Newark. The Maine arrival night is booked in Ellsworth. The Hoboken stay remains the open lodging action. Trips trip",
+      "body": "Timeline Fly Seattle-Chicago-Bangor and collect the rental car. Explore Acadia and Bar Harbor through October 10. Fly Bangor-LaGuardia and continue to Hoboken without a car. Explore Hoboken and New York City before returning from Newark. The Maine arrival night is booked in Ellsworth. Hoboken Airbnb lodging is confirmed for October 10-14. Trips trip",
       "id": "acadia-new-york-2026",
       "primaryTopicId": "trips",
       "route": "#/entities/acadia-new-york-2026",
@@ -2937,7 +2891,7 @@
       "title": "Bangor rental car"
     },
     {
-      "body": "Options Jordan Pond House for a timed park meal; reservations are useful. Atlantic Brewing in Town Hill for local beer and casual food. Thirsty Whale for a flexible downtown meal. Havana for a special dinner. A seasonal lobster pound in Trenton or on the quiet side for local character. Late-season hours can change. Carry lunch on long hike and Schoodic days rather than depending on one concession. Trips markdown",
+      "body": "In and around the park Jordan Pond House: classic popovers, tea, and a full menu beside Jordan Pond. Restaurant service is listed daily from 11 a.m.; the carryout window is listed 9 a.m.–4 p.m. Many tables are walk-in, but check current service status before planning a meal around a hike. Atlantic Brewing, Town Hill: brewery and barbecue at 15 Knox Road; listed daily 11 a.m.–7 p.m. Brewery tours are listed Friday at 3 p.m. and Saturday/Sunday at noon and 3 p.m. Atlantic Brewing Midtown: casual brewery food and beer at 52 Cottage Street in Bar Harbor; listed daily 11 a.m.–9 p.m., convenient after a day in town. Thrive Juice Bar & Kitchen: quick breakfast, juice, and lunch at 6 Rodick Place; fall hours listed daily 7:30 a.m.–2 p.m., with the 2026 season ending October 18. The Reading Room at Bar Harbor Inn: waterfront fine dining for a special dinner; 2026 season listed May 1–November 9, breakfast 7–10:30 a.m. and dinner 5–9 p.m. Seasonal planning The Island Explorer serves downtown Bar Harbor and Jordan Pond through October 12, which covers the main Acadia stay. On October 13–14 the shuttle is no longer in its 2026 operating season, so plan those days around driving or walkable Bar Harbor options. Hours and last service dates can change; check the restaurant’s current page or call before making a special trip. Carry food and water on longer hikes and Schoodic days rather than relying on a concession being open. Trips markdown",
       "id": "acadia-restaurants",
       "primaryTopicId": "trips",
       "route": "#/entities/acadia-restaurants",
@@ -2949,7 +2903,7 @@
       "title": "Acadia restaurants"
     },
     {
-      "body": "Use Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor. Trips trip",
+      "body": "Daily weather snapshot for Acadia & Bar Harbor Forecast snapshot checked October 2, 2026. Daily temperatures and precipitation use the October 2 Weather Atlas forecast snapshot; temperatures are highs/lows in °F and precipitation is the chance of precipitation. Sunrise and sunset are local Eastern Daylight Time. Check the updated National Weather Service forecast before heading out,. Date Forecast high / low Precipitation Sunrise Sunset Mon, Oct 5 59°F / 43°F 52% chance of showers (0.12 in forecast) 6:35 a.m. 6:06 p.m. Tue, Oct 6 57°F / 43°F 1% 6:36 a.m. 6:04 p.m. Wed, Oct 7 59°F / 48°F 3% 6:38 a.m. 6:02 p.m. Thu, Oct 8 63°F / 50°F 5% 6:39 a.m. 6:00 p.m. Fri, Oct 9 64°F / 50°F 21% 6:40 a.m. 5:59 p.m. Sat, Oct 10 61°F / 46°F 15% 6:41 a.m. 5:57 p.m. Forecasts toward the end of this range are less certain and may change. Use Island Explorer for the Park Loop corridor and retain a car for west-side access. October 7 is a good Schoodic or quiet-side day because a large cruise ship is scheduled in Bar Harbor. Trips trip",
       "id": "acadia-segment-2026",
       "primaryTopicId": "trips",
       "route": "#/entities/acadia-segment-2026",
@@ -2963,7 +2917,7 @@
       "title": "Acadia National Park & Bar Harbor"
     },
     {
-      "body": "Four-day framework East-side coast: Sand Beach, Great Head or dry-weather Beehive, open Ocean Path sections, and Gorham Mountain. Jordan Pond and central mountains: Jordan Pond Path, South Bubble from the pond, or dry-weather Pemetic. West side and carriage roads: Beech Mountain alternatives, Southwest Harbor, Ship Harbor, and Bass Harbor Head Light. Schoodic Peninsula: shoreline stops and short hikes; use October 7 to avoid the largest cruise day. Cadillac Summit Road requires a separate vehicle reservation through October 25. Current alerts include southern Ocean Path, Schoodic Mountain Road, and eastern Beech Mountain Loop closures. Trips markdown",
+      "body": "Four-day framework East-side coast: Sand Beach, Great Head or dry-weather Beehive, open Ocean Path sections, and Gorham Mountain. Jordan Pond and central mountains: Jordan Pond Path, South Bubble from the pond, or dry-weather Pemetic. West side and carriage roads: Beech Mountain alternatives, Southwest Harbor, Ship Harbor, and Bass Harbor Head Light. Schoodic Peninsula: shoreline stops and short hikes; use October 7 to avoid the largest cruise day. Recheck NPS alerts for trail, road, and facility conditions before each outing. Cadillac Mountain Summit Road drive Cadillac Summit Road is a three-mile drive from Park Loop Road to the 1,530-foot summit. A timed vehicle reservation is required from May 20 through October 25, 2026. This is separate from the Acadia entrance pass. The road has two-way traffic, signed pullouts, and two summit parking areas; RVs and trailers are prohibited, as are vehicles longer than 21 feet including racks and hitch attachments. The Island Explorer does not go to the summit. Best fit for October 5–10: choose the day with the clearest summit forecast and reserve a Daytime entry. A morning slot avoids the busiest middle of the day without requiring a pre-dawn start. If watching sunrise is the main goal, Sunrise is the right choice, but plan for darkness, cold, wind, and the chance that fog or clouds hide the view. The NPS notes lighter park traffic before 8 a.m. and after 5 p.m.; Cadillac itself is popular at sunrise and sunset. For October 1–15, Sunrise reservations allow entry from 5:30–7:00 a.m. ; Daytime entry is 7:30 a.m.–6:00 p.m. Sunrise is a 90-minute arrival window and Daytime is 30 minutes. You may stay until the summit road closes to vehicles at 9 p.m., but the reservation does not allow re-entry or assign a parking space. How to reserve Book in advance on Recreation.gov ; tickets are not sold at the park. The fee is $6 per vehicle , in addition to the park entrance pass. Thirty percent of Sunrise and Daytime tickets are released 90 days ahead; the remaining 70 percent go on sale at 10 a.m. Eastern Time, two days before the visit. Sign in before the release and have the date and ticket type ready. The release dates for this stay are: Visit date Remaining tickets released Monday, October 5 Saturday, October 3 at 10 a.m. ET Tuesday, October 6 Sunday, October 4 at 10 a.m. ET Wednesday, October 7 Monday, October 5 at 10 a.m. ET Thursday, October 8 Tuesday, October 6 at 10 a.m. ET Friday, October 9 Wednesday, October 7 at 10 a.m. ET Saturday, October 10 Thursday, October 8 at 10 a.m. ET Save the confirmation QR code offline because cell service can be unreliable. Sunrise is limited to one reservation per vehicle in seven days; Daytime is limited to one per day. Check NPS reservation details before booking for any rule updates. Driving approach and backup From Bar Harbor, take Route 3 to Park Loop Road and follow signs for Cadillac Summit Road. The summit spur can be reached near either end of the loop. With a reservation, the NPS recommends driving directly to Cadillac rather than stopping elsewhere first, since traffic can make you miss the entry window. Review the Park Loop Road guide and current park alerts before leaving. If tickets are unavailable, the Island Explorer is not a summit alternative. The NPS says visitors arriving by foot, bicycle, or taxi do not need a vehicle reservation; the Cadillac South Ridge Trail is a strenuous hike option. Check current trail conditions and daylight before choosing it. For an easier drive-free view, use Ocean Drive or another open coastal overlook. Walks, curiosities, and indoor stops Bar Island land bridge: walk from downtown Bar Harbor at low tide; the gravel bar is exposed for only 1.5 hours either side of low tide. Continue the short wooded trail for a view over town. Check the tide table first and leave as the tide rises; walking across is free, though a park entrance pass is required in season. Bar Harbor Museum in the Streets: self-guided historic walk among 26 downtown panels, with two longer village-perimeter routes. Panels are outdoors, so visit any time in daylight; the downtown circuit is easy to fit between meals or shops. Abbe Museum (downtown): Wabanaki-led museum focused on Wabanaki history and living culture. Listed hours: Monday–Saturday, 10 a.m.–5 p.m.; adult admission $18. The Sieur de Monts location is closed for maintenance. Dorr Museum of Natural History: student-designed natural-history exhibits at College of the Atlantic; fall hours listed as weekdays 10 a.m.–5 p.m. and Saturday 1–4 p.m.; admission by donation. Walkable from downtown on the Route 3 multi-use path; Island Explorer Route 2 stops at the campus. Oceanarium & Education Center: lobster and Maine-coast exhibits plus marsh boardwalk; fall hours are Wednesday–Sunday, 9 a.m.–4 p.m., with admission charged. Island Explorer serves it during the season; confirm daily programming and the current schedule. Asticou Azalea Garden: Japanese-inspired garden and pond in Northeast Harbor; open daily dawn to dusk through November 1, with a suggested $5 donation. Pair it with the nearby village and harbor walk. Thuya Garden: woodland garden and historic lodge in Northeast Harbor; open daily dawn to dusk through October 13, with lodge hours 10 a.m.–5 p.m. and a suggested $5 donation. Parking is limited. Somesville: pause at the small harbor, historic bridge, and village setting on the way to the west side; a useful brief photo stop when driving Route 102. Bass Harbor Head Light: dramatic working lighthouse and rocky shoreline viewpoint; the grounds are a short walk from the parking area. Parking is very limited, and visitors cannot enter the tower; arrive early and follow posted safety signs. These businesses and gardens operate seasonally. Confirm hours before driving, especially for October 12–14, when many attractions change to reduced schedules or close. Trips markdown",
       "id": "acadia-things-to-do",
       "primaryTopicId": "trips",
       "route": "#/entities/acadia-things-to-do",
@@ -3093,19 +3047,6 @@
       "title": "Hadestown"
     },
     {
-      "body": "Action needed Select and reserve an option. Private confirmation details remain outside the public site. Trips reservation",
-      "id": "hoboken-lodging",
-      "primaryTopicId": "trips",
-      "route": "#/entities/hoboken-lodging",
-      "summary": "Choose lodging near Stevens for October 10-13.",
-      "tags": [
-        "lodging",
-        "needs-booking",
-        "year-2026"
-      ],
-      "title": "Hoboken lodging"
-    },
-    {
       "body": "Times are shown in each airport's local time zone. Recheck the airline schedule before departure. Trips flight",
       "id": "newark-seattle-flight",
       "primaryTopicId": "trips",
@@ -3149,7 +3090,7 @@
       "id": "nyc-hoboken-segment-2026",
       "primaryTopicId": "trips",
       "route": "#/entities/nyc-hoboken-segment-2026",
-      "summary": "Three nights based near Stevens in Hoboken, using PATH and transit for New York City.",
+      "summary": "Hoboken base for New York City, with PATH and transit; Airbnb lodging is booked through October 14.",
       "tags": [
         "broadway",
         "hoboken",

@@ -1,0 +1,114 @@
+schemaVersion: 1
+id: acadia-segment-2026
+dataType: trip
+dataVersion: 1
+title: Acadia National Park & Bar Harbor
+summary: Five nights for Acadia hikes, coast, carriage roads, and nearby day trips.
+lifecycle: active
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - acadia
+    - bar-harbor
+    - maine
+    - year-2026
+relationships: []
+view:
+  defaultType: trip
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+    - event
+    - calendar-month
+    - calendar-day
+    - timeline
+    - trip
+  contextOverrides:
+    navigation: label
+    collection: trip
+    relationship: trip
+    search: label
+    detail: trip
+data:
+  bodyPath: body.md
+  kind: segment
+  status: confirmed
+  startDate: 2026-10-05
+  endDate: 2026-10-10
+  destination: Acadia National Park and Bar Harbor, Maine
+  timeZone: America/New_York
+  banner:
+    sourceUrl: https://commons.wikimedia.org/wiki/File:Acadia_National_Park,_autumn_colors_at_the_Tarn.jpg
+    credit: National Park Service / uncredited; landscape crop by Wikimedia Commons
+      user Maps and stuff
+    license: public-domain
+    fingerprint: aab5acf5b7d235d28c015a03e225b280087f03f481d667dfad00c88986bc03b4
+  children:
+    - targetId: acadia-arrival-lodging
+      role: reservation
+      order: 10
+    - targetId: acadia-rental-car
+      role: reservation
+      order: 20
+    - targetId: acadia-bar-harbor-lodging
+      role: reservation
+      order: 30
+    - targetId: acadia-things-to-do
+      role: things-to-do
+      order: 40
+    - targetId: acadia-hikes-walks
+      role: hikes-walks
+      order: 50
+    - targetId: acadia-restaurants
+      role: restaurants
+      order: 60
+    - targetId: acadia-getting-ready
+      role: getting-ready
+      order: 70
+    - targetId: acadia-cadillac-drive
+      role: things-to-do
+      order: 45
+provenance:
+  sources:
+    - id: owner-itinerary
+      title: Owner-confirmed 2026 itinerary
+      publisher: Repository owner
+      sourceType: owner-material
+      locator: research/intake/initial-trips.md
+      access: restricted
+      retrievedAt: 2026-09-10T17:43:14-07:00
+      fingerprint: 28ca768d0a401d758294eec885e6604ad12c0bc055c62ae31b525e1edbbea6b4
+    - id: acadia-conditions
+      title: Acadia current conditions
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/acad/planyourvisit/conditions.htm
+      access: public
+      retrievedAt: 2026-09-08T13:00:00-07:00
+  claims:
+    - id: acadia-segment-dates
+      basis: confirmed
+      statement: The Acadia segment runs October 5-10, 2026.
+      sourceIds:
+        - owner-itinerary
+sensitivity:
+  classification: public
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: public
+  requestedTargets:
+    - public
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: acadia-segment-2026
+timestamps:
+  createdAt: 2026-09-08T13:05:50-07:00
+  updatedAt: 2026-10-02T16:36:03-07:00
+review:
+  nextReviewAt: 2026-09-12T09:00:00-07:00
