@@ -35,5 +35,7 @@
 - [Organize navigation](.github/skills/organize-site/SKILL.md)
 - [Reconcile content](.github/skills/reconcile-content/SKILL.md)
 
-Follow the configured personal workflow connection for workstream/activity
-capture. This checkout does not hard-code machine-local workflow paths.
+This is a personal project. Do not link, load, or follow skills or instructions
+from the work workflow repository, or use it for workstream/activity capture.
+Use the project-local skills above and the available general-purpose Codex
+skills. Keep work workflow skills scoped to work projects.

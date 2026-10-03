@@ -1,0 +1,91 @@
+schemaVersion: 1
+entityId: acadia-things-to-do
+sources:
+  - id: acadia-alerts
+    title: Acadia alerts
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/acad/park-alerts-acad.json
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: d3c5babe6a1780aa6eaea6284fb4e58ede5fe632588ac5d9b443b74de490db09
+  - id: acadia-cadillac
+    title: Cadillac vehicle reservations
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/acad/planyourvisit/vehicle_reservations.htm
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 1a06031f0bca44ac064c30b05db8213b49df286b45b1c2ca3acc2a398e7d5821
+  - id: acadia-schoodic
+    title: Schoodic Peninsula
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/acad/planyourvisit/schoodic.htm
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 09e0e4f246af227a3524dfdfc41b97281b91dd8377bbd81ea1529581d75f2ef4
+  - id: bar-island
+    title: Bar Island Fast Facts
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/articles/000/bar-island-fast-facts.htm
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 087fd182aaaa1bd7f5a2bf3b44d5fd7f5d018e820f504579b6e3c94dc23dbc18
+  - id: bar-island-tide
+    title: Tidepooling at Bar Island
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/thingstodo/tidepooling-bar-island.htm
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: fa87a6d3a3441591be48f6146e8194e6af86f497e4b5308a15c4f54ce7df20c2
+  - id: museum-streets
+    title: Museum in the Streets
+    publisher: Bar Harbor Chamber of Commerce
+    sourceType: primary-documentation
+    url: https://www.visitbarharbor.com/museum-in-the-streets
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: ecf22f8a8bcf077a7946ee81aff7400cfe4e381e9ae5158439bdbbca676138cd
+  - id: abba-hours
+    title: Visit the Abbe Museum
+    publisher: Abbe Museum
+    sourceType: primary-documentation
+    url: https://www.abbemuseum.org/two-locations
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 3d4a1dc2426b4b5193648b0eab3ad1669a1a805925ec59b115332a31026a5f27
+  - id: dorr-museum
+    title: Dorr Museum of Natural History
+    publisher: College of the Atlantic
+    sourceType: primary-documentation
+    url: https://www.coa.edu/about/dorr-museum/
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: cc1bb08895d9af3c0ecbae1f56dcd5f9a085c0f034e0464be93c0fb875593833
+  - id: oceanarium
+    title: Plan Your Visit to the Oceanarium
+    publisher: Oceanarium and Education Center
+    sourceType: primary-documentation
+    url: https://theoceanarium.org/visit/
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 2e866081fa7d3065549d9b56f37f26773e50052a72d5171539ae8e5ff6772535
+  - id: garden-hours
+    title: "Plan Your Visit: Asticou and Thuya"
+    publisher: Land & Garden Preserve
+    sourceType: primary-documentation
+    url: https://www.gardenpreserve.org/plan-your-visit
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: c93e8efaaa602ca3af939c813828d173e74a95b2ec95e1bf0af10f9101e54ec2
+  - id: somerville
+    title: East Side of Mount Desert Island
+    publisher: National Park Service
+    sourceType: primary-documentation
+    url: https://www.nps.gov/acad/planyourvisit/east-side.htm
+    access: public
+    retrievedAt: 2026-10-02T16:10:00-07:00
+    fingerprint: 7c44b81cd02acc10e7622b8630c96f1d2e741245e6d111902ce5586508595cd4

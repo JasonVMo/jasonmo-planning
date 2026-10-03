@@ -1,0 +1,17 @@
+schemaVersion: 1
+runId: acadia-transit-correction-20261002
+workflow: research-topic
+baseRevision: e7e9a48378bf94d5784f986f320b737615f18440
+requestKey: 7b54906d82bf0585d836e9afd7c4a70dd5eb0121538539d85447dfa88206cc06
+scopeIds:
+  - acadia-hikes-walks
+asOf: 2026-10-02T16:25:26-07:00
+policyVersion: 2
+outcome: succeeded
+changes:
+  - path: content/entities/acadia-hikes-walks/body.md
+    expectedHash: 67e9ec90d21e9287b7d33c27c1f93d4a0136f1524f18618e221661802633f67b
+    proposedPath: changes/content/entities/acadia-hikes-walks/body.md
+  - path: content/entities/acadia-hikes-walks/entity.yaml
+    expectedHash: 2eb6f00373023914ffecb5ade2d0e724025a274ef47a9b84403a4f34ecdb4182
+    proposedPath: changes/content/entities/acadia-hikes-walks/entity.yaml

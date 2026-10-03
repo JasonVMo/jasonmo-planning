@@ -1,0 +1,67 @@
+schemaVersion: 1
+runId: acadia-local-research-20261002
+workflow: research-topic
+baseRevision: e7e9a48378bf94d5784f986f320b737615f18440
+requestKey: ddfcc90fcd73b481bf6ac811a60de9db668604e5243a0e4a60b9ef9d9e4f575d
+scopeIds:
+  - acadia-hikes-walks
+  - acadia-things-to-do
+  - acadia-restaurants
+asOf: 2026-10-02T16:13:48-07:00
+policyVersion: 2
+outcome: succeeded
+changes:
+  - path: content/entities/acadia-hikes-walks/body.md
+    expectedHash: a0eaad32a399a64fa882f0819872435626be127e683e844ad994236f9c0da2f7
+    proposedPath: changes/content/entities/acadia-hikes-walks/body.md
+  - path: content/entities/acadia-hikes-walks/entity.yaml
+    expectedHash: 0b405e413e1015fbbae682d409d7ffcd1cd16e43e39e6a0796d070391cb41dd7
+    proposedPath: changes/content/entities/acadia-hikes-walks/entity.yaml
+  - path: content/entities/acadia-restaurants/body.md
+    expectedHash: 31fdc2b4f3ccac5bedde0db1b950182814d7be9790ab43046cf0428a90978909
+    proposedPath: changes/content/entities/acadia-restaurants/body.md
+  - path: content/entities/acadia-restaurants/entity.yaml
+    expectedHash: a40e94927285443068913bfa05a873d2da8a955368faaacb39738fd70f6c6bea
+    proposedPath: changes/content/entities/acadia-restaurants/entity.yaml
+  - path: content/entities/acadia-things-to-do/body.md
+    expectedHash: bfec060862bbfecf946674e51960701002bb686bb94e86fb4c37c54870b0500b
+    proposedPath: changes/content/entities/acadia-things-to-do/body.md
+  - path: content/entities/acadia-things-to-do/entity.yaml
+    expectedHash: ed4e057da54ac7468cbf97d53157b04c8b77d586783065aaaa9ebf18e2f31a18
+    proposedPath: changes/content/entities/acadia-things-to-do/entity.yaml
+  - path: research/topics/acadia-hikes-walks/evidence.md
+    expectedHash: be5fd93c3db2b722822f5122b78d1c0d2118757240a8c645d75de38ed56f6689
+    proposedPath: changes/research/topics/acadia-hikes-walks/evidence.md
+  - path: research/topics/acadia-hikes-walks/runs/acadia-local-research-20261002.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/acadia-hikes-walks/runs/acadia-local-research-20261002.yaml
+  - path: research/topics/acadia-hikes-walks/sources.yaml
+    expectedHash: 8ef9a2a84b8bfa4617e9bbeb88f08451bb83c408753822bdb31116f898470a19
+    proposedPath: changes/research/topics/acadia-hikes-walks/sources.yaml
+  - path: research/topics/acadia-hikes-walks/state.yaml
+    expectedHash: 60d57ee65a474e0f45a120b6c6305b3c94004b41d4ebf6b04675b1fce644f295
+    proposedPath: changes/research/topics/acadia-hikes-walks/state.yaml
+  - path: research/topics/acadia-restaurants/evidence.md
+    expectedHash: ef6c2826398da4effb3c79b9011dddbf97834c3df9805a221b4ccb8ee2e33122
+    proposedPath: changes/research/topics/acadia-restaurants/evidence.md
+  - path: research/topics/acadia-restaurants/runs/acadia-local-research-20261002.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/acadia-restaurants/runs/acadia-local-research-20261002.yaml
+  - path: research/topics/acadia-restaurants/sources.yaml
+    expectedHash: 28a546a2856c5b00cd129ed438a5b5ba3fa6630625514193d12b9343d89a8cdb
+    proposedPath: changes/research/topics/acadia-restaurants/sources.yaml
+  - path: research/topics/acadia-restaurants/state.yaml
+    expectedHash: dd59180be42a332a21df35d387b713c262ec037f63eb2ffe0ee9183ce4062adc
+    proposedPath: changes/research/topics/acadia-restaurants/state.yaml
+  - path: research/topics/acadia-things-to-do/evidence.md
+    expectedHash: 0805b7f14decbd03ad1630fc7b3ddd323af543e8dcb153956813fa7c132f0124
+    proposedPath: changes/research/topics/acadia-things-to-do/evidence.md
+  - path: research/topics/acadia-things-to-do/runs/acadia-local-research-20261002.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/acadia-things-to-do/runs/acadia-local-research-20261002.yaml
+  - path: research/topics/acadia-things-to-do/sources.yaml
+    expectedHash: e5762a645d60f029089ed4a6e52ed96179d7c68f7683abfd180d4cfcb5f3c3eb
+    proposedPath: changes/research/topics/acadia-things-to-do/sources.yaml
+  - path: research/topics/acadia-things-to-do/state.yaml
+    expectedHash: 1d9400b3a8b0989e87eb958e09687e94c6720c414716e16f788e55b3273d2770
+    proposedPath: changes/research/topics/acadia-things-to-do/state.yaml

@@ -1,0 +1,29 @@
+schemaVersion: 1
+runId: acadia-cadillac-section-20261002
+workflow: research-topic
+baseRevision: e7e9a48378bf94d5784f986f320b737615f18440
+requestKey: 59d2d4ab2ba62c17ad0d99f8a7a34320f2d9382be533cadafecf9d7812435555
+scopeIds:
+  - acadia-things-to-do
+asOf: 2026-10-02T16:53:12-07:00
+policyVersion: 2
+outcome: succeeded
+changes:
+  - path: content/entities/acadia-things-to-do/body.md
+    expectedHash: e93d5776ef1280044b3899a91607a101a9d67b70ed1cca4cd5bdb8ab7e8fbba8
+    proposedPath: changes/content/entities/acadia-things-to-do/body.md
+  - path: content/entities/acadia-things-to-do/entity.yaml
+    expectedHash: 44172ab243712bd4e4bbb542a0c45de8fa5ea86360250b1235055a344b8c2371
+    proposedPath: changes/content/entities/acadia-things-to-do/entity.yaml
+  - path: research/topics/acadia-things-to-do/evidence.md
+    expectedHash: c888121a0c20d20046452cafea29860ce2aeb2cd351f8bd7c5b42d6749ddcd29
+    proposedPath: changes/research/topics/acadia-things-to-do/evidence.md
+  - path: research/topics/acadia-things-to-do/runs/acadia-cadillac-section-20261002.yaml
+    expectedHash: null
+    proposedPath: changes/research/topics/acadia-things-to-do/runs/acadia-cadillac-section-20261002.yaml
+  - path: research/topics/acadia-things-to-do/sources.yaml
+    expectedHash: 21e29681247c5eb0c2e2c94df744d5f37d8dc101e8efa3afe564cf7d4a31755f
+    proposedPath: changes/research/topics/acadia-things-to-do/sources.yaml
+  - path: research/topics/acadia-things-to-do/state.yaml
+    expectedHash: f72e377fceb4c3f54435b58e16d28bceaebf7d0788ff250b43f0cf9230105ff9
+    proposedPath: changes/research/topics/acadia-things-to-do/state.yaml

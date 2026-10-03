@@ -16,3 +16,24 @@ sources:
     url: https://www.nps.gov/acad/planyourvisit/conditions.htm
     access: public
     retrievedAt: 2026-09-08T13:00:00-07:00
+  - id: acadia-weather-forecast
+    title: National Weather Service Bar Harbor forecast
+    publisher: National Weather Service
+    sourceType: primary-documentation
+    url: https://forecast.weather.gov/MapClick.php?lat=44.3792&lon=-68.2249
+    access: public
+    retrievedAt: 2026-10-02T14:43:00-04:00
+  - id: bar-harbor-weather-atlas
+    title: Bar Harbor 10-day weather forecast
+    publisher: Weather Atlas
+    sourceType: primary-documentation
+    url: https://www.weather-atlas.com/en/maine-usa/bar-harbor-long-term-weather-forecast
+    access: public
+    retrievedAt: 2026-10-02T10:37:01-07:00
+  - id: bar-harbor-sunrise-sunset
+    title: Bar Harbor sunrise and sunset times, October 2026
+    publisher: timeanddate.com
+    sourceType: primary-documentation
+    url: https://www.timeanddate.com/sun/@z-us-04609?month=10
+    access: public
+    retrievedAt: 2026-10-02T14:43:00-04:00

@@ -1,0 +1,89 @@
+schemaVersion: 1
+id: acadia-cadillac-drive
+dataType: markdown
+dataVersion: 1
+title: Cadillac Mountain drive
+summary: Best timing, 2026 timed-entry windows, booking steps, driving guidance,
+  and backup options for Cadillac Summit Road.
+lifecycle: draft
+taxonomy:
+  primaryTopicId: trips
+  relatedTopicIds: []
+  tags:
+    - acadia
+    - cadillac
+    - drive
+    - reservations
+relationships: []
+view:
+  defaultType: full
+  permittedTypes:
+    - label
+    - tile
+    - card
+    - full
+  contextOverrides:
+    navigation: label
+    collection: card
+    relationship: tile
+    search: label
+    detail: full
+data:
+  bodyPath: body.md
+provenance:
+  sources:
+    - id: cadillac-nps-reservations
+      title: Cadillac Summit Road Vehicle Reservations
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/acad/planyourvisit/vehicle_reservations.htm
+      access: public
+      retrievedAt: 2026-10-02T16:36:03-07:00
+    - id: cadillac-recreation-gov
+      title: Cadillac Summit Road Vehicle Reservations
+      publisher: Recreation.gov
+      sourceType: primary-documentation
+      url: https://www.recreation.gov/timed-entry/400000
+      access: public
+      retrievedAt: 2026-10-02T16:36:03-07:00
+    - id: cadillac-park-loop-road
+      title: Park Loop Road
+      publisher: National Park Service
+      sourceType: primary-documentation
+      url: https://www.nps.gov/acad/planyourvisit/park-loop-road.htm
+      access: public
+      retrievedAt: 2026-10-02T16:36:03-07:00
+  claims:
+    - id: cadillac-current-reservation-rules
+      basis: observed
+      statement: The 2026 reservation window, release schedule, fee, entry times, pass
+        requirement, vehicle limits, and entry restrictions follow the current
+        NPS and Recreation.gov rules.
+      sourceIds:
+        - cadillac-nps-reservations
+        - cadillac-recreation-gov
+    - id: cadillac-planning-recommendation
+      basis: recommended
+      statement: Choose a clear-forecast date and use a daytime slot unless sunrise is
+        the main goal; drive directly to the reservation area to protect the
+        entry window.
+      sourceIds:
+        - cadillac-nps-reservations
+        - cadillac-park-loop-road
+sensitivity:
+  classification: private
+  containsPersonalData: false
+capturePolicy: summary-allowed
+publication:
+  eligibility: local
+  requestedTargets: []
+ownershipPolicyId: mixed-research-summary-v1
+refresh:
+  workflow: research-topic
+  cadence: P7D
+  stateId: acadia-cadillac-drive
+timestamps:
+  createdAt: 2026-10-02T16:36:03-07:00
+  updatedAt: 2026-10-02T16:36:03-07:00
+review:
+  nextReviewAt: 2026-10-04T09:00:00-07:00

@@ -4,10 +4,11 @@ objective: Keep Acadia National Park & Bar Harbor accurate, useful, and publicly
 status: active
 completedSubtopics:
   - Initial owner-directed research and structure captured
+  - October 5-10 weather and daylight snapshot refreshed
 remainingSubtopics:
   - Recheck time-sensitive conditions and availability
 sourceCursors: []
 openQuestions: []
 contradictions: []
-nextAction: Recheck dynamic details before the relevant date.
-nextHumanReviewAt: 2026-09-12T09:00:00-07:00
+nextAction: Refresh the weather forecast and park conditions before and during the Acadia segment.
+nextHumanReviewAt: 2026-10-04T09:00:00-07:00

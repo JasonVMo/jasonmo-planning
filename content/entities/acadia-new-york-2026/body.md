@@ -7,7 +7,6 @@
 3. Fly Bangor-LaGuardia and continue to Hoboken without a car.
 4. Explore Hoboken and New York City before returning from Newark.
 
-The Maine arrival night is booked in Ellsworth. The Hoboken stay remains the
-open lodging action.
+The Maine arrival night is booked in Ellsworth. Hoboken Airbnb lodging is confirmed for October 10-14.
 
 <!-- END AGENT-MANAGED: research-summary -->

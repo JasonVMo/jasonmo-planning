@@ -1,6 +1,6 @@
 {
   "audience": "public",
-  "contentDigest": "d85ac57fde5ebbc568c1eccc603a4774f4de9012233415c0e85437457e68bc1b",
+  "contentDigest": "70ba5632aa33aed63722696916d96986e0222bc9e3ba66eadae3eacb9f646e9f",
   "files": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "assets/main-LNXIKB3G.css": "14f75d6c8b34fb25c30c64a1645397712546d366f1df615a134f314beb794af7",
@@ -10,6 +10,6 @@
     "assets/trip-banners/nyc-hoboken-segment-2026-2d5b7ac45c15.jpg": "2d5b7ac45c15a9bc1c6dfe8bf752f27311c03a8c40c7709abfccdd3fdd637237",
     "assets/trip-banners/sequoia-2026-9cb9015a9890.jpg": "9cb9015a989057b54baddbbc6ec4b4d7116d33bb5cf0d5220545be4273d470e6",
     "index.html": "b022d0950b2ddfb381302c653a03746be590157712bddd0fa2d91720425207de",
-    "manifest.json": "465027a8ba4191ccf27b8494eb9265ab73f89a07dde85f14a9790252d7a6f082"
+    "manifest.json": "f5c9aebee74051056df654c3f894c2af8169ad05ac91e037864db1271ce6ab26"
   }
 }

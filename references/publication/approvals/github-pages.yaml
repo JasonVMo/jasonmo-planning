@@ -22,7 +22,6 @@ entityIds:
   - eureka-day-2026
   - gorillaz-seattle-2026
   - hadestown-seattle-2027
-  - hoboken-lodging
   - newark-seattle-flight
   - nyc-hoboken-getting-ready
   - nyc-hoboken-restaurants
@@ -45,11 +44,11 @@ entityIds:
   - sequoia-things-to-do
   - washington-state-fair-2026
   - weezer-shins-seattle-2026
-contentDigest: d85ac57fde5ebbc568c1eccc603a4774f4de9012233415c0e85437457e68bc1b
+contentDigest: 70ba5632aa33aed63722696916d96986e0222bc9e3ba66eadae3eacb9f646e9f
 taxonomyDigest: 55afd6fb61cfcf483643d405b20f5c2c89e60578c6cab9f80084cd11bc1e6144
-citationsDigest: 9b01ae45ce9acdef2c6e65bb68f9a0aef1e5a520b3e46994a6a9baee7142c035
+citationsDigest: 06ab423e8b9eee4601173db4251a5c26ff766097b44ae701ec369f5f99518210
 assetsDigest: 7d66f6464296b2058d96fb1d566fa03f65cfcffb63f3d00f0a27da0aaae33c79
-closureDigest: 2ce11e54e019926efccc36931dcb942f46c3612631c17b83426cf6b7821fd357
+closureDigest: 35cbd75c966ca5f73796a0699d1f6c985b322103284cfe7ff6e090aaa9184813
 policyVersion: 2
 reviewer: JasonVMo
-approvedAt: "2026-09-14T16:59:40-07:00"
+approvedAt: 2026-10-02T16:53:12-07:00
